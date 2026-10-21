@@ -1,0 +1,37 @@
+name: Keyboard report
+description: Tell us how KeyGlow works (or doesn't) with your keyboard
+labels: ["keyboard report"]
+body:
+  - type: input
+    id: keyboard
+    attributes:
+      label: Keyboard
+      description: Brand and model, as OpenRGB shows it if possible.
+      placeholder: HyperX Alloy Origins 65
+    validations:
+      required: true
+  - type: dropdown
+    id: works
+    attributes:
+      label: Does it work?
+      options:
+        - Yes, everything works
+        - Partly (some keys or effects are wrong)
+        - No, KeyGlow can't light it
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happens
+      description: Wrong keys, layout drawn wrong, errors, anything you noticed.
+  - type: textarea
+    id: probe
+    attributes:
+      label: Output of `keyglow probe` (optional)
+      render: text
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: KeyGlow 0.2.0, OpenRGB 1.1, Windows 11

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: OpenRGB device support
+    url: https://gitlab.com/CalcProgrammer1/OpenRGB/-/issues
+    about: If OpenRGB itself doesn't detect your keyboard, ask there first.
