@@ -1046,6 +1046,18 @@ async function exportProfile() {
   } catch (err) { toast(err.message, "err"); }
 }
 
+async function saveToKeyboard() {
+  try {
+    const { summary } = await api("/api/device/save", { profile: S.profile });
+    if (!confirm(`Save to the keyboard's memory: ${summary}.
+
+The keyboard will keep it without KeyGlow running. KeyGlow stops controlling the lights so you see what was saved.`)) return;
+    const r = await api("/api/device/save", { profile: S.profile, confirm: true });
+    setStatus(r);
+    toast("Saved to the keyboard's memory");
+  } catch (err) { toast(err.message, "err"); }
+}
+
 function newProfile() {
   if (S.dirty && !confirm("Discard unsaved changes and start a new profile?")) return;
   loadProfile({ format: "keyglow/1", name: "My profile", layers: [{ effect: "solid", params: { color: "#7c5cff" } }] });
@@ -1254,6 +1266,7 @@ function setupMenu() {
     else if (act === "details") openDetails();
     else if (act === "import") { $("#imp-file").value = ""; $("#imp-url").value = ""; $("#dlg-import").showModal(); }
     else if (act === "export") openExport();
+    else if (act === "onboard") saveToKeyboard();
     else if (act === "capture") {
       try { const r = await api("/api/capture", {}); loadProfile(r.data); S.dirty = true; renderHead(); toast("Captured the keyboard's current colors"); }
       catch (err) { toast(err.message, "err"); }

@@ -10,6 +10,13 @@
   export to OpenRGB profiles, key color maps with OpenRGB, web or QMK key names, and CSV.
   New *Export…* dialog in the app and `keyglow export` command.
 - Key names: ISO keys, media keys and QMK keycodes are recognized.
+- **Save to keyboard memory** (*⋯ → Save to keyboard memory…*): on keyboards whose OpenRGB
+  driver can store lighting, KeyGlow saves the closest hardware mode (or each key's color) so
+  the keyboard keeps it without any software running. Keyboards that can't (like the HyperX
+  Alloy Origins 65 through OpenRGB) get a clear explanation instead.
+- **New look**: black interface with a single neutral accent, and bundled IBM Plex Sans,
+  IBM Plex Mono and Space Grotesk fonts (SIL Open Font License).
+- Fix: profiles whose layers rely on default colors (e.g. Campfire) no longer crash the editor.
 - Repository: theme profiles moved to `keyglow/community/themes/`; documentation split into
   `docs/` (compatibility, profile format, profile sources) and `CONTRIBUTING.md`.
 

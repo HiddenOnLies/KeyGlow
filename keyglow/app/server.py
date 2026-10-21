@@ -34,7 +34,7 @@ MAX_BODY = 4 * 1024 * 1024
 # El registro de Windows a veces asocia .js a text/plain; se fija a mano.
 for _ext, _type in ((".js", "application/javascript"), (".css", "text/css"),
                     (".html", "text/html"), (".svg", "image/svg+xml"), (".png", "image/png"),
-                    (".ico", "image/x-icon")):
+                    (".ico", "image/x-icon"), (".woff2", "font/woff2")):
     mimetypes.add_type(_type, _ext)
 
 
@@ -203,6 +203,11 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({"ok": True})
             if path == "/api/import":
                 return self._json(app.import_profile(body))
+            if path == "/api/device/save":
+                if not body.get("confirm"):
+                    return self._json({"summary": eng.onboard_plan(body["profile"]).summary})
+                saved = eng.save_to_memory(body["profile"])
+                return self._json({**eng.status(), "saved": saved})
             if path == "/api/export":
                 fmt = body.get("format", "keyglow")
                 profile, _ = prepare(body["profile"], eng.layout)

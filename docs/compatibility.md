@@ -51,6 +51,20 @@ If your keyboard isn't detected by OpenRGB, run `keyglow probe` to see its `VID:
 the [OpenRGB supported devices list](https://openrgb.org/devices.html) or its
 [issue tracker](https://gitlab.com/CalcProgrammer1/OpenRGB/-/issues).
 
+### Saving to the keyboard's memory
+
+*⋯ → Save to keyboard memory…* stores the lighting in the keyboard itself, so it stays without
+KeyGlow or OpenRGB running. It only works when OpenRGB's driver for that keyboard can save
+(its modes are marked as savable). The keyboard only knows its own modes, so KeyGlow saves the
+closest one (static, breathing, rainbow…) or, if the keyboard has a savable per-key mode, each
+key's color at that moment.
+
+The **HyperX Alloy Origins 65** can't do this through OpenRGB: its driver only has a "Direct"
+mode that has to be refreshed every 50 ms, otherwise the keyboard goes back to its built-in
+effect. The keyboard does have 3 onboard profiles, but they are written by HyperX NGENUITY with
+an undocumented protocol. Supporting it means capturing NGENUITY's USB traffic and reproducing
+it in a KeyGlow backend.
+
 ## Other programs
 
 KeyGlow profiles have layers and animations that other programs can't represent, so

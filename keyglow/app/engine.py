@@ -13,6 +13,7 @@ import time
 from collections import OrderedDict
 
 from .. import color as C
+from .. import onboard
 from ..effects import has_reactive
 from ..layout import Layout, load_layout
 from ..profile import Profile, Renderer
@@ -253,6 +254,23 @@ class LightEngine:
         return Profile(name=name, designed_for=self.layout.name,
                        layers=[{"effect": "static", "params": {"keys": keys}}]).to_dict()
 
+    # --- memoria del teclado -------------------------------------------------
+    def onboard_plan(self, data: dict) -> onboard.Plan:
+        with self._lock:
+            if self._kb is None and self._connect() is None:
+                raise RuntimeError(self.error)
+            return onboard.plan(data, self._kb.modes())
+
+    def save_to_memory(self, data: dict) -> str:
+        """Guarda ``data`` en la memoria del teclado y deja de pintarlo desde KeyGlow."""
+        plan = self.onboard_plan(data)
+        profile, _ = prepare(data, self.layout)
+        frame = Renderer(profile, self.layout).frame(0)
+        self.stop()  # si KeyGlow siguiera pintando, taparía lo guardado
+        with self._lock:
+            self._kb.save_to_memory(plan, frame)
+        return plan.summary
+
     def device_description(self) -> dict | None:
         """Descripción del teclado conectado al estilo de OpenRGB (para exportar perfiles)."""
         with self._lock:
@@ -271,6 +289,7 @@ class LightEngine:
                 "brightness": self.brightness,
                 "override": self.override,
                 "layout": self.layout.name,
+                "can_save": bool(self._kb is not None and onboard.can_save(self._kb.modes())),
                 "layout_rev": self.layout_rev,
             }
 

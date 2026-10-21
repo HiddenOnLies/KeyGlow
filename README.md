@@ -46,6 +46,8 @@ close the window.
   recommended profiles for ~40 popular games.
 - **Import / export** (⋯): KeyGlow and OpenRGB profiles, key color maps (OpenRGB, web, QMK names)
   and CSV. Drag a file onto the window to import it.
+- **Save to keyboard memory** on keyboards that support it, so no software has to stay open
+  ([which ones](docs/compatibility.md#saving-to-the-keyboards-memory)).
 - **Any keyboard**: the layout comes from OpenRGB automatically; 9 standard layouts (ANSI/ISO,
   60% to full size) are built in. See [compatibility](docs/compatibility.md).
 
@@ -96,5 +98,6 @@ powershell -ExecutionPolicy Bypass -File tools\build_exe.ps1   # builds dist\Key
 
 ## License
 
-[MIT](LICENSE). The theme profiles in `keyglow/community/themes/` are derived from
+[MIT](LICENSE). The bundled fonts (IBM Plex Sans, IBM Plex Mono, Space Grotesk) are under the
+SIL Open Font License; see `keyglow/app/static/fonts/`. The theme profiles in `keyglow/community/themes/` are derived from
 MIT-licensed palettes; see their [credits](keyglow/community/themes/CREDITS.md).

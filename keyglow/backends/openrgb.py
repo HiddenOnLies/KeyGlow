@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import time
 
+from .. import onboard
 from ..keynames import normalize
 from ..layout import Layout, from_device
 from ..profile import Profile, Renderer
@@ -49,6 +50,23 @@ class OpenRGBKeyboard:
     @property
     def name(self) -> str:
         return self.device.name
+
+    # --- memoria del teclado --------------------------------------------------
+    def modes(self) -> list[onboard.Mode]:
+        return [onboard.Mode(m.name, int(m.flags), int(m.color_mode), m.colors_min or 0,
+                             m.colors_max or 0) for m in self.device.modes]
+
+    def save_to_memory(self, plan: onboard.Plan, frame: dict[str, tuple[int, int, int]]) -> None:
+        """Pone el modo de hardware de ``plan`` y lo guarda en la memoria del teclado."""
+        RGB = self._RGBColor
+        mode = self.device.modes[plan.mode]
+        if plan.colors:
+            mode.colors = [RGB(*c) for c in plan.colors]
+        self.device.set_mode(mode)
+        if plan.per_led:
+            self.write(frame)
+        if plan.manual_save:
+            self.device.save_mode()
 
     def layout(self) -> Layout:
         """Distribución de este teclado según sus LEDs y la matriz que informa OpenRGB."""

@@ -34,4 +34,4 @@ keyglow-app = "keyglow.app.main:main"
 include = ["keyglow*"]
 
 [tool.setuptools.package-data]
-keyglow = ["presets/*.json", "community/*.json", "community/themes/*", "app/static/*"]
+keyglow = ["presets/*.json", "community/*.json", "community/themes/*", "app/static/*", "app/static/fonts/*"]
