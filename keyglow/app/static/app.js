@@ -765,6 +765,10 @@ function renderLayerEditor() {
   box.innerHTML = "";
   const l = currentLayer();
   if (!l) return;
+  // profiles may leave colors out and rely on the effect's defaults (e.g. Campfire)
+  const defs = S.meta.effects[l.effect]?.defaults || {};
+  l.params = l.params || {};
+  for (const k of ["color", "colors"]) if (k in defs && l.params[k] === undefined) l.params[k] = clone(defs[k]);
   const d = describeLayer(l);
   const set = (color, anim) => { S.profile.layers[S.layer] = buildLayer(l, color, anim); commit(); };
 
