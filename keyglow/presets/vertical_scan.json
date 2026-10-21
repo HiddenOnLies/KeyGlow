@@ -1,0 +1,22 @@
+{
+  "format": "keyglow/1",
+  "name": "Vertical Scan",
+  "author": "KeyGlow",
+  "description": "A cyan line moving up and down.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "scanner",
+      "params": {
+        "color": "#00e5ff",
+        "background": "#000a10",
+        "speed": 0.5,
+        "width": 0.18,
+        "angle": 90
+      }
+    }
+  ]
+}

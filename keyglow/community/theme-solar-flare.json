@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Solar Flare",
+  "author": "Chuck Harmston · Tinted Theming (MIT)",
+  "description": "Colors from the Solar Flare theme by Chuck Harmston. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#33b5e1",
+          "#a363d5"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e4b51c"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#52ccb1"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#7ecc45"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ef5253"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e66b2b"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

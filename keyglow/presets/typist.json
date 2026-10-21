@@ -1,0 +1,28 @@
+{
+  "format": "keyglow/1",
+  "name": "Typist",
+  "author": "KeyGlow",
+  "description": "Letters bright, everything else dim.",
+  "tags": [
+    "static",
+    "productivity"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#202530"
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e0f0ff"
+      },
+      "keys": [
+        "@letters",
+        "SPACE"
+      ]
+    }
+  ]
+}

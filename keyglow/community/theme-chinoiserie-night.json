@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Chinoiserie Night",
+  "author": "Di Wang · Tinted Theming (MIT)",
+  "description": "Colors from the Chinoiserie Night theme by Di Wang. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#91b5cc",
+          "#cca9c7"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f4ce69"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b0d5df"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b2cf87"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f07c82"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f4a83a"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

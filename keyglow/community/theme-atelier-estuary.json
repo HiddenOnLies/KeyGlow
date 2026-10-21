@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Atelier Estuary",
+  "author": "Bram de Haan · Tinted Theming (MIT)",
+  "description": "Colors from the Atelier Estuary theme by Bram de Haan. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#44cc81",
+          "#86ccb7"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccbc10"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#76cc5e"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a9cc33"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6b3b"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc8716"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

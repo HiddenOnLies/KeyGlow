@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Woodland",
+  "author": "Jay Cornwall · Tinted Theming (MIT)",
+  "description": "Colors from the Woodland theme by Jay Cornwall. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#88a4d3",
+          "#bb90e2"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e0ac16"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#79cc61"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c9cc5b"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d35c5c"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc8032"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

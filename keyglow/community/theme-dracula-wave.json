@@ -1,0 +1,28 @@
+{
+  "format": "keyglow/1",
+  "name": "Dracula Wave",
+  "author": "Dracula Theme · Dracula (MIT)",
+  "description": "The accent colors of the Dracula theme by Dracula Theme, rolling slowly. MIT License.",
+  "tags": [
+    "theme",
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#bd93f9",
+          "#ff79c6",
+          "#ff5555",
+          "#ffb86c",
+          "#f1fa8c",
+          "#50fa7b",
+          "#8be9fd"
+        ],
+        "speed": 0.08,
+        "wavelength": 1.4
+      }
+    }
+  ]
+}

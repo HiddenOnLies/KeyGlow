@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Stella",
+  "author": "Shrimpram · Tinted Theming (MIT)",
+  "description": "Colors from the Stella theme by Shrimpram. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#a5aad4",
+          "#c594ff"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccb95"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9fccc4"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b0cc9f"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9d8a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8c68cc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

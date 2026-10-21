@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Bespin",
+  "author": "Jan T. Sott · Tinted Theming (MIT)",
+  "description": "Colors from the Bespin theme by Jan T. Sott. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#5ea6ea",
+          "#c9adcc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f9ee98"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#afc4db"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#5acc0e"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cf6a4c"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cf7d34"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Edge Dark",
+  "author": "cjayross, Tinted Theming · Tinted Theming (MIT)",
+  "description": "Colors from the Edge Dark theme by cjayross, Tinted Theming. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#73b3e7",
+          "#d390e7"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#dbb774"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#67ccb5"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#accc80"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e77171"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#eba31a"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

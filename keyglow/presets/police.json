@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Police",
+  "author": "KeyGlow",
+  "description": "Red and blue sweeping across.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#ff0010",
+          "#ff0010",
+          "#0030ff",
+          "#0030ff"
+        ],
+        "speed": 0.9,
+        "angle": 0,
+        "wavelength": 1.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Outrun",
+  "author": "KeyGlow",
+  "description": "Magenta and orange wave, fast.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#ff0080",
+          "#ff6a00",
+          "#ffd000",
+          "#ff0080"
+        ],
+        "speed": 0.45,
+        "angle": 0,
+        "wavelength": 0.8
+      }
+    }
+  ]
+}

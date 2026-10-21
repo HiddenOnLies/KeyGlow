@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Ocean",
+  "author": "Chris Kempson · Tinted Theming (MIT)",
+  "description": "Colors from the Ocean theme by Chris Kempson. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#a3b7cc",
+          "#cca1c4"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ebcb8b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a9cccb"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#afcc96"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6871"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d08770"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

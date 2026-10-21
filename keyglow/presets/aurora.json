@@ -1,0 +1,37 @@
+{
+  "format": "keyglow/1",
+  "name": "Aurora",
+  "author": "KeyGlow",
+  "description": "Northern-lights wave with WASD and arrows highlighted.",
+  "tags": [
+    "animated",
+    "gaming"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#00ffa0",
+          "#00a0ff",
+          "#8040ff",
+          "#00ffa0"
+        ],
+        "speed": 0.15,
+        "angle": 20,
+        "wavelength": 1.2
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffffff"
+      },
+      "keys": [
+        "@wasd",
+        "@arrows"
+      ],
+      "opacity": 0.85
+    }
+  ]
+}

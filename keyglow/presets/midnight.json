@@ -1,0 +1,22 @@
+{
+  "format": "keyglow/1",
+  "name": "Midnight",
+  "author": "KeyGlow",
+  "description": "Deep blue with a slow pulse.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "breathing",
+      "params": {
+        "colors": [
+          "#0020a0"
+        ],
+        "period": 7,
+        "min": 0.3
+      }
+    }
+  ]
+}

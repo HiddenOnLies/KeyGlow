@@ -1,0 +1,40 @@
+{
+  "format": "keyglow/1",
+  "name": "Fire",
+  "author": "KeyGlow",
+  "description": "Flames rising from the space bar, with sparks.",
+  "tags": [
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#ff1000",
+          "#ff6000",
+          "#ffb000",
+          "#ff3000"
+        ],
+        "speed": 0.35,
+        "angle": 270,
+        "wavelength": 1.0
+      }
+    },
+    {
+      "effect": "starlight",
+      "params": {
+        "colors": [
+          "#ffff80",
+          "#ffffff"
+        ],
+        "background": "#000000",
+        "density": 0.12,
+        "period": 1.2,
+        "seed": 7
+      },
+      "blend": "add",
+      "opacity": 0.8
+    }
+  ]
+}

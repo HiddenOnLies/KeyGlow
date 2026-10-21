@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Mountain",
+  "author": "gnsfujiwara · Tinted Theming (MIT)",
+  "description": "Colors from the Mountain theme by gnsfujiwara. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#aaa4cc",
+          "#cca4cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccc8a4"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a4cbcc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a4cca5"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cca4a6"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ceb188"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

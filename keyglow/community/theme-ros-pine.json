@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Rosé Pine",
+  "author": "Emilia Dunfelt · Tinted Theming (MIT)",
+  "description": "Colors from the Rosé Pine theme by Emilia Dunfelt. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#c4a7e7",
+          "#f6c177"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ebbcba"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9ccfd8"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#46a5cc"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#eb6f92"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f6c177"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

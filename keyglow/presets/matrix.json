@@ -1,0 +1,24 @@
+{
+  "format": "keyglow/1",
+  "name": "Matrix",
+  "author": "KeyGlow",
+  "description": "Green digital rain.",
+  "tags": [
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "starlight",
+      "params": {
+        "colors": [
+          "#00ff40",
+          "#a0ffa0"
+        ],
+        "background": "#001200",
+        "density": 0.35,
+        "period": 1.2,
+        "seed": 11
+      }
+    }
+  ]
+}

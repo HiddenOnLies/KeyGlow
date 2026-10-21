@@ -1,0 +1,36 @@
+{
+  "format": "keyglow/1",
+  "name": "Racing",
+  "author": "KeyGlow",
+  "description": "Fast speed lines with arrows lit.",
+  "tags": [
+    "gaming",
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#000000",
+          "#ff2000",
+          "#000000",
+          "#ffa000"
+        ],
+        "speed": 1.2,
+        "angle": 180,
+        "wavelength": 0.6
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffffff"
+      },
+      "keys": [
+        "@arrows",
+        "@wasd"
+      ]
+    }
+  ]
+}

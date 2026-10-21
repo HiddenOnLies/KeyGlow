@@ -1,0 +1,23 @@
+{
+  "format": "keyglow/1",
+  "name": "Cotton Candy",
+  "author": "KeyGlow",
+  "description": "Pastel pink and blue breathing.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "breathing",
+      "params": {
+        "colors": [
+          "#ff9ad5",
+          "#9ad5ff"
+        ],
+        "period": 5,
+        "min": 0.25
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "format": "keyglow/1",
+  "name": "Dusk",
+  "author": "KeyGlow",
+  "description": "Orange to violet, no animation.",
+  "tags": [
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#ff5a00",
+          "#ff0070",
+          "#6a00ff"
+        ],
+        "angle": 0
+      }
+    }
+  ]
+}

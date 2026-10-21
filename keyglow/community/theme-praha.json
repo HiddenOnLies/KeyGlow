@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Praha",
+  "author": "xscriptor · Tinted Theming (MIT)",
+  "description": "Colors from the Praha theme by xscriptor. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#bd93f9",
+          "#ff9aa2"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffe4a3"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8be9fd"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b8e6a0"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff5555"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff9c7c"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

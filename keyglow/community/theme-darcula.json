@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Darcula",
+  "author": "jetbrains · Tinted Theming (MIT)",
+  "description": "Colors from the Darcula theme by jetbrains. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#b68ecc",
+          "#cc7832"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccc52d"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#84cc73"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a0cc86"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#4eade5"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8dcc76"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

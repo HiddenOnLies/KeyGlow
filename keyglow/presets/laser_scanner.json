@@ -1,0 +1,21 @@
+{
+  "format": "keyglow/1",
+  "name": "Laser Scanner",
+  "author": "KeyGlow",
+  "description": "A red bar sweeping back and forth.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "scanner",
+      "params": {
+        "color": "#ff0020",
+        "background": "#100000",
+        "speed": 0.6,
+        "width": 0.12
+      }
+    }
+  ]
+}

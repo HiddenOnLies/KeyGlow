@@ -1,0 +1,2425 @@
+{
+  "format": "keyglow-gallery/1",
+  "name": "Built-in examples",
+  "profiles": [
+    {
+      "name": "Cyberpunk",
+      "author": "Community example",
+      "description": "Neon yellow and cyan with magenta WASD.",
+      "tags": [
+        "animated",
+        "gaming"
+      ],
+      "file": "cyberpunk.json"
+    },
+    {
+      "name": "Ice",
+      "author": "Community example",
+      "description": "Bluish white that breathes slowly.",
+      "tags": [
+        "chill"
+      ],
+      "file": "ice.json"
+    },
+    {
+      "name": "Editing Shortcuts",
+      "author": "Community example",
+      "description": "Highlights Ctrl+C, Ctrl+V, Ctrl+Z and friends for photo or video editing.",
+      "tags": [
+        "productivity",
+        "static"
+      ],
+      "file": "editing_shortcuts.json"
+    },
+    {
+      "name": "Catppuccin Latte",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "Colors from the Catppuccin Latte theme by Catppuccin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-catppuccin-latte.json"
+    },
+    {
+      "name": "Catppuccin Latte Wave",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "The accent colors of the Catppuccin Latte theme by Catppuccin, rolling slowly. MIT License.",
+      "tags": [
+        "theme",
+        "animated"
+      ],
+      "file": "theme-catppuccin-latte-wave.json"
+    },
+    {
+      "name": "Catppuccin Frappé",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "Colors from the Catppuccin Frappé theme by Catppuccin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-catppuccin-frapp.json"
+    },
+    {
+      "name": "Catppuccin Frappé Wave",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "The accent colors of the Catppuccin Frappé theme by Catppuccin, rolling slowly. MIT License.",
+      "tags": [
+        "theme",
+        "animated"
+      ],
+      "file": "theme-catppuccin-frapp-wave.json"
+    },
+    {
+      "name": "Catppuccin Macchiato",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "Colors from the Catppuccin Macchiato theme by Catppuccin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-catppuccin-macchiato.json"
+    },
+    {
+      "name": "Catppuccin Macchiato Wave",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "The accent colors of the Catppuccin Macchiato theme by Catppuccin, rolling slowly. MIT License.",
+      "tags": [
+        "theme",
+        "animated"
+      ],
+      "file": "theme-catppuccin-macchiato-wave.json"
+    },
+    {
+      "name": "Catppuccin Mocha",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "Colors from the Catppuccin Mocha theme by Catppuccin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-catppuccin-mocha.json"
+    },
+    {
+      "name": "Catppuccin Mocha Wave",
+      "author": "Catppuccin · Catppuccin (MIT)",
+      "description": "The accent colors of the Catppuccin Mocha theme by Catppuccin, rolling slowly. MIT License.",
+      "tags": [
+        "theme",
+        "animated"
+      ],
+      "file": "theme-catppuccin-mocha-wave.json"
+    },
+    {
+      "name": "Dracula",
+      "author": "Dracula Theme · Dracula (MIT)",
+      "description": "Colors from the Dracula theme by Dracula Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-dracula.json"
+    },
+    {
+      "name": "Dracula Wave",
+      "author": "Dracula Theme · Dracula (MIT)",
+      "description": "The accent colors of the Dracula theme by Dracula Theme, rolling slowly. MIT License.",
+      "tags": [
+        "theme",
+        "animated"
+      ],
+      "file": "theme-dracula-wave.json"
+    },
+    {
+      "name": "Nord",
+      "author": "Sven Greb · Nord (MIT)",
+      "description": "Colors from the Nord theme by Sven Greb. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-nord.json"
+    },
+    {
+      "name": "Nord Wave",
+      "author": "Sven Greb · Nord (MIT)",
+      "description": "The accent colors of the Nord theme by Sven Greb, rolling slowly. MIT License.",
+      "tags": [
+        "theme",
+        "animated"
+      ],
+      "file": "theme-nord-wave.json"
+    },
+    {
+      "name": "0x96f",
+      "author": "Filip Janevski · Tinted Theming (MIT)",
+      "description": "Colors from the 0x96f theme by Filip Janevski. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-0x96f.json"
+    },
+    {
+      "name": "3024",
+      "author": "Jan T. Sott · Tinted Theming (MIT)",
+      "description": "Colors from the 3024 theme by Jan T. Sott. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-3024.json"
+    },
+    {
+      "name": "Apathy",
+      "author": "Jannik Siebert · Tinted Theming (MIT)",
+      "description": "Colors from the Apathy theme by Jannik Siebert. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-apathy.json"
+    },
+    {
+      "name": "Apprentice",
+      "author": "Romain Lafourcade · Tinted Theming (MIT)",
+      "description": "Colors from the Apprentice theme by Romain Lafourcade. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-apprentice.json"
+    },
+    {
+      "name": "Arroz con Dulce Dark",
+      "author": "Richard Martinez · Tinted Theming (MIT)",
+      "description": "Colors from the Arroz con Dulce Dark theme by Richard Martinez. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-arroz-con-dulce-dark.json"
+    },
+    {
+      "name": "Ascendancy",
+      "author": "EmergentMind · Tinted Theming (MIT)",
+      "description": "Colors from the Ascendancy theme by EmergentMind. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ascendancy.json"
+    },
+    {
+      "name": "Ashes",
+      "author": "Jannik Siebert · Tinted Theming (MIT)",
+      "description": "Colors from the Ashes theme by Jannik Siebert. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ashes.json"
+    },
+    {
+      "name": "Atelier Cave",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Cave theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-cave.json"
+    },
+    {
+      "name": "Atelier Dune",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Dune theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-dune.json"
+    },
+    {
+      "name": "Atelier Estuary",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Estuary theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-estuary.json"
+    },
+    {
+      "name": "Atelier Forest",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Forest theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-forest.json"
+    },
+    {
+      "name": "Atelier Heath",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Heath theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-heath.json"
+    },
+    {
+      "name": "Atelier Lakeside",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Lakeside theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-lakeside.json"
+    },
+    {
+      "name": "Atelier Plateau",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Plateau theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-plateau.json"
+    },
+    {
+      "name": "Atelier Savanna",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Savanna theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-savanna.json"
+    },
+    {
+      "name": "Atelier Seaside",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Seaside theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-seaside.json"
+    },
+    {
+      "name": "Atelier Sulphurpool",
+      "author": "Bram de Haan · Tinted Theming (MIT)",
+      "description": "Colors from the Atelier Sulphurpool theme by Bram de Haan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atelier-sulphurpool.json"
+    },
+    {
+      "name": "Atlas",
+      "author": "Alex Lende · Tinted Theming (MIT)",
+      "description": "Colors from the Atlas theme by Alex Lende. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-atlas.json"
+    },
+    {
+      "name": "Ayu Dark",
+      "author": "Tinted Theming, Ayu Theme · Tinted Theming (MIT)",
+      "description": "Colors from the Ayu Dark theme by Tinted Theming, Ayu Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ayu-dark.json"
+    },
+    {
+      "name": "Ayu Mirage",
+      "author": "Tinted Theming, Ayu Theme · Tinted Theming (MIT)",
+      "description": "Colors from the Ayu Mirage theme by Tinted Theming, Ayu Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ayu-mirage.json"
+    },
+    {
+      "name": "Aztec",
+      "author": "TheNeverMan · Tinted Theming (MIT)",
+      "description": "Colors from the Aztec theme by TheNeverMan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-aztec.json"
+    },
+    {
+      "name": "Bespin",
+      "author": "Jan T. Sott · Tinted Theming (MIT)",
+      "description": "Colors from the Bespin theme by Jan T. Sott. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-bespin.json"
+    },
+    {
+      "name": "Black Metal (Bathory)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Bathory) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-bathory.json"
+    },
+    {
+      "name": "Black Metal (Burzum)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Burzum) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-burzum.json"
+    },
+    {
+      "name": "Black Metal (Dark Funeral)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Dark Funeral) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-dark-funeral.json"
+    },
+    {
+      "name": "Black Metal (Gorgoroth)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Gorgoroth) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-gorgoroth.json"
+    },
+    {
+      "name": "Black Metal (Immortal)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Immortal) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-immortal.json"
+    },
+    {
+      "name": "Black Metal (Khold)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Khold) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-khold.json"
+    },
+    {
+      "name": "Black Metal (Marduk)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Marduk) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-marduk.json"
+    },
+    {
+      "name": "Black Metal (Mayhem)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Mayhem) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-mayhem.json"
+    },
+    {
+      "name": "Black Metal (Nile)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Nile) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-nile.json"
+    },
+    {
+      "name": "Black Metal (Venom)",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal (Venom) theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal-venom.json"
+    },
+    {
+      "name": "Black Metal",
+      "author": "metalelf0 · Tinted Theming (MIT)",
+      "description": "Colors from the Black Metal theme by metalelf0. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-black-metal.json"
+    },
+    {
+      "name": "Blue Forest",
+      "author": "alonsodomin · Tinted Theming (MIT)",
+      "description": "Colors from the Blue Forest theme by alonsodomin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-blue-forest.json"
+    },
+    {
+      "name": "Blueish",
+      "author": "Ben Mayoras · Tinted Theming (MIT)",
+      "description": "Colors from the Blueish theme by Ben Mayoras. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-blueish.json"
+    },
+    {
+      "name": "Bogota",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Bogota theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-bogota.json"
+    },
+    {
+      "name": "boo-shnickle",
+      "author": "boo-shnickle · Tinted Theming (MIT)",
+      "description": "Colors from the boo-shnickle theme by boo-shnickle. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-boo-shnickle.json"
+    },
+    {
+      "name": "Bosque",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Bosque theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-bosque.json"
+    },
+    {
+      "name": "Brasa",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Brasa theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-brasa.json"
+    },
+    {
+      "name": "Brewer",
+      "author": "Timothée Poisot · Tinted Theming (MIT)",
+      "description": "Colors from the Brewer theme by Timothée Poisot. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-brewer.json"
+    },
+    {
+      "name": "Bright",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Bright theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-bright.json"
+    },
+    {
+      "name": "Brogrammer",
+      "author": "Vik Ramanujam · Tinted Theming (MIT)",
+      "description": "Colors from the Brogrammer theme by Vik Ramanujam. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-brogrammer.json"
+    },
+    {
+      "name": "Brush Trees Dark",
+      "author": "Abraham White · Tinted Theming (MIT)",
+      "description": "Colors from the Brush Trees Dark theme by Abraham White. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-brush-trees-dark.json"
+    },
+    {
+      "name": "Cacao",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Cacao theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-cacao.json"
+    },
+    {
+      "name": "caroline",
+      "author": "ed · Tinted Theming (MIT)",
+      "description": "Colors from the caroline theme by ed. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-caroline.json"
+    },
+    {
+      "name": "Cerulean Signal Dark",
+      "author": "Aaron Colichia · Tinted Theming (MIT)",
+      "description": "Colors from the Cerulean Signal Dark theme by Aaron Colichia. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-cerulean-signal-dark.json"
+    },
+    {
+      "name": "Chalk",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Chalk theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-chalk.json"
+    },
+    {
+      "name": "Charcoal Dark",
+      "author": "Mubin Muhammad · Tinted Theming (MIT)",
+      "description": "Colors from the Charcoal Dark theme by Mubin Muhammad. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-charcoal-dark.json"
+    },
+    {
+      "name": "Chicago Night",
+      "author": "Wendell, Ryan · Tinted Theming (MIT)",
+      "description": "Colors from the Chicago Night theme by Wendell, Ryan. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-chicago-night.json"
+    },
+    {
+      "name": "Chinoiserie Midnight",
+      "author": "Di Wang · Tinted Theming (MIT)",
+      "description": "Colors from the Chinoiserie Midnight theme by Di Wang. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-chinoiserie-midnight.json"
+    },
+    {
+      "name": "Chinoiserie Morandi",
+      "author": "Di Wang · Tinted Theming (MIT)",
+      "description": "Colors from the Chinoiserie Morandi theme by Di Wang. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-chinoiserie-morandi.json"
+    },
+    {
+      "name": "Chinoiserie Night",
+      "author": "Di Wang · Tinted Theming (MIT)",
+      "description": "Colors from the Chinoiserie Night theme by Di Wang. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-chinoiserie-night.json"
+    },
+    {
+      "name": "Circus",
+      "author": "Stephan Boyer and Esther Wang · Tinted Theming (MIT)",
+      "description": "Colors from the Circus theme by Stephan Boyer and Esther Wang. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-circus.json"
+    },
+    {
+      "name": "Classic Dark",
+      "author": "Jason Heeris · Tinted Theming (MIT)",
+      "description": "Colors from the Classic Dark theme by Jason Heeris. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-classic-dark.json"
+    },
+    {
+      "name": "Codeschool",
+      "author": "blockloop · Tinted Theming (MIT)",
+      "description": "Colors from the Codeschool theme by blockloop. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-codeschool.json"
+    },
+    {
+      "name": "Colors",
+      "author": "mrmrs · Tinted Theming (MIT)",
+      "description": "Colors from the Colors theme by mrmrs. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-colors.json"
+    },
+    {
+      "name": "Corduroy Dark",
+      "author": "taysatte · Tinted Theming (MIT)",
+      "description": "Colors from the Corduroy Dark theme by taysatte. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-corduroy-dark.json"
+    },
+    {
+      "name": "Corduroy",
+      "author": "taysatte · Tinted Theming (MIT)",
+      "description": "Colors from the Corduroy theme by taysatte. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-corduroy.json"
+    },
+    {
+      "name": "Da One Black",
+      "author": "NNB · Tinted Theming (MIT)",
+      "description": "Colors from the Da One Black theme by NNB. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-da-one-black.json"
+    },
+    {
+      "name": "DanQing",
+      "author": "Wenhan Zhu · Tinted Theming (MIT)",
+      "description": "Colors from the DanQing theme by Wenhan Zhu. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-danqing.json"
+    },
+    {
+      "name": "Darcula",
+      "author": "jetbrains · Tinted Theming (MIT)",
+      "description": "Colors from the Darcula theme by jetbrains. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-darcula.json"
+    },
+    {
+      "name": "darkmoss",
+      "author": "Gabriel Avanzi · Tinted Theming (MIT)",
+      "description": "Colors from the darkmoss theme by Gabriel Avanzi. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-darkmoss.json"
+    },
+    {
+      "name": "Darktooth",
+      "author": "Jason Milkins · Tinted Theming (MIT)",
+      "description": "Colors from the Darktooth theme by Jason Milkins. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-darktooth.json"
+    },
+    {
+      "name": "Dark Violet",
+      "author": "ruler501 · Tinted Theming (MIT)",
+      "description": "Colors from the Dark Violet theme by ruler501. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-dark-violet.json"
+    },
+    {
+      "name": "Decaf",
+      "author": "Alex Mirrington · Tinted Theming (MIT)",
+      "description": "Colors from the Decaf theme by Alex Mirrington. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-decaf.json"
+    },
+    {
+      "name": "Deep Oceanic Next",
+      "author": "spearkkk · Tinted Theming (MIT)",
+      "description": "Colors from the Deep Oceanic Next theme by spearkkk. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-deep-oceanic-next.json"
+    },
+    {
+      "name": "Default Dark",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Default Dark theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-default-dark.json"
+    },
+    {
+      "name": "Digital Rain",
+      "author": "Nathan Byrd · Tinted Theming (MIT)",
+      "description": "Colors from the Digital Rain theme by Nathan Byrd. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-digital-rain.json"
+    },
+    {
+      "name": "Edge Dark",
+      "author": "cjayross, Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the Edge Dark theme by cjayross, Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-edge-dark.json"
+    },
+    {
+      "name": "Eighties",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Eighties theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-eighties.json"
+    },
+    {
+      "name": "Eldritch",
+      "author": "Unknown · Tinted Theming (MIT)",
+      "description": "Colors from the Eldritch theme by Unknown. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-eldritch.json"
+    },
+    {
+      "name": "Embers",
+      "author": "Jannik Siebert · Tinted Theming (MIT)",
+      "description": "Colors from the Embers theme by Jannik Siebert. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-embers.json"
+    },
+    {
+      "name": "Equilibrium Dark",
+      "author": "Carlo Abelli · Tinted Theming (MIT)",
+      "description": "Colors from the Equilibrium Dark theme by Carlo Abelli. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-equilibrium-dark.json"
+    },
+    {
+      "name": "eris",
+      "author": "ed, Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the eris theme by ed, Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-eris.json"
+    },
+    {
+      "name": "Espresso",
+      "author": "Unknown. Maintained by Alex Mirrington · Tinted Theming (MIT)",
+      "description": "Colors from the Espresso theme by Unknown. Maintained by Alex Mirrington. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-espresso.json"
+    },
+    {
+      "name": "Eva Dim",
+      "author": "kjakapat · Tinted Theming (MIT)",
+      "description": "Colors from the Eva Dim theme by kjakapat. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-eva-dim.json"
+    },
+    {
+      "name": "Eva",
+      "author": "kjakapat · Tinted Theming (MIT)",
+      "description": "Colors from the Eva theme by kjakapat. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-eva.json"
+    },
+    {
+      "name": "Evenok Dark",
+      "author": "Mekeor Melire · Tinted Theming (MIT)",
+      "description": "Colors from the Evenok Dark theme by Mekeor Melire. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-evenok-dark.json"
+    },
+    {
+      "name": "Everforest Dark Hard",
+      "author": "Sainnhe Park · Tinted Theming (MIT)",
+      "description": "Colors from the Everforest Dark Hard theme by Sainnhe Park. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-everforest-dark-hard.json"
+    },
+    {
+      "name": "Flat",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Flat theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-flat.json"
+    },
+    {
+      "name": "Flexoki Dark",
+      "author": "Steph Ango · Tinted Theming (MIT)",
+      "description": "Colors from the Flexoki Dark theme by Steph Ango. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-flexoki-dark.json"
+    },
+    {
+      "name": "Framer",
+      "author": "Framer · Tinted Theming (MIT)",
+      "description": "Colors from the Framer theme by Framer. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-framer.json"
+    },
+    {
+      "name": "Gigavolt",
+      "author": "Aidan Swope · Tinted Theming (MIT)",
+      "description": "Colors from the Gigavolt theme by Aidan Swope. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gigavolt.json"
+    },
+    {
+      "name": "Github Dark Colorblind",
+      "author": "Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the Github Dark Colorblind theme by Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-github-dark-colorblind.json"
+    },
+    {
+      "name": "Github Dark Dimmed",
+      "author": "Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the Github Dark Dimmed theme by Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-github-dark-dimmed.json"
+    },
+    {
+      "name": "Github Dark High Contrast",
+      "author": "Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the Github Dark High Contrast theme by Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-github-dark-high-contrast.json"
+    },
+    {
+      "name": "Github Dark",
+      "author": "Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the Github Dark theme by Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-github-dark.json"
+    },
+    {
+      "name": "Google Dark",
+      "author": "Seth Wright · Tinted Theming (MIT)",
+      "description": "Colors from the Google Dark theme by Seth Wright. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-google-dark.json"
+    },
+    {
+      "name": "Gotham",
+      "author": "Andrea Leopardi · Tinted Theming (MIT)",
+      "description": "Colors from the Gotham theme by Andrea Leopardi. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gotham.json"
+    },
+    {
+      "name": "Gruber",
+      "author": "Patel, Nimai, colors from www.github.com/rexim/gruber-darker-theme · Tinted Theming (MIT)",
+      "description": "Colors from the Gruber theme by Patel, Nimai, colors from www.github.com/rexim/gruber-darker-theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gruber.json"
+    },
+    {
+      "name": "Gruvbox dark, hard",
+      "author": "Dawid Kurek, morhetz · Tinted Theming (MIT)",
+      "description": "Colors from the Gruvbox dark, hard theme by Dawid Kurek, morhetz. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gruvbox-dark-hard.json"
+    },
+    {
+      "name": "Gruvbox Dark Medium (Forest)",
+      "author": "Muhammad Talha, morhetz · Tinted Theming (MIT)",
+      "description": "Colors from the Gruvbox Dark Medium (Forest) theme by Muhammad Talha, morhetz. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gruvbox-dark-medium-forest.json"
+    },
+    {
+      "name": "Gruvbox dark, pale",
+      "author": "Dawid Kurek, morhetz · Tinted Theming (MIT)",
+      "description": "Colors from the Gruvbox dark, pale theme by Dawid Kurek, morhetz. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gruvbox-dark-pale.json"
+    },
+    {
+      "name": "Gruvbox dark",
+      "author": "Tinted Theming, morhetz · Tinted Theming (MIT)",
+      "description": "Colors from the Gruvbox dark theme by Tinted Theming, morhetz. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gruvbox-dark.json"
+    },
+    {
+      "name": "Gruvbox Material Dark, Hard",
+      "author": "Mayush Kumar, sainnhe · Tinted Theming (MIT)",
+      "description": "Colors from the Gruvbox Material Dark, Hard theme by Mayush Kumar, sainnhe. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-gruvbox-material-dark-hard.json"
+    },
+    {
+      "name": "Hardcore",
+      "author": "Chris Caller · Tinted Theming (MIT)",
+      "description": "Colors from the Hardcore theme by Chris Caller. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-hardcore.json"
+    },
+    {
+      "name": "Hardhacker",
+      "author": "fe2-Nyxar, based on the · Tinted Theming (MIT)",
+      "description": "Colors from the Hardhacker theme by fe2-Nyxar, based on the. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-hardhacker.json"
+    },
+    {
+      "name": "Harmonic16 Dark",
+      "author": "Jannik Siebert · Tinted Theming (MIT)",
+      "description": "Colors from the Harmonic16 Dark theme by Jannik Siebert. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-harmonic16-dark.json"
+    },
+    {
+      "name": "Heetch Dark",
+      "author": "Geoffrey Teale · Tinted Theming (MIT)",
+      "description": "Colors from the Heetch Dark theme by Geoffrey Teale. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-heetch-dark.json"
+    },
+    {
+      "name": "Helios",
+      "author": "Alex Meyer · Tinted Theming (MIT)",
+      "description": "Colors from the Helios theme by Alex Meyer. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-helios.json"
+    },
+    {
+      "name": "Hopscotch",
+      "author": "Jan T. Sott · Tinted Theming (MIT)",
+      "description": "Colors from the Hopscotch theme by Jan T. Sott. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-hopscotch.json"
+    },
+    {
+      "name": "Horizon Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Horizon Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-horizon-dark.json"
+    },
+    {
+      "name": "Horizon Terminal Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Horizon Terminal Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-horizon-terminal-dark.json"
+    },
+    {
+      "name": "Humanoid dark",
+      "author": "Thomas Friese · Tinted Theming (MIT)",
+      "description": "Colors from the Humanoid dark theme by Thomas Friese. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-humanoid-dark.json"
+    },
+    {
+      "name": "iA Dark",
+      "author": "iA Inc. · Tinted Theming (MIT)",
+      "description": "Colors from the iA Dark theme by iA Inc.. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ia-dark.json"
+    },
+    {
+      "name": "Icy Dark",
+      "author": "icyphox · Tinted Theming (MIT)",
+      "description": "Colors from the Icy Dark theme by icyphox. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-icy-dark.json"
+    },
+    {
+      "name": "IR Black",
+      "author": "Timothée Poisot · Tinted Theming (MIT)",
+      "description": "Colors from the IR Black theme by Timothée Poisot. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ir-black.json"
+    },
+    {
+      "name": "Isotope",
+      "author": "Jan T. Sott · Tinted Theming (MIT)",
+      "description": "Colors from the Isotope theme by Jan T. Sott. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-isotope.json"
+    },
+    {
+      "name": "Jabuti",
+      "author": "Unknown · Tinted Theming (MIT)",
+      "description": "Colors from the Jabuti theme by Unknown. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-jabuti.json"
+    },
+    {
+      "name": "Jellybeans",
+      "author": "FredHappyface, converted to Base16 by · Tinted Theming (MIT)",
+      "description": "Colors from the Jellybeans theme by FredHappyface, converted to Base16 by. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-jellybeans.json"
+    },
+    {
+      "name": "Kanagawa Dragon",
+      "author": "Stefan Weigl-Bosker, Tommaso Laurenzi · Tinted Theming (MIT)",
+      "description": "Colors from the Kanagawa Dragon theme by Stefan Weigl-Bosker, Tommaso Laurenzi. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-kanagawa-dragon.json"
+    },
+    {
+      "name": "Kanagawa",
+      "author": "Tommaso Laurenzi · Tinted Theming (MIT)",
+      "description": "Colors from the Kanagawa theme by Tommaso Laurenzi. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-kanagawa.json"
+    },
+    {
+      "name": "Katy",
+      "author": "George Essig · Tinted Theming (MIT)",
+      "description": "Colors from the Katy theme by George Essig. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-katy.json"
+    },
+    {
+      "name": "Kimber",
+      "author": "Mishka Nguyen · Tinted Theming (MIT)",
+      "description": "Colors from the Kimber theme by Mishka Nguyen. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-kimber.json"
+    },
+    {
+      "name": "Kissa Macchiato",
+      "author": "rwendell · Tinted Theming (MIT)",
+      "description": "Colors from the Kissa Macchiato theme by rwendell. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-kissa-macchiato.json"
+    },
+    {
+      "name": "Lahabana",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Lahabana theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-lahabana.json"
+    },
+    {
+      "name": "Lichen Chartreuse Dark",
+      "author": "Aaron Colichia · Tinted Theming (MIT)",
+      "description": "Colors from the Lichen Chartreuse Dark theme by Aaron Colichia. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-lichen-chartreuse-dark.json"
+    },
+    {
+      "name": "lime",
+      "author": "limelier · Tinted Theming (MIT)",
+      "description": "Colors from the lime theme by limelier. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-lime.json"
+    },
+    {
+      "name": "Linux VT",
+      "author": "j-c-m · Tinted Theming (MIT)",
+      "description": "Colors from the Linux VT theme by j-c-m. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-linux-vt.json"
+    },
+    {
+      "name": "Macintosh",
+      "author": "Rebecca Bettencourt · Tinted Theming (MIT)",
+      "description": "Colors from the Macintosh theme by Rebecca Bettencourt. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-macintosh.json"
+    },
+    {
+      "name": "Marrakesh",
+      "author": "Alexandre Gavioli · Tinted Theming (MIT)",
+      "description": "Colors from the Marrakesh theme by Alexandre Gavioli. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-marrakesh.json"
+    },
+    {
+      "name": "Materia",
+      "author": "Defman21 · Tinted Theming (MIT)",
+      "description": "Colors from the Materia theme by Defman21. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-materia.json"
+    },
+    {
+      "name": "Material Darker",
+      "author": "Nate Peterson · Tinted Theming (MIT)",
+      "description": "Colors from the Material Darker theme by Nate Peterson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-material-darker.json"
+    },
+    {
+      "name": "Material Vivid",
+      "author": "joshyrobot · Tinted Theming (MIT)",
+      "description": "Colors from the Material Vivid theme by joshyrobot. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-material-vivid.json"
+    },
+    {
+      "name": "Measured Dark",
+      "author": "Measured · Tinted Theming (MIT)",
+      "description": "Colors from the Measured Dark theme by Measured. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-measured-dark.json"
+    },
+    {
+      "name": "Mellow Purple",
+      "author": "gidsi · Tinted Theming (MIT)",
+      "description": "Colors from the Mellow Purple theme by gidsi. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-mellow-purple.json"
+    },
+    {
+      "name": "Mezcal",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Mezcal theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-mezcal.json"
+    },
+    {
+      "name": "Miami",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Miami theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-miami.json"
+    },
+    {
+      "name": "Mocha",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Mocha theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-mocha.json"
+    },
+    {
+      "name": "Monokai",
+      "author": "Wimer Hazenberg · Tinted Theming (MIT)",
+      "description": "Colors from the Monokai theme by Wimer Hazenberg. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-monokai.json"
+    },
+    {
+      "name": "Moonlight",
+      "author": "Jeremy Swinarton · Tinted Theming (MIT)",
+      "description": "Colors from the Moonlight theme by Jeremy Swinarton. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-moonlight.json"
+    },
+    {
+      "name": "Mountain",
+      "author": "gnsfujiwara · Tinted Theming (MIT)",
+      "description": "Colors from the Mountain theme by gnsfujiwara. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-mountain.json"
+    },
+    {
+      "name": "Nebula",
+      "author": "Gabriel Fontes · Tinted Theming (MIT)",
+      "description": "Colors from the Nebula theme by Gabriel Fontes. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-nebula.json"
+    },
+    {
+      "name": "Neovim Dark",
+      "author": "Unknown · Tinted Theming (MIT)",
+      "description": "Colors from the Neovim Dark theme by Unknown. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-neovim-dark.json"
+    },
+    {
+      "name": "Noche",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Noche theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-noche.json"
+    },
+    {
+      "name": "Nova",
+      "author": "George Essig, Trevor D. Miller · Tinted Theming (MIT)",
+      "description": "Colors from the Nova theme by George Essig, Trevor D. Miller. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-nova.json"
+    },
+    {
+      "name": "Ocean",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Ocean theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ocean.json"
+    },
+    {
+      "name": "OceanicNext",
+      "author": "Unknown · Tinted Theming (MIT)",
+      "description": "Colors from the OceanicNext theme by Unknown. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-oceanicnext.json"
+    },
+    {
+      "name": "Ocote",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Ocote theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ocote.json"
+    },
+    {
+      "name": "OneDark Dark",
+      "author": "olimorris · Tinted Theming (MIT)",
+      "description": "Colors from the OneDark Dark theme by olimorris. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-onedark-dark.json"
+    },
+    {
+      "name": "OneDark",
+      "author": "Lalit Magant · Tinted Theming (MIT)",
+      "description": "Colors from the OneDark theme by Lalit Magant. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-onedark.json"
+    },
+    {
+      "name": "Oslo",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Oslo theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-oslo.json"
+    },
+    {
+      "name": "Outrun Dark",
+      "author": "Hugo Delahousse · Tinted Theming (MIT)",
+      "description": "Colors from the Outrun Dark theme by Hugo Delahousse. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-outrun-dark.json"
+    },
+    {
+      "name": "Oxocarbon Dark",
+      "author": "shaunsingh/IBM, Tinted Theming · Tinted Theming (MIT)",
+      "description": "Colors from the Oxocarbon Dark theme by shaunsingh/IBM, Tinted Theming. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-oxocarbon-dark.json"
+    },
+    {
+      "name": "pandora",
+      "author": "Cassandra Fox · Tinted Theming (MIT)",
+      "description": "Colors from the pandora theme by Cassandra Fox. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-pandora.json"
+    },
+    {
+      "name": "PaperColor Dark",
+      "author": "Jon Leopard, Tinted Theming, based on PaperColor Theme · Tinted Theming (MIT)",
+      "description": "Colors from the PaperColor Dark theme by Jon Leopard, Tinted Theming, based on PaperColor Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-papercolor-dark.json"
+    },
+    {
+      "name": "Paraiso",
+      "author": "Jan T. Sott · Tinted Theming (MIT)",
+      "description": "Colors from the Paraiso theme by Jan T. Sott. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-paraiso.json"
+    },
+    {
+      "name": "Paris",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Paris theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-paris.json"
+    },
+    {
+      "name": "Pasque",
+      "author": "Gabriel Fontes · Tinted Theming (MIT)",
+      "description": "Colors from the Pasque theme by Gabriel Fontes. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-pasque.json"
+    },
+    {
+      "name": "Pastelón de Amarillos Dark",
+      "author": "Richard Martinez · Tinted Theming (MIT)",
+      "description": "Colors from the Pastelón de Amarillos Dark theme by Richard Martinez. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-pastel-n-de-amarillos-dark.json"
+    },
+    {
+      "name": "Penumbra Dark Contrast Plus Plus",
+      "author": "Zachary Weiss · Tinted Theming (MIT)",
+      "description": "Colors from the Penumbra Dark Contrast Plus Plus theme by Zachary Weiss. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-penumbra-dark-contrast-plus-plus.json"
+    },
+    {
+      "name": "Penumbra Dark Contrast Plus",
+      "author": "Zachary Weiss · Tinted Theming (MIT)",
+      "description": "Colors from the Penumbra Dark Contrast Plus theme by Zachary Weiss. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-penumbra-dark-contrast-plus.json"
+    },
+    {
+      "name": "Penumbra Dark",
+      "author": "Zachary Weiss · Tinted Theming (MIT)",
+      "description": "Colors from the Penumbra Dark theme by Zachary Weiss. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-penumbra-dark.json"
+    },
+    {
+      "name": "PhD",
+      "author": "Hennig Hasemann · Tinted Theming (MIT)",
+      "description": "Colors from the PhD theme by Hennig Hasemann. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-phd.json"
+    },
+    {
+      "name": "Pico",
+      "author": "PICO-8 · Tinted Theming (MIT)",
+      "description": "Colors from the Pico theme by PICO-8. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-pico.json"
+    },
+    {
+      "name": "pinky",
+      "author": "Benjamin · Tinted Theming (MIT)",
+      "description": "Colors from the pinky theme by Benjamin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-pinky.json"
+    },
+    {
+      "name": "Pop",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Pop theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-pop.json"
+    },
+    {
+      "name": "Porple",
+      "author": "Niek den Breeje · Tinted Theming (MIT)",
+      "description": "Colors from the Porple theme by Niek den Breeje. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-porple.json"
+    },
+    {
+      "name": "Praha",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Praha theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-praha.json"
+    },
+    {
+      "name": "Precious Dark Eleven",
+      "author": "4lex4 · Tinted Theming (MIT)",
+      "description": "Colors from the Precious Dark Eleven theme by 4lex4. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-precious-dark-eleven.json"
+    },
+    {
+      "name": "Precious Dark Fifteen",
+      "author": "4lex4 · Tinted Theming (MIT)",
+      "description": "Colors from the Precious Dark Fifteen theme by 4lex4. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-precious-dark-fifteen.json"
+    },
+    {
+      "name": "Primer Dark Dimmed",
+      "author": "Jimmy Lin · Tinted Theming (MIT)",
+      "description": "Colors from the Primer Dark Dimmed theme by Jimmy Lin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-primer-dark-dimmed.json"
+    },
+    {
+      "name": "Primer Dark",
+      "author": "Jimmy Lin · Tinted Theming (MIT)",
+      "description": "Colors from the Primer Dark theme by Jimmy Lin. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-primer-dark.json"
+    },
+    {
+      "name": "Purpledream",
+      "author": "malet · Tinted Theming (MIT)",
+      "description": "Colors from the Purpledream theme by malet. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-purpledream.json"
+    },
+    {
+      "name": "Qualia",
+      "author": "isaacwhanson · Tinted Theming (MIT)",
+      "description": "Colors from the Qualia theme by isaacwhanson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-qualia.json"
+    },
+    {
+      "name": "Railscasts",
+      "author": "Ryan Bates · Tinted Theming (MIT)",
+      "description": "Colors from the Railscasts theme by Ryan Bates. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-railscasts.json"
+    },
+    {
+      "name": "Rebecca",
+      "author": "Victor Borja based on Rebecca Theme · Tinted Theming (MIT)",
+      "description": "Colors from the Rebecca theme by Victor Borja based on Rebecca Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-rebecca.json"
+    },
+    {
+      "name": "Rosé Pine Moon",
+      "author": "Emilia Dunfelt · Tinted Theming (MIT)",
+      "description": "Colors from the Rosé Pine Moon theme by Emilia Dunfelt. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ros-pine-moon.json"
+    },
+    {
+      "name": "Rosé Pine",
+      "author": "Emilia Dunfelt · Tinted Theming (MIT)",
+      "description": "Colors from the Rosé Pine theme by Emilia Dunfelt. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-ros-pine.json"
+    },
+    {
+      "name": "SAGA",
+      "author": "Unknown · Tinted Theming (MIT)",
+      "description": "Colors from the SAGA theme by Unknown. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-saga.json"
+    },
+    {
+      "name": "Sandcastle",
+      "author": "George Essig · Tinted Theming (MIT)",
+      "description": "Colors from the Sandcastle theme by George Essig. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-sandcastle.json"
+    },
+    {
+      "name": "selenized-black",
+      "author": "Jan Warchol / adapted to base16 by ali · Tinted Theming (MIT)",
+      "description": "Colors from the selenized-black theme by Jan Warchol / adapted to base16 by ali. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-selenized-black.json"
+    },
+    {
+      "name": "selenized-dark",
+      "author": "Jan Warchol / adapted to base16 by ali · Tinted Theming (MIT)",
+      "description": "Colors from the selenized-dark theme by Jan Warchol / adapted to base16 by ali. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-selenized-dark.json"
+    },
+    {
+      "name": "Sequoia Monochrome Dark",
+      "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+      "description": "Colors from the Sequoia Monochrome Dark theme by Micheal Andreuzza. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-sequoia-monochrome-dark.json"
+    },
+    {
+      "name": "Sequoia Moonlight Dark",
+      "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+      "description": "Colors from the Sequoia Moonlight Dark theme by Micheal Andreuzza. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-sequoia-moonlight-dark.json"
+    },
+    {
+      "name": "Sequoia Retro Dark",
+      "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+      "description": "Colors from the Sequoia Retro Dark theme by Micheal Andreuzza. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-sequoia-retro-dark.json"
+    },
+    {
+      "name": "Serendipity Midnight",
+      "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+      "description": "Colors from the Serendipity Midnight theme by Micheal Andreuzza. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-serendipity-midnight.json"
+    },
+    {
+      "name": "Serendipity Sunset",
+      "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+      "description": "Colors from the Serendipity Sunset theme by Micheal Andreuzza. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-serendipity-sunset.json"
+    },
+    {
+      "name": "Seti UI",
+      "author": "Unknown · Tinted Theming (MIT)",
+      "description": "Colors from the Seti UI theme by Unknown. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-seti-ui.json"
+    },
+    {
+      "name": "Shades of Purple",
+      "author": "Iolar Demartini Junior, based on Shades of Purple Theme · Tinted Theming (MIT)",
+      "description": "Colors from the Shades of Purple theme by Iolar Demartini Junior, based on Shades of Purple Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-shades-of-purple.json"
+    },
+    {
+      "name": "ShadeSmear Dark",
+      "author": "Kyle Giammarco · Tinted Theming (MIT)",
+      "description": "Colors from the ShadeSmear Dark theme by Kyle Giammarco. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-shadesmear-dark.json"
+    },
+    {
+      "name": "Silk Dark",
+      "author": "Gabriel Fontes · Tinted Theming (MIT)",
+      "description": "Colors from the Silk Dark theme by Gabriel Fontes. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-silk-dark.json"
+    },
+    {
+      "name": "Snazzy",
+      "author": "Chawye Hsu, based on Hyper Snazzy Theme · Tinted Theming (MIT)",
+      "description": "Colors from the Snazzy theme by Chawye Hsu, based on Hyper Snazzy Theme. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-snazzy.json"
+    },
+    {
+      "name": "Solar Flare",
+      "author": "Chuck Harmston · Tinted Theming (MIT)",
+      "description": "Colors from the Solar Flare theme by Chuck Harmston. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-solar-flare.json"
+    },
+    {
+      "name": "Solarized Dark",
+      "author": "Ethan Schoonover · Tinted Theming (MIT)",
+      "description": "Colors from the Solarized Dark theme by Ethan Schoonover. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-solarized-dark.json"
+    },
+    {
+      "name": "Spaceduck",
+      "author": "Guillermo Rodriguez, packaged by Gabriel Fontes · Tinted Theming (MIT)",
+      "description": "Colors from the Spaceduck theme by Guillermo Rodriguez, packaged by Gabriel Fontes. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-spaceduck.json"
+    },
+    {
+      "name": "Spacemacs",
+      "author": "Nasser Alshammari · Tinted Theming (MIT)",
+      "description": "Colors from the Spacemacs theme by Nasser Alshammari. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-spacemacs.json"
+    },
+    {
+      "name": "Sparky",
+      "author": "Leila Sother · Tinted Theming (MIT)",
+      "description": "Colors from the Sparky theme by Leila Sother. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-sparky.json"
+    },
+    {
+      "name": "standardized-dark",
+      "author": "ali · Tinted Theming (MIT)",
+      "description": "Colors from the standardized-dark theme by ali. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-standardized-dark.json"
+    },
+    {
+      "name": "Stella",
+      "author": "Shrimpram · Tinted Theming (MIT)",
+      "description": "Colors from the Stella theme by Shrimpram. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-stella.json"
+    },
+    {
+      "name": "summercamp",
+      "author": "zoe firi · Tinted Theming (MIT)",
+      "description": "Colors from the summercamp theme by zoe firi. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-summercamp.json"
+    },
+    {
+      "name": "Summerfruit Dark",
+      "author": "Christopher Corley · Tinted Theming (MIT)",
+      "description": "Colors from the Summerfruit Dark theme by Christopher Corley. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-summerfruit-dark.json"
+    },
+    {
+      "name": "Swamp Dark",
+      "author": "Masroof Maindak · Tinted Theming (MIT)",
+      "description": "Colors from the Swamp Dark theme by Masroof Maindak. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-swamp-dark.json"
+    },
+    {
+      "name": "Synth Midnight Terminal Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Synth Midnight Terminal Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-synth-midnight-terminal-dark.json"
+    },
+    {
+      "name": "Tango",
+      "author": "@Schnouki, based on the Tango Desktop Project · Tinted Theming (MIT)",
+      "description": "Colors from the Tango theme by @Schnouki, based on the Tango Desktop Project. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tango.json"
+    },
+    {
+      "name": "tarot",
+      "author": "ed · Tinted Theming (MIT)",
+      "description": "Colors from the tarot theme by ed. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tarot.json"
+    },
+    {
+      "name": "tender",
+      "author": "Jacobo Tabernero · Tinted Theming (MIT)",
+      "description": "Colors from the tender theme by Jacobo Tabernero. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tender.json"
+    },
+    {
+      "name": "Terracotta Dark",
+      "author": "Alexander Rossell Hayes · Tinted Theming (MIT)",
+      "description": "Colors from the Terracotta Dark theme by Alexander Rossell Hayes. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-terracotta-dark.json"
+    },
+    {
+      "name": "Tinta",
+      "author": "Teshre · Tinted Theming (MIT)",
+      "description": "Colors from the Tinta theme by Teshre. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tinta.json"
+    },
+    {
+      "name": "Tokio",
+      "author": "xscriptor · Tinted Theming (MIT)",
+      "description": "Colors from the Tokio theme by xscriptor. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokio.json"
+    },
+    {
+      "name": "Tokyo City Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyo City Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyo-city-dark.json"
+    },
+    {
+      "name": "Tokyo City Terminal Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyo City Terminal Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyo-city-terminal-dark.json"
+    },
+    {
+      "name": "Tokyo Night Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyo Night Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyo-night-dark.json"
+    },
+    {
+      "name": "Tokyo Night Moon",
+      "author": "Ólafur Bjarki Bogason · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyo Night Moon theme by Ólafur Bjarki Bogason. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyo-night-moon.json"
+    },
+    {
+      "name": "Tokyo Night Terminal Dark",
+      "author": "Michaël Ball · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyo Night Terminal Dark theme by Michaël Ball. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyo-night-terminal-dark.json"
+    },
+    {
+      "name": "Tokyodark Terminal",
+      "author": "Tiagovla · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyodark Terminal theme by Tiagovla. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyodark-terminal.json"
+    },
+    {
+      "name": "Tokyodark",
+      "author": "Jamy Golden, Based on Tokyodark.nvim · Tinted Theming (MIT)",
+      "description": "Colors from the Tokyodark theme by Jamy Golden, Based on Tokyodark.nvim. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tokyodark.json"
+    },
+    {
+      "name": "Tomorrow Night",
+      "author": "Chris Kempson · Tinted Theming (MIT)",
+      "description": "Colors from the Tomorrow Night theme by Chris Kempson. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-tomorrow-night.json"
+    },
+    {
+      "name": "London Tube",
+      "author": "Jan T. Sott · Tinted Theming (MIT)",
+      "description": "Colors from the London Tube theme by Jan T. Sott. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-london-tube.json"
+    },
+    {
+      "name": "Twilight",
+      "author": "David Hart · Tinted Theming (MIT)",
+      "description": "Colors from the Twilight theme by David Hart. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-twilight.json"
+    },
+    {
+      "name": "Unikitty Dark",
+      "author": "Josh W Lewis · Tinted Theming (MIT)",
+      "description": "Colors from the Unikitty Dark theme by Josh W Lewis. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-unikitty-dark.json"
+    },
+    {
+      "name": "Unikitty Reversible",
+      "author": "Josh W Lewis · Tinted Theming (MIT)",
+      "description": "Colors from the Unikitty Reversible theme by Josh W Lewis. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-unikitty-reversible.json"
+    },
+    {
+      "name": "UwUnicorn",
+      "author": "Fernando Marques and Gabriel Fontes · Tinted Theming (MIT)",
+      "description": "Colors from the UwUnicorn theme by Fernando Marques and Gabriel Fontes. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-uwunicorn.json"
+    },
+    {
+      "name": "Valua",
+      "author": "Nonetrix · Tinted Theming (MIT)",
+      "description": "Colors from the Valua theme by Nonetrix. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-valua.json"
+    },
+    {
+      "name": "Vesper",
+      "author": "FormalSnake · Tinted Theming (MIT)",
+      "description": "Colors from the Vesper theme by FormalSnake. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-vesper.json"
+    },
+    {
+      "name": "vice",
+      "author": "Thomas Leon Highbaugh thighbaugh@zoho.com · Tinted Theming (MIT)",
+      "description": "Colors from the vice theme by Thomas Leon Highbaugh thighbaugh@zoho.com. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-vice.json"
+    },
+    {
+      "name": "vulcan",
+      "author": "Andrey Varfolomeev · Tinted Theming (MIT)",
+      "description": "Colors from the vulcan theme by Andrey Varfolomeev. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-vulcan.json"
+    },
+    {
+      "name": "Windows 10",
+      "author": "Fergus Collins · Tinted Theming (MIT)",
+      "description": "Colors from the Windows 10 theme by Fergus Collins. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-windows-10.json"
+    },
+    {
+      "name": "Windows 95",
+      "author": "Fergus Collins · Tinted Theming (MIT)",
+      "description": "Colors from the Windows 95 theme by Fergus Collins. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-windows-95.json"
+    },
+    {
+      "name": "Windows High Contrast",
+      "author": "Fergus Collins · Tinted Theming (MIT)",
+      "description": "Colors from the Windows High Contrast theme by Fergus Collins. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-windows-high-contrast.json"
+    },
+    {
+      "name": "Windows NT",
+      "author": "Fergus Collins · Tinted Theming (MIT)",
+      "description": "Colors from the Windows NT theme by Fergus Collins. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-windows-nt.json"
+    },
+    {
+      "name": "Woodland",
+      "author": "Jay Cornwall · Tinted Theming (MIT)",
+      "description": "Colors from the Woodland theme by Jay Cornwall. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-woodland.json"
+    },
+    {
+      "name": "XCode Dusk",
+      "author": "Elsa Gonsiorowski · Tinted Theming (MIT)",
+      "description": "Colors from the XCode Dusk theme by Elsa Gonsiorowski. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-xcode-dusk.json"
+    },
+    {
+      "name": "Yesterday Bright",
+      "author": "FroZnShiva · Tinted Theming (MIT)",
+      "description": "Colors from the Yesterday Bright theme by FroZnShiva. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-yesterday-bright.json"
+    },
+    {
+      "name": "Yesterday",
+      "author": "FroZnShiva · Tinted Theming (MIT)",
+      "description": "Colors from the Yesterday theme by FroZnShiva. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-yesterday.json"
+    },
+    {
+      "name": "Zenbones",
+      "author": "mcchrish · Tinted Theming (MIT)",
+      "description": "Colors from the Zenbones theme by mcchrish. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-zenbones.json"
+    },
+    {
+      "name": "Zenburn",
+      "author": "elnawe · Tinted Theming (MIT)",
+      "description": "Colors from the Zenburn theme by elnawe. MIT License.",
+      "tags": [
+        "theme",
+        "static"
+      ],
+      "file": "theme-zenburn.json"
+    }
+  ]
+}

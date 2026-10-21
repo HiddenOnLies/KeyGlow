@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeyGlow</title>
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topbar">
+  <button id="btn-library" class="icon-btn" title="Profiles" aria-label="Profiles" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div class="brand"><img src="icon.png" alt=""><span>KeyGlow</span></div>
+  <div class="spacer"></div>
+  <button id="device" class="device" title="Keyboard connection">
+    <span class="dot"></span><span id="device-text">Connecting…</span>
+  </button>
+  <label class="bright" title="Keyboard brightness">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    <input id="brightness" type="range" min="0" max="100" value="100" aria-label="Brightness">
+  </label>
+  <span id="game-pill" class="game-pill" hidden></span>
+  <button id="power" class="power" role="switch" aria-checked="false" title="Lights on / off">
+    <span class="knob"></span><span id="power-text">Off</span>
+  </button>
+  <button id="btn-games" class="icon-btn" title="Game profiles" aria-label="Game profiles">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10a5 5 0 0 1 4.9 6l-.8 4a2.5 2.5 0 0 1-4.3 1.1L14.6 16H9.4l-2.2 2.1A2.5 2.5 0 0 1 2.9 17l-.8-4A5 5 0 0 1 7 7z"/><path d="M7.5 10.5v3M6 12h3"/><circle cx="16" cy="11" r=".6"/><circle cx="17.5" cy="13" r=".6"/></svg>
+  </button>
+  <button id="btn-settings" class="icon-btn" title="Settings" aria-label="Settings">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+  </button>
+</header>
+
+<div class="app">
+  <aside id="library" class="library" hidden>
+    <div class="seg" role="tablist">
+      <button class="on" data-tab="presets">Presets</button>
+      <button data-tab="mine">My profiles</button>
+      <button data-tab="community">Community</button>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search">
+    <div id="tags" class="tags"></div>
+    <ul id="cards" class="cards"></ul>
+    <div id="lib-foot" class="lib-foot"></div>
+  </aside>
+
+  <main class="stage">
+    <div class="profile-bar">
+      <input id="p-name" class="title-input" spellcheck="false" aria-label="Profile name">
+      <span id="dirty" class="dirty" hidden>Unsaved</span>
+      <div class="spacer"></div>
+      <button id="btn-save" class="primary small-btn">Save</button>
+      <div class="menu-wrap">
+        <button id="btn-more" class="icon-btn" title="More" aria-label="More actions" aria-haspopup="menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+        </button>
+        <div id="more-menu" class="menu" role="menu" hidden>
+          <button data-act="new" role="menuitem">New profile</button>
+          <button data-act="copy" role="menuitem">Save as copy</button>
+          <button data-act="details" role="menuitem">Details…</button>
+          <hr>
+          <button data-act="import" role="menuitem">Import…</button>
+          <button data-act="export" role="menuitem">Export .json</button>
+          <button data-act="capture" role="menuitem">Capture from keyboard</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="kb-wrap">
+      <div id="kb-glow" class="kb-glow" aria-hidden="true"></div>
+      <div class="kb-case"><div id="kb" class="kb"></div></div>
+    </div>
+    <p id="hint" class="hint"></p>
+
+    <div class="effects-head">Quick start <small>replaces the bottom layer</small></div>
+    <div id="effects" class="effects" role="radiogroup" aria-label="Quick start effect"></div>
+  </main>
+
+  <aside class="controls">
+    <div class="h-row">
+      <span class="label">Layers</span>
+      <button id="add-layer" class="mini-btn" title="Adds a layer on top (uses your key selection, if any)">+ Add layer</button>
+    </div>
+    <ol id="layers" class="layers"></ol>
+    <div id="layer-editor"></div>
+  </aside>
+</div>
+
+<dialog id="dlg-import" class="dialog">
+  <form method="dialog">
+    <h3>Import profile</h3>
+    <label class="drop" id="drop">
+      <input id="imp-file" type="file" accept=".json,.csv,application/json,text/csv">
+      <span>Drop a file here or click to browse</span>
+    </label>
+    <input id="imp-url" type="url" placeholder="…or paste a link (https://…/profile.json)">
+    <p class="muted small">KeyGlow profiles, per-key color maps (OpenRGB, web key codes, QMK) and <code>key,color</code> CSV. Profiles are data only, never code.</p>
+    <div class="dlg-actions">
+      <button value="cancel">Cancel</button>
+      <button id="imp-go" class="primary" value="default">Import</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-details" class="dialog">
+  <form method="dialog">
+    <h3>Profile details</h3>
+    <label>Author<input id="p-author" placeholder="Your name"></label>
+    <label>Tags<input id="p-tags" placeholder="gaming, chill"></label>
+    <label>Description<textarea id="p-desc" rows="3"></textarea></label>
+    <div class="dlg-actions">
+      <button value="cancel">Cancel</button>
+      <button id="details-ok" class="primary" value="default">Done</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-games" class="dialog wide">
+  <form method="dialog">
+    <h3>Game profiles</h3>
+    <p class="muted small">Pick a profile for each game. KeyGlow switches to it while the game is in focus and goes back to your profile when you leave it.</p>
+    <label class="check"><input id="games-on" type="checkbox"> Switch profiles automatically</label>
+    <ul id="game-rules" class="rules"></ul>
+    <div class="add-rule">
+      <select id="game-app" aria-label="Game"></select>
+      <input id="game-exe" placeholder="or type an .exe name, e.g. cs2.exe" hidden>
+      <button id="game-add" type="button">Add</button>
+    </div>
+    <hr class="sep">
+    <label class="check"><input id="games-auto" type="checkbox"> Use a recommended profile for games I haven't set up</label>
+    <p class="muted small">Optional. KeyGlow knows about 40 popular games and picks a preset by genre. Your own choices above always win.</p>
+    <ul id="games-found" class="rules found"></ul>
+    <div class="dlg-actions">
+      <button value="cancel">Close</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-settings" class="dialog">
+  <form method="dialog">
+    <h3>Settings</h3>
+    <label class="check"><input id="set-last" type="checkbox"> Restore last profile when KeyGlow starts</label>
+    <label>Community gallery (link to an index.json)
+      <input id="set-community" type="url" placeholder="Empty = built-in examples">
+    </label>
+    <label>Keyboard update rate (fps)
+      <input id="set-fps" type="number" min="5" max="60" step="1">
+    </label>
+    <p class="muted small">Your profiles are saved in <code id="set-dir"></code></p>
+    <div class="dlg-actions">
+      <button id="btn-quit" class="danger" value="cancel">Quit KeyGlow</button>
+      <span class="spacer"></span>
+      <button value="cancel">Cancel</button>
+      <button id="set-save" class="primary" value="default">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

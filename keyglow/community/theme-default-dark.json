@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Default Dark",
+  "author": "Chris Kempson · Tinted Theming (MIT)",
+  "description": "Colors from the Default Dark theme by Chris Kempson. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#82b8cc",
+          "#cc98c0"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f7ca88"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8eccc4"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b5cc7a"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc544f"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#dc9656"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

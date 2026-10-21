@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Toxic",
+  "author": "KeyGlow",
+  "description": "Acid-green flames.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "fire",
+      "params": {
+        "colors": [
+          "#000000",
+          "#003000",
+          "#20c000",
+          "#a0ff00",
+          "#f0ffa0"
+        ],
+        "speed": 0.9,
+        "height": 0.75
+      }
+    }
+  ]
+}

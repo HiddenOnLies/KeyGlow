@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "standardized-dark",
+  "author": "ali · Tinted Theming (MIT)",
+  "description": "Colors from the standardized-dark theme by ali. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#00a3f2",
+          "#b46ee0"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e1b31a"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#21cc94"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#6bcc2f"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e15d67"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fc804e"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

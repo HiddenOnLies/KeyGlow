@@ -1,0 +1,21 @@
+{
+  "format": "keyglow/1",
+  "name": "Pastel Rainbow",
+  "author": "KeyGlow",
+  "description": "A gentle, soft rainbow.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "rainbow_wave",
+      "params": {
+        "speed": 0.12,
+        "angle": 30,
+        "wavelength": 1.4,
+        "saturation": 0.45
+      }
+    }
+  ]
+}

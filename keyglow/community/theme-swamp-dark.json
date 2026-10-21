@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Swamp Dark",
+  "author": "Masroof Maindak · Tinted Theming (MIT)",
+  "description": "Colors from the Swamp Dark theme by Masroof Maindak. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#cc6c71",
+          "#cc7198"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc3768"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#db930d"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccc58b"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#db930d"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ebe0bb"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

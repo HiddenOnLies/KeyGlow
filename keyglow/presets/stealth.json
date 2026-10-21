@@ -1,0 +1,33 @@
+{
+  "format": "keyglow/1",
+  "name": "Stealth",
+  "author": "KeyGlow",
+  "description": "Almost dark, only the keys you need.",
+  "tags": [
+    "gaming",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#000000"
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00ff60"
+      },
+      "keys": [
+        "@wasd",
+        "SPACE",
+        "LSHIFT",
+        "LCTRL",
+        "E",
+        "R",
+        "F"
+      ]
+    }
+  ]
+}

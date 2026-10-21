@@ -1,0 +1,33 @@
+{
+  "format": "keyglow/1",
+  "name": "Synthwave",
+  "author": "KeyGlow",
+  "description": "Retro sunset gradient with a cyan scanner.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#2b0055",
+          "#ff007f",
+          "#ff8c00"
+        ],
+        "angle": 270
+      }
+    },
+    {
+      "effect": "scanner",
+      "params": {
+        "color": "#00e5ff",
+        "background": "#000000",
+        "speed": 0.4,
+        "width": 0.08
+      },
+      "blend": "add"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Pasque",
+  "author": "Gabriel Fontes · Tinted Theming (MIT)",
+  "description": "Colors from the Pasque theme by Gabriel Fontes. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#9281cc",
+          "#c24dcc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#975ccc"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8977cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc954d"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc296a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccbfc1"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

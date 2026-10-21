@@ -1,0 +1,61 @@
+{
+  "format": "keyglow/1",
+  "name": "Battle Royale",
+  "author": "KeyGlow",
+  "description": "Storm-purple wave with movement and inventory keys lit.",
+  "tags": [
+    "gaming",
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#2a0a50",
+          "#6020c0",
+          "#2a0a50"
+        ],
+        "speed": 0.1,
+        "angle": 0,
+        "wavelength": 1.5
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00ffa0"
+      },
+      "keys": [
+        "@wasd",
+        "SPACE",
+        "LSHIFT",
+        "LCTRL"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffd000"
+      },
+      "keys": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffffff"
+      },
+      "keys": [
+        "TAB",
+        "M",
+        "E"
+      ]
+    }
+  ]
+}

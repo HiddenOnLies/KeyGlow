@@ -1,0 +1,23 @@
+{
+  "format": "keyglow/1",
+  "name": "Desert",
+  "author": "KeyGlow",
+  "description": "Sand and terracotta tones.",
+  "tags": [
+    "static",
+    "nature"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#e8c07a",
+          "#d08a4a",
+          "#a0522d"
+        ],
+        "angle": 20
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Chicago Night",
+  "author": "Wendell, Ryan · Tinted Theming (MIT)",
+  "description": "Colors from the Chicago Night theme by Wendell, Ryan. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#6e2fcc",
+          "#e27ea6"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f9e300"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00a1de"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00cc4c"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc0c31"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f9461c"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

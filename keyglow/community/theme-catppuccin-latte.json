@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Catppuccin Latte",
+  "author": "Catppuccin · Catppuccin (MIT)",
+  "description": "Colors from the Catppuccin Latte theme by Catppuccin. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#1e66f5",
+          "#8839ef"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#df8e1d"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#04a5e5"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#52cc37"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d20f39"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fe640b"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Serendipity Midnight",
+  "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+  "description": "Colors from the Serendipity Midnight theme by Micheal Andreuzza. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#94b8ff",
+          "#a78bfa"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a78bfa"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f8d2c9"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#5ba2d0"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ee8679"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ee8679"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "format": "keyglow/1",
+  "name": "Pure White",
+  "author": "KeyGlow",
+  "description": "Plain white light for distraction-free typing.",
+  "tags": [
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffffff"
+      }
+    }
+  ]
+}

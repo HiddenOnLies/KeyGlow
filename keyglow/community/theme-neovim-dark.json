@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Neovim Dark",
+  "author": "Unknown · Tinted Theming (MIT)",
+  "description": "Colors from the Neovim Dark theme by Unknown. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#a6dbff",
+          "#ffcaff"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fce094"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8cf8f7"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b3f6c0"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffc0b9"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffa500"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

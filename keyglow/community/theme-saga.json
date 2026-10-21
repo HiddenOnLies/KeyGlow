@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "SAGA",
+  "author": "Unknown · Tinted Theming (MIT)",
+  "description": "Colors from the SAGA theme by Unknown. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#c9fff7",
+          "#dcc3f9"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fbebc8"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c5edc1"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f7ddff"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffd4e9"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fbcbae"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

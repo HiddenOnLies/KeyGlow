@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Tango",
+  "author": "@Schnouki, based on the Tango Desktop Project · Tinted Theming (MIT)",
+  "description": "Colors from the Tango theme by @Schnouki, based on the Tango Desktop Project. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#417ecc",
+          "#c285cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cca700"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#08c9cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#67cc08"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc0000"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ef2929"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

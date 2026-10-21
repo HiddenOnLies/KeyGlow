@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Primer Dark Dimmed",
+  "author": "Jimmy Lin · Tinted Theming (MIT)",
+  "description": "Colors from the Primer Dark Dimmed theme by Jimmy Lin. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#539bf5",
+          "#e275ad"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9427"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#96d0ff"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#68cc6b"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f47067"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e0823d"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

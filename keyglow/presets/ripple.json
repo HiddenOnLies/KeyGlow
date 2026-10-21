@@ -1,0 +1,27 @@
+{
+  "format": "keyglow/1",
+  "name": "Ripple",
+  "author": "KeyGlow",
+  "description": "Rings of light from the center of the board.",
+  "tags": [
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "ripple",
+      "params": {
+        "center": [
+          0.5,
+          0.5
+        ],
+        "colors": [
+          "#00ffd0",
+          "#0040ff"
+        ],
+        "speed": 0.5,
+        "thickness": 0.12,
+        "background": "#000820"
+      }
+    }
+  ]
+}

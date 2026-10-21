@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Atelier Heath",
+  "author": "Bram de Haan · Tinted Theming (MIT)",
+  "description": "Colors from the Atelier Heath theme by Bram de Haan. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#516aec",
+          "#835fcc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc973a"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#1dcccc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccc453"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc412b"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6d2f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

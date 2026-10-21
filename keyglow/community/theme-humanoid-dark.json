@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Humanoid dark",
+  "author": "Thomas Friese · Tinted Theming (MIT)",
+  "description": "Colors from the Humanoid dark theme by Thomas Friese. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#00a6fb",
+          "#f15ee3"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffb627"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#0dd9d6"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#02d849"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f11235"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff9505"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

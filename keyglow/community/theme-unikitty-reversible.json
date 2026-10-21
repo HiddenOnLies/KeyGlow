@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Unikitty Reversible",
+  "author": "Josh W Lewis · Tinted Theming (MIT)",
+  "description": "Colors from the Unikitty Reversible theme by Josh W Lewis. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#7864fa",
+          "#b33ce8"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#dc8a0e"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#149bda"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#1bccb3"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d8137f"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d65407"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

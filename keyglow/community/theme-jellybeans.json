@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Jellybeans",
+  "author": "FredHappyface, converted to Base16 by · Tinted Theming (MIT)",
+  "description": "Colors from the Jellybeans theme by FredHappyface, converted to Base16 by. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#b1d8f6",
+          "#fbdaff"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffdca0"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#1eccc1"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#bddeab"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffa1a1"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffba7b"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

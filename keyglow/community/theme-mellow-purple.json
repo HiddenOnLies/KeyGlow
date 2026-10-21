@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Mellow Purple",
+  "author": "gidsi · Tinted Theming (MIT)",
+  "description": "Colors from the Mellow Purple theme by gidsi. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#a700cc",
+          "#959ecc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#955ae7"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc00c3"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#05cc0d"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00d9e9"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc00c4"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

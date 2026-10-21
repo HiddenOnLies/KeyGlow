@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Black Metal (Marduk)",
+  "author": "metalelf0 · Tinted Theming (MIT)",
+  "description": "Colors from the Black Metal (Marduk) theme by metalelf0. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#cccccc",
+          "#cccccc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#bbccc4"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccccc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c6ccc8"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#90cccc"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccccc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

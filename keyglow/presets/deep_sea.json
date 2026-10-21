@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Deep Sea",
+  "author": "KeyGlow",
+  "description": "Slow plasma in deep blues and teal.",
+  "tags": [
+    "animated",
+    "chill",
+    "nature"
+  ],
+  "layers": [
+    {
+      "effect": "plasma",
+      "params": {
+        "colors": [
+          "#00122e",
+          "#003c8f",
+          "#00a6c0",
+          "#00e0b0"
+        ],
+        "speed": 0.12,
+        "scale": 1.2
+      }
+    }
+  ]
+}

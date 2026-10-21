@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Ocean",
+  "author": "KeyGlow",
+  "description": "Deep blues rolling like waves.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#001a66",
+          "#0066ff",
+          "#00e5ff",
+          "#0066ff"
+        ],
+        "speed": 0.08,
+        "angle": 30,
+        "wavelength": 1.4
+      }
+    }
+  ]
+}

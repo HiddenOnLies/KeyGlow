@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Penumbra Dark Contrast Plus",
+  "author": "Zachary Weiss · Tinted Theming (MIT)",
+  "description": "Colors from the Penumbra Dark Contrast Plus theme by Zachary Weiss. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#61a3e6",
+          "#a48fe1"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#bfcc58"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00bccc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#5acc95"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#df7f78"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ce9042"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

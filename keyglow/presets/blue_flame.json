@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Blue Flame",
+  "author": "KeyGlow",
+  "description": "Gas-burner flames in blue and white.",
+  "tags": [
+    "animated",
+    "nature"
+  ],
+  "layers": [
+    {
+      "effect": "fire",
+      "params": {
+        "colors": [
+          "#000000",
+          "#001060",
+          "#0050ff",
+          "#40c0ff",
+          "#ffffff"
+        ],
+        "speed": 1.2,
+        "height": 0.6
+      }
+    }
+  ]
+}

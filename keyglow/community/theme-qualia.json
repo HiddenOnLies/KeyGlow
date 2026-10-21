@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Qualia",
+  "author": "isaacwhanson · Tinted Theming (MIT)",
+  "description": "Colors from the Qualia theme by isaacwhanson. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#50cacd",
+          "#e0af85"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e6a3dc"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccc76"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#82cc92"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#efa6a2"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a3b8ef"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

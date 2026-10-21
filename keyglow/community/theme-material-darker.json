@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Material Darker",
+  "author": "Nate Peterson · Tinted Theming (MIT)",
+  "description": "Colors from the Material Darker theme by Nate Peterson. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#82aaff",
+          "#c792ea"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffcb6b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#89ddff"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c3e88d"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f07178"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f78c6c"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

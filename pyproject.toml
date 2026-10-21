@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keyglow"
+version = "0.1.0"
+description = "RGB keyboard lighting with profiles that move between keyboard models"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/HiddenOnLies/KeyGlow"
+Issues = "https://github.com/HiddenOnLies/KeyGlow/issues"
+
+[project.optional-dependencies]
+openrgb = ["openrgb-python>=0.2.15"]
+image = ["Pillow>=10"]
+hid = ["hidapi>=0.14"]
+app = ["openrgb-python>=0.2.15", "Pillow>=10", "pystray>=0.19"]
+build = ["pyinstaller>=6.10"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+keyglow = "keyglow.cli:main"
+
+[project.gui-scripts]
+keyglow-app = "keyglow.app.main:main"
+
+[tool.setuptools.packages.find]
+include = ["keyglow*"]
+
+[tool.setuptools.package-data]
+keyglow = ["presets/*.json", "community/*.json", "community/*.md", "app/static/*"]

@@ -1,0 +1,18 @@
+{
+  "format": "keyglow/1",
+  "name": "Warm White",
+  "author": "KeyGlow",
+  "description": "Cozy warm white for late-night typing.",
+  "tags": [
+    "static",
+    "productivity"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffb46b"
+      }
+    }
+  ]
+}

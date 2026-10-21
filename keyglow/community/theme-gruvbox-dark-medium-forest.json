@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Gruvbox Dark Medium (Forest)",
+  "author": "Muhammad Talha, morhetz · Tinted Theming (MIT)",
+  "description": "Colors from the Gruvbox Dark Medium (Forest) theme by Muhammad Talha, morhetz. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#c9cc29",
+          "#a2ccaf"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fabd2f"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b3cc3b"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c9cc29"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fb4934"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fe8019"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

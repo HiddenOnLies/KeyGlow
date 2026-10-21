@@ -1,0 +1,20 @@
+{
+  "format": "keyglow/1",
+  "name": "Heartbeat",
+  "author": "KeyGlow",
+  "description": "Red double pulse, like a heartbeat.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "heartbeat",
+      "params": {
+        "color": "#ff0030",
+        "bpm": 65,
+        "min": 0.05
+      }
+    }
+  ]
+}

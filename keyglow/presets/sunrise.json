@@ -1,0 +1,24 @@
+{
+  "format": "keyglow/1",
+  "name": "Sunrise",
+  "author": "KeyGlow",
+  "description": "Warm light rising from the bottom row.",
+  "tags": [
+    "static",
+    "nature"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#ffd27a",
+          "#ff7a3d",
+          "#7a2d8f",
+          "#1a0f3d"
+        ],
+        "angle": 270
+      }
+    }
+  ]
+}

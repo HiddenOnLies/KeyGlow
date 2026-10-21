@@ -1,0 +1,27 @@
+{
+  "format": "keyglow/1",
+  "name": "Forest",
+  "author": "KeyGlow",
+  "description": "Greens with a soft light moving through.",
+  "tags": [
+    "animated",
+    "nature",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#0b3d0b",
+          "#1f7a1f",
+          "#7fd13b",
+          "#1f7a1f"
+        ],
+        "speed": 0.05,
+        "angle": 200,
+        "wavelength": 1.8
+      }
+    }
+  ]
+}

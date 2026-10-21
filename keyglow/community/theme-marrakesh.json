@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Marrakesh",
+  "author": "Alexandre Gavioli · Tinted Theming (MIT)",
+  "description": "Colors from the Marrakesh theme by Alexandre Gavioli. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#5a9dcc",
+          "#9b77cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9f45"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8fcc44"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#20cc69"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc575d"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6f4d"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

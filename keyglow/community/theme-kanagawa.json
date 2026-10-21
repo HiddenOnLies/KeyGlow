@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Kanagawa",
+  "author": "Tommaso Laurenzi · Tinted Theming (MIT)",
+  "description": "Colors from the Kanagawa theme by Tommaso Laurenzi. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#7e9cd8",
+          "#a58dcc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccad75"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#91ccbc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a3cc92"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc4346"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffa066"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

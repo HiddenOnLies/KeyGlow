@@ -1,0 +1,50 @@
+{
+  "format": "keyglow/1",
+  "name": "Classic FPS (full-size)",
+  "author": "KeyGlow",
+  "description": "Made for a 100% keyboard: purple base, red movement keys. Shows how profiles adapt.",
+  "designed_for": "ansi_full",
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#200030"
+      }
+    },
+    {
+      "effect": "static",
+      "params": {
+        "keys": {
+          "W": "#ff0030",
+          "A": "#ff0030",
+          "S": "#ff0030",
+          "D": "#ff0030",
+          "Left Shift": "#ff8000",
+          "Left Control": "#ff8000",
+          "Space": "#ff8000",
+          "Q": "#ffd000",
+          "E": "#ffd000",
+          "R": "#ffd000",
+          "F": "#ffd000",
+          "1": "#00ff60",
+          "2": "#00ff60",
+          "3": "#00ff60",
+          "4": "#00ff60",
+          "Escape": "#ffffff",
+          "Number Pad 0": "#00e0ff",
+          "Number Pad 1": "#00e0ff",
+          "Number Pad 2": "#00e0ff",
+          "Number Pad 3": "#00e0ff",
+          "Number Pad Enter": "#00e0ff",
+          "F1": "#4060ff",
+          "F5": "#4060ff",
+          "F9": "#4060ff"
+        }
+      }
+    }
+  ],
+  "tags": [
+    "gaming",
+    "static"
+  ]
+}

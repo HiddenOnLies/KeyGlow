@@ -1,0 +1,39 @@
+{
+  "format": "keyglow/1",
+  "name": "Galaxy",
+  "author": "KeyGlow",
+  "description": "Purple nebula with twinkling stars.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "plasma",
+      "params": {
+        "colors": [
+          "#10002b",
+          "#3c096c",
+          "#7b2cbf",
+          "#240046"
+        ],
+        "speed": 0.1,
+        "scale": 1.5
+      }
+    },
+    {
+      "effect": "starlight",
+      "params": {
+        "colors": [
+          "#ffffff",
+          "#c0a0ff"
+        ],
+        "background": "#000000",
+        "density": 0.12,
+        "period": 2.2,
+        "seed": 4
+      },
+      "blend": "add"
+    }
+  ]
+}

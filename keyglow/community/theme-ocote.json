@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Ocote",
+  "author": "Teshre · Tinted Theming (MIT)",
+  "description": "Colors from the Ocote theme by Teshre. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#82a6e0",
+          "#c58ae0"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8b43a"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#6dd8c8"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#7fcc7c"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8635a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8843a"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

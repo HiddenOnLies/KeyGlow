@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Icy Dark",
+  "author": "icyphox · Tinted Theming (MIT)",
+  "description": "Colors from the Icy Dark theme by icyphox. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#00bcd4",
+          "#00b6cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#80deea"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#26c6da"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#4dd0e1"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#16c1d9"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b3ebf2"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

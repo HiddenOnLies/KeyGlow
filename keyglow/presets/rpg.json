@@ -1,0 +1,53 @@
+{
+  "format": "keyglow/1",
+  "name": "RPG",
+  "author": "KeyGlow",
+  "description": "Emerald base, hotbar on the number row.",
+  "tags": [
+    "gaming",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#0d2b1a",
+          "#123d26"
+        ],
+        "angle": 90
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffc400"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffffff"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#40c0ff"
+      },
+      "keys": [
+        "I",
+        "M",
+        "J",
+        "TAB",
+        "ESC"
+      ]
+    }
+  ]
+}

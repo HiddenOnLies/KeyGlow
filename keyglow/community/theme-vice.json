@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "vice",
+  "author": "Thomas Leon Highbaugh thighbaugh@zoho.com · Tinted Theming (MIT)",
+  "description": "Colors from the vice theme by Thomas Leon Highbaugh thighbaugh@zoho.com. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#00eaff",
+          "#00f6d9"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f0ffaa"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8265ff"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#0badff"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff29a8"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#85ffe0"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

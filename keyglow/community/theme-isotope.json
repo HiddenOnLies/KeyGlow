@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Isotope",
+  "author": "Jan T. Sott · Tinted Theming (MIT)",
+  "description": "Colors from the Isotope theme by Jan T. Sott. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#0066ff",
+          "#cc00ff"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff0099"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00ffff"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#33ff00"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff0000"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ff9900"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

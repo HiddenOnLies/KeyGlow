@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "3024",
+  "author": "Jan T. Sott · Tinted Theming (MIT)",
+  "description": "Colors from the 3024 theme by Jan T. Sott. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#01a0e4",
+          "#cc86bc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fded02"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b5e4f4"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#01cc67"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#db2d20"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8bbd0"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

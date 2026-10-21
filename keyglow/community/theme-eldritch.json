@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Eldritch",
+  "author": "Unknown · Tinted Theming (MIT)",
+  "description": "Colors from the Eldritch theme by Unknown. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#39ddfd",
+          "#a48cf2"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f1fc79"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#04d1f9"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#37f499"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f16c75"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f7c67f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

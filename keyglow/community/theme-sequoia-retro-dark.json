@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Sequoia Retro Dark",
+  "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+  "description": "Colors from the Sequoia Retro Dark theme by Micheal Andreuzza. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#72a8cc",
+          "#da674b"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#da674b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9f6e"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8fcc94"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9fc2cc"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9fc2cc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

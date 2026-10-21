@@ -1,0 +1,23 @@
+{
+  "format": "keyglow/1",
+  "name": "Mint",
+  "author": "KeyGlow",
+  "description": "Fresh mint and white.",
+  "tags": [
+    "static",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#b8ffe0",
+          "#00e0a0",
+          "#00a080"
+        ],
+        "angle": 0
+      }
+    }
+  ]
+}

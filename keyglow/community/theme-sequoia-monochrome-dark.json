@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Sequoia Monochrome Dark",
+  "author": "Micheal Andreuzza · Tinted Theming (MIT)",
+  "description": "Colors from the Sequoia Monochrome Dark theme by Micheal Andreuzza. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#a1a9cc",
+          "#d3d5de"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d3d5de"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#babecc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#99a4cc"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#afb5cc"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#afb5cc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Brogrammer",
+  "author": "Vik Ramanujam · Tinted Theming (MIT)",
+  "description": "Colors from the Brogrammer theme by Vik Ramanujam. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#5c58cc",
+          "#0f7ddb"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#1dd361"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#1081d6"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f3bd09"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d6dbe5"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#de352e"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

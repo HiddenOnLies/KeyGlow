@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Nebula",
+  "author": "Gabriel Fontes · Tinted Theming (MIT)",
+  "description": "Colors from the Nebula theme by Gabriel Fontes. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#5678cc",
+          "#847fcc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#70cc8b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#3eccbf"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#7b77cc"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8184cc"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#bfbdcc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

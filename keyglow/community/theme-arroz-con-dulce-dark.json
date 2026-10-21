@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Arroz con Dulce Dark",
+  "author": "Richard Martinez · Tinted Theming (MIT)",
+  "description": "Colors from the Arroz con Dulce Dark theme by Richard Martinez. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#bd9dcc",
+          "#d58ab4"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d9a441"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d98276"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d47a50"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e07a8a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e68a4a"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

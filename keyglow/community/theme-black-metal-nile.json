@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Black Metal (Nile)",
+  "author": "metalelf0 · Tinted Theming (MIT)",
+  "description": "Colors from the Black Metal (Nile) theme by metalelf0. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#cccccc",
+          "#cccccc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccc92"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccccc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccb8a3"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#90cccc"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccccc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

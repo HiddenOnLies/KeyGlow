@@ -1,0 +1,18 @@
+{
+  "format": "keyglow/1",
+  "name": "Spectrum",
+  "author": "KeyGlow",
+  "description": "Every key cycles through every color together.",
+  "tags": [
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "spectrum",
+      "params": {
+        "speed": 0.08,
+        "saturation": 1.0
+      }
+    }
+  ]
+}

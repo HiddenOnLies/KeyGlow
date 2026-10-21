@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Pride",
+  "author": "KeyGlow",
+  "description": "Bold rainbow stripes.",
+  "tags": [
+    "static",
+    "seasonal"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#e40303",
+          "#ff8c00",
+          "#ffed00",
+          "#008026",
+          "#004dff",
+          "#750787"
+        ],
+        "angle": 0
+      }
+    }
+  ]
+}

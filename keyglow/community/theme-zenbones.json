@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Zenbones",
+  "author": "mcchrish · Tinted Theming (MIT)",
+  "description": "Colors from the Zenbones theme by mcchrish. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#cf86c1",
+          "#6bc2cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a3cc7a"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#61abda"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d68c67"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccbbbf"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8838f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

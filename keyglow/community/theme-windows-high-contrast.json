@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Windows High Contrast",
+  "author": "Fergus Collins · Tinted Theming (MIT)",
+  "description": "Colors from the Windows High Contrast theme by Fergus Collins. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#5454fc",
+          "#fc54fc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fcfc54"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#54fcfc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#54fc54"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fc5454"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccc00"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

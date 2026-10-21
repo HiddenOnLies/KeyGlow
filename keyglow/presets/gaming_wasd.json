@@ -1,0 +1,47 @@
+{
+  "format": "keyglow/1",
+  "name": "Gaming WASD",
+  "author": "KeyGlow",
+  "description": "Dark base with movement, actions and numbers lit up.",
+  "tags": [
+    "gaming",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#120018"
+      }
+    },
+    {
+      "effect": "static",
+      "params": {
+        "keys": {
+          "W": "#ff0030",
+          "A": "#ff0030",
+          "S": "#ff0030",
+          "D": "#ff0030",
+          "LSHIFT": "#ff8000",
+          "LCTRL": "#ff8000",
+          "SPACE": "#ff8000",
+          "Q": "#ffd000",
+          "E": "#ffd000",
+          "R": "#ffd000",
+          "F": "#ffd000",
+          "1": "#00ff60",
+          "2": "#00ff60",
+          "3": "#00ff60",
+          "4": "#00ff60",
+          "5": "#00ff60",
+          "ESC": "#ffffff",
+          "TAB": "#a040ff",
+          "UP": "#00d0ff",
+          "DOWN": "#00d0ff",
+          "LEFT": "#00d0ff",
+          "RIGHT": "#00d0ff"
+        }
+      }
+    }
+  ]
+}

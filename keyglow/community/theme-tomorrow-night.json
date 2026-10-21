@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Tomorrow Night",
+  "author": "Chris Kempson · Tinted Theming (MIT)",
+  "description": "Colors from the Tomorrow Night theme by Chris Kempson. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#8baecc",
+          "#c2a1cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f0c674"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#94ccc4"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c3cc70"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6666"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#de935f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

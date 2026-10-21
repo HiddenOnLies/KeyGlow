@@ -1,0 +1,22 @@
+{
+  "format": "keyglow/1",
+  "name": "Focus",
+  "author": "KeyGlow",
+  "description": "Dim white with a gentle breathing.",
+  "tags": [
+    "animated",
+    "productivity"
+  ],
+  "layers": [
+    {
+      "effect": "breathing",
+      "params": {
+        "colors": [
+          "#ffffff"
+        ],
+        "period": 8,
+        "min": 0.35
+      }
+    }
+  ]
+}

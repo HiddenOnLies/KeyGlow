@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "selenized-dark",
+  "author": "Jan Warchol / adapted to base16 by ali · Tinted Theming (MIT)",
+  "description": "Colors from the selenized-dark theme by Jan Warchol / adapted to base16 by ali. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#4695f7",
+          "#af88eb"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#dbb32d"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#43ccbe"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#81cc3e"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fa5750"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ed8649"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

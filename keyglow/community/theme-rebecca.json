@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Rebecca",
+  "author": "Victor Borja based on Rebecca Theme · Tinted Theming (MIT)",
+  "description": "Colors from the Rebecca theme by Victor Borja based on Rebecca Theme. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#2de0a7",
+          "#7aa5ff"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ae81ff"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#8eaee0"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#6dfedf"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a6a6cc"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#efe4a1"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

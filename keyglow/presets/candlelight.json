@@ -1,0 +1,25 @@
+{
+  "format": "keyglow/1",
+  "name": "Candlelight",
+  "author": "KeyGlow",
+  "description": "Very warm, very dim flicker.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "fire",
+      "params": {
+        "colors": [
+          "#100400",
+          "#401000",
+          "#803000",
+          "#c06000"
+        ],
+        "speed": 0.5,
+        "height": 1.0
+      }
+    }
+  ]
+}

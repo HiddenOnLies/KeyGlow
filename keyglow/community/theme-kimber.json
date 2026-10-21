@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Kimber",
+  "author": "Mishka Nguyen · Tinted Theming (MIT)",
+  "description": "Colors from the Kimber theme by Mishka Nguyen. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#6da2cc",
+          "#86cacd"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d8b56d"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#88cccc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9ccc9c"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc8f8f"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#6ba2cc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

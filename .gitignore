@@ -1,0 +1,13 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
+build/
+dist/
+*.spec
+
+# local output and personal files
+profiles/
+preview/
+docs/captura_*.jpg
+.claude/

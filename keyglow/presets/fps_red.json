@@ -1,0 +1,36 @@
+{
+  "format": "keyglow/1",
+  "name": "FPS Red",
+  "author": "KeyGlow",
+  "description": "Dark red base, bright WASD and reload keys.",
+  "tags": [
+    "gaming",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#200000"
+      }
+    },
+    {
+      "effect": "static",
+      "params": {},
+      "keys": {
+        "W": "#ff0000",
+        "A": "#ff0000",
+        "S": "#ff0000",
+        "D": "#ff0000",
+        "R": "#ffffff",
+        "LSHIFT": "#ff6000",
+        "LCTRL": "#ff6000",
+        "SPACE": "#ff6000",
+        "1": "#ffa000",
+        "2": "#ffa000",
+        "3": "#ffa000",
+        "4": "#ffa000"
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "XCode Dusk",
+  "author": "Elsa Gonsiorowski · Tinted Theming (MIT)",
+  "description": "Colors from the XCode Dusk theme by Elsa Gonsiorowski. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#8f11cc",
+          "#cc1c9d"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#65c3cc"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00accc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#df0002"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc1c9d"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#7c71cc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

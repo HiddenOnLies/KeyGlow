@@ -1,0 +1,25 @@
+{
+  "format": "keyglow/1",
+  "name": "Neon City",
+  "author": "KeyGlow",
+  "description": "Pink, cyan and violet plasma.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "plasma",
+      "params": {
+        "colors": [
+          "#ff00a0",
+          "#00f0ff",
+          "#8000ff",
+          "#00f0ff"
+        ],
+        "speed": 0.35,
+        "scale": 0.9
+      }
+    }
+  ]
+}

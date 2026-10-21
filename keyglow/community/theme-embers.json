@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Embers",
+  "author": "Jannik Siebert · Tinted Theming (MIT)",
+  "description": "Colors from the Embers theme by Jannik Siebert. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#ab89cc",
+          "#cc89ab"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#abcc89"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#89abcc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#89ccab"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccab89"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccc89"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

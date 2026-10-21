@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Hardhacker",
+  "author": "fe2-Nyxar, based on the · Tinted Theming (MIT)",
+  "description": "Colors from the Hardhacker theme by fe2-Nyxar, based on the. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#95a6f4",
+          "#ff79c6"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ebde76"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b3f4f3"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b1f2a7"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e965a5"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f4b870"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

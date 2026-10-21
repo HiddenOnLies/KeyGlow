@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "tender",
+  "author": "Jacobo Tabernero · Tinted Theming (MIT)",
+  "description": "Colors from the tender theme by Jacobo Tabernero. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#b3deef",
+          "#d3b987"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffc24b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#73cef4"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c9d05c"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f43753"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#dc9656"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "OneDark",
+  "author": "Lalit Magant · Tinted Theming (MIT)",
+  "description": "Colors from the OneDark theme by Lalit Magant. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#61afef",
+          "#c678dd"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e5c07b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#5abfcc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9fcc7f"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e06c75"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d19a66"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

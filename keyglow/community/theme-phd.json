@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "PhD",
+  "author": "Hennig Hasemann · Tinted Theming (MIT)",
+  "description": "Colors from the PhD theme by Hennig Hasemann. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#58a3cc",
+          "#9989cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fbd461"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#7ac6cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a3cc58"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d07346"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f0a000"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

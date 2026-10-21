@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Classic Dark",
+  "author": "Jason Heeris · Tinted Theming (MIT)",
+  "description": "Colors from the Classic Dark theme by Jason Heeris. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#77b3cc",
+          "#cc8cbf"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f4bf75"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#84ccc0"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#aecc6b"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc4d4e"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d28445"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

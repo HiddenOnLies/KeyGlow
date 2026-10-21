@@ -1,0 +1,30 @@
+{
+  "format": "keyglow/1",
+  "name": "Catppuccin Macchiato Wave",
+  "author": "Catppuccin · Catppuccin (MIT)",
+  "description": "The accent colors of the Catppuccin Macchiato theme by Catppuccin, rolling slowly. MIT License.",
+  "tags": [
+    "theme",
+    "animated"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#c6a0f6",
+          "#f5bde6",
+          "#f0c6c6",
+          "#f5a97f",
+          "#eed49f",
+          "#a6da95",
+          "#8bd5ca",
+          "#7dc4e4",
+          "#b7bdf8"
+        ],
+        "speed": 0.08,
+        "wavelength": 1.4
+      }
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Hardcore",
+  "author": "Chris Caller · Tinted Theming (MIT)",
+  "description": "Colors from the Hardcore theme by Chris Caller. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#66d9ef",
+          "#9e6ffe"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e6db74"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a9c6cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a6e22e"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f92672"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fd971f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

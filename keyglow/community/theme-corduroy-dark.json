@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Corduroy Dark",
+  "author": "taysatte · Tinted Theming (MIT)",
+  "description": "Colors from the Corduroy Dark theme by taysatte. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#dc92a3",
+          "#cf98c4"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f0bd9c"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f0a89b"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#6ccccc"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8758a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f0a89b"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Tokio",
+  "author": "xscriptor · Tinted Theming (MIT)",
+  "description": "Colors from the Tokio theme by xscriptor. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#fd9353",
+          "#948ae3"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fce566"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#5ad4e6"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#7bd88f"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fc618d"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fca37a"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

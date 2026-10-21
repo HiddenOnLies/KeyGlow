@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Pop",
+  "author": "Chris Kempson · Tinted Theming (MIT)",
+  "description": "Colors from the Pop theme by Chris Kempson. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#137ccc",
+          "#cc22a1"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f8ca12"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00b9cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#3fcc53"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#eb008a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f29333"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "format": "keyglow/1",
+  "name": "Breathing",
+  "author": "KeyGlow",
+  "description": "The whole board breathes between cyan and magenta.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "breathing",
+      "params": {
+        "colors": [
+          "#00e5ff",
+          "#ff00aa"
+        ],
+        "period": 4.0,
+        "min": 0.05
+      }
+    }
+  ]
+}

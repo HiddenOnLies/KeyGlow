@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Atelier Dune",
+  "author": "Bram de Haan · Tinted Theming (MIT)",
+  "description": "Colors from the Atelier Dune theme by Bram de Haan. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#6684e1",
+          "#b854d4"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccaf16"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#25cc9a"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#72cc44"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d73737"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6013"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

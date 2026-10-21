@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Horizon Dark",
+  "author": "Michaël Ball · Tinted Theming (MIT)",
+  "description": "Colors from the Horizon Dark theme by Michaël Ball. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#df5273",
+          "#b072d1"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#efb993"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#29becc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#efaf8e"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e93c58"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e58d7d"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

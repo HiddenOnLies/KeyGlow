@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Gruvbox dark",
+  "author": "Tinted Theming, morhetz · Tinted Theming (MIT)",
+  "description": "Colors from the Gruvbox dark theme by Tinted Theming, morhetz. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#68c8cc",
+          "#cc719a"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d79921"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#87cc8a"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cccb23"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc241d"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d65d0e"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

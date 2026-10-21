@@ -1,0 +1,26 @@
+{
+  "format": "keyglow/1",
+  "name": "Vaporwave",
+  "author": "KeyGlow",
+  "description": "Pink, violet and cyan sliding slowly.",
+  "tags": [
+    "animated",
+    "aesthetic"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#ff00c8",
+          "#7a00ff",
+          "#00e5ff",
+          "#7a00ff"
+        ],
+        "speed": 0.06,
+        "angle": 15,
+        "wavelength": 1.6
+      }
+    }
+  ]
+}

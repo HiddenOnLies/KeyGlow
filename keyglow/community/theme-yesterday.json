@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Yesterday",
+  "author": "FroZnShiva · Tinted Theming (MIT)",
+  "description": "Colors from the Yesterday theme by FroZnShiva. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#4d84cc",
+          "#a66ccc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#eab700"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#50c4cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a5cc00"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc292a"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f5871f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

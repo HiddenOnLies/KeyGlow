@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Gruvbox Material Dark, Hard",
+  "author": "Mayush Kumar, sainnhe · Tinted Theming (MIT)",
+  "description": "Colors from the Gruvbox Material Dark, Hard theme by Mayush Kumar, sainnhe. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#93ccbf",
+          "#d3869b"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d8a657"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9bcc93"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#bdcc71"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ea6962"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e78a4e"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

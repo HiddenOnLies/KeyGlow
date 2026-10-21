@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Atelier Forest",
+  "author": "Bram de Haan · Tinted Theming (MIT)",
+  "description": "Colors from the Atelier Forest theme by Bram de Haan. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#407ee7",
+          "#6666ea"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc8a19"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#44a7cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a6cc33"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f22c40"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#df5320"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

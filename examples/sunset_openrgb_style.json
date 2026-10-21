@@ -1,0 +1,418 @@
+[
+ {
+  "led": "Key: Escape",
+  "color": "#ff295c"
+ },
+ {
+  "led": "Key: F1",
+  "color": "#ff4b4b"
+ },
+ {
+  "led": "Key: F2",
+  "color": "#ff5c42"
+ },
+ {
+  "led": "Key: F3",
+  "color": "#ff6d3a"
+ },
+ {
+  "led": "Key: F4",
+  "color": "#ff7e31"
+ },
+ {
+  "led": "Key: F5",
+  "color": "#ff9434"
+ },
+ {
+  "led": "Key: F6",
+  "color": "#ffa237"
+ },
+ {
+  "led": "Key: F7",
+  "color": "#ffb03a"
+ },
+ {
+  "led": "Key: F8",
+  "color": "#ffbe3c"
+ },
+ {
+  "led": "Key: F9",
+  "color": "#f7cf48"
+ },
+ {
+  "led": "Key: F10",
+  "color": "#d5cc6a"
+ },
+ {
+  "led": "Key: F11",
+  "color": "#b3ca8c"
+ },
+ {
+  "led": "Key: F12",
+  "color": "#91c7ae"
+ },
+ {
+  "led": "Key: Printscreen",
+  "color": "#66c3d9"
+ },
+ {
+  "led": "Key: Scrolllock",
+  "color": "#44c0fb"
+ },
+ {
+  "led": "Key: Pause",
+  "color": "#45acff"
+ },
+ {
+  "led": "Key: `",
+  "color": "#ff295c"
+ },
+ {
+  "led": "Key: 1",
+  "color": "#ff3a53"
+ },
+ {
+  "led": "Key: 2",
+  "color": "#ff4b4b"
+ },
+ {
+  "led": "Key: 3",
+  "color": "#ff5c42"
+ },
+ {
+  "led": "Key: 4",
+  "color": "#ff6d3a"
+ },
+ {
+  "led": "Key: 5",
+  "color": "#ff7e31"
+ },
+ {
+  "led": "Key: 6",
+  "color": "#ff8c32"
+ },
+ {
+  "led": "Key: 7",
+  "color": "#ff9b35"
+ },
+ {
+  "led": "Key: 8",
+  "color": "#ffa938"
+ },
+ {
+  "led": "Key: 9",
+  "color": "#ffb73b"
+ },
+ {
+  "led": "Key: 0",
+  "color": "#ffc53e"
+ },
+ {
+  "led": "Key: -",
+  "color": "#f7cf48"
+ },
+ {
+  "led": "Key: =",
+  "color": "#d5cc6a"
+ },
+ {
+  "led": "Key: Backspace",
+  "color": "#a2c89d"
+ },
+ {
+  "led": "Key: Insert",
+  "color": "#66c3d9"
+ },
+ {
+  "led": "Key: Home",
+  "color": "#44c0fb"
+ },
+ {
+  "led": "Key: Page Up",
+  "color": "#45acff"
+ },
+ {
+  "led": "Key: Numlock",
+  "color": "#4c90ff"
+ },
+ {
+  "led": "Key: Number Pad Slash",
+  "color": "#5279ff"
+ },
+ {
+  "led": "Key: Number Pad Asterisk",
+  "color": "#5762ff"
+ },
+ {
+  "led": "Key: Number Pad Minus",
+  "color": "#5d4bff"
+ },
+ {
+  "led": "Key: Tab",
+  "color": "#ff2d5a"
+ },
+ {
+  "led": "Key: Q",
+  "color": "#ff424f"
+ },
+ {
+  "led": "Key: W",
+  "color": "#ff5346"
+ },
+ {
+  "led": "Key: E",
+  "color": "#ff643e"
+ },
+ {
+  "led": "Key: R",
+  "color": "#ff7535"
+ },
+ {
+  "led": "Key: T",
+  "color": "#ff8531"
+ },
+ {
+  "led": "Key: Y",
+  "color": "#ff9434"
+ },
+ {
+  "led": "Key: U",
+  "color": "#ffa237"
+ },
+ {
+  "led": "Key: I",
+  "color": "#ffb03a"
+ },
+ {
+  "led": "Key: O",
+  "color": "#ffbe3c"
+ },
+ {
+  "led": "Key: P",
+  "color": "#ffcc3f"
+ },
+ {
+  "led": "Key: [",
+  "color": "#e6ce59"
+ },
+ {
+  "led": "Key: ]",
+  "color": "#c4cb7b"
+ },
+ {
+  "led": "Key: \\ (ANSI)",
+  "color": "#99c7a6"
+ },
+ {
+  "led": "Key: Delete",
+  "color": "#66c3d9"
+ },
+ {
+  "led": "Key: End",
+  "color": "#44c0fb"
+ },
+ {
+  "led": "Key: Page Down",
+  "color": "#45acff"
+ },
+ {
+  "led": "Key: Number Pad 7",
+  "color": "#4c90ff"
+ },
+ {
+  "led": "Key: Number Pad 8",
+  "color": "#5279ff"
+ },
+ {
+  "led": "Key: Number Pad 9",
+  "color": "#5762ff"
+ },
+ {
+  "led": "Key: Number Pad Plus",
+  "color": "#5d4bff"
+ },
+ {
+  "led": "Key: Capslock",
+  "color": "#ff2f59"
+ },
+ {
+  "led": "Key: A",
+  "color": "#ff464d"
+ },
+ {
+  "led": "Key: S",
+  "color": "#ff5744"
+ },
+ {
+  "led": "Key: D",
+  "color": "#ff693c"
+ },
+ {
+  "led": "Key: F",
+  "color": "#ff7a33"
+ },
+ {
+  "led": "Key: G",
+  "color": "#ff8932"
+ },
+ {
+  "led": "Key: H",
+  "color": "#ff9735"
+ },
+ {
+  "led": "Key: J",
+  "color": "#ffa537"
+ },
+ {
+  "led": "Key: K",
+  "color": "#ffb43a"
+ },
+ {
+  "led": "Key: L",
+  "color": "#ffc23d"
+ },
+ {
+  "led": "Key: ;",
+  "color": "#ffd040"
+ },
+ {
+  "led": "Key: '",
+  "color": "#ddcd62"
+ },
+ {
+  "led": "Key: Enter",
+  "color": "#a6c999"
+ },
+ {
+  "led": "Key: Number Pad 4",
+  "color": "#4c90ff"
+ },
+ {
+  "led": "Key: Number Pad 5",
+  "color": "#5279ff"
+ },
+ {
+  "led": "Key: Number Pad 6",
+  "color": "#5762ff"
+ },
+ {
+  "led": "Key: Left Shift",
+  "color": "#ff3356"
+ },
+ {
+  "led": "Key: Z",
+  "color": "#ff4f49"
+ },
+ {
+  "led": "Key: X",
+  "color": "#ff6040"
+ },
+ {
+  "led": "Key: C",
+  "color": "#ff7137"
+ },
+ {
+  "led": "Key: V",
+  "color": "#ff8230"
+ },
+ {
+  "led": "Key: B",
+  "color": "#ff9033"
+ },
+ {
+  "led": "Key: N",
+  "color": "#ff9e36"
+ },
+ {
+  "led": "Key: M",
+  "color": "#ffac39"
+ },
+ {
+  "led": "Key: ,",
+  "color": "#ffbb3c"
+ },
+ {
+  "led": "Key: .",
+  "color": "#ffc93f"
+ },
+ {
+  "led": "Key: /",
+  "color": "#eecf51"
+ },
+ {
+  "led": "Key: Right Shift",
+  "color": "#aec991"
+ },
+ {
+  "led": "Key: Up Arrow",
+  "color": "#44c0fb"
+ },
+ {
+  "led": "Key: Number Pad 1",
+  "color": "#4c90ff"
+ },
+ {
+  "led": "Key: Number Pad 2",
+  "color": "#5279ff"
+ },
+ {
+  "led": "Key: Number Pad 3",
+  "color": "#5762ff"
+ },
+ {
+  "led": "Key: Number Pad Enter",
+  "color": "#5d4bff"
+ },
+ {
+  "led": "Key: Left Control",
+  "color": "#ff2b5b"
+ },
+ {
+  "led": "Key: Left Windows",
+  "color": "#ff4050"
+ },
+ {
+  "led": "Key: Left Alt",
+  "color": "#ff5545"
+ },
+ {
+  "led": "Key: Space",
+  "color": "#ff9234"
+ },
+ {
+  "led": "Key: Right Alt",
+  "color": "#ffc73e"
+ },
+ {
+  "led": "Key: Right Windows",
+  "color": "#eace55"
+ },
+ {
+  "led": "Key: Menu",
+  "color": "#bfcb80"
+ },
+ {
+  "led": "Key: Right Control",
+  "color": "#95c7aa"
+ },
+ {
+  "led": "Key: Left Arrow",
+  "color": "#66c3d9"
+ },
+ {
+  "led": "Key: Down Arrow",
+  "color": "#44c0fb"
+ },
+ {
+  "led": "Key: Right Arrow",
+  "color": "#45acff"
+ },
+ {
+  "led": "Key: Number Pad 0",
+  "color": "#4f84ff"
+ },
+ {
+  "led": "Key: Number Pad Period",
+  "color": "#5762ff"
+ }
+]

@@ -1,0 +1,19 @@
+{
+  "format": "keyglow/1",
+  "name": "Campfire",
+  "author": "KeyGlow",
+  "description": "Flickering flames rising from the bottom.",
+  "tags": [
+    "animated",
+    "nature"
+  ],
+  "layers": [
+    {
+      "effect": "fire",
+      "params": {
+        "speed": 1.0,
+        "height": 0.7
+      }
+    }
+  ]
+}

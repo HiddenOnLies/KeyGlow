@@ -1,0 +1,18 @@
+{
+  "format": "keyglow/1",
+  "name": "Lavender",
+  "author": "KeyGlow",
+  "description": "Soft lilac everywhere.",
+  "tags": [
+    "static",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9a7bff"
+      }
+    }
+  ]
+}

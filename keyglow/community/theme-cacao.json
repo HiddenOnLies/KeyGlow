@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Cacao",
+  "author": "Teshre · Tinted Theming (MIT)",
+  "description": "Colors from the Cacao theme by Teshre. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#a89ad0",
+          "#ce8ab0"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e8a84a"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#76ccb4"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9ccc7c"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#e0705c"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc7e4c"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

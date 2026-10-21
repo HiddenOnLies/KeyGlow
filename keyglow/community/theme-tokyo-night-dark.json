@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Tokyo Night Dark",
+  "author": "Michaël Ball · Tinted Theming (MIT)",
+  "description": "Colors from the Tokyo Night Dark theme by Michaël Ball. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#2ac3de",
+          "#bb9af7"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#0db9d7"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#b4f9f8"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9ece6a"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c0caf5"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a9b1d6"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

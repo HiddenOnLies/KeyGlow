@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Ascendancy",
+  "author": "EmergentMind · Tinted Theming (MIT)",
+  "description": "Colors from the Ascendancy theme by EmergentMind. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#68c8cc",
+          "#fabd2f"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ffcc1b"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc5aa1"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c9cc29"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d05000"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#fe8019"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

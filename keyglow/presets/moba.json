@@ -1,0 +1,38 @@
+{
+  "format": "keyglow/1",
+  "name": "MOBA",
+  "author": "KeyGlow",
+  "description": "QWER abilities, D/F summoners and item keys.",
+  "tags": [
+    "gaming",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#060b1a"
+      }
+    },
+    {
+      "effect": "static",
+      "params": {},
+      "keys": {
+        "Q": "#00c8ff",
+        "W": "#00c8ff",
+        "E": "#00c8ff",
+        "R": "#ff3060",
+        "D": "#ffd000",
+        "F": "#ffd000",
+        "B": "#30ff80",
+        "1": "#a060ff",
+        "2": "#a060ff",
+        "3": "#a060ff",
+        "4": "#a060ff",
+        "5": "#a060ff",
+        "6": "#a060ff",
+        "TAB": "#ffffff"
+      }
+    }
+  ]
+}

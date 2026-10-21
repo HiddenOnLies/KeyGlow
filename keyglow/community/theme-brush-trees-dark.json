@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Brush Trees Dark",
+  "author": "Abraham White · Tinted Theming (MIT)",
+  "description": "Colors from the Brush Trees Dark theme by Abraham White. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#99a0cc",
+          "#cc99cb"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#c2cc99"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#99cccc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#9acc99"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9999"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#d8bba2"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

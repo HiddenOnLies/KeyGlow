@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Catppuccin Macchiato",
+  "author": "Catppuccin · Catppuccin (MIT)",
+  "description": "Colors from the Catppuccin Macchiato theme by Catppuccin. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#8aadf4",
+          "#c6a0f6"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#eed49f"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#91d7e3"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a6da95"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ed8796"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f5a97f"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

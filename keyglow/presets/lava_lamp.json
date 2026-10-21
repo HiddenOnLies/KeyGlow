@@ -1,0 +1,25 @@
+{
+  "format": "keyglow/1",
+  "name": "Lava Lamp",
+  "author": "KeyGlow",
+  "description": "Warm blobs drifting and blending.",
+  "tags": [
+    "animated",
+    "chill"
+  ],
+  "layers": [
+    {
+      "effect": "plasma",
+      "params": {
+        "colors": [
+          "#ff2a00",
+          "#ff8a00",
+          "#ff0060",
+          "#ffcc00"
+        ],
+        "speed": 0.15,
+        "scale": 1.4
+      }
+    }
+  ]
+}

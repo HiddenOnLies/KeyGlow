@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Atelier Sulphurpool",
+  "author": "Bram de Haan · Tinted Theming (MIT)",
+  "description": "Colors from the Atelier Sulphurpool theme by Bram de Haan. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#3d8fd1",
+          "#6679cc"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9433"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#23a4cc"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#ccb344"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc4a23"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc6e2a"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

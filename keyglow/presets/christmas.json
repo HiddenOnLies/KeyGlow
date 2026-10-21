@@ -1,0 +1,38 @@
+{
+  "format": "keyglow/1",
+  "name": "Christmas",
+  "author": "KeyGlow",
+  "description": "Red and green with twinkling lights.",
+  "tags": [
+    "animated",
+    "seasonal"
+  ],
+  "layers": [
+    {
+      "effect": "color_wave",
+      "params": {
+        "colors": [
+          "#c00010",
+          "#00a030"
+        ],
+        "speed": 0.1,
+        "angle": 0,
+        "wavelength": 0.5
+      }
+    },
+    {
+      "effect": "starlight",
+      "params": {
+        "colors": [
+          "#ffffff",
+          "#ffd700"
+        ],
+        "background": "#000000",
+        "density": 0.15,
+        "period": 1.8,
+        "seed": 12
+      },
+      "blend": "add"
+    }
+  ]
+}

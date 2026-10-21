@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Nova",
+  "author": "George Essig, Trevor D. Miller · Tinted Theming (MIT)",
+  "description": "Colors from the Nova theme by George Essig, Trevor D. Miller. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#83afe5",
+          "#9a93e1"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#a8ce93"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f2c38f"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#80c3cc"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#83afe5"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#80c3cc"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}

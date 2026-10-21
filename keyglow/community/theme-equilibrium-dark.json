@@ -1,0 +1,68 @@
+{
+  "format": "keyglow/1",
+  "name": "Equilibrium Dark",
+  "author": "Carlo Abelli · Tinted Theming (MIT)",
+  "description": "Colors from the Equilibrium Dark theme by Carlo Abelli. MIT License.",
+  "tags": [
+    "theme",
+    "static"
+  ],
+  "layers": [
+    {
+      "effect": "gradient",
+      "params": {
+        "colors": [
+          "#008dd1",
+          "#6a7fd2"
+        ],
+        "angle": 0
+      }
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#cc9401"
+      },
+      "keys": [
+        "@numbers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#00ccc0"
+      },
+      "keys": [
+        "@modifiers"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#bacc00"
+      },
+      "keys": [
+        "@arrows",
+        "@nav"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#f04339"
+      },
+      "keys": [
+        "ESC"
+      ]
+    },
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#df5923"
+      },
+      "keys": [
+        "@wasd"
+      ]
+    }
+  ]
+}
