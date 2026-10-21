@@ -17,6 +17,9 @@ from keyglow.retarget import retarget, to_portable
     ("Number Pad /", "NUM_SLASH"), ("NumpadAdd", "NUM_PLUS"), ("Num Lock", "NUMLOCK"),
     ("ArrowUp", "UP"), ("Key: Page Down", "PAGE_DOWN"), ("F11", "F11"), ("Key: `", "GRAVE"),
     ("Right Fn", "FN"), ("PAGE_UP", "PAGE_UP"), ("NUM_0", "NUM_0"), ("Space", "SPACE"),
+    ("Key: \\ (ISO)", "NONUS_BACKSLASH"), ("Key: #", "NONUS_HASH"), ("IntlBackslash", "NONUS_BACKSLASH"),
+    ("KC_LCTL", "LCTRL"), ("KC_SPC", "SPACE"), ("KC_P1", "NUM_1"), ("KC_A", "A"),
+    ("Key: Media Play/Pause", "MEDIA_PLAY"), ("Key: Volume Up", "VOL_UP"),
     ("Bananas", None),
 ])
 def test_normalize(name, expected):
@@ -25,10 +28,53 @@ def test_normalize(name, expected):
 
 def test_layout_sizes():
     sizes = {name: len(f()) for name, f in BUILTIN.items()}
-    assert sizes == {"alloy_origins_65": 68, "ansi_60": 61, "ansi_full": 104}
+    assert sizes == {"alloy_origins_65": 68, "ansi_60": 61, "ansi_65": 68, "ansi_75": 83,
+                     "ansi_tkl": 87, "ansi_full": 104, "iso_60": 62, "iso_tkl": 88, "iso_full": 105}
     for f in BUILTIN.values():
         lay = f()
         assert len(set(lay.ids)) == len(lay.ids)
+        keys = lay.keys
+        for i, a in enumerate(keys):  # ninguna tecla pisa a otra
+            for b in keys[i + 1:]:
+                assert not (a.x < b.x + b.w - 1e-6 and b.x < a.x + a.w - 1e-6
+                            and a.y < b.y + b.h - 1e-6 and b.y < a.y + a.h - 1e-6), (lay.name, a.id, b.id)
+
+
+def _fake_matrix(lay, extra=()):
+    """Nombres de LED estilo OpenRGB y una matriz aproximada para un layout (+ teclas extra)."""
+    names = [f"Key: {k.id}" for k in lay.keys] + [f"Key: {e}" for e in extra]
+    width = int(lay.width) + len(extra) + 2
+    matrix = [[None] * width for _ in range(int(lay.height) + 1)]
+    for i, k in enumerate(lay.keys):
+        matrix[round(k.y)][int(k.x)] = i
+    for j, _ in enumerate(extra):
+        matrix[0][int(lay.width) + 1 + j] = len(lay.keys) + j
+    return names, matrix
+
+
+def test_device_layout_picks_matching_builtin():
+    from keyglow.layout import from_device
+    for name in ("ansi_tkl", "iso_full", "ansi_65"):
+        names, matrix = _fake_matrix(load_layout(name))
+        assert from_device("Test", names, matrix).ids == load_layout(name).ids
+
+
+def test_device_layout_places_extra_keys():
+    from keyglow.layout import from_device
+    full = load_layout("ansi_full")
+    names, matrix = _fake_matrix(full, extra=["Media Play/Pause", "Volume Up"])
+    lay = from_device("With media keys", names, matrix)
+    assert {"MEDIA_PLAY", "VOL_UP"} <= set(lay.ids) and len(lay) == len(full) + 2
+    media = lay.get("MEDIA_PLAY")
+    assert all(not (media.x < k.x + k.w and k.x < media.x + media.w and media.y < k.y + k.h and k.y < media.y + media.h)
+               for k in lay.keys if k.id != "MEDIA_PLAY")
+
+
+def test_device_layout_unknown_arrangement_uses_grid():
+    from keyglow.layout import from_device
+    names = ["Key: A", "Key: B", "Key: Media Mute", "Key: Volume Up", "Key: Volume Down"]
+    lay = from_device("Macro pad", names, [[0, 1, 2], [3, 4, None]])
+    assert lay.name == "device" and len(lay) == 5
 
 
 def test_layout_rows_are_flush():

@@ -62,7 +62,7 @@
           <button data-act="details" role="menuitem">Details…</button>
           <hr>
           <button data-act="import" role="menuitem">Import…</button>
-          <button data-act="export" role="menuitem">Export .json</button>
+          <button data-act="export" role="menuitem">Export…</button>
           <button data-act="capture" role="menuitem">Capture from keyboard</button>
         </div>
       </div>
@@ -92,14 +92,31 @@
   <form method="dialog">
     <h3>Import profile</h3>
     <label class="drop" id="drop">
-      <input id="imp-file" type="file" accept=".json,.csv,application/json,text/csv">
+      <input id="imp-file" type="file" accept=".json,.csv,.orp,application/json,text/csv">
       <span>Drop a file here or click to browse</span>
     </label>
     <input id="imp-url" type="url" placeholder="…or paste a link (https://…/profile.json)">
-    <p class="muted small">KeyGlow profiles, per-key color maps (OpenRGB, web key codes, QMK) and <code>key,color</code> CSV. Profiles are data only, never code.</p>
+    <p class="muted small">KeyGlow profiles, OpenRGB profiles (<code>.json</code> or <code>.orp</code>), per-key color maps (OpenRGB, web key codes, QMK) and <code>key,color</code> CSV. Profiles are data only, never code.</p>
     <div class="dlg-actions">
       <button value="cancel">Cancel</button>
       <button id="imp-go" class="primary" value="default">Import</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-export" class="dialog">
+  <form method="dialog">
+    <h3>Export profile</h3>
+    <label>Format
+      <select id="exp-format"></select>
+    </label>
+    <label id="exp-at-wrap">Moment of the animation (seconds)
+      <input id="exp-at" type="number" min="0" step="0.5" value="0">
+    </label>
+    <p id="exp-note" class="muted small"></p>
+    <div class="dlg-actions">
+      <button value="cancel">Cancel</button>
+      <button id="exp-go" class="primary" value="default">Export</button>
     </div>
   </form>
 </dialog>
@@ -142,6 +159,12 @@
   <form method="dialog">
     <h3>Settings</h3>
     <label class="check"><input id="set-last" type="checkbox"> Restore last profile when KeyGlow starts</label>
+    <label>Keyboard layout
+      <select id="set-layout"></select>
+    </label>
+    <label>Keyboard to use (part of its name in OpenRGB)
+      <input id="set-device" placeholder="Empty = the first keyboard OpenRGB finds">
+    </label>
     <label>Community gallery (link to an index.json)
       <input id="set-community" type="url" placeholder="Empty = built-in examples">
     </label>

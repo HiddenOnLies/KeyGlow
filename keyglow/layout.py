@@ -102,34 +102,99 @@ _HOME_ROW = [("CAPSLOCK", 1.75), *"ASDFGHJKL", "SEMICOLON", "QUOTE", ("ENTER", 2
 _BOTTOM_ROW = ["Z", "X", "C", "V", "B", "N", "M", "COMMA", "PERIOD", "SLASH"]
 
 
-def _ansi_full() -> Layout:
+# ISO: Enter alto de dos filas, tecla "#" junto a él y "\" junto a Shift izquierdo
+_ISO_TOP_ROW = [("TAB", 1.5), *"QWERTYUIOP", "LBRACKET", "RBRACKET", 0.25, ("ENTER", 1.25, 2)]
+_ISO_HOME_ROW = [("CAPSLOCK", 1.75), *"ASDFGHJKL", "SEMICOLON", "QUOTE", "NONUS_HASH"]
+_ISO_SHIFT = [("LSHIFT", 1.25), "NONUS_BACKSLASH"]
+_F_ROW = ["ESC", 1, "F1", "F2", "F3", "F4", 0.5, "F5", "F6", "F7", "F8", 0.5,
+          "F9", "F10", "F11", "F12"]
+_MODS_ROW = [("LCTRL", 1.25), ("LWIN", 1.25), ("LALT", 1.25), ("SPACE", 6.25),
+             ("RALT", 1.25), ("RWIN", 1.25), ("MENU", 1.25), ("RCTRL", 1.25)]
+
+
+def _full(iso: bool, numpad: bool) -> list[Key]:
+    """Teclado completo (con o sin numpad) en ANSI o ISO."""
+    top, home = (_ISO_TOP_ROW, _ISO_HOME_ROW) if iso else (_TOP_ROW, _HOME_ROW)
+    shift = _ISO_SHIFT if iso else [("LSHIFT", 2.25)]
+
+    def pad(*items):
+        return [0.25, *items] if numpad else []
+
+    # la fila central ISO acaba antes (el Enter viene de la fila de arriba)
+    home_gap = 3.5 + (1.25 if iso else 0)
     rows = [
-        (0, ["ESC", 1, "F1", "F2", "F3", "F4", 0.5, "F5", "F6", "F7", "F8", 0.5,
-             "F9", "F10", "F11", "F12", 0.25, "PRINTSCREEN", "SCROLLLOCK", "PAUSE"]),
-        (1.25, [*_NUM_ROW, 0.25, "INSERT", "HOME", "PAGE_UP", 0.25,
-                "NUMLOCK", "NUM_SLASH", "NUM_ASTERISK", "NUM_MINUS"]),
-        (2.25, [*_TOP_ROW, 0.25, "DELETE", "END", "PAGE_DOWN", 0.25,
-                "NUM_7", "NUM_8", "NUM_9", ("NUM_PLUS", 1, 2)]),
-        (3.25, [*_HOME_ROW, 3.5, "NUM_4", "NUM_5", "NUM_6"]),
-        (4.25, [("LSHIFT", 2.25), *_BOTTOM_ROW, ("RSHIFT", 2.75), 1.25, "UP", 1.25,
-                "NUM_1", "NUM_2", "NUM_3", ("NUM_ENTER", 1, 2)]),
-        (5.25, [("LCTRL", 1.25), ("LWIN", 1.25), ("LALT", 1.25), ("SPACE", 6.25),
-                ("RALT", 1.25), ("RWIN", 1.25), ("MENU", 1.25), ("RCTRL", 1.25), 0.25,
-                "LEFT", "DOWN", "RIGHT", 0.25, ("NUM_0", 2), "NUM_PERIOD"]),
+        (0, [*_F_ROW, 0.25, "PRINTSCREEN", "SCROLLLOCK", "PAUSE"]),
+        (1.25, [*_NUM_ROW, 0.25, "INSERT", "HOME", "PAGE_UP",
+                *pad("NUMLOCK", "NUM_SLASH", "NUM_ASTERISK", "NUM_MINUS")]),
+        (2.25, [*top, 0.25, "DELETE", "END", "PAGE_DOWN",
+                *pad("NUM_7", "NUM_8", "NUM_9", ("NUM_PLUS", 1, 2))]),
+        (3.25, [*home, *([home_gap, "NUM_4", "NUM_5", "NUM_6"] if numpad else [])]),
+        (4.25, [*shift, *_BOTTOM_ROW, ("RSHIFT", 2.75), 1.25, "UP",
+                *([1.25, "NUM_1", "NUM_2", "NUM_3", ("NUM_ENTER", 1, 2)] if numpad else [])]),
+        (5.25, [*_MODS_ROW, 0.25, "LEFT", "DOWN", "RIGHT", *pad(("NUM_0", 2), "NUM_PERIOD")]),
     ]
-    return Layout("ansi_full", "ANSI 100% (104 keys)", _build(rows))
+    return _build(rows)
 
 
-def _ansi_60() -> Layout:
+def _ansi_full() -> Layout:
+    return Layout("ansi_full", "ANSI 100% (104 keys)", _full(iso=False, numpad=True))
+
+
+def _ansi_tkl() -> Layout:
+    return Layout("ansi_tkl", "ANSI TKL 80% (87 keys)", _full(iso=False, numpad=False))
+
+
+def _iso_full() -> Layout:
+    return Layout("iso_full", "ISO 100% (105 keys)", _full(iso=True, numpad=True))
+
+
+def _iso_tkl() -> Layout:
+    return Layout("iso_tkl", "ISO TKL 80% (88 keys)", _full(iso=True, numpad=False))
+
+
+def _ansi_75() -> Layout:
+    rows = [
+        (0, ["ESC", *[f"F{i}" for i in range(1, 13)], "PRINTSCREEN", "DELETE"]),
+        (1, [*_NUM_ROW, "HOME"]),
+        (2, [*_TOP_ROW, "PAGE_UP"]),
+        (3, [*_HOME_ROW, "PAGE_DOWN"]),
+        (4, [("LSHIFT", 2.25), *_BOTTOM_ROW, ("RSHIFT", 1.75), "UP", "END"]),
+        (5, [("LCTRL", 1.25), ("LWIN", 1.25), ("LALT", 1.25), ("SPACE", 6.25),
+             "RALT", "FN", "RCTRL", "LEFT", "DOWN", "RIGHT"]),
+    ]
+    return Layout("ansi_75", "ANSI 75% (83 keys)", _build(rows))
+
+
+def _ansi_65() -> Layout:
+    rows = [
+        (0, ["ESC", *_NUM_ROW[1:], "DELETE"]),
+        (1, [*_TOP_ROW, "PAGE_UP"]),
+        (2, [*_HOME_ROW, "PAGE_DOWN"]),
+        (3, [("LSHIFT", 2.25), *_BOTTOM_ROW, ("RSHIFT", 1.75), "UP", "END"]),
+        (4, [("LCTRL", 1.25), ("LWIN", 1.25), ("LALT", 1.25), ("SPACE", 6.25),
+             "RALT", "FN", "RCTRL", "LEFT", "DOWN", "RIGHT"]),
+    ]
+    return Layout("ansi_65", "ANSI 65% (68 keys)", _build(rows))
+
+
+def _sixty(iso: bool) -> list[Key]:
     rows = [
         (0, ["ESC", *_NUM_ROW[1:]]),
-        (1, _TOP_ROW),
-        (2, _HOME_ROW),
-        (3, [("LSHIFT", 2.25), *_BOTTOM_ROW, ("RSHIFT", 2.75)]),
+        (1, _ISO_TOP_ROW if iso else _TOP_ROW),
+        (2, _ISO_HOME_ROW if iso else _HOME_ROW),
+        (3, [*(_ISO_SHIFT if iso else [("LSHIFT", 2.25)]), *_BOTTOM_ROW, ("RSHIFT", 2.75)]),
         (4, [("LCTRL", 1.25), ("LWIN", 1.25), ("LALT", 1.25), ("SPACE", 6.25),
              ("RALT", 1.25), ("FN", 1.25), ("MENU", 1.25), ("RCTRL", 1.25)]),
     ]
-    return Layout("ansi_60", "ANSI 60% (61 keys)", _build(rows))
+    return _build(rows)
+
+
+def _ansi_60() -> Layout:
+    return Layout("ansi_60", "ANSI 60% (61 keys)", _sixty(iso=False))
+
+
+def _iso_60() -> Layout:
+    return Layout("iso_60", "ISO 60% (62 keys)", _sixty(iso=True))
 
 
 def _alloy_origins_65() -> Layout:
@@ -147,7 +212,9 @@ def _alloy_origins_65() -> Layout:
     return Layout("alloy_origins_65", "HyperX Alloy Origins 65 (ANSI, 68 keys)", _build(rows))
 
 
-BUILTIN = {f.__name__.lstrip("_"): f for f in (_alloy_origins_65, _ansi_60, _ansi_full)}
+BUILTIN = {f.__name__.lstrip("_"): f for f in (
+    _alloy_origins_65, _ansi_60, _ansi_65, _ansi_75, _ansi_tkl, _ansi_full,
+    _iso_60, _iso_tkl, _iso_full)}
 
 # Grupos portables: un perfil puede decir "@wasd" y funciona en cualquier teclado.
 GROUPS = {
@@ -188,3 +255,106 @@ def load_layout(name_or_path: str) -> Layout:
     if p.suffix == ".json" and p.exists():
         return Layout.from_dict(json.loads(p.read_text(encoding="utf-8")))
     raise ValueError(f"Unknown layout: {name_or_path}. Available: {', '.join(BUILTIN)}")
+
+
+# ---------------------------------------------------------------------------
+# Distribución automática a partir de lo que informa el dispositivo (OpenRGB)
+# ---------------------------------------------------------------------------
+def from_device(title: str, led_names: list[str],
+                matrix: list[list[int | None]] | None = None) -> Layout:
+    """Construye la distribución de un teclado concreto.
+
+    ``led_names`` son los nombres de sus LEDs (``"Key: Left Control"``...) y ``matrix``
+    la cuadrícula filas x columnas con el índice de LED de cada celda (o ``None``),
+    tal como la da OpenRGB. Se usa la distribución incluida que mejor encaja, recortada
+    a las teclas que el teclado tiene; las que no estén en ella (teclas multimedia,
+    macros...) se colocan según su posición en la matriz.
+    """
+    ids = [keynames.normalize(n) if n.strip() else None for n in led_names]
+    have = {k for k in ids if k}
+    if not have:
+        raise ValueError(f"{title}: no LED looks like a key")
+    cells = _matrix_cells(ids, matrix)
+
+    def score(lay: Layout) -> tuple:
+        lay_ids = set(lay.ids)
+        return (3 * len(have - lay_ids) + len(lay_ids - have), lay.name != "alloy_origins_65")
+
+    best = min((f() for f in BUILTIN.values()), key=score)
+    common = have & set(best.ids)
+    if len(common) < 0.6 * len(have):
+        if not cells:
+            raise ValueError(f"{title}: unknown key arrangement and no matrix to build it from")
+        return Layout("device", title, _grid_keys(cells))
+    keys = [k for k in best.keys if k.id in have]
+    missing = have - common
+    # Si solo faltan un par de teclas (p. ej. una sin LED propio), se deja la distribución
+    # completa: esas teclas se ven apagadas, pero el dibujo sigue siendo el del teclado.
+    if not missing and len(best) - len(keys) <= 3:
+        return best
+    keys += _place_extras(best, keys, cells, missing)
+    return Layout("device", title, _shift_to_origin(keys))
+
+
+def _matrix_cells(ids: list[str | None], matrix) -> dict[str, list[tuple[int, int]]]:
+    """``{id: [(fila, columna), ...]}`` según la matriz (una tecla puede ocupar varias)."""
+    cells: dict[str, list[tuple[int, int]]] = {}
+    for r, row in enumerate(matrix or []):
+        for c, led in enumerate(row):
+            if led is not None and 0 <= led < len(ids) and ids[led]:
+                cells.setdefault(ids[led], []).append((r, c))
+    return cells
+
+
+def _fit(pairs: list[tuple[float, float]]) -> tuple[float, float]:
+    """Recta ``y = a*x + b`` por mínimos cuadrados (con al menos dos puntos distintos)."""
+    n = len(pairs)
+    mx = sum(p[0] for p in pairs) / n
+    my = sum(p[1] for p in pairs) / n
+    var = sum((p[0] - mx) ** 2 for p in pairs)
+    a = sum((p[0] - mx) * (p[1] - my) for p in pairs) / var if var else 1.0
+    return a, my - a * mx
+
+
+def _place_extras(base: Layout, keys: list[Key], cells, missing: set[str]) -> list[Key]:
+    known = [(k, cells[k.id]) for k in keys if k.id in cells]
+    if len(known) < 2:
+        return []
+    ax, bx = _fit([(sum(c for _, c in cs) / len(cs), k.cx) for k, cs in known])
+    ay, by = _fit([(sum(r for r, _ in cs) / len(cs), k.cy) for k, cs in known])
+    placed: list[Key] = []
+    taken = list(keys)
+    for kid in sorted(missing, key=lambda i: cells.get(i, [(99, 99)])[0]):
+        if kid not in cells:
+            continue
+        r = sum(r for r, _ in cells[kid]) / len(cells[kid])
+        c = sum(c for _, c in cells[kid]) / len(cells[kid])
+        key = Key(kid, ax * c + bx - 0.5, ay * r + by - 0.5)
+        # si cae encima de otra tecla, se sube a una fila nueva por encima
+        while any(_overlaps(key, o) for o in taken):
+            key = Key(kid, key.x, min(o.y for o in taken) - 1.25)
+        placed.append(key)
+        taken.append(key)
+    return placed
+
+
+def _overlaps(a: Key, b: Key) -> bool:
+    e = 1e-6
+    return a.x < b.x + b.w - e and b.x < a.x + a.w - e and a.y < b.y + b.h - e and b.y < a.y + a.h - e
+
+
+def _shift_to_origin(keys: list[Key]) -> list[Key]:
+    x0 = min(k.x for k in keys)
+    y0 = min(k.y for k in keys)
+    return [Key(k.id, k.x - x0, k.y - y0, k.w, k.h) for k in keys]
+
+
+def _grid_keys(cells) -> list[Key]:
+    """Distribución de cuadrícula pura: cada tecla ocupa sus celdas de la matriz."""
+    keys = []
+    for kid, cs in cells.items():
+        rows = {r for r, _ in cs}
+        r = min(rows)
+        cols = sorted(c for rr, c in cs if rr == r)
+        keys.append(Key(kid, float(cols[0]), float(r), float(cols[-1] - cols[0] + 1), float(len(rows))))
+    return _shift_to_origin(sorted(keys, key=lambda k: (k.y, k.x)))

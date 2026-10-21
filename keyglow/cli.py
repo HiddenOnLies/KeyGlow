@@ -7,6 +7,7 @@ import json
 import sys
 
 from . import effects
+from . import exporters
 from .importers import load_any
 from .layout import BUILTIN, load_layout
 from .profile import Profile, Renderer
@@ -81,6 +82,22 @@ def cmd_import(a):
         profile.name = a.name
     profile.save(a.output)
     print(f"Profile saved to {a.output}")
+
+
+def cmd_export(a):
+    profile, target = _prepare(a.profile, a.layout, a.source, quiet=True)
+    device = None
+    if a.format == "openrgb" and not a.generic:
+        try:
+            from .backends.openrgb import OpenRGBKeyboard
+            device = OpenRGBKeyboard(a.host, a.port, a.device).describe()
+        except RuntimeError as e:
+            print(f"OpenRGB not available ({e}); writing a generic keyboard instead.", file=sys.stderr)
+    content = exporters.export(profile, target, a.format, a.at, device)
+    out = a.output or exporters.filename(profile, a.format)
+    with open(out, "w", encoding="utf-8", newline="") as f:
+        f.write(content)
+    print(f"Exported '{profile.name}' as {exporters.FORMATS[a.format]} to {out}")
 
 
 def cmd_apply(a):
@@ -161,6 +178,17 @@ def build_parser() -> argparse.ArgumentParser:
     target_opts(sp)
     sp.set_defaults(func=cmd_import)
 
+    sp = sub.add_parser("export", help="export a profile for another program (OpenRGB, web, QMK, CSV)")
+    sp.add_argument("profile", help="file or URL")
+    sp.add_argument("--format", choices=list(exporters.FORMATS), default="openrgb")
+    sp.add_argument("-o", "--output", help="output file (default: named after the profile)")
+    sp.add_argument("--at", type=float, default=0, help="moment of the animation to export, in seconds")
+    sp.add_argument("--generic", action="store_true",
+                    help="for --format openrgb: don't read the real keyboard from OpenRGB")
+    target_opts(sp)
+    openrgb_opts(sp)
+    sp.set_defaults(func=cmd_export)
+
     sp = sub.add_parser("apply", help="apply a profile to the real keyboard through OpenRGB")
     sp.add_argument("profile")
     target_opts(sp)
@@ -189,6 +217,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    for stream in (sys.stdout, sys.stderr):  # la consola de Windows no siempre es UTF-8
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(errors="replace")
     try:
         args.func(args)
     except (ValueError, RuntimeError, NotImplementedError, OSError) as e:

@@ -39,7 +39,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-catppuccin-latte.json"
+      "file": "themes/catppuccin-latte.json"
     },
     {
       "name": "Catppuccin Latte Wave",
@@ -49,7 +49,7 @@
         "theme",
         "animated"
       ],
-      "file": "theme-catppuccin-latte-wave.json"
+      "file": "themes/catppuccin-latte-wave.json"
     },
     {
       "name": "Catppuccin Frappé",
@@ -59,7 +59,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-catppuccin-frapp.json"
+      "file": "themes/catppuccin-frapp.json"
     },
     {
       "name": "Catppuccin Frappé Wave",
@@ -69,7 +69,7 @@
         "theme",
         "animated"
       ],
-      "file": "theme-catppuccin-frapp-wave.json"
+      "file": "themes/catppuccin-frapp-wave.json"
     },
     {
       "name": "Catppuccin Macchiato",
@@ -79,7 +79,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-catppuccin-macchiato.json"
+      "file": "themes/catppuccin-macchiato.json"
     },
     {
       "name": "Catppuccin Macchiato Wave",
@@ -89,7 +89,7 @@
         "theme",
         "animated"
       ],
-      "file": "theme-catppuccin-macchiato-wave.json"
+      "file": "themes/catppuccin-macchiato-wave.json"
     },
     {
       "name": "Catppuccin Mocha",
@@ -99,7 +99,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-catppuccin-mocha.json"
+      "file": "themes/catppuccin-mocha.json"
     },
     {
       "name": "Catppuccin Mocha Wave",
@@ -109,7 +109,7 @@
         "theme",
         "animated"
       ],
-      "file": "theme-catppuccin-mocha-wave.json"
+      "file": "themes/catppuccin-mocha-wave.json"
     },
     {
       "name": "Dracula",
@@ -119,7 +119,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-dracula.json"
+      "file": "themes/dracula.json"
     },
     {
       "name": "Dracula Wave",
@@ -129,7 +129,7 @@
         "theme",
         "animated"
       ],
-      "file": "theme-dracula-wave.json"
+      "file": "themes/dracula-wave.json"
     },
     {
       "name": "Nord",
@@ -139,7 +139,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-nord.json"
+      "file": "themes/nord.json"
     },
     {
       "name": "Nord Wave",
@@ -149,7 +149,7 @@
         "theme",
         "animated"
       ],
-      "file": "theme-nord-wave.json"
+      "file": "themes/nord-wave.json"
     },
     {
       "name": "0x96f",
@@ -159,7 +159,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-0x96f.json"
+      "file": "themes/0x96f.json"
     },
     {
       "name": "3024",
@@ -169,7 +169,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-3024.json"
+      "file": "themes/3024.json"
     },
     {
       "name": "Apathy",
@@ -179,7 +179,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-apathy.json"
+      "file": "themes/apathy.json"
     },
     {
       "name": "Apprentice",
@@ -189,7 +189,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-apprentice.json"
+      "file": "themes/apprentice.json"
     },
     {
       "name": "Arroz con Dulce Dark",
@@ -199,7 +199,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-arroz-con-dulce-dark.json"
+      "file": "themes/arroz-con-dulce-dark.json"
     },
     {
       "name": "Ascendancy",
@@ -209,7 +209,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ascendancy.json"
+      "file": "themes/ascendancy.json"
     },
     {
       "name": "Ashes",
@@ -219,7 +219,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ashes.json"
+      "file": "themes/ashes.json"
     },
     {
       "name": "Atelier Cave",
@@ -229,7 +229,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-cave.json"
+      "file": "themes/atelier-cave.json"
     },
     {
       "name": "Atelier Dune",
@@ -239,7 +239,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-dune.json"
+      "file": "themes/atelier-dune.json"
     },
     {
       "name": "Atelier Estuary",
@@ -249,7 +249,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-estuary.json"
+      "file": "themes/atelier-estuary.json"
     },
     {
       "name": "Atelier Forest",
@@ -259,7 +259,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-forest.json"
+      "file": "themes/atelier-forest.json"
     },
     {
       "name": "Atelier Heath",
@@ -269,7 +269,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-heath.json"
+      "file": "themes/atelier-heath.json"
     },
     {
       "name": "Atelier Lakeside",
@@ -279,7 +279,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-lakeside.json"
+      "file": "themes/atelier-lakeside.json"
     },
     {
       "name": "Atelier Plateau",
@@ -289,7 +289,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-plateau.json"
+      "file": "themes/atelier-plateau.json"
     },
     {
       "name": "Atelier Savanna",
@@ -299,7 +299,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-savanna.json"
+      "file": "themes/atelier-savanna.json"
     },
     {
       "name": "Atelier Seaside",
@@ -309,7 +309,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-seaside.json"
+      "file": "themes/atelier-seaside.json"
     },
     {
       "name": "Atelier Sulphurpool",
@@ -319,7 +319,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atelier-sulphurpool.json"
+      "file": "themes/atelier-sulphurpool.json"
     },
     {
       "name": "Atlas",
@@ -329,7 +329,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-atlas.json"
+      "file": "themes/atlas.json"
     },
     {
       "name": "Ayu Dark",
@@ -339,7 +339,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ayu-dark.json"
+      "file": "themes/ayu-dark.json"
     },
     {
       "name": "Ayu Mirage",
@@ -349,7 +349,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ayu-mirage.json"
+      "file": "themes/ayu-mirage.json"
     },
     {
       "name": "Aztec",
@@ -359,7 +359,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-aztec.json"
+      "file": "themes/aztec.json"
     },
     {
       "name": "Bespin",
@@ -369,7 +369,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-bespin.json"
+      "file": "themes/bespin.json"
     },
     {
       "name": "Black Metal (Bathory)",
@@ -379,7 +379,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-bathory.json"
+      "file": "themes/black-metal-bathory.json"
     },
     {
       "name": "Black Metal (Burzum)",
@@ -389,7 +389,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-burzum.json"
+      "file": "themes/black-metal-burzum.json"
     },
     {
       "name": "Black Metal (Dark Funeral)",
@@ -399,7 +399,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-dark-funeral.json"
+      "file": "themes/black-metal-dark-funeral.json"
     },
     {
       "name": "Black Metal (Gorgoroth)",
@@ -409,7 +409,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-gorgoroth.json"
+      "file": "themes/black-metal-gorgoroth.json"
     },
     {
       "name": "Black Metal (Immortal)",
@@ -419,7 +419,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-immortal.json"
+      "file": "themes/black-metal-immortal.json"
     },
     {
       "name": "Black Metal (Khold)",
@@ -429,7 +429,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-khold.json"
+      "file": "themes/black-metal-khold.json"
     },
     {
       "name": "Black Metal (Marduk)",
@@ -439,7 +439,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-marduk.json"
+      "file": "themes/black-metal-marduk.json"
     },
     {
       "name": "Black Metal (Mayhem)",
@@ -449,7 +449,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-mayhem.json"
+      "file": "themes/black-metal-mayhem.json"
     },
     {
       "name": "Black Metal (Nile)",
@@ -459,7 +459,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-nile.json"
+      "file": "themes/black-metal-nile.json"
     },
     {
       "name": "Black Metal (Venom)",
@@ -469,7 +469,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal-venom.json"
+      "file": "themes/black-metal-venom.json"
     },
     {
       "name": "Black Metal",
@@ -479,7 +479,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-black-metal.json"
+      "file": "themes/black-metal.json"
     },
     {
       "name": "Blue Forest",
@@ -489,7 +489,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-blue-forest.json"
+      "file": "themes/blue-forest.json"
     },
     {
       "name": "Blueish",
@@ -499,7 +499,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-blueish.json"
+      "file": "themes/blueish.json"
     },
     {
       "name": "Bogota",
@@ -509,7 +509,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-bogota.json"
+      "file": "themes/bogota.json"
     },
     {
       "name": "boo-shnickle",
@@ -519,7 +519,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-boo-shnickle.json"
+      "file": "themes/boo-shnickle.json"
     },
     {
       "name": "Bosque",
@@ -529,7 +529,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-bosque.json"
+      "file": "themes/bosque.json"
     },
     {
       "name": "Brasa",
@@ -539,7 +539,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-brasa.json"
+      "file": "themes/brasa.json"
     },
     {
       "name": "Brewer",
@@ -549,7 +549,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-brewer.json"
+      "file": "themes/brewer.json"
     },
     {
       "name": "Bright",
@@ -559,7 +559,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-bright.json"
+      "file": "themes/bright.json"
     },
     {
       "name": "Brogrammer",
@@ -569,7 +569,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-brogrammer.json"
+      "file": "themes/brogrammer.json"
     },
     {
       "name": "Brush Trees Dark",
@@ -579,7 +579,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-brush-trees-dark.json"
+      "file": "themes/brush-trees-dark.json"
     },
     {
       "name": "Cacao",
@@ -589,7 +589,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-cacao.json"
+      "file": "themes/cacao.json"
     },
     {
       "name": "caroline",
@@ -599,7 +599,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-caroline.json"
+      "file": "themes/caroline.json"
     },
     {
       "name": "Cerulean Signal Dark",
@@ -609,7 +609,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-cerulean-signal-dark.json"
+      "file": "themes/cerulean-signal-dark.json"
     },
     {
       "name": "Chalk",
@@ -619,7 +619,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-chalk.json"
+      "file": "themes/chalk.json"
     },
     {
       "name": "Charcoal Dark",
@@ -629,7 +629,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-charcoal-dark.json"
+      "file": "themes/charcoal-dark.json"
     },
     {
       "name": "Chicago Night",
@@ -639,7 +639,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-chicago-night.json"
+      "file": "themes/chicago-night.json"
     },
     {
       "name": "Chinoiserie Midnight",
@@ -649,7 +649,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-chinoiserie-midnight.json"
+      "file": "themes/chinoiserie-midnight.json"
     },
     {
       "name": "Chinoiserie Morandi",
@@ -659,7 +659,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-chinoiserie-morandi.json"
+      "file": "themes/chinoiserie-morandi.json"
     },
     {
       "name": "Chinoiserie Night",
@@ -669,7 +669,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-chinoiserie-night.json"
+      "file": "themes/chinoiserie-night.json"
     },
     {
       "name": "Circus",
@@ -679,7 +679,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-circus.json"
+      "file": "themes/circus.json"
     },
     {
       "name": "Classic Dark",
@@ -689,7 +689,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-classic-dark.json"
+      "file": "themes/classic-dark.json"
     },
     {
       "name": "Codeschool",
@@ -699,7 +699,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-codeschool.json"
+      "file": "themes/codeschool.json"
     },
     {
       "name": "Colors",
@@ -709,7 +709,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-colors.json"
+      "file": "themes/colors.json"
     },
     {
       "name": "Corduroy Dark",
@@ -719,7 +719,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-corduroy-dark.json"
+      "file": "themes/corduroy-dark.json"
     },
     {
       "name": "Corduroy",
@@ -729,7 +729,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-corduroy.json"
+      "file": "themes/corduroy.json"
     },
     {
       "name": "Da One Black",
@@ -739,7 +739,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-da-one-black.json"
+      "file": "themes/da-one-black.json"
     },
     {
       "name": "DanQing",
@@ -749,7 +749,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-danqing.json"
+      "file": "themes/danqing.json"
     },
     {
       "name": "Darcula",
@@ -759,7 +759,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-darcula.json"
+      "file": "themes/darcula.json"
     },
     {
       "name": "darkmoss",
@@ -769,7 +769,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-darkmoss.json"
+      "file": "themes/darkmoss.json"
     },
     {
       "name": "Darktooth",
@@ -779,7 +779,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-darktooth.json"
+      "file": "themes/darktooth.json"
     },
     {
       "name": "Dark Violet",
@@ -789,7 +789,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-dark-violet.json"
+      "file": "themes/dark-violet.json"
     },
     {
       "name": "Decaf",
@@ -799,7 +799,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-decaf.json"
+      "file": "themes/decaf.json"
     },
     {
       "name": "Deep Oceanic Next",
@@ -809,7 +809,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-deep-oceanic-next.json"
+      "file": "themes/deep-oceanic-next.json"
     },
     {
       "name": "Default Dark",
@@ -819,7 +819,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-default-dark.json"
+      "file": "themes/default-dark.json"
     },
     {
       "name": "Digital Rain",
@@ -829,7 +829,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-digital-rain.json"
+      "file": "themes/digital-rain.json"
     },
     {
       "name": "Edge Dark",
@@ -839,7 +839,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-edge-dark.json"
+      "file": "themes/edge-dark.json"
     },
     {
       "name": "Eighties",
@@ -849,7 +849,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-eighties.json"
+      "file": "themes/eighties.json"
     },
     {
       "name": "Eldritch",
@@ -859,7 +859,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-eldritch.json"
+      "file": "themes/eldritch.json"
     },
     {
       "name": "Embers",
@@ -869,7 +869,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-embers.json"
+      "file": "themes/embers.json"
     },
     {
       "name": "Equilibrium Dark",
@@ -879,7 +879,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-equilibrium-dark.json"
+      "file": "themes/equilibrium-dark.json"
     },
     {
       "name": "eris",
@@ -889,7 +889,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-eris.json"
+      "file": "themes/eris.json"
     },
     {
       "name": "Espresso",
@@ -899,7 +899,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-espresso.json"
+      "file": "themes/espresso.json"
     },
     {
       "name": "Eva Dim",
@@ -909,7 +909,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-eva-dim.json"
+      "file": "themes/eva-dim.json"
     },
     {
       "name": "Eva",
@@ -919,7 +919,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-eva.json"
+      "file": "themes/eva.json"
     },
     {
       "name": "Evenok Dark",
@@ -929,7 +929,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-evenok-dark.json"
+      "file": "themes/evenok-dark.json"
     },
     {
       "name": "Everforest Dark Hard",
@@ -939,7 +939,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-everforest-dark-hard.json"
+      "file": "themes/everforest-dark-hard.json"
     },
     {
       "name": "Flat",
@@ -949,7 +949,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-flat.json"
+      "file": "themes/flat.json"
     },
     {
       "name": "Flexoki Dark",
@@ -959,7 +959,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-flexoki-dark.json"
+      "file": "themes/flexoki-dark.json"
     },
     {
       "name": "Framer",
@@ -969,7 +969,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-framer.json"
+      "file": "themes/framer.json"
     },
     {
       "name": "Gigavolt",
@@ -979,7 +979,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gigavolt.json"
+      "file": "themes/gigavolt.json"
     },
     {
       "name": "Github Dark Colorblind",
@@ -989,7 +989,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-github-dark-colorblind.json"
+      "file": "themes/github-dark-colorblind.json"
     },
     {
       "name": "Github Dark Dimmed",
@@ -999,7 +999,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-github-dark-dimmed.json"
+      "file": "themes/github-dark-dimmed.json"
     },
     {
       "name": "Github Dark High Contrast",
@@ -1009,7 +1009,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-github-dark-high-contrast.json"
+      "file": "themes/github-dark-high-contrast.json"
     },
     {
       "name": "Github Dark",
@@ -1019,7 +1019,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-github-dark.json"
+      "file": "themes/github-dark.json"
     },
     {
       "name": "Google Dark",
@@ -1029,7 +1029,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-google-dark.json"
+      "file": "themes/google-dark.json"
     },
     {
       "name": "Gotham",
@@ -1039,7 +1039,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gotham.json"
+      "file": "themes/gotham.json"
     },
     {
       "name": "Gruber",
@@ -1049,7 +1049,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gruber.json"
+      "file": "themes/gruber.json"
     },
     {
       "name": "Gruvbox dark, hard",
@@ -1059,7 +1059,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gruvbox-dark-hard.json"
+      "file": "themes/gruvbox-dark-hard.json"
     },
     {
       "name": "Gruvbox Dark Medium (Forest)",
@@ -1069,7 +1069,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gruvbox-dark-medium-forest.json"
+      "file": "themes/gruvbox-dark-medium-forest.json"
     },
     {
       "name": "Gruvbox dark, pale",
@@ -1079,7 +1079,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gruvbox-dark-pale.json"
+      "file": "themes/gruvbox-dark-pale.json"
     },
     {
       "name": "Gruvbox dark",
@@ -1089,7 +1089,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gruvbox-dark.json"
+      "file": "themes/gruvbox-dark.json"
     },
     {
       "name": "Gruvbox Material Dark, Hard",
@@ -1099,7 +1099,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-gruvbox-material-dark-hard.json"
+      "file": "themes/gruvbox-material-dark-hard.json"
     },
     {
       "name": "Hardcore",
@@ -1109,7 +1109,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-hardcore.json"
+      "file": "themes/hardcore.json"
     },
     {
       "name": "Hardhacker",
@@ -1119,7 +1119,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-hardhacker.json"
+      "file": "themes/hardhacker.json"
     },
     {
       "name": "Harmonic16 Dark",
@@ -1129,7 +1129,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-harmonic16-dark.json"
+      "file": "themes/harmonic16-dark.json"
     },
     {
       "name": "Heetch Dark",
@@ -1139,7 +1139,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-heetch-dark.json"
+      "file": "themes/heetch-dark.json"
     },
     {
       "name": "Helios",
@@ -1149,7 +1149,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-helios.json"
+      "file": "themes/helios.json"
     },
     {
       "name": "Hopscotch",
@@ -1159,7 +1159,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-hopscotch.json"
+      "file": "themes/hopscotch.json"
     },
     {
       "name": "Horizon Dark",
@@ -1169,7 +1169,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-horizon-dark.json"
+      "file": "themes/horizon-dark.json"
     },
     {
       "name": "Horizon Terminal Dark",
@@ -1179,7 +1179,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-horizon-terminal-dark.json"
+      "file": "themes/horizon-terminal-dark.json"
     },
     {
       "name": "Humanoid dark",
@@ -1189,7 +1189,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-humanoid-dark.json"
+      "file": "themes/humanoid-dark.json"
     },
     {
       "name": "iA Dark",
@@ -1199,7 +1199,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ia-dark.json"
+      "file": "themes/ia-dark.json"
     },
     {
       "name": "Icy Dark",
@@ -1209,7 +1209,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-icy-dark.json"
+      "file": "themes/icy-dark.json"
     },
     {
       "name": "IR Black",
@@ -1219,7 +1219,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ir-black.json"
+      "file": "themes/ir-black.json"
     },
     {
       "name": "Isotope",
@@ -1229,7 +1229,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-isotope.json"
+      "file": "themes/isotope.json"
     },
     {
       "name": "Jabuti",
@@ -1239,7 +1239,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-jabuti.json"
+      "file": "themes/jabuti.json"
     },
     {
       "name": "Jellybeans",
@@ -1249,7 +1249,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-jellybeans.json"
+      "file": "themes/jellybeans.json"
     },
     {
       "name": "Kanagawa Dragon",
@@ -1259,7 +1259,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-kanagawa-dragon.json"
+      "file": "themes/kanagawa-dragon.json"
     },
     {
       "name": "Kanagawa",
@@ -1269,7 +1269,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-kanagawa.json"
+      "file": "themes/kanagawa.json"
     },
     {
       "name": "Katy",
@@ -1279,7 +1279,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-katy.json"
+      "file": "themes/katy.json"
     },
     {
       "name": "Kimber",
@@ -1289,7 +1289,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-kimber.json"
+      "file": "themes/kimber.json"
     },
     {
       "name": "Kissa Macchiato",
@@ -1299,7 +1299,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-kissa-macchiato.json"
+      "file": "themes/kissa-macchiato.json"
     },
     {
       "name": "Lahabana",
@@ -1309,7 +1309,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-lahabana.json"
+      "file": "themes/lahabana.json"
     },
     {
       "name": "Lichen Chartreuse Dark",
@@ -1319,7 +1319,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-lichen-chartreuse-dark.json"
+      "file": "themes/lichen-chartreuse-dark.json"
     },
     {
       "name": "lime",
@@ -1329,7 +1329,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-lime.json"
+      "file": "themes/lime.json"
     },
     {
       "name": "Linux VT",
@@ -1339,7 +1339,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-linux-vt.json"
+      "file": "themes/linux-vt.json"
     },
     {
       "name": "Macintosh",
@@ -1349,7 +1349,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-macintosh.json"
+      "file": "themes/macintosh.json"
     },
     {
       "name": "Marrakesh",
@@ -1359,7 +1359,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-marrakesh.json"
+      "file": "themes/marrakesh.json"
     },
     {
       "name": "Materia",
@@ -1369,7 +1369,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-materia.json"
+      "file": "themes/materia.json"
     },
     {
       "name": "Material Darker",
@@ -1379,7 +1379,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-material-darker.json"
+      "file": "themes/material-darker.json"
     },
     {
       "name": "Material Vivid",
@@ -1389,7 +1389,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-material-vivid.json"
+      "file": "themes/material-vivid.json"
     },
     {
       "name": "Measured Dark",
@@ -1399,7 +1399,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-measured-dark.json"
+      "file": "themes/measured-dark.json"
     },
     {
       "name": "Mellow Purple",
@@ -1409,7 +1409,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-mellow-purple.json"
+      "file": "themes/mellow-purple.json"
     },
     {
       "name": "Mezcal",
@@ -1419,7 +1419,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-mezcal.json"
+      "file": "themes/mezcal.json"
     },
     {
       "name": "Miami",
@@ -1429,7 +1429,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-miami.json"
+      "file": "themes/miami.json"
     },
     {
       "name": "Mocha",
@@ -1439,7 +1439,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-mocha.json"
+      "file": "themes/mocha.json"
     },
     {
       "name": "Monokai",
@@ -1449,7 +1449,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-monokai.json"
+      "file": "themes/monokai.json"
     },
     {
       "name": "Moonlight",
@@ -1459,7 +1459,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-moonlight.json"
+      "file": "themes/moonlight.json"
     },
     {
       "name": "Mountain",
@@ -1469,7 +1469,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-mountain.json"
+      "file": "themes/mountain.json"
     },
     {
       "name": "Nebula",
@@ -1479,7 +1479,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-nebula.json"
+      "file": "themes/nebula.json"
     },
     {
       "name": "Neovim Dark",
@@ -1489,7 +1489,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-neovim-dark.json"
+      "file": "themes/neovim-dark.json"
     },
     {
       "name": "Noche",
@@ -1499,7 +1499,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-noche.json"
+      "file": "themes/noche.json"
     },
     {
       "name": "Nova",
@@ -1509,7 +1509,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-nova.json"
+      "file": "themes/nova.json"
     },
     {
       "name": "Ocean",
@@ -1519,7 +1519,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ocean.json"
+      "file": "themes/ocean.json"
     },
     {
       "name": "OceanicNext",
@@ -1529,7 +1529,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-oceanicnext.json"
+      "file": "themes/oceanicnext.json"
     },
     {
       "name": "Ocote",
@@ -1539,7 +1539,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ocote.json"
+      "file": "themes/ocote.json"
     },
     {
       "name": "OneDark Dark",
@@ -1549,7 +1549,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-onedark-dark.json"
+      "file": "themes/onedark-dark.json"
     },
     {
       "name": "OneDark",
@@ -1559,7 +1559,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-onedark.json"
+      "file": "themes/onedark.json"
     },
     {
       "name": "Oslo",
@@ -1569,7 +1569,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-oslo.json"
+      "file": "themes/oslo.json"
     },
     {
       "name": "Outrun Dark",
@@ -1579,7 +1579,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-outrun-dark.json"
+      "file": "themes/outrun-dark.json"
     },
     {
       "name": "Oxocarbon Dark",
@@ -1589,7 +1589,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-oxocarbon-dark.json"
+      "file": "themes/oxocarbon-dark.json"
     },
     {
       "name": "pandora",
@@ -1599,7 +1599,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-pandora.json"
+      "file": "themes/pandora.json"
     },
     {
       "name": "PaperColor Dark",
@@ -1609,7 +1609,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-papercolor-dark.json"
+      "file": "themes/papercolor-dark.json"
     },
     {
       "name": "Paraiso",
@@ -1619,7 +1619,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-paraiso.json"
+      "file": "themes/paraiso.json"
     },
     {
       "name": "Paris",
@@ -1629,7 +1629,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-paris.json"
+      "file": "themes/paris.json"
     },
     {
       "name": "Pasque",
@@ -1639,7 +1639,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-pasque.json"
+      "file": "themes/pasque.json"
     },
     {
       "name": "Pastelón de Amarillos Dark",
@@ -1649,7 +1649,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-pastel-n-de-amarillos-dark.json"
+      "file": "themes/pastel-n-de-amarillos-dark.json"
     },
     {
       "name": "Penumbra Dark Contrast Plus Plus",
@@ -1659,7 +1659,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-penumbra-dark-contrast-plus-plus.json"
+      "file": "themes/penumbra-dark-contrast-plus-plus.json"
     },
     {
       "name": "Penumbra Dark Contrast Plus",
@@ -1669,7 +1669,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-penumbra-dark-contrast-plus.json"
+      "file": "themes/penumbra-dark-contrast-plus.json"
     },
     {
       "name": "Penumbra Dark",
@@ -1679,7 +1679,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-penumbra-dark.json"
+      "file": "themes/penumbra-dark.json"
     },
     {
       "name": "PhD",
@@ -1689,7 +1689,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-phd.json"
+      "file": "themes/phd.json"
     },
     {
       "name": "Pico",
@@ -1699,7 +1699,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-pico.json"
+      "file": "themes/pico.json"
     },
     {
       "name": "pinky",
@@ -1709,7 +1709,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-pinky.json"
+      "file": "themes/pinky.json"
     },
     {
       "name": "Pop",
@@ -1719,7 +1719,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-pop.json"
+      "file": "themes/pop.json"
     },
     {
       "name": "Porple",
@@ -1729,7 +1729,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-porple.json"
+      "file": "themes/porple.json"
     },
     {
       "name": "Praha",
@@ -1739,7 +1739,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-praha.json"
+      "file": "themes/praha.json"
     },
     {
       "name": "Precious Dark Eleven",
@@ -1749,7 +1749,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-precious-dark-eleven.json"
+      "file": "themes/precious-dark-eleven.json"
     },
     {
       "name": "Precious Dark Fifteen",
@@ -1759,7 +1759,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-precious-dark-fifteen.json"
+      "file": "themes/precious-dark-fifteen.json"
     },
     {
       "name": "Primer Dark Dimmed",
@@ -1769,7 +1769,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-primer-dark-dimmed.json"
+      "file": "themes/primer-dark-dimmed.json"
     },
     {
       "name": "Primer Dark",
@@ -1779,7 +1779,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-primer-dark.json"
+      "file": "themes/primer-dark.json"
     },
     {
       "name": "Purpledream",
@@ -1789,7 +1789,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-purpledream.json"
+      "file": "themes/purpledream.json"
     },
     {
       "name": "Qualia",
@@ -1799,7 +1799,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-qualia.json"
+      "file": "themes/qualia.json"
     },
     {
       "name": "Railscasts",
@@ -1809,7 +1809,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-railscasts.json"
+      "file": "themes/railscasts.json"
     },
     {
       "name": "Rebecca",
@@ -1819,7 +1819,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-rebecca.json"
+      "file": "themes/rebecca.json"
     },
     {
       "name": "Rosé Pine Moon",
@@ -1829,7 +1829,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ros-pine-moon.json"
+      "file": "themes/ros-pine-moon.json"
     },
     {
       "name": "Rosé Pine",
@@ -1839,7 +1839,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-ros-pine.json"
+      "file": "themes/ros-pine.json"
     },
     {
       "name": "SAGA",
@@ -1849,7 +1849,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-saga.json"
+      "file": "themes/saga.json"
     },
     {
       "name": "Sandcastle",
@@ -1859,7 +1859,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-sandcastle.json"
+      "file": "themes/sandcastle.json"
     },
     {
       "name": "selenized-black",
@@ -1869,7 +1869,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-selenized-black.json"
+      "file": "themes/selenized-black.json"
     },
     {
       "name": "selenized-dark",
@@ -1879,7 +1879,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-selenized-dark.json"
+      "file": "themes/selenized-dark.json"
     },
     {
       "name": "Sequoia Monochrome Dark",
@@ -1889,7 +1889,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-sequoia-monochrome-dark.json"
+      "file": "themes/sequoia-monochrome-dark.json"
     },
     {
       "name": "Sequoia Moonlight Dark",
@@ -1899,7 +1899,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-sequoia-moonlight-dark.json"
+      "file": "themes/sequoia-moonlight-dark.json"
     },
     {
       "name": "Sequoia Retro Dark",
@@ -1909,7 +1909,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-sequoia-retro-dark.json"
+      "file": "themes/sequoia-retro-dark.json"
     },
     {
       "name": "Serendipity Midnight",
@@ -1919,7 +1919,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-serendipity-midnight.json"
+      "file": "themes/serendipity-midnight.json"
     },
     {
       "name": "Serendipity Sunset",
@@ -1929,7 +1929,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-serendipity-sunset.json"
+      "file": "themes/serendipity-sunset.json"
     },
     {
       "name": "Seti UI",
@@ -1939,7 +1939,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-seti-ui.json"
+      "file": "themes/seti-ui.json"
     },
     {
       "name": "Shades of Purple",
@@ -1949,7 +1949,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-shades-of-purple.json"
+      "file": "themes/shades-of-purple.json"
     },
     {
       "name": "ShadeSmear Dark",
@@ -1959,7 +1959,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-shadesmear-dark.json"
+      "file": "themes/shadesmear-dark.json"
     },
     {
       "name": "Silk Dark",
@@ -1969,7 +1969,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-silk-dark.json"
+      "file": "themes/silk-dark.json"
     },
     {
       "name": "Snazzy",
@@ -1979,7 +1979,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-snazzy.json"
+      "file": "themes/snazzy.json"
     },
     {
       "name": "Solar Flare",
@@ -1989,7 +1989,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-solar-flare.json"
+      "file": "themes/solar-flare.json"
     },
     {
       "name": "Solarized Dark",
@@ -1999,7 +1999,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-solarized-dark.json"
+      "file": "themes/solarized-dark.json"
     },
     {
       "name": "Spaceduck",
@@ -2009,7 +2009,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-spaceduck.json"
+      "file": "themes/spaceduck.json"
     },
     {
       "name": "Spacemacs",
@@ -2019,7 +2019,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-spacemacs.json"
+      "file": "themes/spacemacs.json"
     },
     {
       "name": "Sparky",
@@ -2029,7 +2029,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-sparky.json"
+      "file": "themes/sparky.json"
     },
     {
       "name": "standardized-dark",
@@ -2039,7 +2039,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-standardized-dark.json"
+      "file": "themes/standardized-dark.json"
     },
     {
       "name": "Stella",
@@ -2049,7 +2049,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-stella.json"
+      "file": "themes/stella.json"
     },
     {
       "name": "summercamp",
@@ -2059,7 +2059,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-summercamp.json"
+      "file": "themes/summercamp.json"
     },
     {
       "name": "Summerfruit Dark",
@@ -2069,7 +2069,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-summerfruit-dark.json"
+      "file": "themes/summerfruit-dark.json"
     },
     {
       "name": "Swamp Dark",
@@ -2079,7 +2079,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-swamp-dark.json"
+      "file": "themes/swamp-dark.json"
     },
     {
       "name": "Synth Midnight Terminal Dark",
@@ -2089,7 +2089,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-synth-midnight-terminal-dark.json"
+      "file": "themes/synth-midnight-terminal-dark.json"
     },
     {
       "name": "Tango",
@@ -2099,7 +2099,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tango.json"
+      "file": "themes/tango.json"
     },
     {
       "name": "tarot",
@@ -2109,7 +2109,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tarot.json"
+      "file": "themes/tarot.json"
     },
     {
       "name": "tender",
@@ -2119,7 +2119,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tender.json"
+      "file": "themes/tender.json"
     },
     {
       "name": "Terracotta Dark",
@@ -2129,7 +2129,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-terracotta-dark.json"
+      "file": "themes/terracotta-dark.json"
     },
     {
       "name": "Tinta",
@@ -2139,7 +2139,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tinta.json"
+      "file": "themes/tinta.json"
     },
     {
       "name": "Tokio",
@@ -2149,7 +2149,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokio.json"
+      "file": "themes/tokio.json"
     },
     {
       "name": "Tokyo City Dark",
@@ -2159,7 +2159,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyo-city-dark.json"
+      "file": "themes/tokyo-city-dark.json"
     },
     {
       "name": "Tokyo City Terminal Dark",
@@ -2169,7 +2169,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyo-city-terminal-dark.json"
+      "file": "themes/tokyo-city-terminal-dark.json"
     },
     {
       "name": "Tokyo Night Dark",
@@ -2179,7 +2179,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyo-night-dark.json"
+      "file": "themes/tokyo-night-dark.json"
     },
     {
       "name": "Tokyo Night Moon",
@@ -2189,7 +2189,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyo-night-moon.json"
+      "file": "themes/tokyo-night-moon.json"
     },
     {
       "name": "Tokyo Night Terminal Dark",
@@ -2199,7 +2199,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyo-night-terminal-dark.json"
+      "file": "themes/tokyo-night-terminal-dark.json"
     },
     {
       "name": "Tokyodark Terminal",
@@ -2209,7 +2209,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyodark-terminal.json"
+      "file": "themes/tokyodark-terminal.json"
     },
     {
       "name": "Tokyodark",
@@ -2219,7 +2219,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tokyodark.json"
+      "file": "themes/tokyodark.json"
     },
     {
       "name": "Tomorrow Night",
@@ -2229,7 +2229,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-tomorrow-night.json"
+      "file": "themes/tomorrow-night.json"
     },
     {
       "name": "London Tube",
@@ -2239,7 +2239,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-london-tube.json"
+      "file": "themes/london-tube.json"
     },
     {
       "name": "Twilight",
@@ -2249,7 +2249,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-twilight.json"
+      "file": "themes/twilight.json"
     },
     {
       "name": "Unikitty Dark",
@@ -2259,7 +2259,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-unikitty-dark.json"
+      "file": "themes/unikitty-dark.json"
     },
     {
       "name": "Unikitty Reversible",
@@ -2269,7 +2269,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-unikitty-reversible.json"
+      "file": "themes/unikitty-reversible.json"
     },
     {
       "name": "UwUnicorn",
@@ -2279,7 +2279,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-uwunicorn.json"
+      "file": "themes/uwunicorn.json"
     },
     {
       "name": "Valua",
@@ -2289,7 +2289,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-valua.json"
+      "file": "themes/valua.json"
     },
     {
       "name": "Vesper",
@@ -2299,7 +2299,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-vesper.json"
+      "file": "themes/vesper.json"
     },
     {
       "name": "vice",
@@ -2309,7 +2309,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-vice.json"
+      "file": "themes/vice.json"
     },
     {
       "name": "vulcan",
@@ -2319,7 +2319,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-vulcan.json"
+      "file": "themes/vulcan.json"
     },
     {
       "name": "Windows 10",
@@ -2329,7 +2329,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-windows-10.json"
+      "file": "themes/windows-10.json"
     },
     {
       "name": "Windows 95",
@@ -2339,7 +2339,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-windows-95.json"
+      "file": "themes/windows-95.json"
     },
     {
       "name": "Windows High Contrast",
@@ -2349,7 +2349,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-windows-high-contrast.json"
+      "file": "themes/windows-high-contrast.json"
     },
     {
       "name": "Windows NT",
@@ -2359,7 +2359,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-windows-nt.json"
+      "file": "themes/windows-nt.json"
     },
     {
       "name": "Woodland",
@@ -2369,7 +2369,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-woodland.json"
+      "file": "themes/woodland.json"
     },
     {
       "name": "XCode Dusk",
@@ -2379,7 +2379,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-xcode-dusk.json"
+      "file": "themes/xcode-dusk.json"
     },
     {
       "name": "Yesterday Bright",
@@ -2389,7 +2389,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-yesterday-bright.json"
+      "file": "themes/yesterday-bright.json"
     },
     {
       "name": "Yesterday",
@@ -2399,7 +2399,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-yesterday.json"
+      "file": "themes/yesterday.json"
     },
     {
       "name": "Zenbones",
@@ -2409,7 +2409,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-zenbones.json"
+      "file": "themes/zenbones.json"
     },
     {
       "name": "Zenburn",
@@ -2419,7 +2419,7 @@
         "theme",
         "static"
       ],
-      "file": "theme-zenburn.json"
+      "file": "themes/zenburn.json"
     }
   ]
 }

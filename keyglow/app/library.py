@@ -40,6 +40,9 @@ DEFAULT_SETTINGS = {
     "last_profile": None,
     "openrgb_host": "127.0.0.1",
     "openrgb_port": 6742,
+    "openrgb_device": "",  # parte del nombre del teclado, si OpenRGB ve más de uno
+    "layout": "auto",  # "auto" = la distribución que informa OpenRGB, o un nombre de BUILTIN
+    "device_layout": None,  # última distribución detectada, para arrancar sin esperar
     "game_switching": True,
     "auto_games": False,  # usar el preset recomendado en juegos conocidos sin perfil propio
     # [{"exe": "cs2.exe", "name": "Counter-Strike 2", "profile_id": "preset:fps_red"}]
@@ -212,7 +215,9 @@ def community(url: str = "") -> dict:
         if isinstance(item.get("profile"), dict):
             entry["data"] = item["profile"]
         elif item.get("file") and not url:
-            path = COMMUNITY_DIR / Path(item["file"]).name
+            path = (COMMUNITY_DIR / item["file"]).resolve()
+            if COMMUNITY_DIR.resolve() not in path.parents:  # nada fuera de la carpeta
+                continue
             try:
                 entry["data"] = json.loads(path.read_text(encoding="utf-8"))
             except (OSError, ValueError):

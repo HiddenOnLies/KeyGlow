@@ -98,7 +98,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--port", type=int, default=DEFAULT_PORT)
     p.add_argument("--no-window", action="store_true", help="do not open the window on start")
     p.add_argument("--no-tray", action="store_true", help="no system tray icon")
-    p.add_argument("--layout", default="alloy_origins_65")
+    p.add_argument("--layout", help="keyboard layout name or .json (default: from settings, 'auto')")
     args = p.parse_args(argv)
     url = f"http://127.0.0.1:{args.port}/"
 
@@ -107,7 +107,10 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     settings = library.load_settings()
-    engine = LightEngine(args.layout, settings["openrgb_host"], int(settings["openrgb_port"]))
+    engine = LightEngine(args.layout or settings["layout"], settings["openrgb_host"],
+                         int(settings["openrgb_port"]), settings["openrgb_device"],
+                         cached_layout=settings.get("device_layout"),
+                         on_layout=lambda lay: library.save_settings({"device_layout": lay.to_dict()}))
     app = App(engine, settings)
     server = make_server(app, args.port)
     threading.Thread(target=server.serve_forever, name="keyglow-http", daemon=True).start()

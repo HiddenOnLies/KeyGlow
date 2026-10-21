@@ -130,7 +130,8 @@ async function api(path, body) {
   };
   const r = await fetch(path, opts);
   const data = await r.json().catch(() => ({ error: `Error ${r.status}` }));
-  if (!r.ok || data.error) throw new Error(data.error || `Error ${r.status}`);
+  // errors come with an HTTP error status; a 200 with "error" is just state (e.g. OpenRGB is closed)
+  if (!r.ok) throw new Error(data.error || `Error ${r.status}`);
   return data;
 }
 
@@ -161,6 +162,7 @@ function buildKeyboard() {
   const lay = S.meta.layout;
   const kb = $("#kb");
   kb.innerHTML = "";
+  for (const id of Object.keys(keyEls)) { delete keyEls[id]; delete lastColors[id]; delete keyCol[id]; }
   kb.style.aspectRatio = `${lay.width} / ${lay.height}`;
   for (const k of lay.keys) {
     const el = h("div", {
@@ -172,7 +174,10 @@ function buildKeyboard() {
     keyCol[k.id] = Math.min(GLOW_COLS - 1, Math.floor(((k.x + k.w / 2) / lay.width) * GLOW_COLS));
     kb.append(el);
   }
-  new ResizeObserver(() => kb.style.setProperty("--u", `${kb.clientWidth / lay.width}px`)).observe(kb);
+  kb.style.setProperty("--u", `${kb.clientWidth / lay.width}px`);
+  if (kb.dataset.ready) return; // los eventos se enganchan una sola vez
+  kb.dataset.ready = "1";
+  new ResizeObserver(() => kb.style.setProperty("--u", `${kb.clientWidth / S.meta.layout.width}px`)).observe(kb);
 
   let mode = null; // paint | erase | select | deselect
   const act = (id) => {
@@ -1001,11 +1006,40 @@ async function save(copy) {
   } catch (e) { toast(e.message, "err"); }
 }
 
-function exportProfile() {
-  const blob = new Blob([JSON.stringify(S.profile, null, 2) + "\n"], { type: "application/json" });
-  const a = h("a", { href: URL.createObjectURL(blob), download: (S.profile.name || "profile").replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "_") + ".json" });
-  document.body.append(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+const EXPORT_NOTES = {
+  keyglow: "The full profile, animations included. Open it in KeyGlow on any keyboard.",
+  openrgb: "Load it in OpenRGB's Profiles tab. It is made for the keyboard KeyGlow is connected to.",
+  "keys-openrgb": "A {key: color} map with OpenRGB key names, for scripts and other tools.",
+  "keys-web": "A {key: color} map with browser key codes (KeyboardEvent.code), for web tools.",
+  "keys-qmk": "A {keycode: color} map with QMK keycodes, handy when setting up custom firmware lighting.",
+  csv: "One row per key: key,color. Opens in any spreadsheet.",
+};
+
+function openExport() {
+  const sel = $("#exp-format");
+  if (!sel.options.length) {
+    for (const [k, v] of Object.entries(S.meta.export_formats)) sel.append(h("option", { value: k }, v));
+    sel.addEventListener("change", updateExportNote);
+  }
+  updateExportNote();
+  $("#dlg-export").showModal();
+}
+
+function updateExportNote() {
+  const fmt = $("#exp-format").value;
+  $("#exp-note").textContent = EXPORT_NOTES[fmt] + (fmt === "keyglow" ? "" : " Other programs can't play KeyGlow's animations, so this saves the colors at one moment.");
+  $("#exp-at-wrap").hidden = fmt === "keyglow";
+}
+
+async function exportProfile() {
+  try {
+    const r = await api("/api/export", { profile: S.profile, format: $("#exp-format").value, at: +$("#exp-at").value || 0 });
+    const blob = new Blob([r.content], { type: r.filename.endsWith(".csv") ? "text/csv" : "application/json" });
+    const a = h("a", { href: URL.createObjectURL(blob), download: r.filename });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    toast(`Exported ${r.filename}`);
+  } catch (err) { toast(err.message, "err"); }
 }
 
 function newProfile() {
@@ -1038,7 +1072,13 @@ function setupDialogs() {
   const dlg = $("#dlg-import");
   const file = $("#imp-file");
   const drop = $("#drop");
-  const readFile = (f) => f.text().then((text) => doImport({ text, filename: f.name }));
+  // sent as base64: OpenRGB .orp profiles are binary
+  const readFile = (f) => f.arrayBuffer().then((buf) => {
+    let bin = "";
+    const bytes = new Uint8Array(buf);
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    return doImport({ data: btoa(bin), filename: f.name });
+  });
   file.addEventListener("change", () => file.files[0] && readFile(file.files[0]));
   drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
   drop.addEventListener("dragleave", () => drop.classList.remove("over"));
@@ -1057,6 +1097,7 @@ function setupDialogs() {
   });
 
   // details
+  $("#exp-go").addEventListener("click", exportProfile);
   $("#details-ok").addEventListener("click", () => {
     const author = $("#p-author").value.trim();
     const desc = $("#p-desc").value.trim();
@@ -1077,7 +1118,10 @@ function setupDialogs() {
         community_url: $("#set-community").value.trim(),
         fps: Math.max(5, Math.min(60, +$("#set-fps").value || 30)),
         apply_last_on_start: $("#set-last").checked,
+        layout: $("#set-layout").value,
+        openrgb_device: $("#set-device").value.trim(),
       });
+      pollStatus(); // picks up a layout change
       if (old !== S.settings.community_url) { S.lib.community = null; renderCards(); }
       $("#dlg-settings").close();
       toast("Settings saved");
@@ -1179,6 +1223,12 @@ function setupGames() {
 }
 
 function openSettings() {
+  const sel = $("#set-layout");
+  sel.innerHTML = "";
+  sel.append(h("option", { value: "auto" }, "Automatic (as OpenRGB reports it)"),
+    ...S.meta.layouts.map((l) => h("option", { value: l.name }, l.title)));
+  sel.value = S.settings.layout || "auto";
+  $("#set-device").value = S.settings.openrgb_device || "";
   $("#set-community").value = S.settings.community_url || "";
   $("#set-fps").value = S.settings.fps || 30;
   $("#set-last").checked = !!S.settings.apply_last_on_start;
@@ -1199,7 +1249,7 @@ function setupMenu() {
     else if (act === "copy") save(true);
     else if (act === "details") openDetails();
     else if (act === "import") { $("#imp-file").value = ""; $("#imp-url").value = ""; $("#dlg-import").showModal(); }
-    else if (act === "export") exportProfile();
+    else if (act === "export") openExport();
     else if (act === "capture") {
       try { const r = await api("/api/capture", {}); loadProfile(r.data); S.dirty = true; renderHead(); toast("Captured the keyboard's current colors"); }
       catch (err) { toast(err.message, "err"); }
@@ -1210,7 +1260,21 @@ function setupMenu() {
 // ---------------------------------------------------------------------------
 // Keyboard status
 // ---------------------------------------------------------------------------
+// The keyboard layout can change at runtime (another keyboard, or a different layout in Settings)
+async function reloadLayout() {
+  S.meta = await api("/api/meta");
+  S.selection.clear();
+  thumbs.clear();
+  buildKeyboard();
+  invalidatePreview();
+  if (S.profile) renderEditor();
+}
+
 function setStatus(st) {
+  if (S.meta && st.layout_rev !== undefined && st.layout_rev !== S.meta.layout_rev) {
+    S.meta.layout_rev = st.layout_rev;
+    reloadLayout();
+  }
   S.status = st;
   const dev = $("#device");
   dev.classList.toggle("ok", !!st.connected);

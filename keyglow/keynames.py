@@ -25,6 +25,10 @@ LABELS = {
     "PAGE_DOWN": "PgD", "UP": "↑", "DOWN": "↓", "LEFT": "←", "RIGHT": "→",
     "NUMLOCK": "Num", "NUM_SLASH": "/", "NUM_ASTERISK": "*", "NUM_MINUS": "-",
     "NUM_PLUS": "+", "NUM_ENTER": "Ent", "NUM_PERIOD": ".",
+    # ISO: la tecla junto a Shift izquierdo y la de al lado de Enter
+    "NONUS_BACKSLASH": "\\", "NONUS_HASH": "#",
+    "MEDIA_PLAY": "⏯", "MEDIA_NEXT": "⏭", "MEDIA_PREV": "⏮", "MEDIA_STOP": "⏹",
+    "MUTE": "🔇", "VOL_UP": "🔊", "VOL_DOWN": "🔉",
 }
 for _d in DIGITS:
     LABELS[f"NUM_{_d}"] = _d
@@ -65,7 +69,7 @@ _add("LWIN", "left windows", "left win", "meta left", "lgui", "left gui", "left 
 _add("RWIN", "right windows", "right win", "meta right", "rgui", "right gui", "right super",
      "rsuper", "right meta", "rmeta", "rcmd", "right command", "os right")
 _add("MENU", "context menu", "apps", "application")
-_add("FN", "function", "right fn", "left fn", "fn key")
+_add("FN", "function", "right fn", "left fn", "fn key", "mo(1)")
 # El Origins 65 expone la barra como tres LEDs: "Left Space", "Key: Space", "Right Space".
 _add("SPACE", "spacebar", "space bar", "left space", "right space")
 _add("LBRACKET", "bracket left", "left bracket", "open bracket")
@@ -90,13 +94,39 @@ _add("DOWN", "down arrow", "arrow down")
 _add("LEFT", "left arrow", "arrow left")
 _add("RIGHT", "right arrow", "arrow right")
 _add("NUMLOCK", "num lock", "numlk")
+_add("NONUS_BACKSLASH", "intl backslash", "iso backslash", "nubs", "non us backslash")
+_add("NONUS_HASH", "iso hash", "nuhs", "non us hash", "pound", "iso pound")
+_add("MEDIA_PLAY", "media play pause", "media play", "play pause", "mply", "play")
+_add("MEDIA_NEXT", "media next", "media next track", "next track", "mnxt", "media track next")
+_add("MEDIA_PREV", "media previous", "media prev", "media previous track", "previous track", "mprv", "media track previous")
+_add("MEDIA_STOP", "media stop", "stop", "mstp")
+_add("MUTE", "media mute", "audio volume mute", "audio mute", "volume mute", "mute")
+_add("VOL_UP", "volume up", "audio volume up", "media volume up", "volu")
+_add("VOL_DOWN", "volume down", "audio volume down", "media volume down", "vold")
 
 SYMBOLS = {
     "`": "GRAVE", "~": "GRAVE", "-": "MINUS", "_": "MINUS", "=": "EQUAL", "+": "EQUAL",
     "[": "LBRACKET", "{": "LBRACKET", "]": "RBRACKET", "}": "RBRACKET",
     "\\": "BACKSLASH", "|": "BACKSLASH", ";": "SEMICOLON", ":": "SEMICOLON",
     "'": "QUOTE", '"': "QUOTE", ",": "COMMA", "<": "COMMA", ".": "PERIOD", ">": "PERIOD",
-    "/": "SLASH", "?": "SLASH",
+    "/": "SLASH", "?": "SLASH", "#": "NONUS_HASH",
+}
+
+# Abreviaturas de QMK (sin el prefijo KC_) que no salen de los alias generales.
+QMK = {
+    "lctl": "LCTRL", "rctl": "RCTRL", "lsft": "LSHIFT", "rsft": "RSHIFT", "lopt": "LALT",
+    "ropt": "RALT", "lcmd": "LWIN", "rcmd": "RWIN", "spc": "SPACE", "ent": "ENTER",
+    "bspc": "BACKSPACE", "caps": "CAPSLOCK", "grv": "GRAVE", "mins": "MINUS", "eql": "EQUAL",
+    "lbrc": "LBRACKET", "rbrc": "RBRACKET", "bsls": "BACKSLASH", "scln": "SEMICOLON",
+    "quot": "QUOTE", "comm": "COMMA", "dot": "PERIOD", "slsh": "SLASH", "pscr": "PRINTSCREEN",
+    "scrl": "SCROLLLOCK", "brk": "PAUSE", "paus": "PAUSE", "pgup": "PAGE_UP", "pgdn": "PAGE_DOWN",
+    "app": "MENU", "num": "NUMLOCK", "psls": "NUM_SLASH", "past": "NUM_ASTERISK",
+    "pmns": "NUM_MINUS", "ppls": "NUM_PLUS", "pent": "NUM_ENTER", "pdot": "NUM_PERIOD",
+    "mute": "MUTE", "volu": "VOL_UP", "vold": "VOL_DOWN", "mply": "MEDIA_PLAY",
+    "mnxt": "MEDIA_NEXT", "mprv": "MEDIA_PREV", "mstp": "MEDIA_STOP",
+    "nubs": "NONUS_BACKSLASH", "nuhs": "NONUS_HASH", "up": "UP", "down": "DOWN",
+    "left": "LEFT", "rght": "RIGHT", "ins": "INSERT", "del": "DELETE",
+    **{f"p{d}": f"NUM_{d}" for d in DIGITS},
 }
 
 _NUMPAD_REST = {
@@ -114,6 +144,8 @@ def normalize(name: str) -> str | None:
     """Devuelve el id canónico de una tecla o ``None`` si no se reconoce."""
     s = name.strip()
     s = re.sub(r"^(?:key|led)\s*:\s*", "", s, flags=re.I)
+    if re.fullmatch(r"\\\s*\(iso\)", s, flags=re.I):  # OpenRGB: "Key: \ (ISO)"
+        return "NONUS_BACKSLASH"
     s = re.sub(r"\s*\([^)]*\)\s*$", "", s)  # "\ (ANSI)" -> "\"
     if not s:
         return None
@@ -121,6 +153,11 @@ def normalize(name: str) -> str | None:
         if s.isalnum():
             return s.upper()
         return SYMBOLS.get(s)
+    m = re.fullmatch(r"(?:media\s*)?volume\s*([+-])", s, flags=re.I)  # OpenRGB: "Media Volume +"
+    if m:
+        return "VOL_UP" if m.group(1) == "+" else "VOL_DOWN"
+    if re.match(r"kc_", s, flags=re.I):  # QMK: KC_A, KC_LCTL, KC_P1...
+        return normalize(s[3:]) or QMK.get(_compact(s[3:]))
     c = _compact(s)
     if c in ALIASES:
         return ALIASES[c]
@@ -141,3 +178,63 @@ def normalize(name: str) -> str | None:
     if m:
         return f"F{m.group(1)}"
     return s.upper() if s.upper() in LABELS else None
+
+
+# ---------------------------------------------------------------------------
+# Nombres en otros programas, para exportar (lo inverso de ``normalize``)
+# ---------------------------------------------------------------------------
+_SPECIAL = {
+    # id: (OpenRGB, código web, QMK)
+    "ESC": ("Escape", "Escape", "KC_ESC"), "GRAVE": ("`", "Backquote", "KC_GRV"),
+    "MINUS": ("-", "Minus", "KC_MINS"), "EQUAL": ("=", "Equal", "KC_EQL"),
+    "BACKSPACE": ("Backspace", "Backspace", "KC_BSPC"), "TAB": ("Tab", "Tab", "KC_TAB"),
+    "LBRACKET": ("[", "BracketLeft", "KC_LBRC"), "RBRACKET": ("]", "BracketRight", "KC_RBRC"),
+    "BACKSLASH": ("\\ (ANSI)", "Backslash", "KC_BSLS"), "CAPSLOCK": ("Caps Lock", "CapsLock", "KC_CAPS"),
+    "SEMICOLON": (";", "Semicolon", "KC_SCLN"), "QUOTE": ("'", "Quote", "KC_QUOT"),
+    "ENTER": ("Enter", "Enter", "KC_ENT"), "LSHIFT": ("Left Shift", "ShiftLeft", "KC_LSFT"),
+    "RSHIFT": ("Right Shift", "ShiftRight", "KC_RSFT"), "COMMA": (",", "Comma", "KC_COMM"),
+    "PERIOD": (".", "Period", "KC_DOT"), "SLASH": ("/", "Slash", "KC_SLSH"),
+    "LCTRL": ("Left Control", "ControlLeft", "KC_LCTL"), "RCTRL": ("Right Control", "ControlRight", "KC_RCTL"),
+    "LALT": ("Left Alt", "AltLeft", "KC_LALT"), "RALT": ("Right Alt", "AltRight", "KC_RALT"),
+    "LWIN": ("Left Windows", "MetaLeft", "KC_LGUI"), "RWIN": ("Right Windows", "MetaRight", "KC_RGUI"),
+    "MENU": ("Menu", "ContextMenu", "KC_APP"), "FN": ("Right Fn", "Fn", "MO(1)"),
+    "SPACE": ("Space", "Space", "KC_SPC"), "PRINTSCREEN": ("Print Screen", "PrintScreen", "KC_PSCR"),
+    "SCROLLLOCK": ("Scroll Lock", "ScrollLock", "KC_SCRL"), "PAUSE": ("Pause/Break", "Pause", "KC_PAUS"),
+    "INSERT": ("Insert", "Insert", "KC_INS"), "HOME": ("Home", "Home", "KC_HOME"),
+    "PAGE_UP": ("Page Up", "PageUp", "KC_PGUP"), "DELETE": ("Delete", "Delete", "KC_DEL"),
+    "END": ("End", "End", "KC_END"), "PAGE_DOWN": ("Page Down", "PageDown", "KC_PGDN"),
+    "UP": ("Up Arrow", "ArrowUp", "KC_UP"), "DOWN": ("Down Arrow", "ArrowDown", "KC_DOWN"),
+    "LEFT": ("Left Arrow", "ArrowLeft", "KC_LEFT"), "RIGHT": ("Right Arrow", "ArrowRight", "KC_RGHT"),
+    "NUMLOCK": ("Num Lock", "NumLock", "KC_NUM"), "NUM_SLASH": ("Number Pad /", "NumpadDivide", "KC_PSLS"),
+    "NUM_ASTERISK": ("Number Pad *", "NumpadMultiply", "KC_PAST"),
+    "NUM_MINUS": ("Number Pad -", "NumpadSubtract", "KC_PMNS"), "NUM_PLUS": ("Number Pad +", "NumpadAdd", "KC_PPLS"),
+    "NUM_ENTER": ("Number Pad Enter", "NumpadEnter", "KC_PENT"), "NUM_PERIOD": ("Number Pad .", "NumpadDecimal", "KC_PDOT"),
+    "NONUS_BACKSLASH": ("\\ (ISO)", "IntlBackslash", "KC_NUBS"), "NONUS_HASH": ("#", "Backslash", "KC_NUHS"),
+    "MEDIA_PLAY": ("Media Play/Pause", "MediaPlayPause", "KC_MPLY"),
+    "MEDIA_NEXT": ("Media Next", "MediaTrackNext", "KC_MNXT"),
+    "MEDIA_PREV": ("Media Previous", "MediaTrackPrevious", "KC_MPRV"),
+    "MEDIA_STOP": ("Media Stop", "MediaStop", "KC_MSTP"), "MUTE": ("Media Mute", "AudioVolumeMute", "KC_MUTE"),
+    "VOL_UP": ("Media Volume +", "AudioVolumeUp", "KC_VOLU"), "VOL_DOWN": ("Media Volume -", "AudioVolumeDown", "KC_VOLD"),
+}
+NAME_STYLES = ("keyglow", "openrgb", "web", "qmk")
+
+
+def external_name(key_id: str, style: str) -> str:
+    """Nombre de la tecla ``key_id`` en otro programa: ``openrgb``, ``web`` o ``qmk``."""
+    if style == "keyglow":
+        return key_id
+    col = {"openrgb": 0, "web": 1, "qmk": 2}[style]
+    if key_id in _SPECIAL:
+        name = _SPECIAL[key_id][col]
+    elif len(key_id) == 1 and key_id.isalpha():
+        name = (key_id, f"Key{key_id}", f"KC_{key_id}")[col]
+    elif len(key_id) == 1 and key_id.isdigit():
+        name = (key_id, f"Digit{key_id}", f"KC_{key_id}")[col]
+    elif key_id.startswith("NUM_") and key_id[4:].isdigit():
+        d = key_id[4:]
+        name = (f"Number Pad {d}", f"Numpad{d}", f"KC_P{d}")[col]
+    elif re.fullmatch(r"F\d+", key_id):
+        name = (key_id, key_id, f"KC_{key_id}")[col]
+    else:
+        name = key_id
+    return f"Key: {name}" if style == "openrgb" else name

@@ -8,6 +8,7 @@ servidor nunca concede).
 
 from __future__ import annotations
 
+import base64
 import json
 import mimetypes
 import threading
@@ -18,9 +19,10 @@ from urllib.parse import parse_qs, urlparse
 
 from .. import __version__
 from ..effects import REGISTRY
-from ..importers import from_csv_text, from_json_data
+from .. import exporters
+from ..importers import from_bytes
 from ..keynames import label
-from ..layout import GROUPS
+from ..layout import BUILTIN, GROUPS
 from . import library
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
@@ -63,22 +65,24 @@ class App:
             },
             "effects": effects,
             "groups": {g: [k for k in keys if k in lay] for g, keys in GROUPS.items()},
+            "layouts": [{"name": n, "title": f().title} for n, f in BUILTIN.items()],
+            "export_formats": exporters.FORMATS,
+            "layout_rev": self.engine.layout_rev,
             "user_dir": str(library.user_profiles_dir()),
         }
 
     def import_profile(self, body: dict) -> dict:
         if body.get("url"):
             url = body["url"].strip()
-            raw = library._download(url).decode("utf-8")
-            name = url.rstrip("/").rsplit("/", 1)[-1].rsplit(".", 1)[0] or "Downloaded"
-            text, filename = raw, url
+            raw = library._download(url)
+            filename = url.split("?", 1)[0].rstrip("/").rsplit("/", 1)[-1] or "Downloaded.json"
+        elif "data" in body:  # archivo en base64 (los .orp de OpenRGB son binarios)
+            raw = base64.b64decode(body["data"])
+            filename = body.get("filename", "imported.json")
         else:
-            text, filename = body.get("text", ""), body.get("filename", "imported.json")
-            name = Path(filename).stem or "Imported"
-        if filename.lower().endswith(".csv"):
-            profile = from_csv_text(text, name)
-        else:
-            profile = from_json_data(json.loads(text), name)
+            raw = body.get("text", "").encode("utf-8")
+            filename = body.get("filename", "imported.json")
+        profile = from_bytes(raw, Path(filename).name)
         adapted, report = prepare(profile.to_dict(), self.engine.layout)
         notable = report.dropped or report.unknown or report.filled
         return {"data": adapted.to_dict(), "report": report.lines() if notable else []}
@@ -199,10 +203,17 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({"ok": True})
             if path == "/api/import":
                 return self._json(app.import_profile(body))
+            if path == "/api/export":
+                fmt = body.get("format", "keyglow")
+                profile, _ = prepare(body["profile"], eng.layout)
+                content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
+                                           eng.device_description() if fmt == "openrgb" else None)
+                return self._json({"filename": exporters.filename(profile, fmt), "content": content})
             if path == "/api/settings":
                 app.settings = library.save_settings(body)
                 eng.brightness = float(app.settings["brightness"])
                 eng.fps = float(app.settings["fps"])
+                eng.set_layout_mode(app.settings["layout"], app.settings["openrgb_device"])
                 return self._json(app.settings)
             if path == "/api/quit":
                 self._json({"ok": True})

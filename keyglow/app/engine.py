@@ -20,6 +20,7 @@ from ..retarget import Report, retarget
 from .keyhook import KeyHook
 
 DEFAULT_LAYOUT = "alloy_origins_65"
+AUTO = "auto"  # distribución detectada a partir de lo que informa OpenRGB
 RECONNECT_EVERY = 3.0
 
 
@@ -37,8 +38,16 @@ def prepare(data: dict, layout: Layout) -> tuple[Profile, Report]:
 
 class LightEngine:
     def __init__(self, layout_name: str = DEFAULT_LAYOUT, host: str = "127.0.0.1",
-                 port: int = 6742, device: str = ""):
-        self.layout = load_layout(layout_name)
+                 port: int = 6742, device: str = "", cached_layout: dict | None = None,
+                 on_layout=None):
+        self.layout_mode = layout_name
+        if layout_name == AUTO:
+            # hasta conectar se usa la última distribución detectada (o la predeterminada)
+            self.layout = Layout.from_dict(cached_layout) if cached_layout else load_layout(DEFAULT_LAYOUT)
+        else:
+            self.layout = load_layout(layout_name)
+        self.layout_rev = 0
+        self.on_layout = on_layout  # se llama con la distribución nueva para recordarla
         self.host, self.port, self.device_match = host, port, device
         self.brightness = 1.0
         self.fps = 30.0
@@ -70,7 +79,48 @@ class LightEngine:
         except RuntimeError as e:
             self._kb = None
             self.error = str(e)
+        if self._kb is not None and self.layout_mode == AUTO:
+            try:
+                self._set_layout(self._kb.layout())
+            except ValueError:
+                pass  # teclado sin teclas reconocibles: se queda la distribución actual
         return self._kb
+
+    # --- distribución -----------------------------------------------------
+    def _set_layout(self, layout: Layout) -> None:
+        if layout.to_dict() == self.layout.to_dict():
+            return
+        with self._lock:
+            self.layout = layout
+            self.layout_rev += 1
+            with self._plock:
+                self._previews.clear()
+            if self._profile is not None:
+                profile, _ = prepare(self._profile, layout)
+                self._renderer = self._base_renderer = Renderer(profile, layout)
+                self.override = None  # el vigilante de juegos lo vuelve a poner
+        if self.on_layout:
+            self.on_layout(layout)
+
+    def set_layout_mode(self, mode: str, device: str | None = None) -> None:
+        """Cambia la distribución: ``"auto"`` (la que informa OpenRGB) o un nombre/ruta."""
+        changed_device = device is not None and device != self.device_match
+        if changed_device:
+            self.device_match = device
+        if mode == self.layout_mode and not changed_device:
+            return
+        self.layout_mode = mode
+        if mode != AUTO:
+            self._set_layout(load_layout(mode))
+        with self._lock:
+            if changed_device:
+                self._kb = None
+                self._connect()
+            elif mode == AUTO and self._kb is not None:
+                try:
+                    self._set_layout(self._kb.layout())
+                except ValueError:
+                    pass
 
     def connect(self) -> bool:
         with self._lock:
@@ -203,6 +253,13 @@ class LightEngine:
         return Profile(name=name, designed_for=self.layout.name,
                        layers=[{"effect": "static", "params": {"keys": keys}}]).to_dict()
 
+    def device_description(self) -> dict | None:
+        """Descripción del teclado conectado al estilo de OpenRGB (para exportar perfiles)."""
+        with self._lock:
+            if self._kb is None:
+                self._connect()
+            return self._kb.describe() if self._kb is not None else None
+
     def status(self) -> dict:
         with self._lock:
             return {
@@ -213,6 +270,8 @@ class LightEngine:
                 "error": self.error,
                 "brightness": self.brightness,
                 "override": self.override,
+                "layout": self.layout.name,
+                "layout_rev": self.layout_rev,
             }
 
     # --- vista previa -------------------------------------------------------

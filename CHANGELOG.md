@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+- **Any keyboard**: the layout is detected automatically from OpenRGB (LED names and key
+  matrix); keys outside the standard layouts, like media keys, are placed from the matrix.
+  New built-in layouts: ANSI 65%, 75% and TKL, and ISO 60%, TKL and full size.
+  Settings can force a layout or pick a keyboard when OpenRGB sees several.
+- **Other programs**: import OpenRGB profiles (`.json` from OpenRGB 1.0+ and legacy `.orp`);
+  export to OpenRGB profiles, key color maps with OpenRGB, web or QMK key names, and CSV.
+  New *Export…* dialog in the app and `keyglow export` command.
+- Key names: ISO keys, media keys and QMK keycodes are recognized.
+- Repository: theme profiles moved to `keyglow/community/themes/`; documentation split into
+  `docs/` (compatibility, profile format, profile sources) and `CONTRIBUTING.md`.
+
 ## 0.1.0 — first public preview
 
 First public version. It works day to day on a HyperX Alloy Origins 65 on Windows, but it is
