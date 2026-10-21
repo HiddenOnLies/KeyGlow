@@ -89,10 +89,21 @@ keyglow export examples/aurora.json --format openrgb --at 2 -o aurora.openrgb.js
 keyglow export examples/aurora.json --format keys-qmk -o aurora-qmk.json
 ```
 
-The OpenRGB reader follows the format as written in OpenRGB's own source
-(`ProfileManager.cpp`, `RGBController.cpp`). It is tested against synthetic files and a real
-keyboard's description for `.orp` versions 0–4. Newer `.orp` versions and loading KeyGlow's
-exported profiles inside OpenRGB itself haven't been verified yet.
+The OpenRGB reader and writer follow the format as written in OpenRGB's own source
+(`ProfileManager.cpp`, `RGBController.cpp`). Verified so far:
+
+- A profile exported by KeyGlow loads in **OpenRGB 1.1** and shows exactly the exported colors
+  (tested on a HyperX Alloy Origins 65).
+- `.orp` import is tested with a real keyboard's description for format versions 0–4. Newer
+  `.orp` versions, and `.json` files saved by OpenRGB itself, are only tested with files built
+  to the format.
+
+To use an exported profile, put the `.json` in OpenRGB's profiles folder and restart OpenRGB
+(it reads the folder at startup):
+
+- OpenRGB running normally: `%APPDATA%\OpenRGB\profiles`
+- OpenRGB 1.1 installed **as a Windows service**: `C:\Program Files\OpenRGB\service_config\profiles`
+  (needs administrator rights to copy files there)
 
 ### Not supported (and why)
 

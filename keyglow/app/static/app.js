@@ -1012,7 +1012,7 @@ async function save(copy) {
 
 const EXPORT_NOTES = {
   keyglow: "The full profile, animations included. Open it in KeyGlow on any keyboard.",
-  openrgb: "Load it in OpenRGB's Profiles tab. It is made for the keyboard KeyGlow is connected to.",
+  openrgb: "Copy it into OpenRGB's profiles folder (%APPDATA%\\OpenRGB\\profiles) and restart OpenRGB. It is made for the keyboard KeyGlow is connected to.",
   "keys-openrgb": "A {key: color} map with OpenRGB key names, for scripts and other tools.",
   "keys-web": "A {key: color} map with browser key codes (KeyboardEvent.code), for web tools.",
   "keys-qmk": "A {keycode: color} map with QMK keycodes, handy when setting up custom firmware lighting.",
