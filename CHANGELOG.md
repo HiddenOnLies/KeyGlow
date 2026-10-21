@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0
 
 - **Any keyboard**: the layout is detected automatically from OpenRGB (LED names and key
   matrix); keys outside the standard layouts, like media keys, are placed from the matrix.
@@ -16,6 +16,10 @@
   Alloy Origins 65 through OpenRGB) get a clear explanation instead.
 - **New look**: black interface with a single neutral accent, and bundled IBM Plex Sans,
   IBM Plex Mono and Space Grotesk fonts (SIL Open Font License).
+- **Download and use**: KeyGlow opens OpenRGB by itself (minimized, SDK server on) when it's
+  installed but not running, shows a step-by-step *Connect your keyboard* guide when the
+  keyboard can't be reached, and can start with Windows in the background.
+- Fix: the status no longer stays on "Connecting…" when OpenRGB is closed.
 - Fix: profiles whose layers rely on default colors (e.g. Campfire) no longer crash the editor.
 - Repository: theme profiles moved to `keyglow/community/themes/`; documentation split into
   `docs/` (compatibility, profile format, profile sources) and `CONTRIBUTING.md`.

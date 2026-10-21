@@ -1134,6 +1134,8 @@ function setupDialogs() {
         community_url: $("#set-community").value.trim(),
         fps: Math.max(5, Math.min(60, +$("#set-fps").value || 30)),
         apply_last_on_start: $("#set-last").checked,
+        start_with_windows: $("#set-autostart").checked,
+        start_openrgb: $("#set-openrgb").checked,
         layout: $("#set-layout").value,
         openrgb_device: $("#set-device").value.trim(),
       });
@@ -1248,6 +1250,8 @@ function openSettings() {
   $("#set-community").value = S.settings.community_url || "";
   $("#set-fps").value = S.settings.fps || 30;
   $("#set-last").checked = !!S.settings.apply_last_on_start;
+  $("#set-autostart").checked = !!S.settings.start_with_windows;
+  $("#set-openrgb").checked = !!S.settings.start_openrgb;
   $("#set-dir").textContent = S.meta.user_dir;
   $("#dlg-settings").showModal();
 }
@@ -1293,6 +1297,10 @@ function setStatus(st) {
     reloadLayout();
   }
   S.status = st;
+  // the first time the keyboard stays unreachable for a few seconds, explain how to connect it
+  offlinePolls = st.connected ? 0 : offlinePolls + 1;
+  if (offlinePolls >= 3 && !connectShown && !document.querySelector("dialog[open]")) { connectShown = true; openConnect(); }
+  if (st.connected) connectShown = true;
   const dev = $("#device");
   dev.classList.toggle("ok", !!st.connected);
   dev.classList.toggle("bad", !st.connected);
@@ -1309,6 +1317,33 @@ function setStatus(st) {
     pill.title = `Playing ${st.override.reason}: using "${st.override.profile}"`;
   }
 }
+
+// First-run help: what's missing for KeyGlow to reach the keyboard
+function openConnect() {
+  const box = $("#con-install");
+  box.innerHTML = "";
+  box.append(S.meta.openrgb_path
+    ? `Found at ${S.meta.openrgb_path}.`
+    : h("span", {}, "Not found. ", h("a", { href: S.meta.openrgb_url, target: "_blank", rel: "noopener" }, "Download OpenRGB"), ", install it, then come back."));
+  $("#con-start").hidden = !S.meta.openrgb_path;
+  $("#con-error").textContent = S.status.error || "";
+  $("#con-error").hidden = !S.status.error;
+  const dlg = $("#dlg-connect");
+  if (!dlg.open) dlg.showModal();
+}
+
+async function reconnect() {
+  try {
+    const st = await api("/api/connect", {});
+    setStatus(st);
+    if (st.connected) { $("#dlg-connect").close(); toast(`Connected to ${st.device}`); }
+    else if ($("#dlg-connect").open) openConnect();
+    else toast(st.error, "err");
+  } catch (e) { toast(e.message, "err"); }
+}
+
+let offlinePolls = 0;
+let connectShown = false;
 
 async function pollStatus() {
   try { setStatus(await api("/api/status")); } catch { /* server closed */ }
@@ -1337,8 +1372,11 @@ async function init() {
   name.addEventListener("keydown", (e) => { if (e.key === "Enter") name.blur(); });
 
   $("#power").addEventListener("click", () => setPower(!S.status.running));
-  $("#device").addEventListener("click", async () => {
-    try { const st = await api("/api/connect", {}); setStatus(st); if (!st.connected) toast(st.error, "err"); } catch (e) { toast(e.message, "err"); }
+  $("#device").addEventListener("click", () => (S.status.connected ? reconnect() : openConnect()));
+  $("#con-retry").addEventListener("click", reconnect);
+  $("#con-start").addEventListener("click", async () => {
+    try { await api("/api/openrgb/start", {}); toast("Starting OpenRGB… this can take a few seconds"); setTimeout(reconnect, 5000); }
+    catch (e) { toast(e.message, "err"); }
   });
   const br = $("#brightness");
   br.value = Math.round((S.settings.brightness ?? 1) * 100);

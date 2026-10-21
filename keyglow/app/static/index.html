@@ -105,6 +105,24 @@
   </form>
 </dialog>
 
+<dialog id="dlg-connect" class="dialog">
+  <form method="dialog">
+    <h3>Connect your keyboard</h3>
+    <p class="muted small">KeyGlow talks to your keyboard through OpenRGB, a free program that supports hundreds of devices.</p>
+    <ol class="steps">
+      <li><b>Install OpenRGB</b><span id="con-install"></span></li>
+      <li><b>Start OpenRGB with its SDK server</b><span>KeyGlow does it for you when OpenRGB is installed.</span>
+        <button id="con-start" type="button">Start OpenRGB</button></li>
+      <li><b>Close other RGB software</b><span>NGENUITY, iCUE, Synapse, Armoury Crate… Two programs writing to the keyboard fight each other.</span></li>
+    </ol>
+    <p id="con-error" class="note"></p>
+    <div class="dlg-actions">
+      <button value="cancel">Close</button>
+      <button id="con-retry" class="primary" type="button">Try again</button>
+    </div>
+  </form>
+</dialog>
+
 <dialog id="dlg-export" class="dialog">
   <form method="dialog">
     <h3>Export profile</h3>
@@ -159,6 +177,8 @@
 <dialog id="dlg-settings" class="dialog">
   <form method="dialog">
     <h3>Settings</h3>
+    <label class="check"><input id="set-autostart" type="checkbox"> Start KeyGlow with Windows (in the background)</label>
+    <label class="check"><input id="set-openrgb" type="checkbox"> Open OpenRGB automatically when it isn't running</label>
     <label class="check"><input id="set-last" type="checkbox"> Restore last profile when KeyGlow starts</label>
     <label>Keyboard layout
       <select id="set-layout"></select>

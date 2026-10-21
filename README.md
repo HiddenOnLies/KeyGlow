@@ -1,13 +1,22 @@
 # KeyGlow
 
-RGB keyboard lighting with **portable profiles**: a profile made for another keyboard
-(a full-size, a 60%, another brand) adapts itself to yours, and the other way round.
+**Free, open-source RGB lighting for your keyboard, with profiles that work on any keyboard.**
+A profile made for another keyboard (a full-size, a 60%, another brand) adapts itself to
+yours, and the other way round. Windows, powered by [OpenRGB](https://openrgb.org).
+
+<p align="center">
+  <a href="https://github.com/HiddenOnLies/KeyGlow/releases/latest"><b>⬇ Download KeyGlow.exe</b></a>
+  ·
+  <a href="#quick-start">Quick start</a>
+  ·
+  <a href="docs/compatibility.md">Compatibility</a>
+</p>
+
+![KeyGlow playing several presets](docs/images/demo.gif)
 
 > **Early preview.** KeyGlow works day to day on a **HyperX Alloy Origins 65** on Windows,
 > but it hasn't been tested on other keyboards yet and there is still plenty to do.
 > See [Status and roadmap](#status-and-roadmap). Feedback and issues are welcome.
-
-![KeyGlow](docs/images/screenshot.png)
 
 ## Why another RGB app?
 
@@ -20,12 +29,23 @@ RGB keyboard lighting with **portable profiles**: a profile made for another key
 | Sharing profiles is risky | A profile is **plain JSON, never code**, so it is safe to download from any URL |
 | One app per brand | Hardware is driven through **[OpenRGB](https://openrgb.org)**, and the keyboard layout is **detected automatically** |
 
-## Download
+## Quick start
 
-Grab `KeyGlow.exe` from the [latest release](https://github.com/HiddenOnLies/KeyGlow/releases).
-You also need [OpenRGB](https://openrgb.org) running with its **SDK Server** started
-(KeyGlow talks to the keyboard through it). Close your vendor's software (NGenuity, iCUE,
-Synapse…) first: two programs writing to the keyboard fight each other.
+1. **Install [OpenRGB](https://openrgb.org/releases.html)** (free). KeyGlow uses it to talk to
+   the keyboard; you don't need to configure it.
+2. **Download [`KeyGlow.exe`](https://github.com/HiddenOnLies/KeyGlow/releases/latest)** and
+   double-click it. No installer: it's a single file you can keep anywhere.
+   KeyGlow opens OpenRGB for you in the background with its SDK server on.
+3. **Pick an effect.** If the keyboard doesn't light up, KeyGlow shows what's missing (usually
+   another RGB app such as NGENUITY, iCUE or Synapse still running: close it).
+
+To keep your lighting after a restart, turn on *Settings → Start KeyGlow with Windows*.
+
+> **Windows SmartScreen** may say it "protected your PC" the first time, because the
+> executable isn't code-signed yet. Click *More info → Run anyway*. You can check the file
+> against the SHA-256 published in each release, or [run from source](#running-from-source).
+
+![KeyGlow](docs/images/screenshot.png)
 
 ## The app
 

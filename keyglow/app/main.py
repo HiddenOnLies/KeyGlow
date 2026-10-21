@@ -19,7 +19,7 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-from . import library
+from . import library, system
 from .engine import LightEngine
 from .server import STATIC_DIR, App, make_server
 
@@ -107,6 +107,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     settings = library.load_settings()
+    if settings.get("start_openrgb"):
+        system.ensure_openrgb(settings)  # el motor reintenta conectar hasta que OpenRGB responda
     engine = LightEngine(args.layout or settings["layout"], settings["openrgb_host"],
                          int(settings["openrgb_port"]), settings["openrgb_device"],
                          cached_layout=settings.get("device_layout"),

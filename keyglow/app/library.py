@@ -40,7 +40,9 @@ DEFAULT_SETTINGS = {
     "last_profile": None,
     "openrgb_host": "127.0.0.1",
     "openrgb_port": 6742,
-    "openrgb_device": "",  # parte del nombre del teclado, si OpenRGB ve más de uno
+    "openrgb_device": "",
+    "openrgb_path": "",  # OpenRGB.exe, si no está en la carpeta habitual
+    "start_openrgb": True,  # abrir OpenRGB (minimizado, con el servidor) si no está en marcha  # parte del nombre del teclado, si OpenRGB ve más de uno
     "layout": "auto",  # "auto" = la distribución que informa OpenRGB, o un nombre de BUILTIN
     "device_layout": None,  # última distribución detectada, para arrancar sin esperar
     "game_switching": True,

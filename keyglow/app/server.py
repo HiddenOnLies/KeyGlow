@@ -23,7 +23,7 @@ from .. import exporters
 from ..importers import from_bytes
 from ..keynames import label
 from ..layout import BUILTIN, GROUPS
-from . import library
+from . import library, system
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
 from .games import GameWatcher, running_apps
@@ -67,6 +67,8 @@ class App:
             "groups": {g: [k for k in keys if k in lay] for g, keys in GROUPS.items()},
             "layouts": [{"name": n, "title": f().title} for n, f in BUILTIN.items()],
             "export_formats": exporters.FORMATS,
+            "openrgb_path": system.find_openrgb(self.settings.get("openrgb_path", "")),
+            "openrgb_url": system.OPENRGB_URL,
             "layout_rev": self.engine.layout_rev,
             "user_dir": str(library.user_profiles_dir()),
         }
@@ -146,7 +148,7 @@ class Handler(BaseHTTPRequestHandler):
                 src = q.get("url", [app.settings.get("community_url", "")])[0]
                 return self._json(library.community(src))
             if url.path == "/api/settings":
-                return self._json(app.settings)
+                return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
             if url.path == "/api/apps":
                 return self._json({"apps": running_apps()})
             if url.path == "/api/games":
@@ -214,12 +216,21 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/openrgb/start":
+                result = system.ensure_openrgb(app.settings)
+                if result == "missing":
+                    return self._error("OpenRGB isn't installed (or not where KeyGlow looks for it).")
+                if result == "failed":
+                    return self._error("Couldn't start OpenRGB.")
+                return self._json({"result": result})
             if path == "/api/settings":
+                if "start_with_windows" in body:
+                    system.set_autostart(bool(body["start_with_windows"]))
                 app.settings = library.save_settings(body)
                 eng.brightness = float(app.settings["brightness"])
                 eng.fps = float(app.settings["fps"])
                 eng.set_layout_mode(app.settings["layout"], app.settings["openrgb_device"])
-                return self._json(app.settings)
+                return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
             if path == "/api/quit":
                 self._json({"ok": True})
                 app.quit_event.set()
