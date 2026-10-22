@@ -667,6 +667,9 @@ function buildLayer(old, color, anim) {
   else if (color === "one") cs = [cs.find((c) => c !== "#000000") || cs[0]];
   else if (color === "several") {
     if (isRainbow(cs)) cs = ["#ff0080", "#7000ff", "#00c0ff"];
+    // "One" with wave/cycle/plasma is stored as [color, black]: the black is filler, not a choice
+    if (describeLayer(old).color === "one") cs = cs.filter((c) => c !== "#000000");
+    if (!cs.length) cs = [S.brush];
     if (cs.length < 2) cs = [cs[0], cs[0] === "#00e5ff" ? "#ff0080" : "#00e5ff"];
   }
   const one = cs[0];
