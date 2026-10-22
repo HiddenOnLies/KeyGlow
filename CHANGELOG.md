@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
 
 - **Keyboard-specific layouts**: KeyGlow recognizes keyboards by their USB ID (read from
   OpenRGB) and uses an exact layout from its model database (`keyglow/layouts/`) when there is
@@ -12,6 +12,12 @@
   (KeyGlow-layouts), at most once a day, as one file looked up locally (no device IDs are
   sent), cached for offline use and validated before use. Can be turned off in *Settings*.
 - `keyglow workshop` checks layout files and builds the workshop bundle.
+- Model layouts are only used when they contain every key the keyboard reports, so variants
+  that share a USB ID (ANSI/ISO) get the right one. First workshop layouts: HyperX Alloy
+  Origins 65 (verified) and ASUS ROG Azoth, US and ISO (not yet tested on hardware).
+- Extra keys that a standard layout doesn't have are placed next to their neighbor in
+  OpenRGB's key matrix.
+- Fix: key-press lighting could reuse stale key presses on Windows.
 - Fixes: switching a layer from One to Several colors with wave/cycle/plasma; editable numbers
   next to every slider; drag (or Alt+arrows) to reorder a layer's colors.
 
