@@ -1352,6 +1352,20 @@ function exportLayout() {
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 
+function fillLayoutSelect() {
+  const sel = $("#set-layout");
+  const models = S.meta.model_layouts || [];
+  const tag = (m) => (m.workshop ? " (workshop" + (m.verified ? ")" : ", untested)") : (m.verified ? "" : " (untested)"));
+  sel.innerHTML = "";
+  sel.append(
+    h("option", { value: "auto" }, "Automatic (as OpenRGB reports it)"),
+    h("optgroup", { label: "Keyboard models" }, ...models.map((m) => h("option", { value: m.name }, m.title + tag(m)))),
+    h("optgroup", { label: "Standard layouts" }, ...S.meta.layouts.map((l) => h("option", { value: l.name }, l.title))),
+  );
+  const want = S.settings.layout || "auto";
+  sel.value = [...sel.options].some((o) => o.value === want) ? want : "auto";
+}
+
 async function showWorkshopInfo() {
   const box = $("#set-workshop-info");
   try {
@@ -1369,16 +1383,16 @@ async function checkWorkshop() {
     const r = await api("/api/layouts/refresh", {});
     if (r.error) toast(`Couldn't reach the workshop: ${r.error}`, "err");
     await showWorkshopInfo();
+    S.meta.model_layouts = (await api("/api/meta")).model_layouts;
+    fillLayoutSelect();
     pollStatus(); // a better layout may have arrived
   } catch (e) { box.textContent = ""; toast(e.message, "err"); }
 }
 
 function openSettings() {
-  const sel = $("#set-layout");
-  sel.innerHTML = "";
-  sel.append(h("option", { value: "auto" }, "Automatic (as OpenRGB reports it)"),
-    ...S.meta.layouts.map((l) => h("option", { value: l.name }, l.title)));
-  sel.value = S.settings.layout || "auto";
+  fillLayoutSelect();
+  // the workshop may have brought new models since the app started
+  api("/api/meta").then((m) => { S.meta.model_layouts = m.model_layouts; fillLayoutSelect(); }).catch(() => {});
   $("#set-layout-info").textContent = layoutInfo(S.meta.layout);
   $("#set-layout-updates").checked = S.settings.layout_updates !== false;
   showWorkshopInfo();

@@ -71,3 +71,19 @@ def test_refresh_rejects_files_that_are_not_layouts(tmp_path):
     other = tmp_path / "other.json"
     other.write_text('{"format": "keyglow-gallery/1", "profiles": []}', encoding="utf-8")
     assert layout_sync.refresh(other.as_uri(), force=True)["error"]
+
+
+def test_model_layouts_can_be_chosen_by_hand():
+    L.WORKSHOP_MODELS[:] = [model(name="test_board")]
+    names = [c["name"] for c in L.model_choices()]
+    assert "model:test_board" in names
+    lay = L.load_layout("model:test_board")
+    assert lay.title == "Test board" and lay.source == "model:workshop" and len(lay) == 3
+    # el HyperX incluido y su copia del workshop aparecen una sola vez
+    assert sum(c["title"] == "HyperX Alloy Origins 65" for c in L.model_choices()) == 1
+
+
+def test_engine_falls_back_to_auto_when_a_chosen_model_is_gone():
+    from keyglow.app.engine import AUTO, LightEngine
+    eng = LightEngine("model:does_not_exist")
+    assert eng.layout_mode == AUTO and len(eng.layout) > 0

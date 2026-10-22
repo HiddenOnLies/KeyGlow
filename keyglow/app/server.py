@@ -22,7 +22,7 @@ from ..effects import REGISTRY
 from .. import exporters
 from ..importers import from_bytes
 from ..keynames import label
-from ..layout import BUILTIN, GROUPS
+from ..layout import BUILTIN, GROUPS, model_choices
 from . import layout_sync, library, system
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
@@ -66,6 +66,7 @@ class App:
             "effects": effects,
             "groups": {g: [k for k in keys if k in lay] for g, keys in GROUPS.items()},
             "layouts": [{"name": n, "title": f().title} for n, f in BUILTIN.items()],
+            "model_layouts": model_choices(),
             "export_formats": exporters.FORMATS,
             "openrgb_path": system.find_openrgb(self.settings.get("openrgb_path", "")),
             "openrgb_url": system.OPENRGB_URL,

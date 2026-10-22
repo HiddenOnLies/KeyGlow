@@ -263,6 +263,11 @@ def resolve_keys(selectors: list[str], layout: Layout) -> set[str]:
 def load_layout(name_or_path: str) -> Layout:
     if name_or_path in BUILTIN:
         return BUILTIN[name_or_path]()
+    if name_or_path.startswith("model:"):
+        d = _model_choices().get(name_or_path)
+        if d is None:
+            raise ValueError(f"Unknown keyboard model layout: {name_or_path[6:]}")
+        return _model_to_layout(d)
     p = Path(name_or_path)
     if p.suffix == ".json" and p.exists():
         return Layout.from_dict(json.loads(p.read_text(encoding="utf-8")))
@@ -371,17 +376,40 @@ def model_layout(usb: str = "", name: str = "", keys: set[str] | None = None) ->
         rank = (score, d["verified"], d["origin"] == "workshop")
         if score and (best_rank is None or rank > best_rank):
             best, best_rank = d, rank
-    if best is None:
-        return None
-    source = "model:workshop" if best["origin"] == "workshop" else "model"
-    if "builtin" in best:
-        base = BUILTIN[best["builtin"]]()
-        lay = Layout(base.name, best["title"], base.keys, source, usb)
+    return _model_to_layout(best, usb) if best is not None else None
+
+
+def _model_to_layout(d: dict, usb: str = "") -> Layout:
+    source = "model:workshop" if d["origin"] == "workshop" else "model"
+    if "builtin" in d:
+        base = BUILTIN[d["builtin"]]()
+        lay = Layout(base.name, d["title"], base.keys, source, usb)
     else:
-        keys = [Key(k["id"], k["x"], k["y"], k["w"], k["h"]) for k in best["keys"]]
-        lay = Layout(best.get("name") or "model", best["title"], keys, source, usb)
-    lay.verified = best["verified"]
+        keys = [Key(k["id"], k["x"], k["y"], k["w"], k["h"]) for k in d["keys"]]
+        lay = Layout(d.get("name") or "model", d["title"], keys, source, usb)
+    lay.verified = d["verified"]
     return lay
+
+
+def _model_choices() -> dict[str, dict]:
+    """Distribuciones de modelo que se pueden elegir a mano: ``{"model:<nombre>": datos}``.
+
+    Si el mismo modelo (mismo título) está incluido y en el workshop, queda una sola: la
+    verificada o, si no, la del workshop.
+    """
+    best: dict[str, dict] = {}
+    for d in _models():
+        cur = best.get(d["title"])
+        if cur is None or (d["verified"], d["origin"] == "workshop") > (cur["verified"], cur["origin"] == "workshop"):
+            best[d["title"]] = d
+    return {f"model:{d.get('name') or d['title']}": d for d in best.values()}
+
+
+def model_choices() -> list[dict]:
+    """Para la interfaz: ``[{"name": "model:...", "title", "workshop", "verified"}]``."""
+    return sorted(({"name": k, "title": d["title"], "workshop": d["origin"] == "workshop",
+                    "verified": d["verified"]} for k, d in _model_choices().items()),
+                  key=lambda c: c["title"].lower())
 
 
 def from_device(title: str, led_names: list[str],

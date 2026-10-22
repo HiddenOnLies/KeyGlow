@@ -42,11 +42,14 @@ class LightEngine:
                  port: int = 6742, device: str = "", cached_layout: dict | None = None,
                  on_layout=None):
         self.layout_mode = layout_name
-        if layout_name == AUTO:
+        if layout_name != AUTO:
+            try:
+                self.layout = load_layout(layout_name)
+            except ValueError:  # p. ej. una distribución del workshop que ya no existe
+                self.layout_mode = AUTO
+        if self.layout_mode == AUTO:
             # hasta conectar se usa la última distribución detectada (o la predeterminada)
             self.layout = Layout.from_dict(cached_layout) if cached_layout else load_layout(DEFAULT_LAYOUT)
-        else:
-            self.layout = load_layout(layout_name)
         self.layout_rev = 0
         self.on_layout = on_layout  # se llama con la distribución nueva para recordarla
         self.host, self.port, self.device_match = host, port, device
