@@ -11,3 +11,6 @@ profiles/
 preview/
 docs/captura_*.jpg
 .claude/
+
+# local USB captures (may identify your devices)
+captures/
