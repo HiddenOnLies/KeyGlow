@@ -566,14 +566,73 @@ function swatchRow(current, pick) {
     h("button", { class: hex(current) === c ? "on" : "", style: `background:${c}`, title: c, "aria-label": c, onclick: () => pick(c) })));
 }
 
+// Drag a chip sideways to reorder; a plain click still opens the color picker.
+function sortable(wrap, onMove) {
+  let drag = null;
+  wrap.addEventListener("pointerdown", (e) => {
+    const chip = e.target.closest(".c");
+    if (!chip || e.button !== 0 || e.target.closest(".x")) return;
+    drag = { chip, from: [...wrap.children].indexOf(chip), x: e.clientX, y: e.clientY, moved: false };
+  });
+  wrap.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    if (!drag.moved) {
+      if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 6) return;
+      drag.moved = true;
+      drag.chip.classList.add("dragging");
+      wrap.setPointerCapture(e.pointerId);
+    }
+    // move the chip in the DOM next to the nearest other chip, on the side the pointer is
+    const others = [...wrap.querySelectorAll(".c")].filter((c) => c !== drag.chip);
+    let best = null, dist = Infinity;
+    for (const c of others) {
+      const r = c.getBoundingClientRect();
+      const d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
+      if (d < dist) { dist = d; best = c; }
+    }
+    if (!best) return;
+    const r = best.getBoundingClientRect();
+    const after = e.clientX > r.left + r.width / 2;
+    const ref = after ? best.nextSibling : best;
+    if (ref !== drag.chip && ref !== drag.chip.nextSibling) wrap.insertBefore(drag.chip, ref);
+  });
+  const end = () => {
+    if (!drag) return;
+    const { chip, from, moved } = drag;
+    drag = null;
+    chip.classList.remove("dragging");
+    if (!moved) return;
+    // swallow the click that ends the drag, so it doesn't open the color picker
+    const swallow = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
+    wrap.addEventListener("click", swallow, true);
+    setTimeout(() => wrap.removeEventListener("click", swallow, true), 50);
+    const to = [...wrap.querySelectorAll(".c")].indexOf(chip);
+    if (to !== from) onMove(from, to);
+  };
+  wrap.addEventListener("pointerup", end);
+  wrap.addEventListener("pointercancel", end);
+}
+
 function colorList(l, val) {
-  const wrap = h("div", { class: "colors" });
+  const wrap = h("div", { class: "colors", title: "Drag a color to change the order" });
+  const move = (from, to) => {
+    const [c] = l.params.colors.splice(from, 1);
+    l.params.colors.splice(to, 0, c);
+    commit({ rerender: false }); draw(); renderTiles();
+    wrap.querySelectorAll('input[type="color"]')[to]?.focus();
+  };
   const draw = () => {
     wrap.innerHTML = "";
     l.params.colors = l.params.colors || clone(val);
     l.params.colors.forEach((c, i) => {
-      wrap.append(h("div", { class: "c" },
-        colorInput(c, live((v) => { l.params.colors[i] = v; }), `Color ${i + 1}`),
+      const inp = colorInput(c, live((v) => { l.params.colors[i] = v; }), `Color ${i + 1} (Alt+arrows to move)`);
+      inp.addEventListener("keydown", (e) => {
+        const to = i + (e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0);
+        if (!e.altKey || to === i || to < 0 || to >= l.params.colors.length) return;
+        e.preventDefault();
+        move(i, to);
+      });
+      wrap.append(h("div", { class: "c" }, inp,
         l.params.colors.length > 1 ? h("button", { class: "x", title: "Remove", "aria-label": "Remove color", onclick: () => { l.params.colors.splice(i, 1); commit({ rerender: false }); draw(); renderTiles(); } }, "✕") : null));
     });
     if (l.params.colors.length < 8) {
@@ -584,6 +643,7 @@ function colorList(l, val) {
     }
   };
   draw();
+  sortable(wrap, move);
   return field("Colors", wrap);
 }
 

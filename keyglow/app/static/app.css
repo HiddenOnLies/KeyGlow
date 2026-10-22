@@ -377,3 +377,8 @@ input[type=checkbox] { accent-color: var(--hi); width: 15px; height: 15px; }
 .flabel .num:focus { border-color: var(--hi); }
 .num-wrap { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font: 400 11.5px var(--mono); }
 .num-wrap .num { width: 52px; }
+
+/* reordenar colores arrastrando */
+.colors .c { touch-action: none; cursor: grab; }
+.colors .c.dragging { cursor: grabbing; transform: scale(1.15); z-index: 2; filter: drop-shadow(0 4px 10px #000); }
+.colors .c.dragging .x { display: none; }
