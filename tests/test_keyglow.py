@@ -166,9 +166,24 @@ def test_example_profiles_load(tmp_path):
 
 def test_device_layout_exact_model_by_usb_id():
     from keyglow.layout import from_device
-    names, matrix = _fake_matrix(load_layout("ansi_tkl"))  # aunque las teclas no coincidan
+    names, matrix = _fake_matrix(load_layout("alloy_origins_65"))
     lay = from_device("Some keyboard", names, matrix, usb="03F0:038F")
     assert lay.name == "alloy_origins_65" and lay.source == "model" and lay.usb == "03f0:038f"
+    # mismo USB pero teclas que la distribución del modelo no tiene: no se usa
+    names, matrix = _fake_matrix(load_layout("ansi_tkl"))
+    assert from_device("Some keyboard", names, matrix, usb="03F0:038F").source == "standard:ansi_tkl"
+
+
+def test_device_layout_extra_key_goes_next_to_its_matrix_neighbour():
+    from keyglow.layout import Key, Layout, from_device
+    base = load_layout("ansi_75")
+    # un 75% con INSERT donde el estándar tiene HOME (fila de los números, a la derecha)
+    keys = [Key("INSERT" if k.id == "HOME" else k.id, k.x, k.y, k.w, k.h)
+            for k in base.keys if k.id not in ("PRINTSCREEN", "END")]
+    names, matrix = _fake_matrix(Layout("x", "x", keys))
+    lay = from_device("75 with insert", names, matrix)
+    ins, bksp = lay.get("INSERT"), lay.get("BACKSPACE")
+    assert ins.y == bksp.y and ins.x == bksp.x + bksp.w
 
 
 def test_device_layout_moves_keys_the_matrix_puts_in_another_row():

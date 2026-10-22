@@ -352,16 +352,22 @@ def _models() -> list[dict]:
     return out
 
 
-def model_layout(usb: str = "", name: str = "") -> Layout | None:
+def model_layout(usb: str = "", name: str = "", keys: set[str] | None = None) -> Layout | None:
     """La distribución exacta de ese modelo, si está en la base de datos (incluida o workshop).
 
-    El identificador USB manda sobre el nombre. Si dos distribuciones encajan igual, gana la
-    verificada en hardware real y, después, la del workshop (más reciente que la incluida).
+    El identificador USB manda sobre el nombre. Con ``keys`` (las teclas que informa el
+    teclado), solo valen distribuciones que las tengan todas: así se distinguen variantes
+    con el mismo USB (p. ej. ANSI e ISO). Si dos encajan igual, gana la verificada en
+    hardware real y, después, la del workshop (más reciente que la incluida).
     """
     usb, name = usb.lower(), name.lower()
     best, best_rank = None, None
     for d in _models():
         score = 1000 if usb and usb in d["usb"] else             max((len(n) for n in d["names"] if name and n.lower() in name), default=0)
+        if keys:
+            ids = set(BUILTIN[d["builtin"]]().ids) if "builtin" in d else {k["id"] for k in d["keys"]}
+            if not keys <= ids:
+                continue
         rank = (score, d["verified"], d["origin"] == "workshop")
         if score and (best_rank is None or rank > best_rank):
             best, best_rank = d, rank
@@ -392,11 +398,11 @@ def from_device(title: str, led_names: list[str],
        macros...) se colocan según la matriz.
     3. La cuadrícula de la matriz tal cual, si el teclado no se parece a ninguna.
     """
-    exact = model_layout(usb, title)
-    if exact is not None:
-        return exact
     ids = [keynames.normalize(n) if n.strip() else None for n in led_names]
     have = {k for k in ids if k}
+    exact = model_layout(usb, title, have)
+    if exact is not None:
+        return exact
     if not have:
         raise ValueError(f"{title}: no LED looks like a key")
     cells = _matrix_cells(ids, matrix)
@@ -489,6 +495,20 @@ def _place_extras(base: Layout, keys: list[Key], cells, missing: set[str]) -> li
             continue
         r = sum(r for r, _ in cells[kid]) / len(cells[kid])
         c = sum(c for _, c in cells[kid]) / len(cells[kid])
+        # primero, justo al lado de su vecina de la misma fila de la matriz (la recta de
+        # ajuste es aproximada: con filas de anchos distintos puede caer encima de otra tecla)
+        row = min(rr for rr, _ in cells[kid])
+        col = min(cc for rr, cc in cells[kid] if rr == row)
+        same = [(min(cc for rr, cc in cells[o.id] if rr == row), o) for o in taken
+                if o.id in cells and any(rr == row for rr, _ in cells[o.id])]
+        left = max(((cc, o) for cc, o in same if cc < col), default=None, key=lambda t: t[0])
+        right = min(((cc, o) for cc, o in same if cc > col), default=None, key=lambda t: t[0])
+        candidates = ([Key(kid, left[1].x + left[1].w, left[1].y)] if left else []) +                      ([Key(kid, right[1].x - 1, right[1].y)] if right else [])
+        key = next((k for k in candidates if not any(_overlaps(k, o) for o in taken)), None)
+        if key is not None:
+            placed.append(key)
+            taken.append(key)
+            continue
         key = Key(kid, ax * c + bx - 0.5, ay * r + by - 0.5)
         # si cae encima de otra tecla, se sube a una fila nueva por encima
         while any(_overlaps(key, o) for o in taken):
