@@ -14,6 +14,7 @@ $py = Join-Path $root ".venv\Scripts\python.exe"
     --add-data "$root\keyglow\app\static;keyglow\app\static" `
     --add-data "$root\keyglow\presets;keyglow\presets" `
     --add-data "$root\keyglow\community;keyglow\community" `
+    --add-data "$root\keyglow\layouts;keyglow\layouts" `
     --hidden-import pystray._win32 `
     --hidden-import openrgb `
     --hidden-import hid `

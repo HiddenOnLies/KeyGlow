@@ -37,10 +37,13 @@ class Key:
 
 
 class Layout:
-    def __init__(self, name: str, title: str, keys: list[Key]):
+    def __init__(self, name: str, title: str, keys: list[Key], source: str = "", usb: str = ""):
         self.name = name
         self.title = title
         self.keys = keys
+        # de dónde sale: "model" (exacta para ese modelo), "standard:<n>", "adapted:<n>", "matrix"
+        self.source = source
+        self.usb = usb  # VID:PID del teclado del que se obtuvo, si se sabe
         self._by_id = {k.id: k for k in keys}
         self.width = max(k.x + k.w for k in keys)
         self.height = max(k.y + k.h for k in keys)
@@ -63,16 +66,21 @@ class Layout:
         return key.cx / self.width, key.cy / self.height
 
     def to_dict(self) -> dict:
-        return {
+        out = {
             "name": self.name,
             "title": self.title,
             "keys": [{"id": k.id, "x": k.x, "y": k.y, "w": k.w, "h": k.h} for k in self.keys],
         }
+        if self.source:
+            out["source"] = self.source
+        if self.usb:
+            out["usb"] = self.usb
+        return out
 
     @classmethod
     def from_dict(cls, d: dict) -> Layout:
         keys = [Key(k["id"], k["x"], k["y"], k.get("w", 1.0), k.get("h", 1.0)) for k in d["keys"]]
-        return cls(d["name"], d.get("title", d["name"]), keys)
+        return cls(d["name"], d.get("title", d["name"]), keys, d.get("source", ""), d.get("usb", ""))
 
 
 def _build(rows: list[tuple[float, list]]) -> list[Key]:
@@ -260,16 +268,57 @@ def load_layout(name_or_path: str) -> Layout:
 # ---------------------------------------------------------------------------
 # Distribución automática a partir de lo que informa el dispositivo (OpenRGB)
 # ---------------------------------------------------------------------------
+# Distribuciones exactas de modelos concretos: keyglow/layouts/*.json, con
+# {"usb": ["vvvv:pppp"], "names": [...], "title": ..., "builtin": "<nombre>" o "keys": [...]}
+MODELS_DIR = Path(__file__).resolve().parent / "layouts"
+
+
+def _models() -> list[dict]:
+    out = []
+    for f in sorted(MODELS_DIR.glob("*.json")):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        d.setdefault("name", f.stem)
+        out.append(d)
+    return out
+
+
+def model_layout(usb: str = "", name: str = "") -> Layout | None:
+    """La distribución exacta de ese modelo, si está en la base de datos."""
+    usb, name = usb.lower(), name.lower()
+    best, best_score = None, 0
+    for d in _models():
+        score = 1000 if usb and usb in [u.lower() for u in d.get("usb", [])] else             max((len(n) for n in d.get("names", []) if name and n.lower() in name), default=0)
+        if score > best_score:  # el identificador USB manda; si no, el nombre más largo
+            best, best_score = d, score
+    if best is None:
+        return None
+    if "builtin" in best:
+        base = BUILTIN[best["builtin"]]()
+        return Layout(base.name, best.get("title", base.title), base.keys, "model", usb)
+    base = Layout.from_dict(best)
+    return Layout(base.name, best.get("title", base.title), base.keys, "model", usb)
+
+
 def from_device(title: str, led_names: list[str],
-                matrix: list[list[int | None]] | None = None) -> Layout:
+                matrix: list[list[int | None]] | None = None, usb: str = "") -> Layout:
     """Construye la distribución de un teclado concreto.
 
     ``led_names`` son los nombres de sus LEDs (``"Key: Left Control"``...) y ``matrix``
     la cuadrícula filas x columnas con el índice de LED de cada celda (o ``None``),
-    tal como la da OpenRGB. Se usa la distribución incluida que mejor encaja, recortada
-    a las teclas que el teclado tiene; las que no estén en ella (teclas multimedia,
-    macros...) se colocan según su posición en la matriz.
+    tal como la da OpenRGB. Por orden de preferencia:
+
+    1. La distribución exacta del modelo (``usb`` = ``"vvvv:pppp"`` o por nombre).
+    2. La distribución estándar que mejor encaja, recortada a sus teclas; las teclas que
+       la matriz pone en otra fila se recolocan, y las que no existen en ella (multimedia,
+       macros...) se colocan según la matriz.
+    3. La cuadrícula de la matriz tal cual, si el teclado no se parece a ninguna.
     """
+    exact = model_layout(usb, title)
+    if exact is not None:
+        return exact
     ids = [keynames.normalize(n) if n.strip() else None for n in led_names]
     have = {k for k in ids if k}
     if not have:
@@ -285,15 +334,50 @@ def from_device(title: str, led_names: list[str],
     if len(common) < 0.6 * len(have):
         if not cells:
             raise ValueError(f"{title}: unknown key arrangement and no matrix to build it from")
-        return Layout("device", title, _grid_keys(cells))
+        return Layout("device", title, _grid_keys(cells), "matrix", usb)
     keys = [k for k in best.keys if k.id in have]
+    moved = _fix_rows(keys, cells)
     missing = have - common
     # Si solo faltan un par de teclas (p. ej. una sin LED propio), se deja la distribución
     # completa: esas teclas se ven apagadas, pero el dibujo sigue siendo el del teclado.
-    if not missing and len(best) - len(keys) <= 3:
-        return best
+    if not missing and not moved and len(best) - len(keys) <= 3:
+        return Layout(best.name, best.title, best.keys, f"standard:{best.name}", usb)
     keys += _place_extras(best, keys, cells, missing)
-    return Layout("device", title, _shift_to_origin(keys))
+    return Layout("device", title, _shift_to_origin(keys), f"adapted:{best.name}", usb)
+
+
+def _fix_rows(keys: list[Key], cells) -> int:
+    """Recoloca (en ``keys``) las teclas que la matriz pone en otra fila que la distribución
+    estándar, junto a sus vecinas de esa fila. Devuelve cuántas ha movido."""
+    if not cells:
+        return 0
+    row_of = {k.id: min(r for r, _ in cells[k.id]) for k in keys if k.id in cells}
+    col_of = {k.id: min(c for r, c in cells[k.id] if r == row_of[k.id]) for k in keys if k.id in cells}
+    # altura (y) de cada fila de la matriz: la que tienen la mayoría de sus teclas
+    row_y: dict[int, float] = {}
+    for r in set(row_of.values()):
+        ys = [k.y for k in keys if row_of.get(k.id) == r]
+        if len(ys) >= 3:
+            row_y[r] = max(set(ys), key=ys.count)
+    wrong = [k for k in keys if k.id in row_of and row_of[k.id] in row_y
+             and abs(k.y - row_y[row_of[k.id]]) > 0.3 and k.h <= 1]
+    # todas a la vez: dos teclas intercambiadas no deben estorbarse en su sitio antiguo
+    fixed = [o for o in keys if o not in wrong]
+    placed: dict[str, Key] = {}
+    for k in wrong:
+        r = row_of[k.id]
+        same = sorted((o for o in fixed if row_of.get(o.id) == r), key=lambda o: col_of[o.id])
+        left = [o for o in same if col_of[o.id] < col_of[k.id]]
+        right = [o for o in same if col_of[o.id] > col_of[k.id]]
+        candidates = ([left[-1].x + left[-1].w] if left else []) + ([right[0].x - 1] if right else [])
+        for x in candidates:
+            new = Key(k.id, x, row_y[r])
+            if not any(_overlaps(new, o) for o in [*fixed, *placed.values()]):
+                placed[k.id] = new
+                break
+    for i, k in enumerate(keys):
+        keys[i] = placed.get(k.id, k)
+    return len(placed)
 
 
 def _matrix_cells(ids: list[str | None], matrix) -> dict[str, list[tuple[int, int]]]:

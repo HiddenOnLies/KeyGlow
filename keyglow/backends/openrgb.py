@@ -9,6 +9,7 @@ limita a mandarle colores por tecla. Requisitos:
 
 from __future__ import annotations
 
+import re
 import time
 
 from .. import onboard
@@ -77,7 +78,14 @@ class OpenRGBKeyboard:
             for row in zone.matrix_map or []:
                 matrix.append([None if i is None else start + i for i in row])
             start += len(zone.leds)
-        return from_device(self.device.name, [led.name for led in self.device.leds], matrix)
+        return from_device(self.device.name, [led.name for led in self.device.leds], matrix,
+                           self.usb_id)
+
+    @property
+    def usb_id(self) -> str:
+        """``"vvvv:pppp"`` sacado de la ubicación que da OpenRGB (``HID: ...VID_xxxx&PID_yyyy...``)."""
+        m = re.search(r"VID_([0-9A-F]{4})&PID_([0-9A-F]{4})", self.device.data.metadata.location or "", re.I)
+        return f"{m.group(1)}:{m.group(2)}".lower() if m else ""
 
     def describe(self) -> dict:
         """Descripción del teclado en el formato de los perfiles .json de OpenRGB."""

@@ -362,3 +362,6 @@ input[type=checkbox] { accent-color: var(--hi); width: 15px; height: 15px; }
 .steps span { color: var(--muted); font-size: 12.5px; }
 .steps a { color: var(--text); }
 .steps button { justify-self: start; margin-top: 8px; padding: 5px 12px; font-size: 12.5px; }
+.layout-info { margin: -6px 0 12px; }
+.link-btn { background: none; border: none; padding: 0; color: var(--text); text-decoration: underline; text-underline-offset: 3px; font-size: 12px; }
+.link-btn:hover { background: none; color: var(--hi); }

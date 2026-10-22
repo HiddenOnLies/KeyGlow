@@ -162,3 +162,30 @@ def test_example_profiles_load(tmp_path):
         Renderer(out, load_layout("alloy_origins_65")).frame(0.5)
         out.save(tmp_path / f.name)
         json.loads((tmp_path / f.name).read_text())
+
+
+def test_device_layout_exact_model_by_usb_id():
+    from keyglow.layout import from_device
+    names, matrix = _fake_matrix(load_layout("ansi_tkl"))  # aunque las teclas no coincidan
+    lay = from_device("Some keyboard", names, matrix, usb="03F0:038F")
+    assert lay.name == "alloy_origins_65" and lay.source == "model" and lay.usb == "03f0:038f"
+
+
+def test_device_layout_moves_keys_the_matrix_puts_in_another_row():
+    from keyglow.layout import Key, Layout, from_device
+    base = load_layout("ansi_75")
+    # un 75% cuyo HOME está en la fila de PAGE_DOWN y al revés
+    home, pgdn = base.get("HOME"), base.get("PAGE_DOWN")
+    keys = [Key(k.id, k.x, pgdn.y if k.id == "HOME" else home.y if k.id == "PAGE_DOWN" else k.y, k.w, k.h)
+            for k in base.keys]
+    names, matrix = _fake_matrix(Layout("x", "x", keys))
+    lay = from_device("Odd 75", names, matrix)
+    assert lay.source == "adapted:ansi_75"
+    assert lay.get("HOME").y == pgdn.y and lay.get("PAGE_DOWN").y == home.y
+
+
+def test_device_layout_standard_source():
+    from keyglow.layout import from_device
+    names, matrix = _fake_matrix(load_layout("iso_tkl"))
+    lay = from_device("Plain ISO TKL", names, matrix)
+    assert lay.name == "iso_tkl" and lay.source == "standard:iso_tkl"

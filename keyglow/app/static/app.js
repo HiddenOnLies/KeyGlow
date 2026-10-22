@@ -1114,6 +1114,7 @@ function setupDialogs() {
 
   // details
   $("#exp-go").addEventListener("click", exportProfile);
+  $("#set-layout-export").addEventListener("click", exportLayout);
   $("#details-ok").addEventListener("click", () => {
     const author = $("#p-author").value.trim();
     const desc = $("#p-desc").value.trim();
@@ -1240,12 +1241,40 @@ function setupGames() {
   });
 }
 
+// Where the keyboard drawing comes from (see layout.from_device)
+function layoutInfo(lay) {
+  const [kind, base] = (lay.source || "").split(":");
+  const title = (S.meta.layouts.find((l) => l.name === base) || {}).title || base;
+  const fix = " If it doesn't match your keyboard, export it, fix it and share it (see the Compatibility docs).";
+  if (kind === "model") return `Exact layout for the ${lay.title}.`;
+  if (kind === "standard") return `Detected: standard ${title} layout.` + fix;
+  if (kind === "adapted") return `Detected: adapted from ${title} using OpenRGB's key map.` + fix;
+  if (kind === "matrix") return "Detected: built from OpenRGB's key map (approximate)." + fix;
+  return `Using the ${lay.title} layout.`;
+}
+
+function exportLayout() {
+  const lay = S.meta.layout;
+  const out = {
+    title: S.status.device || lay.title,
+    ...(lay.usb ? { usb: [lay.usb] } : {}),
+    ...(S.status.device ? { names: [S.status.device] } : {}),
+    keys: lay.keys,
+  };
+  const name = (out.title || "keyboard").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const blob = new Blob([JSON.stringify(out, null, 2) + "\n"], { type: "application/json" });
+  const a = h("a", { href: URL.createObjectURL(blob), download: `${name}.json` });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
 function openSettings() {
   const sel = $("#set-layout");
   sel.innerHTML = "";
   sel.append(h("option", { value: "auto" }, "Automatic (as OpenRGB reports it)"),
     ...S.meta.layouts.map((l) => h("option", { value: l.name }, l.title)));
   sel.value = S.settings.layout || "auto";
+  $("#set-layout-info").textContent = layoutInfo(S.meta.layout);
   $("#set-device").value = S.settings.openrgb_device || "";
   $("#set-community").value = S.settings.community_url || "";
   $("#set-fps").value = S.settings.fps || 30;

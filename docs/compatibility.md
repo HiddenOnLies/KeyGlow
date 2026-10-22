@@ -8,18 +8,37 @@ so spatial effects (waves, gradients, ripples) look right.
 
 ### Automatic layout (default)
 
-When KeyGlow connects, it reads the keyboard's LED names and key matrix from OpenRGB and builds
-the layout itself:
+When KeyGlow connects, it reads the keyboard's USB ID, LED names and key matrix from OpenRGB
+and picks the most specific layout it can:
 
-1. It picks the built-in layout that fits the keyboard's keys best (see below).
-2. It trims it to the keys the keyboard actually has.
-3. Keys that aren't in any built-in layout (media keys, macro keys…) are placed using their
-   position in OpenRGB's key matrix.
-4. If the keyboard doesn't look like any standard layout at all (a macro pad, for instance),
+1. **Exact layout for the model**, if the keyboard is in KeyGlow's model database
+   (`keyglow/layouts/`), recognized by its USB ID (or its name).
+2. Otherwise, the **standard layout** that fits its keys best (see below), trimmed to the keys
+   the keyboard actually has. Keys that OpenRGB's matrix puts in a different row (a 75% whose
+   right column is in another order, for example) are moved next to their real neighbors, and
+   keys that aren't in any standard layout (media keys, macro keys…) are placed from the matrix.
+3. If the keyboard doesn't look like any standard layout at all (a macro pad, for instance),
    KeyGlow uses the matrix grid directly.
 
-The layout is remembered, so the app starts with the right keyboard drawing even before
-OpenRGB answers. You can force a layout in *Settings → Keyboard layout*.
+*Settings → Keyboard layout* shows which of these was used. The layout is remembered, so the
+app starts with the right drawing even before OpenRGB answers. You can also force a layout there.
+
+### Contributing the exact layout of your keyboard
+
+If the drawing doesn't match your keyboard:
+
+1. *Settings → Export this layout* saves a `.json` with your keyboard's keys, its USB ID and name.
+2. Fix the positions (`x`, `y` in key units, `w`/`h` for wide or tall keys). Each key is
+   `{"id": "LSHIFT", "x": 0, "y": 3, "w": 2.25}`; run `keyglow layout ansi_full --json` to see
+   a complete example.
+3. Add it to `keyglow/layouts/` in a pull request, or attach it to a
+   [keyboard report](https://github.com/HiddenOnLies/KeyGlow/issues/new?template=keyboard_report.yml).
+
+A model file can also reuse a built-in layout instead of listing keys:
+
+```json
+{"title": "HyperX Alloy Origins 65", "usb": ["03f0:038f"], "builtin": "alloy_origins_65"}
+```
 
 If OpenRGB sees more than one keyboard, set *Settings → Keyboard to use* to part of its name.
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- **Keyboard-specific layouts**: KeyGlow recognizes keyboards by their USB ID (read from
+  OpenRGB) and uses an exact layout from its model database (`keyglow/layouts/`) when there is
+  one. Otherwise it adapts the closest standard layout and now also moves keys that OpenRGB's
+  matrix places in a different row.
+- *Settings* shows where the keyboard drawing comes from and can export it, so users can
+  contribute exact layouts for their models.
+
 ## 0.2.0
 
 - **Any keyboard**: the layout is detected automatically from OpenRGB (LED names and key
