@@ -365,3 +365,15 @@ input[type=checkbox] { accent-color: var(--hi); width: 15px; height: 15px; }
 .layout-info { margin: -6px 0 12px; }
 .link-btn { background: none; border: none; padding: 0; color: var(--text); text-decoration: underline; text-underline-offset: 3px; font-size: 12px; }
 .link-btn:hover { background: none; color: var(--hi); }
+
+/* número editable junto a cada deslizador */
+.flabel .num {
+  width: 64px; padding: 2px 6px; text-align: right; font: 400 11.5px var(--mono);
+  text-transform: none; letter-spacing: 0; color: var(--text);
+  background: var(--bg); border: 1px solid var(--line2); border-radius: 4px;
+  -moz-appearance: textfield;
+}
+.flabel .num::-webkit-inner-spin-button, .flabel .num::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.flabel .num:focus { border-color: var(--hi); }
+.num-wrap { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font: 400 11.5px var(--mono); }
+.num-wrap .num { width: 52px; }

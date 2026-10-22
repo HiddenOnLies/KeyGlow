@@ -481,24 +481,40 @@ function field(label, control, value) {
     h("div", { class: "label flabel" }, h("span", {}, label), value ?? null), control);
 }
 
+// Editable number shown next to a slider, so exact values can be read, copied and typed in
+function numBox(range, value, label, onValue) {
+  const decimals = range.step >= 1 ? 0 : Math.min(3, Math.ceil(-Math.log10(range.step)));
+  const fmt = (v) => (+v).toFixed(decimals);
+  const box = h("input", { type: "number", class: "num", min: range.min, max: range.max, step: range.step,
+    value: fmt(value), "aria-label": `${label} value` });
+  const read = () => {
+    const v = parseFloat(box.value);
+    return Number.isFinite(v) ? Math.min(range.max, Math.max(range.min, v)) : null;
+  };
+  box.addEventListener("input", () => { const v = read(); if (v !== null) onValue(v, false); });
+  box.addEventListener("change", () => { const v = read(); if (v === null) return; box.value = fmt(v); onValue(v, true); });
+  box.addEventListener("keydown", (e) => { if (e.key === "Enter") box.blur(); });
+  box.show = (v) => { if (document.activeElement !== box) box.value = fmt(v); };
+  return box;
+}
+
 function slider(name, value, onChange, label) {
   const [min, max, step, lo, hi] = RANGES[name] || [0, 1, 0.01, null, null];
   label = label || PARAM_NAMES[name] || name;
   const inp = h("input", { type: "range", min, max, step, value, "aria-label": label });
-  // with captions the number is hidden; plain numeric params (bpm, variation) show it
-  const out = lo ? null : h("output", {}, String(Math.round(value)));
-  inp.addEventListener("input", () => { if (out) out.textContent = String(Math.round(+inp.value)); onChange(+inp.value, false); });
+  const num = numBox({ min, max, step }, value, label, (v, final) => { inp.value = v; syncRange(inp); onChange(v, final); });
+  inp.addEventListener("input", () => { num.show(inp.value); onChange(+inp.value, false); });
   inp.addEventListener("change", () => onChange(+inp.value, true));
   const control = lo ? h("div", {}, inp, h("div", { class: "ends" }, h("span", {}, lo), h("span", {}, hi))) : inp;
-  return field(label, control, out);
+  return field(label, control, num);
 }
 
 function percent(label, value, onChange) {
-  const out = h("output", {}, `${value}%`);
   const inp = h("input", { type: "range", min: 0, max: 100, step: 1, value, "aria-label": label });
-  inp.addEventListener("input", () => { out.textContent = `${inp.value}%`; onChange(+inp.value, false); });
+  const num = numBox({ min: 0, max: 100, step: 1 }, value, label, (v, final) => { inp.value = v; syncRange(inp); onChange(v, final); });
+  inp.addEventListener("input", () => { num.show(inp.value); onChange(+inp.value, false); });
   inp.addEventListener("change", () => onChange(+inp.value, true));
-  return field(label, inp, out);
+  return field(label, inp, h("span", { class: "num-wrap" }, num, "%"));
 }
 
 function colorInput(value, onChange, label = "Color") {
@@ -508,7 +524,6 @@ function colorInput(value, onChange, label = "Color") {
   return inp;
 }
 
-// Slider/color changes update the preview while dragging and enter history on release.
 function live(apply) {
   return (v, final) => {
     apply(v);
