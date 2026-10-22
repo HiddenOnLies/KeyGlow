@@ -87,6 +87,7 @@ Run `keyglow --help` for everything else.
 ## Documentation
 
 - [Compatibility](docs/compatibility.md): keyboards, layouts and other programs' formats
+- [KeyGlow workshop](https://github.com/HiddenOnLies/KeyGlow-layouts): community keyboard layouts the app downloads (add yours!)
 - [Profile format](docs/profile-format.md): layers, effects, key groups, galleries
 - [Profile sources](docs/profile-sources.md): where the included profiles come from, and candidates
 - [Contributing](CONTRIBUTING.md): development setup and repository layout
