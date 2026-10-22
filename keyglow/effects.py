@@ -368,8 +368,10 @@ class Reactive(Effect):
     def color(self, k, t):
         from . import input as keyinput
         now = time.monotonic()
-        if self._t is None or now - self._t > 0.005:  # una lectura por fotograma, no una por tecla
-            self._t = now
+        # una lectura por fotograma, no una por tecla: todas las teclas de un fotograma comparten t
+        # (no se usa el reloj: en Windows avanza a saltos de ~15 ms y repetiría lecturas viejas)
+        if self._t != t:
+            self._t = t
             self._events = keyinput.recent(max(self.p["duration"], 0.05) * 2)
         dur = max(self.p["duration"], 0.05)
         best, best_c = 0.0, None
