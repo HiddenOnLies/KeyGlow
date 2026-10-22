@@ -103,6 +103,15 @@ class LightEngine:
         if self.on_layout:
             self.on_layout(layout)
 
+    def refresh_layout(self) -> None:
+        """Vuelve a elegir la distribución (p. ej. al llegar distribuciones nuevas del workshop)."""
+        with self._lock:
+            if self.layout_mode == AUTO and self._kb is not None:
+                try:
+                    self._set_layout(self._kb.layout())
+                except ValueError:
+                    pass
+
     def set_layout_mode(self, mode: str, device: str | None = None) -> None:
         """Cambia la distribución: ``"auto"`` (la que informa OpenRGB) o un nombre/ruta."""
         changed_device = device is not None and device != self.device_match

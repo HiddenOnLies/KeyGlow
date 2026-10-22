@@ -100,6 +100,39 @@ def cmd_export(a):
     print(f"Exported '{profile.name}' as {exporters.FORMATS[a.format]} to {out}")
 
 
+def cmd_workshop(a):
+    """Comprueba distribuciones de modelo y las empaqueta para el workshop."""
+    import datetime
+    from pathlib import Path
+
+    from .layout import Key, _overlaps, validate_model
+    files = sorted(f for p in a.paths for f in (Path(p).glob("*.json") if Path(p).is_dir() else [Path(p)]))
+    good, bad = [], 0
+    for f in files:
+        try:
+            d = validate_model(json.loads(f.read_text(encoding="utf-8")))
+        except (OSError, ValueError) as e:
+            print(f"FAIL  {f.name}: {e}")
+            bad += 1
+            continue
+        keys = [Key(k["id"], k["x"], k["y"], k["w"], k["h"]) for k in d.get("keys", [])]
+        clash = [f"{x.id}/{y.id}" for i, x in enumerate(keys) for y in keys[i + 1:] if _overlaps(x, y)]
+        if clash:
+            print(f"FAIL  {f.name}: overlapping keys {', '.join(clash[:5])}")
+            bad += 1
+            continue
+        good.append({"name": f.stem, **d})
+        print(f"ok    {f.name}: {d['title']} ({'built-in ' + d['builtin'] if 'builtin' in d else str(len(keys)) + ' keys'}"
+              f"{', verified' if d['verified'] else ''})")
+    if a.bundle:
+        doc = {"format": "keyglow-layouts/1",
+               "generated": datetime.date.today().isoformat(), "layouts": good}
+        Path(a.bundle).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"Wrote {len(good)} layouts to {a.bundle}")
+    if bad:
+        raise ValueError(f"{bad} layout(s) failed")
+
+
 def cmd_apply(a):
     from .backends.openrgb import OpenRGBKeyboard, run
     profile, target = _prepare(a.profile, a.layout, a.source)
@@ -203,6 +236,11 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--layout", default=DEFAULT_LAYOUT)
     openrgb_opts(sp)
     sp.set_defaults(func=cmd_capture)
+
+    sp = sub.add_parser("workshop", help="check keyboard layout files and bundle them for the workshop")
+    sp.add_argument("paths", nargs="+", help="layout .json files or folders")
+    sp.add_argument("--bundle", metavar="FILE", help="also write the bundle (layouts.json) the app downloads")
+    sp.set_defaults(func=cmd_workshop)
 
     sp = sub.add_parser("probe", help="look for HyperX keyboards over USB/HID")
     sp.add_argument("--all", action="store_true", help="show every HID device")

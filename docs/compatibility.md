@@ -23,24 +23,30 @@ and picks the most specific layout it can:
 *Settings → Keyboard layout* shows which of these was used. The layout is remembered, so the
 app starts with the right drawing even before OpenRGB answers. You can also force a layout there.
 
-### Contributing the exact layout of your keyboard
+### Exact layouts and the KeyGlow workshop
 
-If the drawing doesn't match your keyboard:
+Exact layouts for specific models come from two places:
+
+- the ones **bundled** with the app (`keyglow/layouts/`), and
+- the **[KeyGlow workshop](https://github.com/HiddenOnLies/KeyGlow-layouts)**, a separate repository
+  the app checks at most once a day (*Settings → Download keyboard layouts from the KeyGlow
+  workshop*, on by default; *Check now* forces it).
+
+The app downloads **one file with every layout** and looks up your keyboard locally, so no one
+learns which keyboard you have. The file is cached, so KeyGlow works offline, and every layout
+is validated before use (layouts are data, never code). If two layouts match a keyboard, the
+one verified on real hardware wins, then the workshop's (newer) over the bundled one.
+
+### Contributing the exact layout of your keyboard
 
 1. *Settings → Export this layout* saves a `.json` with your keyboard's keys, its USB ID and name.
 2. Fix the positions (`x`, `y` in key units, `w`/`h` for wide or tall keys). Each key is
    `{"id": "LSHIFT", "x": 0, "y": 3, "w": 2.25}`; run `keyglow layout ansi_full --json` to see
    a complete example.
-3. Add it to `keyglow/layouts/` in a pull request, or attach it to a
-   [keyboard report](https://github.com/HiddenOnLies/KeyGlow/issues/new?template=keyboard_report.yml).
-
-A model file can also reuse a built-in layout instead of listing keys:
-
-```json
-{"title": "HyperX Alloy Origins 65", "usb": ["03f0:038f"], "builtin": "alloy_origins_65"}
-```
-
-If OpenRGB sees more than one keyboard, set *Settings → Keyboard to use* to part of its name.
+3. Check it with `keyglow workshop my-keyboard.json`.
+4. Send it to the [workshop](https://github.com/HiddenOnLies/KeyGlow-layouts) as a pull request,
+   or attach it to a [keyboard report](https://github.com/HiddenOnLies/KeyGlow/issues/new?template=keyboard_report.yml).
+   Set `"verified": true` only if you tested it on the keyboard itself.
 
 ### Built-in layouts
 

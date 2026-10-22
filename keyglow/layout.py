@@ -8,6 +8,7 @@ teclado, y rellenar teclas que no existían en el teclado original por proximida
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -44,6 +45,7 @@ class Layout:
         # de dónde sale: "model" (exacta para ese modelo), "standard:<n>", "adapted:<n>", "matrix"
         self.source = source
         self.usb = usb  # VID:PID del teclado del que se obtuvo, si se sabe
+        self.verified: bool | None = None  # para distribuciones de modelo: probada en hardware
         self._by_id = {k.id: k for k in keys}
         self.width = max(k.x + k.w for k in keys)
         self.height = max(k.y + k.h for k in keys)
@@ -75,6 +77,8 @@ class Layout:
             out["source"] = self.source
         if self.usb:
             out["usb"] = self.usb
+        if self.verified is not None:
+            out["verified"] = self.verified
         return out
 
     @classmethod
@@ -268,38 +272,110 @@ def load_layout(name_or_path: str) -> Layout:
 # ---------------------------------------------------------------------------
 # Distribución automática a partir de lo que informa el dispositivo (OpenRGB)
 # ---------------------------------------------------------------------------
-# Distribuciones exactas de modelos concretos: keyglow/layouts/*.json, con
-# {"usb": ["vvvv:pppp"], "names": [...], "title": ..., "builtin": "<nombre>" o "keys": [...]}
+# Distribuciones exactas de modelos concretos. Vienen de dos sitios:
+# - keyglow/layouts/*.json, incluidas en la app;
+# - el workshop (repositorio KeyGlow-layouts), que la app descarga y guarda en caché
+#   (keyglow.app.layout_sync pone aquí lo descargado).
+# Formato: {"title", "usb": ["vvvv:pppp"], "names": [...], "verified": bool,
+#           "builtin": "<nombre>" o "keys": [{"id", "x", "y", "w", "h"}, ...]}
 MODELS_DIR = Path(__file__).resolve().parent / "layouts"
+WORKSHOP_MODELS: list[dict] = []
+
+_USB_RE = re.compile(r"^[0-9a-f]{4}:[0-9a-f]{4}$")
+_KEY_ID_RE = re.compile(r"^[A-Z0-9_]{1,24}$")
+
+
+def validate_model(d: dict) -> dict:
+    """Comprueba una distribución de modelo (solo datos) y la devuelve normalizada.
+
+    Lanza ``ValueError`` con el motivo si algo no encaja: así una distribución mal hecha
+    del workshop se descarta en vez de romper el dibujo del teclado.
+    """
+    if not isinstance(d, dict):
+        raise ValueError("a layout must be a JSON object")
+    title = d.get("title")
+    if not isinstance(title, str) or not 0 < len(title) <= 100:
+        raise ValueError("'title' must be a short text")
+    usb = d.get("usb", [])
+    names = d.get("names", [])
+    if not isinstance(usb, list) or not all(isinstance(u, str) and _USB_RE.match(u.lower()) for u in usb):
+        raise ValueError("'usb' must be a list like [\"03f0:038f\"]")
+    if not isinstance(names, list) or len(names) > 10 or             not all(isinstance(n, str) and 0 < len(n) <= 100 for n in names):
+        raise ValueError("'names' must be a list of short texts")
+    if not usb and not names:
+        raise ValueError("a layout needs 'usb' or 'names' to recognize the keyboard")
+    out = {"title": title, "usb": [u.lower() for u in usb], "names": names,
+           "verified": bool(d.get("verified", False))}
+    if "name" in d:
+        out["name"] = str(d["name"])[:64]
+    if "builtin" in d:
+        if d["builtin"] not in BUILTIN:
+            raise ValueError(f"unknown built-in layout {d['builtin']!r}")
+        out["builtin"] = d["builtin"]
+        return out
+    keys = d.get("keys")
+    if not isinstance(keys, list) or not 1 <= len(keys) <= 300:
+        raise ValueError("'keys' must be a list of 1 to 300 keys")
+    seen, clean = set(), []
+    for k in keys:
+        if not isinstance(k, dict) or not isinstance(k.get("id"), str) or not _KEY_ID_RE.match(k["id"]):
+            raise ValueError(f"bad key: {k!r}")
+        if k["id"] in seen:
+            raise ValueError(f"key {k['id']} appears twice")
+        seen.add(k["id"])
+        try:
+            x, y = float(k["x"]), float(k["y"])
+            w, h = float(k.get("w", 1)), float(k.get("h", 1))
+        except (KeyError, TypeError, ValueError):
+            raise ValueError(f"key {k['id']} needs numeric x and y") from None
+        if not (0 <= x <= 60 and 0 <= y <= 20 and 0.25 <= w <= 12 and 0.25 <= h <= 6):
+            raise ValueError(f"key {k['id']} is out of range")
+        clean.append({"id": k["id"], "x": x, "y": y, "w": w, "h": h})
+    out["keys"] = clean
+    return out
 
 
 def _models() -> list[dict]:
     out = []
     for f in sorted(MODELS_DIR.glob("*.json")):
         try:
-            d = json.loads(f.read_text(encoding="utf-8"))
+            d = validate_model(json.loads(f.read_text(encoding="utf-8")))
         except (OSError, ValueError):
             continue
         d.setdefault("name", f.stem)
-        out.append(d)
+        out.append({**d, "origin": "bundled"})
+    for d in WORKSHOP_MODELS:
+        try:
+            out.append({**validate_model(d), "name": d.get("name", ""), "origin": "workshop"})
+        except ValueError:
+            continue
     return out
 
 
 def model_layout(usb: str = "", name: str = "") -> Layout | None:
-    """La distribución exacta de ese modelo, si está en la base de datos."""
+    """La distribución exacta de ese modelo, si está en la base de datos (incluida o workshop).
+
+    El identificador USB manda sobre el nombre. Si dos distribuciones encajan igual, gana la
+    verificada en hardware real y, después, la del workshop (más reciente que la incluida).
+    """
     usb, name = usb.lower(), name.lower()
-    best, best_score = None, 0
+    best, best_rank = None, None
     for d in _models():
-        score = 1000 if usb and usb in [u.lower() for u in d.get("usb", [])] else             max((len(n) for n in d.get("names", []) if name and n.lower() in name), default=0)
-        if score > best_score:  # el identificador USB manda; si no, el nombre más largo
-            best, best_score = d, score
+        score = 1000 if usb and usb in d["usb"] else             max((len(n) for n in d["names"] if name and n.lower() in name), default=0)
+        rank = (score, d["verified"], d["origin"] == "workshop")
+        if score and (best_rank is None or rank > best_rank):
+            best, best_rank = d, rank
     if best is None:
         return None
+    source = "model:workshop" if best["origin"] == "workshop" else "model"
     if "builtin" in best:
         base = BUILTIN[best["builtin"]]()
-        return Layout(base.name, best.get("title", base.title), base.keys, "model", usb)
-    base = Layout.from_dict(best)
-    return Layout(base.name, best.get("title", base.title), base.keys, "model", usb)
+        lay = Layout(base.name, best["title"], base.keys, source, usb)
+    else:
+        keys = [Key(k["id"], k["x"], k["y"], k["w"], k["h"]) for k in best["keys"]]
+        lay = Layout(best.get("name") or "model", best["title"], keys, source, usb)
+    lay.verified = best["verified"]
+    return lay
 
 
 def from_device(title: str, led_names: list[str],

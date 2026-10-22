@@ -1,7 +1,12 @@
 {
   "title": "HyperX Alloy Origins 65",
-  "usb": ["03f0:038f"],
-  "names": ["HyperX Alloy Origins 65"],
+  "usb": [
+    "03f0:038f"
+  ],
+  "names": [
+    "HyperX Alloy Origins 65"
+  ],
   "builtin": "alloy_origins_65",
-  "verified": "Tested on real hardware (OpenRGB 1.1, Windows 11)."
+  "verified": true,
+  "verified_on": "OpenRGB 1.1, Windows 11"
 }

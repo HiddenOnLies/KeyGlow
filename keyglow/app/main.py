@@ -19,7 +19,7 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-from . import library, system
+from . import layout_sync, library, system
 from .engine import LightEngine
 from .server import STATIC_DIR, App, make_server
 
@@ -107,6 +107,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     settings = library.load_settings()
+    layout_sync.use_cache()  # distribuciones del workshop ya descargadas, antes de conectar
     if settings.get("start_openrgb"):
         system.ensure_openrgb(settings)  # el motor reintenta conectar hasta que OpenRGB responda
     engine = LightEngine(args.layout or settings["layout"], settings["openrgb_host"],
@@ -117,6 +118,8 @@ def main(argv: list[str] | None = None) -> int:
     server = make_server(app, args.port)
     threading.Thread(target=server.serve_forever, name="keyglow-http", daemon=True).start()
     app.games.start()
+    if settings.get("layout_updates", True):
+        threading.Thread(target=app.refresh_layouts, name="keyglow-layouts", daemon=True).start()
 
     if settings.get("apply_last_on_start") and settings.get("last_profile"):
         try:

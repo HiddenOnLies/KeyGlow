@@ -1193,6 +1193,7 @@ function setupDialogs() {
   // details
   $("#exp-go").addEventListener("click", exportProfile);
   $("#set-layout-export").addEventListener("click", exportLayout);
+  $("#set-workshop-check").addEventListener("click", checkWorkshop);
   $("#details-ok").addEventListener("click", () => {
     const author = $("#p-author").value.trim();
     const desc = $("#p-desc").value.trim();
@@ -1216,6 +1217,7 @@ function setupDialogs() {
         start_with_windows: $("#set-autostart").checked,
         start_openrgb: $("#set-openrgb").checked,
         layout: $("#set-layout").value,
+        layout_updates: $("#set-layout-updates").checked,
         openrgb_device: $("#set-device").value.trim(),
       });
       pollStatus(); // picks up a layout change
@@ -1324,7 +1326,11 @@ function layoutInfo(lay) {
   const [kind, base] = (lay.source || "").split(":");
   const title = (S.meta.layouts.find((l) => l.name === base) || {}).title || base;
   const fix = " If it doesn't match your keyboard, export it, fix it and share it (see the Compatibility docs).";
-  if (kind === "model") return `Exact layout for the ${lay.title}.`;
+  if (kind === "model") {
+    const from = base === "workshop" ? ", from the KeyGlow workshop" : "";
+    const untested = lay.verified === false ? " Not tested on real hardware yet." : "";
+    return `Exact layout for the ${lay.title}${from}.${untested}`;
+  }
   if (kind === "standard") return `Detected: standard ${title} layout.` + fix;
   if (kind === "adapted") return `Detected: adapted from ${title} using OpenRGB's key map.` + fix;
   if (kind === "matrix") return "Detected: built from OpenRGB's key map (approximate)." + fix;
@@ -1346,6 +1352,27 @@ function exportLayout() {
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 
+async function showWorkshopInfo() {
+  const box = $("#set-workshop-info");
+  try {
+    const w = await api("/api/layouts");
+    box.textContent = w.fetched
+      ? `${w.count} layouts in the workshop, checked ${new Date(w.fetched * 1000).toLocaleString()}.`
+      : "Not downloaded yet.";
+  } catch { box.textContent = ""; }
+}
+
+async function checkWorkshop() {
+  const box = $("#set-workshop-info");
+  box.textContent = "Checking…";
+  try {
+    const r = await api("/api/layouts/refresh", {});
+    if (r.error) toast(`Couldn't reach the workshop: ${r.error}`, "err");
+    await showWorkshopInfo();
+    pollStatus(); // a better layout may have arrived
+  } catch (e) { box.textContent = ""; toast(e.message, "err"); }
+}
+
 function openSettings() {
   const sel = $("#set-layout");
   sel.innerHTML = "";
@@ -1353,6 +1380,8 @@ function openSettings() {
     ...S.meta.layouts.map((l) => h("option", { value: l.name }, l.title)));
   sel.value = S.settings.layout || "auto";
   $("#set-layout-info").textContent = layoutInfo(S.meta.layout);
+  $("#set-layout-updates").checked = S.settings.layout_updates !== false;
+  showWorkshopInfo();
   $("#set-device").value = S.settings.openrgb_device || "";
   $("#set-community").value = S.settings.community_url || "";
   $("#set-fps").value = S.settings.fps || 30;

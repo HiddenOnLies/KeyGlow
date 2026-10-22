@@ -8,6 +8,12 @@
   matrix places in a different row.
 - *Settings* shows where the keyboard drawing comes from and can export it, so users can
   contribute exact layouts for their models.
+- **KeyGlow workshop**: exact layouts are also downloaded from a community repository
+  (KeyGlow-layouts), at most once a day, as one file looked up locally (no device IDs are
+  sent), cached for offline use and validated before use. Can be turned off in *Settings*.
+- `keyglow workshop` checks layout files and builds the workshop bundle.
+- Fixes: switching a layer from One to Several colors with wave/cycle/plasma; editable numbers
+  next to every slider; drag (or Alt+arrows) to reorder a layer's colors.
 
 ## 0.2.0
 

@@ -23,7 +23,7 @@ from .. import exporters
 from ..importers import from_bytes
 from ..keynames import label
 from ..layout import BUILTIN, GROUPS
-from . import library, system
+from . import layout_sync, library, system
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
 from .games import GameWatcher, running_apps
@@ -72,6 +72,13 @@ class App:
             "layout_rev": self.engine.layout_rev,
             "user_dir": str(library.user_profiles_dir()),
         }
+
+    def refresh_layouts(self, force: bool = False) -> dict:
+        url = self.settings.get("layouts_url") or layout_sync.DEFAULT_URL
+        result = layout_sync.refresh(url, force)
+        if result["updated"]:
+            self.engine.refresh_layout()
+        return result
 
     def import_profile(self, body: dict) -> dict:
         if body.get("url"):
@@ -149,6 +156,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(library.community(src))
             if url.path == "/api/settings":
                 return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
+            if url.path == "/api/layouts":
+                return self._json(layout_sync.status())
             if url.path == "/api/apps":
                 return self._json({"apps": running_apps()})
             if url.path == "/api/games":
@@ -216,6 +225,8 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/layouts/refresh":
+                return self._json(app.refresh_layouts(force=True))
             if path == "/api/openrgb/start":
                 result = system.ensure_openrgb(app.settings)
                 if result == "missing":
