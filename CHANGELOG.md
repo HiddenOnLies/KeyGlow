@@ -7,6 +7,13 @@
   hides the keyboard's built-in Caps Lock highlight. *Settings → Caps Lock light*: Automatic,
   Always or Off, plus the color. Model layouts can say whether the keyboard has its own
   indicator (`caps_lock_indicator`); the HyperX Alloy Origins 65 doesn't.
+- **New community gallery**: the 239 look-alike theme profiles are gone. The gallery now lives in
+  its own repository, [KeyGlow-profiles](https://github.com/HiddenOnLies/KeyGlow-profiles), and
+  the app downloads it at most once a day (one file, validated, cached for offline use; a copy
+  ships with the app). It starts with 22 hand-designed profiles, most animated or reacting to
+  typing, including 8 well-known themes (Catppuccin, Dracula, Nord, Gruvbox, Tokyo Night,
+  Rosé Pine, Solarized, Everforest), each with its own design. New *reactive* filter.
+- `keyglow gallery` checks profile files and builds the gallery bundle.
 
 ## 0.3.0
 

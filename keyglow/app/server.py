@@ -24,7 +24,7 @@ from .. import exporters
 from ..importers import from_bytes
 from ..keynames import label
 from ..layout import BUILTIN, GROUPS, model_choices
-from . import layout_sync, library, system
+from . import gallery_sync, layout_sync, library, system
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
 from .games import GameWatcher, running_apps
@@ -165,7 +165,7 @@ class Handler(BaseHTTPRequestHandler):
             if url.path == "/api/community":
                 q = parse_qs(url.query)
                 src = q.get("url", [app.settings.get("community_url", "")])[0]
-                return self._json(library.community(src))
+                return self._json(library.community(src) if src else gallery_sync.listing())
             if url.path == "/api/settings":
                 return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
             if url.path == "/api/layouts":
@@ -237,6 +237,8 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/community/refresh":
+                return self._json(gallery_sync.refresh(force=True))
             if path == "/api/layouts/refresh":
                 return self._json(app.refresh_layouts(force=True))
             if path == "/api/openrgb/start":

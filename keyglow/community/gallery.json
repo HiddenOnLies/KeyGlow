@@ -1,0 +1,1132 @@
+{
+ "format": "keyglow-gallery/1",
+ "name": "KeyGlow community",
+ "generated": "2026-10-23",
+ "profiles": [
+  {
+   "id": "amber-terminal",
+   "name": "Amber Terminal",
+   "author": "HiddenOnLies",
+   "description": "An old amber monitor: dim glow, a refresh line and bright keys as you type.",
+   "tags": [
+    "animated",
+    "reactive",
+    "productivity"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Amber Terminal",
+    "author": "HiddenOnLies",
+    "description": "An old amber monitor: dim glow, a refresh line and bright keys as you type.",
+    "tags": [
+     "animated",
+     "reactive",
+     "productivity"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#3a1800"
+      }
+     },
+     {
+      "effect": "scanner",
+      "params": {
+       "color": "#ff9a00",
+       "background": "#000000",
+       "speed": 0.25,
+       "width": 0.06,
+       "angle": 90
+      },
+      "blend": "add",
+      "opacity": 0.45
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffb000"
+       ],
+       "style": "key",
+       "duration": 0.9
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "arena",
+   "name": "Arena",
+   "author": "HiddenOnLies",
+   "description": "Pulsing WASD, gold ability keys and a shockwave on every press.",
+   "tags": [
+    "animated",
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Arena",
+    "author": "HiddenOnLies",
+    "description": "Pulsing WASD, gold ability keys and a shockwave on every press.",
+    "tags": [
+     "animated",
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#0a0010"
+      }
+     },
+     {
+      "effect": "breathing",
+      "params": {
+       "colors": [
+        "#ff2050"
+       ],
+       "period": 1.6,
+       "min": 0.35
+      },
+      "keys": [
+       "@wasd"
+      ]
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#ffb000"
+      },
+      "keys": [
+       "@numbers"
+      ]
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff2050",
+        "#ffb000"
+       ],
+       "style": "ripple",
+       "duration": 0.7,
+       "speed": 1.4
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "bioluminescence",
+   "name": "Bioluminescence",
+   "author": "HiddenOnLies",
+   "description": "A dark sea that glows where you type.",
+   "tags": [
+    "animated",
+    "reactive",
+    "nature"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Bioluminescence",
+    "author": "HiddenOnLies",
+    "description": "A dark sea that glows where you type.",
+    "tags": [
+     "animated",
+     "reactive",
+     "nature"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#001826",
+        "#00453f",
+        "#007a6a",
+        "#001020"
+       ],
+       "speed": 0.12,
+       "scale": 1.2
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#40ffe0",
+        "#7cc8ff"
+       ],
+       "background": "#000000",
+       "density": 0.06,
+       "period": 3.5,
+       "seed": 1
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#30ffd0"
+       ],
+       "style": "ripple",
+       "duration": 1.2,
+       "speed": 0.8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "catppuccin-mocha",
+   "name": "Catppuccin Mocha",
+   "author": "HiddenOnLies · colors from Catppuccin (MIT)",
+   "description": "Mauve, pink, blue and teal flowing softly; lavender ripples as you type.",
+   "tags": [
+    "theme",
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Catppuccin Mocha",
+    "author": "HiddenOnLies · colors from Catppuccin (MIT)",
+    "description": "Mauve, pink, blue and teal flowing softly; lavender ripples as you type.",
+    "tags": [
+     "theme",
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#1e1e2e"
+      }
+     },
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#8a4dff",
+        "#1e1e2e",
+        "#ff5ab8",
+        "#161a40",
+        "#3a7dff",
+        "#1e1e2e",
+        "#20c8b0"
+       ],
+       "speed": 0.08,
+       "scale": 0.8
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#b4befe"
+       ],
+       "style": "ripple",
+       "duration": 0.9
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "coder",
+   "name": "Coder",
+   "author": "HiddenOnLies",
+   "description": "Key groups in distinct colors for programming, with a soft flash on each key.",
+   "tags": [
+    "static",
+    "reactive",
+    "productivity"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Coder",
+    "author": "HiddenOnLies",
+    "description": "Key groups in distinct colors for programming, with a soft flash on each key.",
+    "tags": [
+     "static",
+     "reactive",
+     "productivity"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#2a2a50"
+      }
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#7a5cff"
+      },
+      "keys": [
+       "@modifiers"
+      ]
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#00a8ff"
+      },
+      "keys": [
+       "@numbers"
+      ]
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#ff8a00"
+      },
+      "keys": [
+       "@fn_row"
+      ]
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#00ff9a"
+      },
+      "keys": [
+       "@arrows",
+       "@nav"
+      ]
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "key",
+       "duration": 0.5
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "coral-reef",
+   "name": "Coral Reef",
+   "author": "HiddenOnLies",
+   "description": "Coral and turquoise drifting slowly, with rising bubbles of light.",
+   "tags": [
+    "animated",
+    "nature",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Coral Reef",
+    "author": "HiddenOnLies",
+    "description": "Coral and turquoise drifting slowly, with rising bubbles of light.",
+    "tags": [
+     "animated",
+     "nature",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#ff5a4a",
+        "#ff9070",
+        "#00b3a6",
+        "#00708a",
+        "#ff5a4a"
+       ],
+       "speed": 0.06,
+       "angle": 30,
+       "wavelength": 1.6
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#c0f8ff"
+       ],
+       "background": "#000000",
+       "density": 0.05,
+       "period": 2.5,
+       "seed": 3
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dracula",
+   "name": "Dracula",
+   "author": "HiddenOnLies · colors from Dracula (MIT)",
+   "description": "Purple to pink, with green, cyan and yellow sparks.",
+   "tags": [
+    "theme",
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Dracula",
+    "author": "HiddenOnLies · colors from Dracula (MIT)",
+    "description": "Purple to pink, with green, cyan and yellow sparks.",
+    "tags": [
+     "theme",
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#bd93f9",
+        "#ff79c6"
+       ],
+       "angle": 0
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#50fa7b",
+        "#8be9fd",
+        "#f1fa8c"
+       ],
+       "background": "#000000",
+       "density": 0.08,
+       "period": 2.0,
+       "seed": 4
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#8be9fd"
+       ],
+       "style": "key",
+       "duration": 0.6
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ember-keys",
+   "name": "Ember Keys",
+   "author": "HiddenOnLies",
+   "description": "Low flames along the bottom; the keys you press glow like embers.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Ember Keys",
+    "author": "HiddenOnLies",
+    "description": "Low flames along the bottom; the keys you press glow like embers.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#0c0402"
+      }
+     },
+     {
+      "effect": "fire",
+      "params": {
+       "colors": [
+        "#000000",
+        "#6a0800",
+        "#ff3a00",
+        "#ffa000"
+       ],
+       "speed": 0.8,
+       "height": 0.4
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff6a00",
+        "#ffb000"
+       ],
+       "style": "key",
+       "duration": 1.6
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "everforest",
+   "name": "Everforest",
+   "author": "HiddenOnLies · colors from Everforest (MIT)",
+   "description": "Soft forest greens with golden fireflies.",
+   "tags": [
+    "theme",
+    "animated",
+    "nature",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Everforest",
+    "author": "HiddenOnLies · colors from Everforest (MIT)",
+    "description": "Soft forest greens with golden fireflies.",
+    "tags": [
+     "theme",
+     "animated",
+     "nature",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#80c040",
+        "#30c088",
+        "#2a6a22",
+        "#40a8a0"
+       ],
+       "speed": 0.07,
+       "scale": 1.0
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#dbbc7f",
+        "#e69875"
+       ],
+       "background": "#000000",
+       "density": 0.06,
+       "period": 3.0,
+       "seed": 9
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "firefly-meadow",
+   "name": "Firefly Meadow",
+   "author": "HiddenOnLies",
+   "description": "A dark green field at night with fireflies blinking.",
+   "tags": [
+    "animated",
+    "nature",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Firefly Meadow",
+    "author": "HiddenOnLies",
+    "description": "A dark green field at night with fireflies blinking.",
+    "tags": [
+     "animated",
+     "nature",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#0c4a1c",
+        "#18702c",
+        "#06300f"
+       ],
+       "angle": 90
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#e0ff40",
+        "#ffd000"
+       ],
+       "background": "#000000",
+       "density": 0.07,
+       "period": 3.5,
+       "seed": 7
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "glacier",
+   "name": "Glacier",
+   "author": "HiddenOnLies",
+   "description": "Deep blue to ice white, with a slow shine passing over it.",
+   "tags": [
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Glacier",
+    "author": "HiddenOnLies",
+    "description": "Deep blue to ice white, with a slow shine passing over it.",
+    "tags": [
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#8adcff",
+        "#2a7aff",
+        "#06206a"
+       ],
+       "angle": 90
+      }
+     },
+     {
+      "effect": "scanner",
+      "params": {
+       "color": "#ffffff",
+       "background": "#000000",
+       "speed": 0.12,
+       "width": 0.12,
+       "angle": 25
+      },
+      "blend": "add",
+      "opacity": 0.55
+     }
+    ]
+   }
+  },
+  {
+   "id": "gruvbox",
+   "name": "Gruvbox",
+   "author": "HiddenOnLies · colors from Gruvbox (MIT)",
+   "description": "Warm red, orange and yellow like a campfire; aqua on the keys you press.",
+   "tags": [
+    "theme",
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Gruvbox",
+    "author": "HiddenOnLies · colors from Gruvbox (MIT)",
+    "description": "Warm red, orange and yellow like a campfire; aqua on the keys you press.",
+    "tags": [
+     "theme",
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#cc241d",
+        "#fe8019",
+        "#fabd2f",
+        "#d65d0e"
+       ],
+       "speed": 0.2,
+       "scale": 1.1
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#8ec07c"
+       ],
+       "style": "key",
+       "duration": 0.8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "heat-trail",
+   "name": "Heat Trail",
+   "author": "HiddenOnLies",
+   "description": "Every key you press glows red-hot and cools down slowly.",
+   "tags": [
+    "reactive",
+    "productivity"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Heat Trail",
+    "author": "HiddenOnLies",
+    "description": "Every key you press glows red-hot and cools down slowly.",
+    "tags": [
+     "reactive",
+     "productivity"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#050a22"
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff3000",
+        "#ff7000"
+       ],
+       "style": "key",
+       "duration": 4.0
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "lighthouse",
+   "name": "Lighthouse",
+   "author": "HiddenOnLies",
+   "description": "A warm beam sweeping across a dark night sea.",
+   "tags": [
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Lighthouse",
+    "author": "HiddenOnLies",
+    "description": "A warm beam sweeping across a dark night sea.",
+    "tags": [
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#020a1c"
+      }
+     },
+     {
+      "effect": "scanner",
+      "params": {
+       "color": "#fff0b0",
+       "background": "#000000",
+       "speed": 0.18,
+       "width": 0.25,
+       "angle": 0
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "nebula",
+   "name": "Nebula",
+   "author": "HiddenOnLies",
+   "description": "Violet and magenta clouds with distant stars.",
+   "tags": [
+    "animated"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Nebula",
+    "author": "HiddenOnLies",
+    "description": "Violet and magenta clouds with distant stars.",
+    "tags": [
+     "animated"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#26004a",
+        "#8000ff",
+        "#ff2a8a",
+        "#0030a0"
+       ],
+       "speed": 0.1,
+       "scale": 1.3
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "background": "#000000",
+       "density": 0.05,
+       "period": 2.5,
+       "seed": 11
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "nord",
+   "name": "Nord",
+   "author": "HiddenOnLies · colors from Nord (MIT)",
+   "description": "Frost blues and aurora green moving like northern lights.",
+   "tags": [
+    "theme",
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Nord",
+    "author": "HiddenOnLies · colors from Nord (MIT)",
+    "description": "Frost blues and aurora green moving like northern lights.",
+    "tags": [
+     "theme",
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#2a5cb0",
+        "#3f8ad8",
+        "#30bcd8",
+        "#30d0b0",
+        "#70d060",
+        "#2a5cb0"
+       ],
+       "speed": 0.05,
+       "angle": 10,
+       "wavelength": 1.5
+      }
+     },
+     {
+      "effect": "breathing",
+      "params": {
+       "colors": [
+        "#eceff4"
+       ],
+       "period": 7.0,
+       "min": 0.0
+      },
+      "blend": "add",
+      "opacity": 0.15
+     }
+    ]
+   }
+  },
+  {
+   "id": "reactor",
+   "name": "Reactor",
+   "author": "HiddenOnLies",
+   "description": "Green rings pulse out of the core; typing sends out more.",
+   "tags": [
+    "animated",
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Reactor",
+    "author": "HiddenOnLies",
+    "description": "Green rings pulse out of the core; typing sends out more.",
+    "tags": [
+     "animated",
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#001a06"
+      }
+     },
+     {
+      "effect": "ripple",
+      "params": {
+       "center": [
+        0.5,
+        0.6
+       ],
+       "colors": [
+        "#50ff70",
+        "#00a020"
+       ],
+       "speed": 0.5,
+       "thickness": 0.1
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "breathing",
+      "params": {
+       "colors": [
+        "#00ff40"
+       ],
+       "period": 3.0,
+       "min": 0.1
+      },
+      "blend": "add",
+      "opacity": 0.3
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#b0ffb0"
+       ],
+       "style": "ripple",
+       "duration": 0.8,
+       "speed": 1.2
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "rose-pine",
+   "name": "Rosé Pine",
+   "author": "HiddenOnLies · colors from Rosé Pine (MIT)",
+   "description": "Love, gold, rose, iris and pine drifting very slowly.",
+   "tags": [
+    "theme",
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Rosé Pine",
+    "author": "HiddenOnLies · colors from Rosé Pine (MIT)",
+    "description": "Love, gold, rose, iris and pine drifting very slowly.",
+    "tags": [
+     "theme",
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#ff3f7f",
+        "#ffaa30",
+        "#ff7a8a",
+        "#a070ff",
+        "#1f8fb0",
+        "#ff3f7f"
+       ],
+       "speed": 0.035,
+       "angle": 20,
+       "wavelength": 2.0
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "snowfall",
+   "name": "Snowfall",
+   "author": "HiddenOnLies",
+   "description": "Slow white flakes falling on a cold night.",
+   "tags": [
+    "animated",
+    "chill",
+    "seasonal"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Snowfall",
+    "author": "HiddenOnLies",
+    "description": "Slow white flakes falling on a cold night.",
+    "tags": [
+     "animated",
+     "chill",
+     "seasonal"
+    ],
+    "layers": [
+     {
+      "effect": "rain",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#bcd8ff"
+       ],
+       "background": "#0c1c40",
+       "speed": 0.25,
+       "density": 0.7,
+       "length": 0.15
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "solarized",
+   "name": "Solarized",
+   "author": "HiddenOnLies · colors from Solarized (MIT)",
+   "description": "All eight Solarized accents rolling across the keyboard.",
+   "tags": [
+    "theme",
+    "animated"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Solarized",
+    "author": "HiddenOnLies · colors from Solarized (MIT)",
+    "description": "All eight Solarized accents rolling across the keyboard.",
+    "tags": [
+     "theme",
+     "animated"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#b58900",
+        "#cb4b16",
+        "#dc322f",
+        "#d33682",
+        "#6c71c4",
+        "#268bd2",
+        "#2aa198",
+        "#859900",
+        "#b58900"
+       ],
+       "speed": 0.06,
+       "angle": 0,
+       "wavelength": 1.2
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "thunderstorm",
+   "name": "Thunderstorm",
+   "author": "HiddenOnLies",
+   "description": "Blue rain with a lightning flash every few seconds.",
+   "tags": [
+    "animated",
+    "nature"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Thunderstorm",
+    "author": "HiddenOnLies",
+    "description": "Blue rain with a lightning flash every few seconds.",
+    "tags": [
+     "animated",
+     "nature"
+    ],
+    "layers": [
+     {
+      "effect": "rain",
+      "params": {
+       "colors": [
+        "#3f6cff",
+        "#9cc0ff"
+       ],
+       "background": "#0a1232",
+       "speed": 0.8,
+       "density": 0.9,
+       "length": 0.4
+      }
+     },
+     {
+      "effect": "heartbeat",
+      "params": {
+       "color": "#dfe8ff",
+       "bpm": 9,
+       "min": 0.0
+      },
+      "blend": "add",
+      "opacity": 0.8
+     }
+    ]
+   }
+  },
+  {
+   "id": "tokyo-night",
+   "name": "Tokyo Night",
+   "author": "HiddenOnLies · colors from Tokyo Night (MIT)",
+   "description": "Neon rain over a night city; orange where you type.",
+   "tags": [
+    "theme",
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Tokyo Night",
+    "author": "HiddenOnLies · colors from Tokyo Night (MIT)",
+    "description": "Neon rain over a night city; orange where you type.",
+    "tags": [
+     "theme",
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "rain",
+      "params": {
+       "colors": [
+        "#7aa2f7",
+        "#bb9af7",
+        "#7dcfff"
+       ],
+       "background": "#1c2350",
+       "speed": 0.45,
+       "density": 0.85,
+       "length": 0.3
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff9e64"
+       ],
+       "style": "key",
+       "duration": 0.7
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -60,8 +60,9 @@ close the window.
 - **On key press**: light up the key you press, a ripple from it, or its row. It uses a Windows
   keyboard hook only while an active profile needs it, and only keeps which key was pressed and
   when, in memory, for a few seconds.
-- **Profiles** (☰): built-in presets, your own (`Documents\KeyGlow\Perfiles`) and a community
-  gallery that ships with **239 theme profiles** (Catppuccin, Dracula, Nord, base16).
+- **Profiles** (☰): built-in presets, your own (`Documents\KeyGlow\Perfiles`) and the
+  [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles), which the app keeps up
+  to date by itself (add yours!).
 - **Game profiles** (controller icon): one profile per game while it is in focus, plus optional
   recommended profiles for ~40 popular games.
 - **Import / export** (⋯): KeyGlow and OpenRGB profiles, key color maps (OpenRGB, web, QMK names)
@@ -88,6 +89,7 @@ Run `keyglow --help` for everything else.
 
 - [Compatibility](docs/compatibility.md): keyboards, layouts and other programs' formats
 - [KeyGlow workshop](https://github.com/HiddenOnLies/KeyGlow-layouts): community keyboard layouts the app downloads (add yours!)
+- [KeyGlow community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles): community lighting profiles the app downloads (add yours!)
 - [Profile format](docs/profile-format.md): layers, effects, key groups, galleries
 - [Profile sources](docs/profile-sources.md): where the included profiles come from, and candidates
 - [Contributing](CONTRIBUTING.md): development setup and repository layout
@@ -115,10 +117,11 @@ powershell -ExecutionPolicy Bypass -File tools\build_exe.ps1   # builds dist\Key
   and CLI are plain Python.
 - **Some code comments are still in Spanish**; they will be translated.
 - Next: more profile sources ([candidates](docs/profile-sources.md#good-candidates)),
-  audio-reactive effects, mice and other devices, a community gallery repository.
+  audio-reactive effects, mice and other devices.
 
 ## License
 
 [MIT](LICENSE). The bundled fonts (IBM Plex Sans, IBM Plex Mono, Space Grotesk) are under the
-SIL Open Font License; see `keyglow/app/static/fonts/`. The theme profiles in `keyglow/community/themes/` are derived from
-MIT-licensed palettes; see their [credits](keyglow/community/themes/CREDITS.md).
+SIL Open Font License; see `keyglow/app/static/fonts/`. `keyglow/community/gallery.json` is a copy
+of the [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles) (MIT, with its own
+credits for the theme palettes).

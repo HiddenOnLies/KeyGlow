@@ -19,7 +19,7 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-from . import layout_sync, library, system
+from . import gallery_sync, layout_sync, library, system
 from .engine import LightEngine
 from .server import STATIC_DIR, App, make_server
 
@@ -120,6 +120,8 @@ def main(argv: list[str] | None = None) -> int:
     app.games.start()
     if settings.get("layout_updates", True):
         threading.Thread(target=app.refresh_layouts, name="keyglow-layouts", daemon=True).start()
+    if settings.get("gallery_updates", True) and not settings.get("community_url"):
+        threading.Thread(target=gallery_sync.refresh, name="keyglow-gallery", daemon=True).start()
 
     if settings.get("apply_last_on_start") and settings.get("last_profile"):
         try:

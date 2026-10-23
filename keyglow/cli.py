@@ -133,6 +133,24 @@ def cmd_workshop(a):
         raise ValueError(f"{bad} layout(s) failed")
 
 
+def cmd_gallery(a):
+    """Comprueba perfiles de la galería y los empaqueta (repositorio KeyGlow-profiles)."""
+    from pathlib import Path
+
+    from . import gallery
+    good, errors = gallery.check(a.paths)
+    for e in good:
+        print(f"ok    {e['id']}.json: {e['name']} ({', '.join(e['tags']) or 'no tags'})")
+    for err in errors:
+        print(f"FAIL  {err}")
+    if a.bundle:
+        Path(a.bundle).write_text(json.dumps(gallery.bundle(good), indent=1, ensure_ascii=False) + "\n",
+                                  encoding="utf-8", newline="\n")
+        print(f"Wrote {len(good)} profiles to {a.bundle}")
+    if errors:
+        raise ValueError(f"{len(errors)} problem(s) found")
+
+
 def cmd_apply(a):
     from .backends.openrgb import OpenRGBKeyboard, run
     profile, target = _prepare(a.profile, a.layout, a.source)
@@ -241,6 +259,11 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("paths", nargs="+", help="layout .json files or folders")
     sp.add_argument("--bundle", metavar="FILE", help="also write the bundle (layouts.json) the app downloads")
     sp.set_defaults(func=cmd_workshop)
+
+    sp = sub.add_parser("gallery", help="check community profiles and bundle them for the gallery")
+    sp.add_argument("paths", nargs="+", help="profile .json files or folders")
+    sp.add_argument("--bundle", metavar="FILE", help="also write the bundle (gallery.json) the app downloads")
+    sp.set_defaults(func=cmd_gallery)
 
     sp = sub.add_parser("probe", help="look for HyperX keyboards over USB/HID")
     sp.add_argument("--all", action="store_true", help="show every HID device")

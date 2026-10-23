@@ -26,10 +26,10 @@ keyglow/            the Python package
   backends/         hardware and preview outputs (OpenRGB, terminal/HTML, USB probe)
   formats/          other programs' formats (OpenRGB profiles)
   presets/          built-in profiles
-  community/        built-in gallery; themes/ is generated, with its credits
+  community/        copy of the community gallery (KeyGlow-profiles) for the first start
 docs/               documentation and screenshots
 examples/           example profiles for the command line
-tools/              build script and generators (icon, theme profiles)
+tools/              build script and generators (icon, demo GIF)
 tests/              pytest
 ```
 

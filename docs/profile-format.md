@@ -59,8 +59,11 @@ Linux (`KP_ENTER`) or plain names (`Left Ctrl`, `Esc`).
 
 ## Galleries
 
-A gallery is an `index.json` published anywhere (a GitHub repository works well). Point
-KeyGlow to it in *Settings → Community gallery*:
+KeyGlow's own gallery is [KeyGlow-profiles](https://github.com/HiddenOnLies/KeyGlow-profiles):
+to share a profile with everyone, add it there with a pull request.
+
+You can also publish your own gallery as an `index.json` anywhere (a GitHub repository works
+well) and point KeyGlow to it in *Settings → Other community gallery*:
 
 ```json
 {"format": "keyglow-gallery/1", "name": "My gallery",

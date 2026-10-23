@@ -3,8 +3,8 @@
 - Predeterminados: ``keyglow/presets/*.json`` (vienen con la app).
 - Mis perfiles: ``Documentos/KeyGlow/Perfiles`` (archivos JSON normales, se pueden
   copiar, compartir o editar a mano).
-- Comunidad: un índice JSON en una URL (configurable) o, si no hay ninguno, los
-  ejemplos de ``keyglow/community``. Formato del índice::
+- Comunidad: la galería oficial (repositorio KeyGlow-profiles, ver
+  ``keyglow.app.gallery_sync``) o un índice JSON en otra URL (configurable). Formato del índice::
 
       {"format": "keyglow-gallery/1", "name": "...",
        "profiles": [{"name": "...", "author": "...", "tags": [...],
@@ -46,6 +46,7 @@ DEFAULT_SETTINGS = {
     "openrgb_path": "",  # OpenRGB.exe, si no está en la carpeta habitual
     "start_openrgb": True,
     "layout_updates": True,  # descargar distribuciones del workshop (KeyGlow-layouts)
+    "gallery_updates": True,  # descargar perfiles nuevos de la galería (KeyGlow-profiles)
     "layouts_url": "",  # vacío = el workshop oficial  # abrir OpenRGB (minimizado, con el servidor) si no está en marcha  # parte del nombre del teclado, si OpenRGB ve más de uno
     "layout": "auto",  # "auto" = la distribución que informa OpenRGB, o un nombre de BUILTIN
     "device_layout": None,  # última distribución detectada, para arrancar sin esperar
@@ -196,14 +197,10 @@ def _download(url: str) -> bytes:
     return raw
 
 
-def community(url: str = "") -> dict:
-    """Devuelve la galería: la remota si hay URL, si no, los ejemplos incluidos."""
-    if url:
-        index = json.loads(_download(url).decode("utf-8"))
-        source = url
-    else:
-        index = json.loads((COMMUNITY_DIR / "index.json").read_text(encoding="utf-8"))
-        source = ""
+def community(url: str) -> dict:
+    """Descarga una galería que no es la oficial (un índice en ``url``)."""
+    index = json.loads(_download(url).decode("utf-8"))
+    source = url
     items = []
     for i, item in enumerate(index.get("profiles", [])):
         if not isinstance(item, dict):
@@ -220,16 +217,8 @@ def community(url: str = "") -> dict:
         }
         if isinstance(item.get("profile"), dict):
             entry["data"] = item["profile"]
-        elif item.get("file") and not url:
-            path = (COMMUNITY_DIR / item["file"]).resolve()
-            if COMMUNITY_DIR.resolve() not in path.parents:  # nada fuera de la carpeta
-                continue
-            try:
-                entry["data"] = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
-                continue
         elif item.get("url"):
-            entry["url"] = urllib.parse.urljoin(url, item["url"]) if url else item["url"]
+            entry["url"] = urllib.parse.urljoin(url, item["url"])
         else:
             continue
         items.append(entry)

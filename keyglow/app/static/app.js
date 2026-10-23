@@ -73,7 +73,7 @@ const RANGES = {
   duration: [0.1, 3, 0.05, "Quick", "Slow"],
   center_x: [0, 1, 0.01, "Left", "Right"], center_y: [0, 1, 0.01, "Top", "Bottom"],
 };
-const TAGS = ["animated", "static", "gaming", "chill", "nature", "neon", "productivity", "seasonal", "theme"];
+const TAGS = ["animated", "static", "reactive", "gaming", "chill", "nature", "neon", "productivity", "seasonal", "theme"];
 const DIRECTIONS = [["→", 0], ["↘", 45], ["↓", 90], ["↙", 135], ["←", 180], ["↖", 225], ["↑", 270], ["↗", 315]];
 const GROUP_NAMES = {
   wasd: "WASD", arrows: "Arrows", letters: "Letters", numbers: "Numbers",
@@ -947,6 +947,18 @@ async function loadLibrary() {
   renderCards();
 }
 
+const GALLERY_REPO = "https://github.com/HiddenOnLies/KeyGlow-profiles";
+
+async function refreshGallery() {
+  try {
+    const r = await api("/api/community/refresh", {});
+    if (r.error) toast(`Couldn't reach the gallery: ${r.error}`, "err");
+    else toast(`${r.count} community profiles`);
+  } catch (e) { toast(e.message, "err"); }
+  S.lib.community = null;
+  renderCards();
+}
+
 async function loadCommunity() {
   try {
     S.lib.community = await api("/api/community");
@@ -994,8 +1006,14 @@ function renderCards() {
   foot.innerHTML = "";
   if (S.tab === "community") {
     const c = S.lib.community;
-    foot.append(c?.source ? `${c.name} · ` : "Built-in examples · ",
-      h("a", { onclick: openSettings }, c?.source ? "Change gallery" : "Connect a gallery"));
+    if (c?.source) {
+      foot.append(`${c.name} · `, h("a", { onclick: openSettings }, "Change gallery"));
+    } else {
+      const when = c?.fetched ? `updated ${new Date(c.fetched * 1000).toLocaleDateString()}` : "included with the app";
+      foot.append(`${c?.name || "KeyGlow community"} · ${when} · `,
+        h("a", { onclick: refreshGallery }, "Check for new"), " · ",
+        h("a", { href: GALLERY_REPO, target: "_blank", rel: "noopener" }, "Add yours"));
+    }
   }
 }
 
@@ -1211,6 +1229,7 @@ function setupDialogs() {
     e.preventDefault();
     try {
       const old = S.settings.community_url;
+      const hadUpdates = S.settings.gallery_updates !== false;
       S.settings = await api("/api/settings", {
         community_url: $("#set-community").value.trim(),
         fps: Math.max(5, Math.min(60, +$("#set-fps").value || 30)),
@@ -1219,12 +1238,14 @@ function setupDialogs() {
         start_openrgb: $("#set-openrgb").checked,
         layout: $("#set-layout").value,
         layout_updates: $("#set-layout-updates").checked,
+        gallery_updates: $("#set-gallery-updates").checked,
         caps_lock: $("#set-caps").value,
         caps_lock_color: $("#set-caps-color").value,
         openrgb_device: $("#set-device").value.trim(),
       });
       pollStatus(); // picks up a layout change
       if (old !== S.settings.community_url) { S.lib.community = null; renderCards(); }
+      if (!hadUpdates && S.settings.gallery_updates && !S.settings.community_url) refreshGallery();
       $("#dlg-settings").close();
       toast("Settings saved");
     } catch (err) { toast(err.message, "err"); }
@@ -1417,6 +1438,7 @@ function openSettings() {
   api("/api/meta").then((m) => { S.meta.model_layouts = m.model_layouts; fillLayoutSelect(); }).catch(() => {});
   $("#set-layout-info").textContent = layoutInfo(S.meta.layout);
   $("#set-layout-updates").checked = S.settings.layout_updates !== false;
+  $("#set-gallery-updates").checked = S.settings.gallery_updates !== false;
   $("#set-caps").value = S.settings.caps_lock || "auto";
   $("#set-caps-color").value = S.settings.caps_lock_color || "#ffffff";
   capsInfo();
