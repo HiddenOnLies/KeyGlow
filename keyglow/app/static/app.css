@@ -363,6 +363,9 @@ input[type=checkbox] { accent-color: var(--hi); width: 15px; height: 15px; }
 .steps a { color: var(--text); }
 .steps button { justify-self: start; margin-top: 8px; padding: 5px 12px; font-size: 12.5px; }
 .layout-info { margin: -6px 0 12px; }
+.caps-row { display: flex; gap: 10px; align-items: flex-end; }
+.caps-row label { flex: 1; min-width: 0; }
+.caps-row input[type=color] { flex: none; margin-bottom: 15px; }
 .link-btn { background: none; border: none; padding: 0; color: var(--text); text-decoration: underline; text-underline-offset: 3px; font-size: 12px; }
 .link-btn:hover { background: none; color: var(--hi); }
 

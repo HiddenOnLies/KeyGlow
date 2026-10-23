@@ -47,6 +47,10 @@ one verified on real hardware wins, then the workshop's (newer) over the bundled
 4. Send it to the [workshop](https://github.com/HiddenOnLies/KeyGlow-layouts) as a pull request,
    or attach it to a [keyboard report](https://github.com/HiddenOnLies/KeyGlow/issues/new?template=keyboard_report.yml).
    Set `"verified": true` only if you tested it on the keyboard itself.
+   If you know whether the keyboard has its own Caps Lock light (one that still works while
+   OpenRGB controls the colors), add `"caps_lock_indicator": true` or `false`. With `false` or
+   when it's missing, KeyGlow lights the Caps Lock key while Caps Lock is on
+   (*Settings → Caps Lock light*).
 
 ### Built-in layouts
 

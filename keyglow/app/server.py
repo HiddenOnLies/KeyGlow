@@ -18,6 +18,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from .. import __version__
+from .. import color as C
 from ..effects import REGISTRY
 from .. import exporters
 from ..importers import from_bytes
@@ -38,6 +39,15 @@ for _ext, _type in ((".js", "application/javascript"), (".css", "text/css"),
     mimetypes.add_type(_type, _ext)
 
 
+def apply_caps_lock(engine: LightEngine, settings: dict) -> None:
+    mode = settings.get("caps_lock", "auto")
+    engine.caps_lock = mode if mode in ("auto", "on", "off") else "auto"
+    try:
+        engine.caps_color = C.to_bytes(C.parse(settings.get("caps_lock_color") or "#ffffff"))
+    except ValueError:
+        engine.caps_color = (255, 255, 255)
+
+
 class App:
     """Estado compartido por todas las peticiones."""
 
@@ -47,6 +57,7 @@ class App:
         self.quit_event = threading.Event()
         engine.brightness = float(settings.get("brightness", 1.0))
         engine.fps = float(settings.get("fps", 30))
+        apply_caps_lock(engine, settings)
         self.games = GameWatcher(engine, lambda: self.settings, library.resolve)
 
     def meta(self) -> dict:
@@ -241,6 +252,7 @@ class Handler(BaseHTTPRequestHandler):
                 app.settings = library.save_settings(body)
                 eng.brightness = float(app.settings["brightness"])
                 eng.fps = float(app.settings["fps"])
+                apply_caps_lock(eng, app.settings)
                 eng.set_layout_mode(app.settings["layout"], app.settings["openrgb_device"])
                 return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
             if path == "/api/quit":

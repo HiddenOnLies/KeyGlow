@@ -8,5 +8,6 @@
   ],
   "builtin": "alloy_origins_65",
   "verified": true,
-  "verified_on": "OpenRGB 1.1, Windows 11"
+  "verified_on": "OpenRGB 1.1, Windows 11",
+  "caps_lock_indicator": false
 }

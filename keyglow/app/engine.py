@@ -18,11 +18,12 @@ from ..effects import has_reactive
 from ..layout import Layout, load_layout
 from ..profile import Profile, Renderer
 from ..retarget import Report, retarget
-from .keyhook import KeyHook
+from .keyhook import KeyHook, caps_lock_on
 
 DEFAULT_LAYOUT = "alloy_origins_65"
 AUTO = "auto"  # distribución detectada a partir de lo que informa OpenRGB
 RECONNECT_EVERY = 3.0
+CAPS_KEY = "CAPSLOCK"
 
 
 def prepare(data: dict, layout: Layout) -> tuple[Profile, Report]:
@@ -55,6 +56,11 @@ class LightEngine:
         self.host, self.port, self.device_match = host, port, device
         self.brightness = 1.0
         self.fps = 30.0
+        # Bloq Mayús: "auto" = encender la tecla si el teclado no tiene piloto propio
+        # (o no se sabe), "on" = siempre, "off" = nunca
+        self.caps_lock = "auto"
+        self.caps_color = (255, 255, 255)
+        self.caps_state = caps_lock_on
         self._lock = threading.RLock()
         self._renderer: Renderer | None = None
         self._base_renderer: Renderer | None = None
@@ -249,6 +255,7 @@ class LightEngine:
                 if self.brightness < 0.999:
                     frame = {k: C.to_bytes(C.scale(tuple(v / 255 for v in c), self.brightness))
                              for k, c in frame.items()}
+                frame = self.with_caps_lock(frame)
                 try:
                     kb.write(frame)
                 except Exception as e:  # noqa: BLE001
@@ -256,6 +263,19 @@ class LightEngine:
                         self._kb = None
                         self.error = f"Lost the connection to OpenRGB: {e}"
             self._stop.wait(max(0.0, period - (time.monotonic() - start)))
+
+    # --- Bloq Mayús -----------------------------------------------------------
+    def caps_light(self) -> bool:
+        """Si KeyGlow debe hacer de piloto de Bloq Mayús en este teclado."""
+        if self.caps_lock == "off" or CAPS_KEY not in self.layout:
+            return False
+        return self.caps_lock == "on" or self.layout.caps_indicator is not True
+
+    def with_caps_lock(self, frame: dict) -> dict:
+        """Pinta la tecla Bloq Mayús con su color mientras esté activado."""
+        if self.caps_light() and self.caps_state():
+            frame = {**frame, CAPS_KEY: self.caps_color}
+        return frame
 
     def capture(self) -> dict:
         with self._lock:
@@ -303,6 +323,7 @@ class LightEngine:
                 "layout": self.layout.name,
                 "can_save": bool(self._kb is not None and onboard.can_save(self._kb.modes())),
                 "layout_rev": self.layout_rev,
+                "caps_indicator": self.layout.caps_indicator,
             }
 
     # --- vista previa -------------------------------------------------------

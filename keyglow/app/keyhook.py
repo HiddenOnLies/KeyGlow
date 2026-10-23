@@ -36,6 +36,14 @@ _WM_KEYDOWN, _WM_KEYUP, _WM_SYSKEYDOWN, _WM_SYSKEYUP, _WM_QUIT = 0x100, 0x101, 0
 _LLKHF_EXTENDED = 0x01
 
 
+def caps_lock_on() -> bool:
+    """Si Bloq Mayús está activado (solo Windows; en otros sistemas, siempre False)."""
+    if sys.platform != "win32":
+        return False
+    import ctypes
+    return bool(ctypes.windll.user32.GetKeyState(0x14) & 1)
+
+
 def key_id(vk: int, flags: int) -> str | None:
     if vk == 0x0D and flags & _LLKHF_EXTENDED:
         return "NUM_ENTER"

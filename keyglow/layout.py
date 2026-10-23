@@ -46,6 +46,8 @@ class Layout:
         self.source = source
         self.usb = usb  # VID:PID del teclado del que se obtuvo, si se sabe
         self.verified: bool | None = None  # para distribuciones de modelo: probada en hardware
+        # si el teclado tiene su propio piloto de Bloq Mayús (None = no se sabe)
+        self.caps_indicator: bool | None = None
         self._by_id = {k.id: k for k in keys}
         self.width = max(k.x + k.w for k in keys)
         self.height = max(k.y + k.h for k in keys)
@@ -79,12 +81,17 @@ class Layout:
             out["usb"] = self.usb
         if self.verified is not None:
             out["verified"] = self.verified
+        if self.caps_indicator is not None:
+            out["caps_lock_indicator"] = self.caps_indicator
         return out
 
     @classmethod
     def from_dict(cls, d: dict) -> Layout:
         keys = [Key(k["id"], k["x"], k["y"], k.get("w", 1.0), k.get("h", 1.0)) for k in d["keys"]]
-        return cls(d["name"], d.get("title", d["name"]), keys, d.get("source", ""), d.get("usb", ""))
+        lay = cls(d["name"], d.get("title", d["name"]), keys, d.get("source", ""), d.get("usb", ""))
+        lay.verified = d.get("verified")
+        lay.caps_indicator = d.get("caps_lock_indicator")
+        return lay
 
 
 def _build(rows: list[tuple[float, list]]) -> list[Key]:
@@ -282,6 +289,7 @@ def load_layout(name_or_path: str) -> Layout:
 # - el workshop (repositorio KeyGlow-layouts), que la app descarga y guarda en caché
 #   (keyglow.app.layout_sync pone aquí lo descargado).
 # Formato: {"title", "usb": ["vvvv:pppp"], "names": [...], "verified": bool,
+#           "caps_lock_indicator": bool (opcional: tiene piloto propio de Bloq Mayús),
 #           "builtin": "<nombre>" o "keys": [{"id", "x", "y", "w", "h"}, ...]}
 MODELS_DIR = Path(__file__).resolve().parent / "layouts"
 WORKSHOP_MODELS: list[dict] = []
@@ -311,6 +319,10 @@ def validate_model(d: dict) -> dict:
         raise ValueError("a layout needs 'usb' or 'names' to recognize the keyboard")
     out = {"title": title, "usb": [u.lower() for u in usb], "names": names,
            "verified": bool(d.get("verified", False))}
+    if "caps_lock_indicator" in d:
+        if not isinstance(d["caps_lock_indicator"], bool):
+            raise ValueError("'caps_lock_indicator' must be true or false")
+        out["caps_lock_indicator"] = d["caps_lock_indicator"]
     if "name" in d:
         out["name"] = str(d["name"])[:64]
     if "builtin" in d:
@@ -388,6 +400,7 @@ def _model_to_layout(d: dict, usb: str = "") -> Layout:
         keys = [Key(k["id"], k["x"], k["y"], k["w"], k["h"]) for k in d["keys"]]
         lay = Layout(d.get("name") or "model", d["title"], keys, source, usb)
     lay.verified = d["verified"]
+    lay.caps_indicator = d.get("caps_lock_indicator")
     return lay
 
 

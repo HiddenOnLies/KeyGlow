@@ -1194,6 +1194,7 @@ function setupDialogs() {
   $("#exp-go").addEventListener("click", exportProfile);
   $("#set-layout-export").addEventListener("click", exportLayout);
   $("#set-workshop-check").addEventListener("click", checkWorkshop);
+  $("#set-caps").addEventListener("change", capsInfo);
   $("#details-ok").addEventListener("click", () => {
     const author = $("#p-author").value.trim();
     const desc = $("#p-desc").value.trim();
@@ -1218,6 +1219,8 @@ function setupDialogs() {
         start_openrgb: $("#set-openrgb").checked,
         layout: $("#set-layout").value,
         layout_updates: $("#set-layout-updates").checked,
+        caps_lock: $("#set-caps").value,
+        caps_lock_color: $("#set-caps-color").value,
         openrgb_device: $("#set-device").value.trim(),
       });
       pollStatus(); // picks up a layout change
@@ -1389,12 +1392,34 @@ async function checkWorkshop() {
   } catch (e) { box.textContent = ""; toast(e.message, "err"); }
 }
 
+function capsInfo() {
+  const mode = $("#set-caps").value;
+  const has = S.meta.layout.caps_lock_indicator;
+  const box = $("#set-caps-info");
+  if (!(S.meta.layout.keys || []).some((k) => k.id === "CAPSLOCK")) {
+    box.textContent = "This keyboard has no Caps Lock key.";
+  } else if (mode === "off") {
+    box.textContent = "The Caps Lock key shows the profile's colors as usual.";
+  } else if (mode === "on") {
+    box.textContent = "The Caps Lock key lights up in this color while Caps Lock is on.";
+  } else if (has === true) {
+    box.textContent = "This keyboard has its own Caps Lock indicator, so KeyGlow leaves the key alone.";
+  } else if (has === false) {
+    box.textContent = "This keyboard has no Caps Lock indicator, so the key lights up in this color while Caps Lock is on.";
+  } else {
+    box.textContent = "KeyGlow doesn't know if this keyboard has its own indicator, so the key lights up while Caps Lock is on.";
+  }
+}
+
 function openSettings() {
   fillLayoutSelect();
   // the workshop may have brought new models since the app started
   api("/api/meta").then((m) => { S.meta.model_layouts = m.model_layouts; fillLayoutSelect(); }).catch(() => {});
   $("#set-layout-info").textContent = layoutInfo(S.meta.layout);
   $("#set-layout-updates").checked = S.settings.layout_updates !== false;
+  $("#set-caps").value = S.settings.caps_lock || "auto";
+  $("#set-caps-color").value = S.settings.caps_lock_color || "#ffffff";
+  capsInfo();
   showWorkshopInfo();
   $("#set-device").value = S.settings.openrgb_device || "";
   $("#set-community").value = S.settings.community_url || "";

@@ -188,6 +188,17 @@
     <label class="check"><input id="set-layout-updates" type="checkbox"> Download keyboard layouts from the KeyGlow workshop</label>
     <p class="layout-info muted small"><span id="set-workshop-info"></span>
       <button id="set-workshop-check" type="button" class="link-btn">Check now</button></p>
+    <div class="caps-row">
+      <label>Caps Lock light
+        <select id="set-caps">
+          <option value="auto">Automatic</option>
+          <option value="on">Always</option>
+          <option value="off">Off</option>
+        </select>
+      </label>
+      <input id="set-caps-color" type="color" aria-label="Caps Lock light color" title="Color of the Caps Lock key while it's on">
+    </div>
+    <p id="set-caps-info" class="layout-info muted small"></p>
     <label>Keyboard to use (part of its name in OpenRGB)
       <input id="set-device" placeholder="Empty = the first keyboard OpenRGB finds">
     </label>

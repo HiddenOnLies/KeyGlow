@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- **Caps Lock light**: while Caps Lock is on, KeyGlow lights the Caps Lock key (white by
+  default) on keyboards that have no indicator of their own, since OpenRGB's direct control
+  hides the keyboard's built-in Caps Lock highlight. *Settings → Caps Lock light*: Automatic,
+  Always or Off, plus the color. Model layouts can say whether the keyboard has its own
+  indicator (`caps_lock_indicator`); the HyperX Alloy Origins 65 doesn't.
+
 ## 0.3.0
 
 - **Keyboard-specific layouts**: KeyGlow recognizes keyboards by their USB ID (read from
