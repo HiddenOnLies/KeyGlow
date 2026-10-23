@@ -14,6 +14,10 @@
   typing, including 8 well-known themes (Catppuccin, Dracula, Nord, Gruvbox, Tokyo Night,
   Rosé Pine, Solarized, Everforest), each with its own design. New *reactive* filter.
 - `keyglow gallery` checks profile files and builds the gallery bundle.
+- Gallery: 11 more interactive profiles (Paint Splash, Sonar, Equalizer, Shockwave, Typing
+  Rainbow, Ghost Trail, Pond, Negative, Magma Typing, Neon Pulse, Fireworks).
+- Fix: in key-press layers with several colors, a lit key could change color when an older
+  press faded out; each press now keeps its color.
 
 ## 0.3.0
 

@@ -363,7 +363,7 @@ class Reactive(Effect):
         self.bg = C.parse(self.p["background"]) if self.p["background"] else None
         self.pos = {k.id: (k.cx, k.cy) for k in self.layout.keys}
         self._t = None
-        self._events: list[tuple[str, float]] = []
+        self._events: list[tuple[str, float, int]] = []
 
     def color(self, k, t):
         from . import input as keyinput
@@ -375,7 +375,7 @@ class Reactive(Effect):
             self._events = keyinput.recent(max(self.p["duration"], 0.05) * 2)
         dur = max(self.p["duration"], 0.05)
         best, best_c = 0.0, None
-        for i, (key, age) in enumerate(self._events):
+        for key, age, n in self._events:
             if age > dur * (2 if self.p["style"] == "ripple" else 1) or key not in self.pos:
                 continue
             fade = 1 - age / (dur * (2 if self.p["style"] == "ripple" else 1))
@@ -388,7 +388,7 @@ class Reactive(Effect):
                 radius = age * self.p["speed"] * 12
                 level = fade * math.exp(-((d - radius) / 0.9) ** 2)
             if level > best:
-                best, best_c = level, self.cs[i % len(self.cs)]
+                best, best_c = level, self.cs[n % len(self.cs)]  # cada pulsación, su color
         if best_c is None or best < 0.01:
             return self.bg
         if self.bg:

@@ -479,6 +479,52 @@
    }
   },
   {
+   "id": "equalizer",
+   "name": "Equalizer",
+   "author": "HiddenOnLies",
+   "description": "Typing lights whole rows like the bars of a music equalizer.",
+   "tags": [
+    "reactive",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Equalizer",
+    "author": "HiddenOnLies",
+    "description": "Typing lights whole rows like the bars of a music equalizer.",
+    "tags": [
+     "reactive",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#00e5ff",
+        "#ff00c8"
+       ],
+       "angle": 0
+      },
+      "opacity": 0.25
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#00e5ff",
+        "#7a5cff",
+        "#ff00c8",
+        "#ff7a00"
+       ],
+       "style": "row",
+       "duration": 0.7
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "everforest",
    "name": "Everforest",
    "author": "HiddenOnLies · colors from Everforest (MIT)",
@@ -576,6 +622,115 @@
        "seed": 7
       },
       "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "fireworks",
+   "name": "Fireworks",
+   "author": "HiddenOnLies",
+   "description": "A night sky with stars; every key launches a colored burst.",
+   "tags": [
+    "animated",
+    "reactive",
+    "seasonal"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Fireworks",
+    "author": "HiddenOnLies",
+    "description": "A night sky with stars; every key launches a colored burst.",
+    "tags": [
+     "animated",
+     "reactive",
+     "seasonal"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#02020e"
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#ffe0a0"
+       ],
+       "background": "#000000",
+       "density": 0.05,
+       "period": 2.0,
+       "seed": 21
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff3060",
+        "#ffd020",
+        "#40c0ff",
+        "#60ff80",
+        "#e060ff"
+       ],
+       "style": "ripple",
+       "duration": 1.0,
+       "speed": 0.9
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "key",
+       "duration": 0.3
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "ghost-trail",
+   "name": "Ghost Trail",
+   "author": "HiddenOnLies",
+   "description": "Keys stay lit for a long while after you press them, then fade away.",
+   "tags": [
+    "reactive",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Ghost Trail",
+    "author": "HiddenOnLies",
+    "description": "Keys stay lit for a long while after you press them, then fade away.",
+    "tags": [
+     "reactive",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#04060c"
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#a8c8ff"
+       ],
+       "style": "key",
+       "duration": 7.0
+      }
      }
     ]
    }
@@ -751,6 +906,59 @@
    }
   },
   {
+   "id": "magma-typing",
+   "name": "Magma Typing",
+   "author": "HiddenOnLies",
+   "description": "Lava along the bottom; typing sends white-hot waves through it.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Magma Typing",
+    "author": "HiddenOnLies",
+    "description": "Lava along the bottom; typing sends white-hot waves through it.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#1a0300"
+      }
+     },
+     {
+      "effect": "fire",
+      "params": {
+       "colors": [
+        "#000000",
+        "#800000",
+        "#ff3000",
+        "#ff9000"
+       ],
+       "speed": 0.6,
+       "height": 0.5
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffd080"
+       ],
+       "style": "ripple",
+       "duration": 0.9,
+       "speed": 1.1
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
    "id": "nebula",
    "name": "Nebula",
    "author": "HiddenOnLies",
@@ -792,6 +1000,106 @@
        "seed": 11
       },
       "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "negative",
+   "name": "Negative",
+   "author": "HiddenOnLies",
+   "description": "A bright keyboard where the keys you press go dark and slowly light up again.",
+   "tags": [
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Negative",
+    "author": "HiddenOnLies",
+    "description": "A bright keyboard where the keys you press go dark and slowly light up again.",
+    "tags": [
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#00e5ff",
+        "#b0f8ff",
+        "#00e5ff"
+       ],
+       "angle": 0
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#000000"
+       ],
+       "style": "key",
+       "duration": 1.8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "neon-pulse",
+   "name": "Neon Pulse",
+   "author": "HiddenOnLies",
+   "description": "Cyan rows and magenta keys flash over a dim neon gradient.",
+   "tags": [
+    "animated",
+    "reactive",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Neon Pulse",
+    "author": "HiddenOnLies",
+    "description": "Cyan rows and magenta keys flash over a dim neon gradient.",
+    "tags": [
+     "animated",
+     "reactive",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#ff00c8",
+        "#00e5ff",
+        "#ff00c8"
+       ],
+       "speed": 0.08,
+       "angle": 0
+      },
+      "opacity": 0.35
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#00e5ff"
+       ],
+       "style": "row",
+       "duration": 0.5
+      },
+      "blend": "add",
+      "opacity": 0.6
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff00c8"
+       ],
+       "style": "key",
+       "duration": 0.9
+      }
      }
     ]
    }
@@ -844,6 +1152,100 @@
       },
       "blend": "add",
       "opacity": 0.15
+     }
+    ]
+   }
+  },
+  {
+   "id": "paint-splash",
+   "name": "Paint Splash",
+   "author": "HiddenOnLies",
+   "description": "Every key you press splashes a different color across the board.",
+   "tags": [
+    "reactive",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Paint Splash",
+    "author": "HiddenOnLies",
+    "description": "Every key you press splashes a different color across the board.",
+    "tags": [
+     "reactive",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#08080c"
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff2a6d",
+        "#ffb400",
+        "#05d9e8",
+        "#7cff4f",
+        "#b84dff"
+       ],
+       "style": "ripple",
+       "duration": 1.4,
+       "speed": 0.7
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "pond",
+   "name": "Pond",
+   "author": "HiddenOnLies",
+   "description": "Calm dark water; every key drops a stone and its ripples spread.",
+   "tags": [
+    "animated",
+    "reactive",
+    "nature",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Pond",
+    "author": "HiddenOnLies",
+    "description": "Calm dark water; every key drops a stone and its ripples spread.",
+    "tags": [
+     "animated",
+     "reactive",
+     "nature",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#021030",
+        "#04305a",
+        "#063f4a",
+        "#020c24"
+       ],
+       "speed": 0.08,
+       "scale": 1.1
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#8fd8ff"
+       ],
+       "style": "ripple",
+       "duration": 2.0,
+       "speed": 0.55
+      },
+      "blend": "add"
      }
     ]
    }
@@ -958,6 +1360,56 @@
    }
   },
   {
+   "id": "shockwave",
+   "name": "Shockwave",
+   "author": "HiddenOnLies",
+   "description": "A fast white blast from every key over a deep red glow.",
+   "tags": [
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Shockwave",
+    "author": "HiddenOnLies",
+    "description": "A fast white blast from every key over a deep red glow.",
+    "tags": [
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#2a0006"
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "ripple",
+       "duration": 0.5,
+       "speed": 2.0
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff3040"
+       ],
+       "style": "key",
+       "duration": 0.4
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "snowfall",
    "name": "Snowfall",
    "author": "HiddenOnLies",
@@ -1031,6 +1483,58 @@
        "angle": 0,
        "wavelength": 1.2
       }
+     }
+    ]
+   }
+  },
+  {
+   "id": "sonar",
+   "name": "Sonar",
+   "author": "HiddenOnLies",
+   "description": "A radar sweep in the dark; each key sends out a ping.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Sonar",
+    "author": "HiddenOnLies",
+    "description": "A radar sweep in the dark; each key sends out a ping.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#001408"
+      }
+     },
+     {
+      "effect": "scanner",
+      "params": {
+       "color": "#00ff60",
+       "background": "#000000",
+       "speed": 0.2,
+       "width": 0.08,
+       "angle": 0
+      },
+      "blend": "add",
+      "opacity": 0.6
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#80ffb0"
+       ],
+       "style": "ripple",
+       "duration": 1.6,
+       "speed": 0.5
+      },
+      "blend": "add"
      }
     ]
    }
@@ -1123,6 +1627,50 @@
        ],
        "style": "key",
        "duration": 0.7
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "typing-rainbow",
+   "name": "Typing Rainbow",
+   "author": "HiddenOnLies",
+   "description": "Each key you press takes the next color of the rainbow.",
+   "tags": [
+    "reactive",
+    "productivity"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Typing Rainbow",
+    "author": "HiddenOnLies",
+    "description": "Each key you press takes the next color of the rainbow.",
+    "tags": [
+     "reactive",
+     "productivity"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#0c0c14"
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff0040",
+        "#ff8000",
+        "#ffe000",
+        "#40ff40",
+        "#00c0ff",
+        "#4040ff",
+        "#c000ff"
+       ],
+       "style": "key",
+       "duration": 2.2
       }
      }
     ]

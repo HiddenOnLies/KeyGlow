@@ -52,3 +52,15 @@ def test_codigos_de_windows():
     assert key_id(0x41, 0) == "A" and key_id(0xA0, 0) == "LSHIFT"
     assert key_id(0x0D, 0) == "ENTER" and key_id(0x0D, 1) == "NUM_ENTER"
     assert key_id(0x70, 0) == "F1" and key_id(0xFF, 0) is None
+
+
+def test_cada_pulsacion_conserva_su_color():
+    keyinput.clear()
+    keyinput.press("Z", when=time.monotonic() - 1.15)  # aún en la ventana, a punto de salir
+    keyinput.press("A", when=time.monotonic() - 0.05)
+    r = render("key", colors=["#ff0000", "#0000ff"], duration=0.6)
+    before = r.frame(0.01)["A"]
+    time.sleep(0.12)  # Z sale de la ventana; A sigue encendida
+    after = r.frame(0.2)["A"]
+    assert (before[0] > before[2]) == (after[0] > after[2])  # mismo color, solo más tenue
+    keyinput.clear()
