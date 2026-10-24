@@ -182,6 +182,73 @@
    }
   },
   {
+   "id": "breakout",
+   "name": "Breakout",
+   "author": "HiddenOnLies",
+   "description": "Rainbow bricks along the top and a ball bouncing below them.",
+   "tags": [
+    "animated",
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Breakout",
+    "author": "HiddenOnLies",
+    "description": "Rainbow bricks along the top and a ball bouncing below them.",
+    "tags": [
+     "animated",
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#020208"
+      }
+     },
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#ff2020",
+        "#ff9000",
+        "#ffe000",
+        "#20ff40",
+        "#2080ff",
+        "#a020ff"
+       ]
+      },
+      "keys": [
+       "@fn_row",
+       "@numbers"
+      ]
+     },
+     {
+      "effect": "bounce",
+      "params": {
+       "color": "#ffffff",
+       "background": "#000000",
+       "speed": 0.4,
+       "size": 0.09
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "key",
+       "duration": 0.3
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "candy-rain",
    "name": "Candy Rain",
    "author": "HiddenOnLies",
@@ -557,6 +624,58 @@
    }
   },
   {
+   "id": "disco-ball",
+   "name": "Disco Ball",
+   "author": "HiddenOnLies",
+   "description": "A turning rainbow with colored sparks flying everywhere.",
+   "tags": [
+    "animated",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Disco Ball",
+    "author": "HiddenOnLies",
+    "description": "A turning rainbow with colored sparks flying everywhere.",
+    "tags": [
+     "animated",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#ff0040",
+        "#ffe000",
+        "#00ff80",
+        "#0080ff",
+        "#c000ff"
+       ],
+       "speed": 0.3
+      },
+      "opacity": 0.45
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#ff40c0",
+        "#40e0ff",
+        "#ffe040"
+       ],
+       "background": "#000000",
+       "density": 0.3,
+       "period": 0.8,
+       "seed": 51
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
    "id": "dracula",
    "name": "Dracula",
    "author": "HiddenOnLies · colors from Dracula (MIT)",
@@ -611,6 +730,64 @@
        "style": "key",
        "duration": 0.6
       }
+     }
+    ]
+   }
+  },
+  {
+   "id": "electric-storm",
+   "name": "Electric Storm",
+   "author": "HiddenOnLies",
+   "description": "Bolts of blue-white static over a violet sky; keys crackle when pressed.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Electric Storm",
+    "author": "HiddenOnLies",
+    "description": "Bolts of blue-white static over a violet sky; keys crackle when pressed.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#1a0040",
+        "#3a0070"
+       ],
+       "angle": 90
+      }
+     },
+     {
+      "effect": "glitch",
+      "params": {
+       "colors": [
+        "#a0c0ff",
+        "#ffffff"
+       ],
+       "background": "#000000",
+       "density": 0.22,
+       "speed": 1.2,
+       "seed": 33
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#c0d8ff"
+       ],
+       "style": "ripple",
+       "duration": 0.5,
+       "speed": 1.6
+      },
+      "blend": "add"
      }
     ]
    }
@@ -1081,6 +1258,47 @@
    }
   },
   {
+   "id": "heartline",
+   "name": "Heartline",
+   "author": "HiddenOnLies",
+   "description": "A slow red heartbeat; every key draws a pink cross through it.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Heartline",
+    "author": "HiddenOnLies",
+    "description": "A slow red heartbeat; every key draws a pink cross through it.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "heartbeat",
+      "params": {
+       "color": "#ff0030",
+       "bpm": 62,
+       "min": 0.12
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff80c0"
+       ],
+       "style": "cross",
+       "duration": 0.5
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
    "id": "heat-trail",
    "name": "Heat Trail",
    "author": "HiddenOnLies",
@@ -1146,6 +1364,110 @@
        "speed": 0.25,
        "twist": 1.2
       }
+     }
+    ]
+   }
+  },
+  {
+   "id": "kaleidoscope",
+   "name": "Kaleidoscope",
+   "author": "HiddenOnLies",
+   "description": "A rainbow spiral under flowing color, always changing.",
+   "tags": [
+    "animated",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Kaleidoscope",
+    "author": "HiddenOnLies",
+    "description": "A rainbow spiral under flowing color, always changing.",
+    "tags": [
+     "animated",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#ff0080",
+        "#ffb000",
+        "#00e5ff",
+        "#7000ff"
+       ],
+       "speed": 0.18,
+       "twist": 2.0
+      }
+     },
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#000000",
+        "#ff00a0",
+        "#000000",
+        "#00c0ff"
+       ],
+       "speed": 0.2,
+       "scale": 1.2
+      },
+      "blend": "screen",
+      "opacity": 0.5
+     }
+    ]
+   }
+  },
+  {
+   "id": "lava-blobs",
+   "name": "Lava Blobs",
+   "author": "HiddenOnLies",
+   "description": "Two warm blobs drifting and bouncing through dark red lava.",
+   "tags": [
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Lava Blobs",
+    "author": "HiddenOnLies",
+    "description": "Two warm blobs drifting and bouncing through dark red lava.",
+    "tags": [
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#200200",
+        "#5a0a00",
+        "#300400"
+       ],
+       "speed": 0.08,
+       "scale": 1.0
+      }
+     },
+     {
+      "effect": "bounce",
+      "params": {
+       "color": "#ff6000",
+       "background": "#000000",
+       "speed": 0.09,
+       "size": 0.2
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "bounce",
+      "params": {
+       "color": "#ffb000",
+       "background": "#000000",
+       "speed": 0.06,
+       "size": 0.15
+      },
+      "blend": "add"
      }
     ]
    }
@@ -1238,6 +1560,56 @@
        "speed": 1.1
       },
       "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "matrix-glitch",
+   "name": "Matrix Glitch",
+   "author": "HiddenOnLies",
+   "description": "Falling green code that keeps breaking up.",
+   "tags": [
+    "animated",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Matrix Glitch",
+    "author": "HiddenOnLies",
+    "description": "Falling green code that keeps breaking up.",
+    "tags": [
+     "animated",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "rain",
+      "params": {
+       "colors": [
+        "#00ff40",
+        "#a0ffa0"
+       ],
+       "background": "#001a06",
+       "speed": 0.7,
+       "density": 1.0,
+       "length": 0.5
+      }
+     },
+     {
+      "effect": "glitch",
+      "params": {
+       "colors": [
+        "#40ff80",
+        "#ffffff"
+       ],
+       "background": "#000000",
+       "density": 0.12,
+       "speed": 0.9,
+       "seed": 27
+      },
+      "blend": "add",
+      "opacity": 0.7
      }
     ]
    }
@@ -1481,6 +1853,56 @@
    }
   },
   {
+   "id": "ocean-swell",
+   "name": "Ocean Swell",
+   "author": "HiddenOnLies",
+   "description": "Blue swells rolling from top to bottom; typing breaks them into foam.",
+   "tags": [
+    "animated",
+    "reactive",
+    "nature"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Ocean Swell",
+    "author": "HiddenOnLies",
+    "description": "Blue swells rolling from top to bottom; typing breaks them into foam.",
+    "tags": [
+     "animated",
+     "reactive",
+     "nature"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#001a50",
+        "#0070c0",
+        "#00b0d0",
+        "#001a50"
+       ],
+       "speed": 0.08,
+       "angle": 90,
+       "wavelength": 1.2
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "burst",
+       "duration": 0.6,
+       "speed": 0.7
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
    "id": "paint-splash",
    "name": "Paint Splash",
    "author": "HiddenOnLies",
@@ -1651,6 +2073,56 @@
        "style": "burst",
        "duration": 0.4,
        "speed": 0.8
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "radar",
+   "name": "Radar",
+   "author": "HiddenOnLies",
+   "description": "A single green arm sweeps around the keyboard like a radar screen; keys show up as blips.",
+   "tags": [
+    "animated",
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Radar",
+    "author": "HiddenOnLies",
+    "description": "A single green arm sweeps around the keyboard like a radar screen; keys show up as blips.",
+    "tags": [
+     "animated",
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#40ff60",
+        "#002a08",
+        "#000a02",
+        "#000a02",
+        "#000a02",
+        "#00200a"
+       ],
+       "speed": 0.25
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#c0ffc0"
+       ],
+       "style": "burst",
+       "duration": 0.6,
+       "speed": 0.5
       },
       "blend": "add"
      }
@@ -2094,6 +2566,40 @@
    }
   },
   {
+   "id": "static-tv",
+   "name": "Static TV",
+   "author": "HiddenOnLies",
+   "description": "Grey snow and flickering lines, like a TV with no signal.",
+   "tags": [
+    "animated"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Static TV",
+    "author": "HiddenOnLies",
+    "description": "Grey snow and flickering lines, like a TV with no signal.",
+    "tags": [
+     "animated"
+    ],
+    "layers": [
+     {
+      "effect": "glitch",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#9a9a9a",
+        "#5a5a5a"
+       ],
+       "background": "#141414",
+       "density": 0.9,
+       "speed": 1.5,
+       "seed": 13
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "sunball",
    "name": "Sunball",
    "author": "HiddenOnLies",
@@ -2334,6 +2840,54 @@
    }
   },
   {
+   "id": "twin-comets",
+   "name": "Twin Comets",
+   "author": "HiddenOnLies",
+   "description": "A cyan and a magenta comet chasing each other across the rows.",
+   "tags": [
+    "animated",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Twin Comets",
+    "author": "HiddenOnLies",
+    "description": "A cyan and a magenta comet chasing each other across the rows.",
+    "tags": [
+     "animated",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#04000c"
+      }
+     },
+     {
+      "effect": "comet",
+      "params": {
+       "color": "#00e5ff",
+       "background": "#000000",
+       "speed": 0.1,
+       "length": 0.2
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "comet",
+      "params": {
+       "color": "#ff00c8",
+       "background": "#000000",
+       "speed": 0.07,
+       "length": 0.25
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
    "id": "typing-rainbow",
    "name": "Typing Rainbow",
    "author": "HiddenOnLies",
@@ -2373,6 +2927,103 @@
        "style": "key",
        "duration": 2.2
       }
+     }
+    ]
+   }
+  },
+  {
+   "id": "whirlpool",
+   "name": "Whirlpool",
+   "author": "HiddenOnLies",
+   "description": "Deep blue water spiraling into the middle; typing throws up foam.",
+   "tags": [
+    "animated",
+    "reactive",
+    "nature"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Whirlpool",
+    "author": "HiddenOnLies",
+    "description": "Deep blue water spiraling into the middle; typing throws up foam.",
+    "tags": [
+     "animated",
+     "reactive",
+     "nature"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#002a6a",
+        "#00a0d0",
+        "#001a40",
+        "#0060a0"
+       ],
+       "speed": 0.12,
+       "twist": -2.2
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#e0ffff"
+       ],
+       "style": "burst",
+       "duration": 0.5,
+       "speed": 0.6
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "zen-garden",
+   "name": "Zen Garden",
+   "author": "HiddenOnLies",
+   "description": "Soft sand-colored rings spreading slowly; each key adds a ripple.",
+   "tags": [
+    "animated",
+    "reactive",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Zen Garden",
+    "author": "HiddenOnLies",
+    "description": "Soft sand-colored rings spreading slowly; each key adds a ripple.",
+    "tags": [
+     "animated",
+     "reactive",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "ripple",
+      "params": {
+       "colors": [
+        "#d0a060",
+        "#806030"
+       ],
+       "background": "#140c04",
+       "speed": 0.08,
+       "thickness": 0.18
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffe0b0"
+       ],
+       "style": "ripple",
+       "duration": 2.0,
+       "speed": 0.4
+      },
+      "blend": "add"
      }
     ]
    }
