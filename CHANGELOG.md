@@ -1,27 +1,23 @@
 # Changelog
 
-## Unreleased
+## 0.4.0
 
+- **New community gallery**: the 239 look-alike theme profiles are gone. The gallery now lives in
+  its own repository, [KeyGlow-profiles](https://github.com/HiddenOnLies/KeyGlow-profiles), and
+  the app downloads it at most once a day (one file, validated, cached for offline use; a copy
+  ships with the app). It has 48 hand-designed profiles, most animated or reacting to typing,
+  including 8 well-known themes (Catppuccin, Dracula, Nord, Gruvbox, Tokyo Night, Rosé Pine,
+  Solarized, Everforest), each with its own design. *Community → Check for new* downloads it
+  right away; *Add yours* explains how to contribute. New *Reactive* filter.
+- **New effects**: Swirl (colors turning around a point, optionally as a spiral), Comet (runs
+  across every row with a tail), Bounce (a ball of light bouncing off the edges) and Glitch (bits
+  of rows flashing). Two new key-press styles: *Light its row and column* and *Burst from the key*.
 - **Caps Lock light**: while Caps Lock is on, KeyGlow lights the Caps Lock key (white by
   default) on keyboards that have no indicator of their own, since OpenRGB's direct control
   hides the keyboard's built-in Caps Lock highlight. *Settings → Caps Lock light*: Automatic,
   Always or Off, plus the color. Model layouts can say whether the keyboard has its own
   indicator (`caps_lock_indicator`); the HyperX Alloy Origins 65 doesn't.
-- **New community gallery**: the 239 look-alike theme profiles are gone. The gallery now lives in
-  its own repository, [KeyGlow-profiles](https://github.com/HiddenOnLies/KeyGlow-profiles), and
-  the app downloads it at most once a day (one file, validated, cached for offline use; a copy
-  ships with the app). It starts with 22 hand-designed profiles, most animated or reacting to
-  typing, including 8 well-known themes (Catppuccin, Dracula, Nord, Gruvbox, Tokyo Night,
-  Rosé Pine, Solarized, Everforest), each with its own design. New *reactive* filter.
 - `keyglow gallery` checks profile files and builds the gallery bundle.
-- Gallery: 11 more interactive profiles (Paint Splash, Sonar, Equalizer, Shockwave, Typing
-  Rainbow, Ghost Trail, Pond, Negative, Magma Typing, Neon Pulse, Fireworks).
-- **New effects**: Swirl (colors turning around a point, optionally as a spiral), Comet (runs
-  across every row with a tail), Bounce (a ball of light bouncing off the edges) and Glitch (bits
-  of rows flashing). Two new key-press styles: *Light its row and column* and *Burst from the key*.
-- Gallery: 15 more profiles; 11 use the new effects (Hypnosis, Galaxy Spiral, Pinwheel, Snake,
-  Shooting Star, Pong, Sunball, Signal Lost, Cyber Glitch, Crosshair, Supernova), so older
-  versions of KeyGlow skip them.
 - Fix: in key-press layers with several colors, a lit key could change color when an older
   press faded out; each press now keeps its color.
 

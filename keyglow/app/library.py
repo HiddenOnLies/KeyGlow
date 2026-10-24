@@ -25,6 +25,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from .. import __version__
 from ..importers import MAX_DOWNLOAD
 from ..profile import Profile
 
@@ -189,7 +190,7 @@ def delete_mine(profile_id: str) -> None:
 def _download(url: str) -> bytes:
     if not url.startswith(("https://", "http://")):
         raise ValueError("The link must start with http:// or https://")
-    req = urllib.request.Request(url, headers={"User-Agent": "keyglow-app/0.2"})
+    req = urllib.request.Request(url, headers={"User-Agent": f"keyglow-app/{__version__}"})
     with urllib.request.urlopen(req, timeout=15) as resp:
         raw = resp.read(MAX_DOWNLOAD + 1)
     if len(raw) > MAX_DOWNLOAD:
