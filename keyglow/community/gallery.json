@@ -1,7 +1,7 @@
 {
  "format": "keyglow-gallery/1",
  "name": "KeyGlow community",
- "generated": "2026-10-23",
+ "generated": "2026-10-24",
  "profiles": [
   {
    "id": "amber-terminal",
@@ -176,6 +176,40 @@
        "style": "ripple",
        "duration": 1.2,
        "speed": 0.8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "candy-rain",
+   "name": "Candy Rain",
+   "author": "HiddenOnLies",
+   "description": "Pink, yellow and mint drops falling on a dark purple background.",
+   "tags": [
+    "animated"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Candy Rain",
+    "author": "HiddenOnLies",
+    "description": "Pink, yellow and mint drops falling on a dark purple background.",
+    "tags": [
+     "animated"
+    ],
+    "layers": [
+     {
+      "effect": "rain",
+      "params": {
+       "colors": [
+        "#ff4fb0",
+        "#ffd000",
+        "#30ffb0"
+       ],
+       "background": "#2a0040",
+       "speed": 0.5,
+       "density": 1.0,
+       "length": 0.5
       }
      }
     ]
@@ -363,6 +397,161 @@
        "seed": 3
       },
       "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "crosshair",
+   "name": "Crosshair",
+   "author": "HiddenOnLies",
+   "description": "Red WASD; every key you press draws a crosshair through it.",
+   "tags": [
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Crosshair",
+    "author": "HiddenOnLies",
+    "description": "Red WASD; every key you press draws a crosshair through it.",
+    "tags": [
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#0a0002"
+      }
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#ff1030"
+      },
+      "keys": [
+       "@wasd"
+      ]
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff3040"
+       ],
+       "style": "cross",
+       "duration": 0.45
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "key",
+       "duration": 0.3
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "cyber-glitch",
+   "name": "Cyber Glitch",
+   "author": "HiddenOnLies",
+   "description": "A neon wave that keeps breaking up.",
+   "tags": [
+    "animated",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Cyber Glitch",
+    "author": "HiddenOnLies",
+    "description": "A neon wave that keeps breaking up.",
+    "tags": [
+     "animated",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "color_wave",
+      "params": {
+       "colors": [
+        "#ff00c8",
+        "#7000ff",
+        "#00e5ff",
+        "#ff00c8"
+       ],
+       "speed": 0.1
+      }
+     },
+     {
+      "effect": "glitch",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#ffe000"
+       ],
+       "background": "#000000",
+       "density": 0.15,
+       "speed": 0.8,
+       "seed": 8
+      },
+      "blend": "add",
+      "opacity": 0.8
+     }
+    ]
+   }
+  },
+  {
+   "id": "deep-focus",
+   "name": "Deep Focus",
+   "author": "HiddenOnLies",
+   "description": "Calm warm white for long work sessions; letters a little brighter.",
+   "tags": [
+    "static",
+    "productivity"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Deep Focus",
+    "author": "HiddenOnLies",
+    "description": "Calm warm white for long work sessions; letters a little brighter.",
+    "tags": [
+     "static",
+     "productivity"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#2a1a0a"
+      }
+     },
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#ffb060"
+      },
+      "keys": [
+       "@letters"
+      ]
+     },
+     {
+      "effect": "breathing",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "period": 10.0,
+       "min": 0.7
+      },
+      "blend": "multiply"
      }
     ]
    }
@@ -698,6 +887,70 @@
    }
   },
   {
+   "id": "galaxy-spiral",
+   "name": "Galaxy Spiral",
+   "author": "HiddenOnLies",
+   "description": "Purple and blue spiral arms with stars; keys burst into light.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Galaxy Spiral",
+    "author": "HiddenOnLies",
+    "description": "Purple and blue spiral arms with stars; keys burst into light.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#3a00a0",
+        "#ff2a8a",
+        "#0030c0",
+        "#06001a"
+       ],
+       "speed": 0.05,
+       "twist": 1.6,
+       "center": [
+        0.5,
+        0.55
+       ]
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "background": "#000000",
+       "density": 0.05,
+       "period": 2.5,
+       "seed": 31
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#c0a0ff"
+       ],
+       "style": "burst",
+       "duration": 0.7,
+       "speed": 0.6
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
    "id": "ghost-trail",
    "name": "Ghost Trail",
    "author": "HiddenOnLies",
@@ -867,6 +1120,37 @@
    }
   },
   {
+   "id": "hypnosis",
+   "name": "Hypnosis",
+   "author": "HiddenOnLies",
+   "description": "A black and white spiral that never stops turning.",
+   "tags": [
+    "animated"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Hypnosis",
+    "author": "HiddenOnLies",
+    "description": "A black and white spiral that never stops turning.",
+    "tags": [
+     "animated"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#000000"
+       ],
+       "speed": 0.25,
+       "twist": 1.2
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "lighthouse",
    "name": "Lighthouse",
    "author": "HiddenOnLies",
@@ -952,6 +1236,46 @@
        "style": "ripple",
        "duration": 0.9,
        "speed": 1.1
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "metronome",
+   "name": "Metronome",
+   "author": "HiddenOnLies",
+   "description": "A thin white line ticking back and forth over a soft pulse.",
+   "tags": [
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Metronome",
+    "author": "HiddenOnLies",
+    "description": "A thin white line ticking back and forth over a soft pulse.",
+    "tags": [
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "heartbeat",
+      "params": {
+       "color": "#300818",
+       "bpm": 60,
+       "min": 0.4
+      }
+     },
+     {
+      "effect": "scanner",
+      "params": {
+       "color": "#ffffff",
+       "background": "#000000",
+       "speed": 0.5,
+       "width": 0.04
       },
       "blend": "add"
      }
@@ -1200,6 +1524,44 @@
    }
   },
   {
+   "id": "pinwheel",
+   "name": "Pinwheel",
+   "author": "HiddenOnLies",
+   "description": "The whole rainbow turning around the middle of the keyboard.",
+   "tags": [
+    "animated",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Pinwheel",
+    "author": "HiddenOnLies",
+    "description": "The whole rainbow turning around the middle of the keyboard.",
+    "tags": [
+     "animated",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "swirl",
+      "params": {
+       "colors": [
+        "#ff0000",
+        "#ff8000",
+        "#ffff00",
+        "#00ff00",
+        "#00ffff",
+        "#0040ff",
+        "#8000ff",
+        "#ff00c0"
+       ],
+       "speed": 0.2
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "pond",
    "name": "Pond",
    "author": "HiddenOnLies",
@@ -1244,6 +1606,51 @@
        "style": "ripple",
        "duration": 2.0,
        "speed": 0.55
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "pong",
+   "name": "Pong",
+   "author": "HiddenOnLies",
+   "description": "A ball bouncing around a black table; keys burst on contact with your fingers.",
+   "tags": [
+    "animated",
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Pong",
+    "author": "HiddenOnLies",
+    "description": "A ball bouncing around a black table; keys burst on contact with your fingers.",
+    "tags": [
+     "animated",
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "bounce",
+      "params": {
+       "color": "#ffffff",
+       "background": "#000000",
+       "speed": 0.35,
+       "size": 0.08
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#00ff80"
+       ],
+       "style": "burst",
+       "duration": 0.4,
+       "speed": 0.8
       },
       "blend": "add"
      }
@@ -1410,6 +1817,153 @@
    }
   },
   {
+   "id": "shooting-star",
+   "name": "Shooting Star",
+   "author": "HiddenOnLies",
+   "description": "A white comet crossing a starry blue night.",
+   "tags": [
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Shooting Star",
+    "author": "HiddenOnLies",
+    "description": "A white comet crossing a starry blue night.",
+    "tags": [
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#000a30",
+        "#06205a"
+       ],
+       "angle": 90
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#a0c0ff"
+       ],
+       "background": "#000000",
+       "density": 0.05,
+       "period": 3.0,
+       "seed": 17
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "comet",
+      "params": {
+       "color": "#ffffff",
+       "background": "#000000",
+       "speed": 0.08,
+       "length": 0.28
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "signal-lost",
+   "name": "Signal Lost",
+   "author": "HiddenOnLies",
+   "description": "Cyan and magenta glitches; every key lights its row and column.",
+   "tags": [
+    "animated",
+    "reactive",
+    "neon"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Signal Lost",
+    "author": "HiddenOnLies",
+    "description": "Cyan and magenta glitches; every key lights its row and column.",
+    "tags": [
+     "animated",
+     "reactive",
+     "neon"
+    ],
+    "layers": [
+     {
+      "effect": "glitch",
+      "params": {
+       "colors": [
+        "#00e5ff",
+        "#ff00c8",
+        "#ffffff"
+       ],
+       "background": "#05000a",
+       "density": 0.3,
+       "speed": 0.6
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffff"
+       ],
+       "style": "cross",
+       "duration": 0.35
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snake",
+   "name": "Snake",
+   "author": "HiddenOnLies",
+   "description": "A green snake slithers across every row; your keys flash as it goes.",
+   "tags": [
+    "animated",
+    "reactive",
+    "gaming"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Snake",
+    "author": "HiddenOnLies",
+    "description": "A green snake slithers across every row; your keys flash as it goes.",
+    "tags": [
+     "animated",
+     "reactive",
+     "gaming"
+    ],
+    "layers": [
+     {
+      "effect": "comet",
+      "params": {
+       "color": "#40ff40",
+       "background": "#001400",
+       "speed": 0.12,
+       "length": 0.22
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffe000"
+       ],
+       "style": "key",
+       "duration": 0.5
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "snowfall",
    "name": "Snowfall",
    "author": "HiddenOnLies",
@@ -1535,6 +2089,153 @@
        "speed": 0.5
       },
       "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sunball",
+   "name": "Sunball",
+   "author": "HiddenOnLies",
+   "description": "A big warm sun drifting and bouncing over an orange sky.",
+   "tags": [
+    "animated",
+    "chill"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Sunball",
+    "author": "HiddenOnLies",
+    "description": "A big warm sun drifting and bouncing over an orange sky.",
+    "tags": [
+     "animated",
+     "chill"
+    ],
+    "layers": [
+     {
+      "effect": "gradient",
+      "params": {
+       "colors": [
+        "#1a0400",
+        "#4a1000"
+       ],
+       "angle": 90
+      }
+     },
+     {
+      "effect": "bounce",
+      "params": {
+       "color": "#ffe060",
+       "background": "#000000",
+       "speed": 0.12,
+       "size": 0.2
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "supernova",
+   "name": "Supernova",
+   "author": "HiddenOnLies",
+   "description": "A starfield where every key explodes into a colored disc.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Supernova",
+    "author": "HiddenOnLies",
+    "description": "A starfield where every key explodes into a colored disc.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "solid",
+      "params": {
+       "color": "#02020c"
+      }
+     },
+     {
+      "effect": "starlight",
+      "params": {
+       "colors": [
+        "#ffffff",
+        "#ffd0a0"
+       ],
+       "background": "#000000",
+       "density": 0.06,
+       "period": 2.0,
+       "seed": 41
+      },
+      "blend": "add"
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ff3000",
+        "#ffb000",
+        "#ff00a0",
+        "#40a0ff"
+       ],
+       "style": "burst",
+       "duration": 0.8,
+       "speed": 0.9
+      },
+      "blend": "add"
+     }
+    ]
+   }
+  },
+  {
+   "id": "thermal-camera",
+   "name": "Thermal Camera",
+   "author": "HiddenOnLies",
+   "description": "Heat-vision colors moving slowly; typing makes the keys hot.",
+   "tags": [
+    "animated",
+    "reactive"
+   ],
+   "profile": {
+    "format": "keyglow/1",
+    "name": "Thermal Camera",
+    "author": "HiddenOnLies",
+    "description": "Heat-vision colors moving slowly; typing makes the keys hot.",
+    "tags": [
+     "animated",
+     "reactive"
+    ],
+    "layers": [
+     {
+      "effect": "plasma",
+      "params": {
+       "colors": [
+        "#000020",
+        "#3000a0",
+        "#b0007a",
+        "#ff3000",
+        "#ffc000"
+       ],
+       "speed": 0.1,
+       "scale": 1.2
+      }
+     },
+     {
+      "effect": "reactive",
+      "params": {
+       "colors": [
+        "#ffffc0",
+        "#ffc000"
+       ],
+       "style": "ripple",
+       "duration": 0.8,
+       "speed": 1.0
+      }
      }
     ]
    }

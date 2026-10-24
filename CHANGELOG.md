@@ -16,6 +16,12 @@
 - `keyglow gallery` checks profile files and builds the gallery bundle.
 - Gallery: 11 more interactive profiles (Paint Splash, Sonar, Equalizer, Shockwave, Typing
   Rainbow, Ghost Trail, Pond, Negative, Magma Typing, Neon Pulse, Fireworks).
+- **New effects**: Swirl (colors turning around a point, optionally as a spiral), Comet (runs
+  across every row with a tail), Bounce (a ball of light bouncing off the edges) and Glitch (bits
+  of rows flashing). Two new key-press styles: *Light its row and column* and *Burst from the key*.
+- Gallery: 15 more profiles; 11 use the new effects (Hypnosis, Galaxy Spiral, Pinwheel, Snake,
+  Shooting Star, Pong, Sunball, Signal Lost, Cyber Glitch, Crosshair, Supernova), so older
+  versions of KeyGlow skip them.
 - Fix: in key-press layers with several colors, a lit key could change color when an older
   press faded out; each press now keeps its color.
 

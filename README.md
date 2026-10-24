@@ -54,10 +54,12 @@ system tray with *Open KeyGlow*, *Lights off* and *Quit*. The lights keep runnin
 close the window.
 
 - **Quick start effects**: Static, Wave, Rainbow, Gradient, Breathing, Spectrum, Plasma, Fire,
-  Rain, Starlight, Ripple, Scanner, Heartbeat and Custom (paint keys with the mouse).
+  Rain, Starlight, Ripple, Scanner, Heartbeat, Swirl, Comet, Bounce, Glitch and Custom (paint keys
+  with the mouse).
 - **Layer editor**: each layer is an *Area* (all or some keys) + a *Color* (one, several,
   rainbow or hand-painted) + an *Animation*, with opacity and blend modes.
-- **On key press**: light up the key you press, a ripple from it, or its row. It uses a Windows
+- **On key press**: light up the key you press, a ripple or a burst from it, its row, or its row
+  and column. It uses a Windows
   keyboard hook only while an active profile needs it, and only keeps which key was pressed and
   when, in memory, for a few seconds.
 - **Profiles** (☰): built-in presets, your own (`Documents\KeyGlow\Perfiles`) and the

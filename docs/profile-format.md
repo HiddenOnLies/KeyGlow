@@ -41,7 +41,8 @@ Linux (`KP_ENTER`) or plain names (`Left Ctrl`, `Esc`).
 
 `solid`, `static` (a color per key), `gradient`, `rainbow_wave`, `color_wave`, `spectrum`,
 `breathing`, `ripple`, `starlight`, `plasma`, `rain`, `scanner`, `fire`, `heartbeat`,
-`reactive` (lights up the keys you press), `points` (colors pinned to positions) and `image`
+`swirl`, `comet`, `bounce`, `glitch`, `reactive` (lights up the keys you press; `style` is
+`key`, `ripple`, `row`, `cross` or `burst`), `points` (colors pinned to positions) and `image`
 (a picture stretched over the keyboard).
 
 ## How a profile adapts to another keyboard

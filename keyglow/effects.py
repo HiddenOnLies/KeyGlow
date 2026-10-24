@@ -348,13 +348,96 @@ class Heartbeat(Effect):
         return C.scale(self.c, self.p["min"] + (1 - self.p["min"]) * level)
 
 
+@register("swirl")
+class Swirl(Effect):
+    """Los colores giran alrededor de un punto, como un molinillo (con ``twist``, en espiral)."""
+    defaults = {"colors": ["#ff0080", "#ffb000", "#00e5ff", "#7000ff"], "speed": 0.15,
+                "center": [0.5, 0.5], "twist": 0.0}
+
+    def setup(self):
+        self.cs = self.colors()
+        self.aspect = self.layout.width / self.layout.height
+
+    def color(self, k, t):
+        cu, cv = self.p["center"]
+        du, dv = k.u - cu, (k.v - cv) / self.aspect
+        turn = math.atan2(dv, du) / (2 * math.pi)
+        return C.palette_at(self.cs, turn + math.hypot(du, dv) * self.p["twist"] - t * self.p["speed"], cyclic=True)
+
+
+@register("comet")
+class Comet(Effect):
+    """Un cometa que recorre el teclado fila a fila (en zigzag), con estela."""
+    defaults = {"color": "#00e5ff", "background": "#000010", "speed": 0.15, "length": 0.15}
+
+    def setup(self):
+        self.c = C.parse(self.p["color"])
+        self.bg = C.parse(self.p["background"])
+        rows: dict[int, list] = {}
+        for key in self.layout.keys:
+            rows.setdefault(round(key.cy), []).append(key)
+        order = []
+        for i, r in enumerate(sorted(rows)):
+            order += sorted(rows[r], key=lambda key: key.cx, reverse=i % 2 == 1)
+        self.pos = {key.id: i / len(order) for i, key in enumerate(order)}
+
+    def color(self, k, t):
+        d = ((t * self.p["speed"]) - self.pos.get(k.id, 0.0)) % 1.0
+        tail = max(self.p["length"], 0.01)
+        if d > tail:
+            return self.bg
+        return C.lerp(self.bg, self.c, (1 - d / tail) ** 1.5)
+
+
+@register("bounce")
+class Bounce(Effect):
+    """Una bola de luz que rebota contra los bordes del teclado."""
+    defaults = {"color": "#ffb000", "background": "#100400", "speed": 0.3, "size": 0.12}
+
+    def setup(self):
+        self.c = C.parse(self.p["color"])
+        self.bg = C.parse(self.p["background"])
+        self.aspect = self.layout.width / self.layout.height
+
+    @staticmethod
+    def _tri(x):
+        x %= 2.0
+        return x if x < 1 else 2 - x
+
+    def color(self, k, t):
+        s = t * self.p["speed"]
+        bu, bv = self._tri(s * 0.73), self._tri(s * 1.9 + 0.3)  # ritmos distintos: no repite el mismo camino
+        d = math.hypot(k.u - bu, (k.v - bv) / self.aspect)
+        return C.lerp(self.bg, self.c, math.exp(-(d / max(self.p["size"], 0.02)) ** 2))
+
+
+@register("glitch")
+class Glitch(Effect):
+    """Trozos de fila que parpadean de golpe, como una señal con interferencias."""
+    defaults = {"colors": ["#00e5ff", "#ff00c8", "#ffffff"], "background": "#05000a",
+                "density": 0.25, "speed": 0.6, "seed": 3}
+
+    def setup(self):
+        self.cs = self.colors()
+        self.bg = C.parse(self.p["background"])
+
+    def color(self, k, t):
+        tick = int(t * (2 + self.p["speed"] * 14))
+        row = round(k.y)
+        seg = int((k.x + _rand(self.p["seed"], row, tick, "o") * 4) // 4)  # trozos de unas 4 teclas
+        if _rand(self.p["seed"], row, seg, tick) >= self.p["density"] * 0.5:
+            return self.bg
+        return self.cs[int(_rand(self.p["seed"], row, seg, tick, "c") * len(self.cs)) % len(self.cs)]
+
+
 @register("reactive")
 class Reactive(Effect):
-    """Se ilumina al pulsar teclas: la propia tecla, una onda que sale de ella o su fila.
+    """Se ilumina al pulsar teclas: la propia tecla, una onda que sale de ella, su fila, su
+    fila y su columna (``cross``) o un círculo que crece desde ella (``burst``).
     Las teclas sin pulsar son transparentes (dejan ver las capas de abajo)."""
     defaults = {"colors": ["#ffffff"], "style": "key", "duration": 0.6, "speed": 1.0,
                 "background": None}
-    STYLES = ("key", "ripple", "row")
+    STYLES = ("key", "ripple", "row", "cross", "burst")
 
     def setup(self):
         if self.p["style"] not in self.STYLES:
@@ -383,6 +466,12 @@ class Reactive(Effect):
                 level = fade if key == k.id else 0.0
             elif self.p["style"] == "row":
                 level = fade if abs(self.pos[key][1] - k.y) < 0.5 else 0.0
+            elif self.p["style"] == "cross":  # su fila y su columna
+                px, py = self.pos[key]
+                level = fade if abs(py - k.y) < 0.5 or abs(px - k.x) < 0.6 else 0.0
+            elif self.p["style"] == "burst":  # un círculo lleno que crece y se apaga
+                d = math.hypot(self.pos[key][0] - k.x, self.pos[key][1] - k.y)
+                level = fade if d <= 0.6 + age * self.p["speed"] * 8 else 0.0
             else:
                 d = math.hypot(self.pos[key][0] - k.x, self.pos[key][1] - k.y)
                 radius = age * self.p["speed"] * 12
