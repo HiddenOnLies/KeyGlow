@@ -95,6 +95,40 @@ def check(paths: list[str]) -> tuple[list[dict], list[str]]:
     return good, errors
 
 
+REPO = "HiddenOnLies/KeyGlow-profiles"
+MAX_SHARE_URL = 7500  # GitHub corta los enlaces muy largos
+
+
+def file_id(name: str) -> str:
+    """Nombre de archivo para la galería: ``"Neon Rain!"`` -> ``"neon-rain"``."""
+    import unicodedata
+    s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower()
+    return (re.sub(r"[^a-z0-9]+", "-", s).strip("-") or "profile")[:64].strip("-")
+
+
+def share(d: dict) -> dict:
+    """Prepara un perfil para la galería: lo comprueba y arma el enlace de GitHub que crea el
+    archivo ya relleno (GitHub hace la copia y el *pull request* a quien no puede escribir).
+
+    Devuelve ``{"id", "filename", "json", "url"}`` (``url`` vacío si no cabe en un enlace) o
+    lanza ``ValueError`` con lo que falta.
+    """
+    from urllib.parse import quote
+    profile = Profile.from_dict(d)
+    clean = profile.to_dict()
+    clean.pop("designed_for", None)  # en la galería el perfil se adapta a cualquier teclado
+    if not clean.get("author", "").strip():
+        raise ValueError("Add your name or GitHub user as the author")
+    if len(clean.get("description", "").strip()) < 10:
+        raise ValueError("Add a short description (one sentence)")
+    pid = file_id(profile.name)
+    validate_profile(clean, pid)
+    text = json.dumps(clean, indent=2, ensure_ascii=False) + "\n"
+    url = (f"https://github.com/{REPO}/new/main/profiles?filename={quote(pid + '.json')}&value={quote(text)}"
+           f"&message={quote('Add profile: ' + profile.name)}")
+    return {"id": pid, "filename": f"{pid}.json", "json": text, "url": url if len(url) <= MAX_SHARE_URL else ""}
+
+
 def bundle(entries: list[dict]) -> dict:
     return {"format": FORMAT, "name": NAME, "generated": datetime.date.today().isoformat(),
             "profiles": sorted(entries, key=lambda e: e["name"].lower())}

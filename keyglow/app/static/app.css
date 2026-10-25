@@ -368,6 +368,9 @@ body.lights-off .kb-glow { opacity: .1; }
 .layer .tools button:disabled { opacity: .3; cursor: default; }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
 .chips button { border-radius: 4px; padding: 4px 10px; font-size: 12.5px; }
+.sh-tags { margin-bottom: 12px; }
+.sh-tags button.on { border-color: var(--hi); background: var(--hi); color: #000; }
+#dlg-share a { color: var(--text); }
 
 .ed-sec { border-top: 1px solid var(--line); padding: 14px 0 4px; }
 .ed-sec > .label { margin-bottom: 10px; }

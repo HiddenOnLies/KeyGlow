@@ -1377,6 +1377,51 @@ async function doImport(payload) {
   } catch (e) { toast(e.message, "err"); }
 }
 
+// ---------- Share to the community gallery ----------
+let shareTags = new Set();
+
+function openShare() {
+  $("#sh-author").value = S.profile.author || "";
+  $("#sh-desc").value = S.profile.description || "";
+  shareTags = new Set((S.profile.tags || []).filter((t) => TAGS.includes(t)));
+  if (hasReactive(S.profile)) shareTags.add(S.profile.layers.some((l) => l.effect === "reactive") ? "reactive" : "animated");
+  const box = $("#sh-tags");
+  box.innerHTML = "";
+  for (const t of TAGS.filter((x) => x !== "theme")) {
+    const b = h("button", { type: "button", class: shareTags.has(t) ? "on" : "" }, t[0].toUpperCase() + t.slice(1));
+    b.addEventListener("click", () => { shareTags.has(t) ? shareTags.delete(t) : shareTags.add(t); b.classList.toggle("on"); });
+    box.append(b);
+  }
+  $("#sh-check").hidden = true;
+  $("#sh-copy").hidden = true;
+  $("#dlg-share").showModal();
+}
+
+async function shareProfile() {
+  const data = clone(S.profile);
+  data.author = $("#sh-author").value.trim();
+  data.description = $("#sh-desc").value.trim();
+  data.tags = [...shareTags];
+  const note = $("#sh-check");
+  try {
+    const r = await api("/api/gallery/share", { profile: data });
+    note.hidden = false;
+    if (r.error) { note.textContent = r.error; return; }
+    // keep the details in the profile too, so the next share or save has them
+    Object.assign(S.profile, { author: data.author, description: data.description, tags: data.tags });
+    commit({ rerender: false });
+    if (r.url) {
+      window.open(r.url, "_blank", "noopener");
+      note.textContent = `GitHub is open with ${r.filename} ready. Sign in, then press "Propose changes" and "Create pull request".`;
+    } else {
+      $("#sh-copy").hidden = false;
+      $("#sh-copy").onclick = async () => { await navigator.clipboard.writeText(r.json).catch(() => {}); toast("Profile copied"); };
+      window.open(`https://github.com/HiddenOnLies/KeyGlow-profiles/new/main/profiles?filename=${encodeURIComponent(r.filename)}`, "_blank", "noopener");
+      note.textContent = `This profile is too big for a link. GitHub is open to create ${r.filename}: press "Copy profile" and paste it there.`;
+    }
+  } catch (e) { note.hidden = false; note.textContent = e.message; }
+}
+
 function openDetails() {
   $("#p-author").value = S.profile.author || "";
   $("#p-tags").value = (S.profile.tags || []).join(", ");
@@ -1417,6 +1462,7 @@ function setupDialogs() {
   $("#exp-go").addEventListener("click", exportProfile);
   $("#set-layout-export").addEventListener("click", exportLayout);
   $("#set-workshop-check").addEventListener("click", checkWorkshop);
+  $("#sh-go").addEventListener("click", shareProfile);
   $("#set-update-check").addEventListener("click", async () => { $("#set-update-info").textContent = "Checking…"; await checkUpdate(true); });
   $("#update-skip").addEventListener("click", async () => {
     try { showUpdate(await api("/api/update/skip", { version: S.update?.latest || "" })); } catch (e) { toast(e.message, "err"); }
@@ -1685,6 +1731,7 @@ function setupMenu() {
     else if (act === "import") { $("#imp-file").value = ""; $("#imp-url").value = ""; $("#dlg-import").showModal(); }
     else if (act === "export") openExport();
     else if (act === "onboard") saveToKeyboard();
+    else if (act === "share") openShare();
     else if (act === "capture") {
       try { const r = await api("/api/capture", {}); loadProfile(r.data); S.dirty = true; renderHead(); toast("Captured the keyboard's current colors"); }
       catch (err) { toast(err.message, "err"); }

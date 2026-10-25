@@ -75,3 +75,33 @@ def test_check_finds_duplicate_names(tmp_path):
         (tmp_path / f"{stem}.json").write_text(json.dumps(GOOD), encoding="utf-8")
     good, errors = gallery.check([str(tmp_path)])
     assert len(good) == 2 and any("Glow" in e or "glow" in e for e in errors)
+
+
+SHARE = {**GOOD, "name": "Neon Rain!", "author": "someone", "description": "Blue drops that fall slowly.",
+         "designed_for": "alloy_origins_65"}
+
+
+def test_share_builds_a_prefilled_github_link():
+    import urllib.parse
+    r = gallery.share(SHARE)
+    assert r["filename"] == "neon-rain.json" and r["url"].startswith("https://github.com/HiddenOnLies/KeyGlow-profiles/new/main/profiles?")
+    q = urllib.parse.parse_qs(urllib.parse.urlparse(r["url"]).query)
+    sent = json.loads(q["value"][0])
+    assert sent["name"] == "Neon Rain!" and "designed_for" not in sent and q["filename"] == ["neon-rain.json"]
+    assert gallery.validate_profile(sent, "neon-rain")                     # pasa la misma comprobación que la galería
+
+
+@pytest.mark.parametrize("bad", [
+    {**SHARE, "author": ""},
+    {**SHARE, "description": "x"},
+    {**SHARE, "layers": [{"effect": "image", "params": {"path": "C:/me.png"}}]},
+])
+def test_share_explains_what_is_missing(bad):
+    with pytest.raises(ValueError):
+        gallery.share(bad)
+
+
+def test_share_of_a_huge_profile_has_no_link():
+    big = {**SHARE, "layers": [{"effect": "static", "params": {"keys": {k: "#123456" for k in
+                                                                       ["A", "B", "C", "D"] * 1}}}] * 60}
+    assert gallery.share(big)["url"] == ""

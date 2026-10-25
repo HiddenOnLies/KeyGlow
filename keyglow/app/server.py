@@ -21,6 +21,7 @@ from .. import __version__
 from .. import color as C
 from ..effects import REGISTRY
 from .. import exporters
+from .. import gallery
 from ..importers import from_bytes
 from ..keynames import label
 from ..layout import BUILTIN, GROUPS, model_choices
@@ -244,6 +245,11 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/gallery/share":
+                try:
+                    return self._json(gallery.share(body["profile"]))
+                except ValueError as e:
+                    return self._json({"error": str(e)})
             if path == "/api/update/check":
                 return self._json(update_check.check(force=True, skipped=app.settings.get("skipped_version", "")))
             if path == "/api/update/skip":

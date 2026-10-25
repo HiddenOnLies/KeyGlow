@@ -30,6 +30,10 @@
   output (WASAPI loopback, like OBS) only while the profile in use has a music layer, and keeps just
   a few levels in memory, never the sound. New presets: *Music Bars* and *Bass Pulse*. Needs the new
   `soundcard` and `numpy` dependencies (in the `app` extra and the exe).
+- **Share to community gallery** (*⋯* menu): add your name, a description and tags; KeyGlow
+  checks the profile with the gallery's rules and opens GitHub with the file already filled in, so
+  sharing takes a GitHub account and two clicks. `gallery.json` in KeyGlow-profiles now rebuilds
+  itself after a profile is added.
 - **New version notice**: once a day KeyGlow looks at its GitHub releases and, when there's a
   newer one, shows a link in the top bar (dismiss it to skip that version). It never updates by
   itself. *Settings*: on/off and *Check now*.

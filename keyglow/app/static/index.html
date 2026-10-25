@@ -86,6 +86,7 @@
           <button data-act="import" role="menuitem">Import…</button>
           <button data-act="export" role="menuitem">Export…</button>
           <button data-act="capture" role="menuitem">Capture from keyboard</button>
+          <button data-act="share" role="menuitem">Share to community gallery…</button>
           <button data-act="onboard" role="menuitem" title="Store the lighting in the keyboard itself, so it works without KeyGlow running">Save to keyboard memory…</button>
         </div>
       </div>
@@ -171,6 +172,23 @@
     <div class="dlg-actions">
       <button value="cancel">Cancel</button>
       <button id="details-ok" class="primary" value="default">Done</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-share" class="dialog">
+  <form method="dialog">
+    <h3>Share to the community gallery</h3>
+    <p class="muted small">Your profile goes to the <a href="https://github.com/HiddenOnLies/KeyGlow-profiles" target="_blank" rel="noopener">KeyGlow gallery</a> on GitHub, where everyone can download it. You need a free GitHub account; GitHub makes a copy of the gallery for you and opens a request for it to be added.</p>
+    <label>Author<input id="sh-author" placeholder="Your name or GitHub user"></label>
+    <label>Description<textarea id="sh-desc" rows="2" placeholder="Slow blue waves with white sparks when you type."></textarea></label>
+    <div class="label">Tags</div>
+    <div id="sh-tags" class="chips sh-tags"></div>
+    <p id="sh-check" class="note" hidden></p>
+    <div class="dlg-actions">
+      <button value="cancel">Cancel</button>
+      <button id="sh-copy" type="button" hidden>Copy profile</button>
+      <button id="sh-go" class="primary" type="button">Open GitHub</button>
     </div>
   </form>
 </dialog>
