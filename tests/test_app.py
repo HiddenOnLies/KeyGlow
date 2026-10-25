@@ -94,3 +94,8 @@ def test_ajustes_persisten(server):
     call(base, "/api/settings", {"brightness": 0.5, "desconocido": 1})
     saved = json.loads((tmp / "appdata" / "KeyGlow" / "settings.json").read_text(encoding="utf-8"))
     assert saved["brightness"] == 0.5 and "desconocido" not in saved
+
+
+def test_a_new_window_opens_on_the_active_profile(server):
+    base, _ = server
+    assert call(base, "/api/active")["profile"] is None              # nada en marcha todavía

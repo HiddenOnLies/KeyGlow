@@ -562,8 +562,10 @@ function renderHead() {
 function profileMeta() {
   const all = [...S.lib.presets, ...S.lib.mine, ...(S.lib.community?.profiles || [])];
   const e = all.find((x) => x.id === S.sourceId);
-  const kind = !e ? "New profile" : e.kind === "preset" ? "Preset" : e.kind === "mine" ? "Your profile" : "Community";
-  const author = e?.kind === "community" && e.author ? e.author.split(" · ")[0] : null;
+  // not found (e.g. a community profile before the gallery has loaded): its author says enough
+  const kind = !e ? (S.profile.author ? null : "New profile")
+    : e.kind === "preset" ? "Preset" : e.kind === "mine" ? "Your profile" : "Community";
+  const author = (!e || e.kind === "community") && S.profile.author ? S.profile.author.split(" · ")[0] : null;
   const n = S.profile.layers.length;
   return [kind, author, hasReactive(S.profile) ? "reacts to typing" : null, `${n} layer${n > 1 ? "s" : ""}`]
     .filter(Boolean).join(" · ");
@@ -2119,9 +2121,12 @@ async function init() {
   await Promise.all([loadLibrary(), pollStatus()]);
   toggleLibrary(store.get("keyglow.libraryOpen", true));
   setEditing(store.get("keyglow.editing", false));
-  const start = S.settings.last_profile || S.lib.presets[0]?.data;
+  // a new window shows what the keyboard is playing now, so opening it never changes the lights
+  const active = (await api("/api/active").catch(() => ({}))).profile;
+  const start = active || S.settings.last_profile || S.lib.presets[0]?.data;
+  const all = [...S.lib.presets, ...S.lib.mine];
   loadProfile(start || { name: "My profile", layers: [newLayer("solid")] }, {
-    sourceId: S.lib.presets.find((p) => p.data?.name === start?.name)?.id ?? null,
+    sourceId: all.find((p) => p.data?.name === start?.name)?.id ?? null,
   });
   setInterval(pollStatus, 2000);
   checkUpdate();

@@ -158,6 +158,8 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if url.path == "/api/meta":
                 return self._json(app.meta())
+            if url.path == "/api/active":
+                return self._json({"profile": app.engine.active_profile})
             if url.path == "/api/status":
                 app.engine.maybe_reconnect()
                 return self._json({**app.engine.status(), "app": "keyglow"})

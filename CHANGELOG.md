@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.0.0
+
+First stable version.
 
 - **Shortcut lights**: hold Ctrl, Alt or Win (or Ctrl+Shift, Win+Shift…) for a moment and the
   keyboard dims while the keys of their shortcuts light up: Windows shortcuts plus sets for VS
@@ -26,6 +28,8 @@
   and close by sliding, and the cards fade in when switching tabs. All of it is off with
   *reduce motion*.
 - `/api/peek` shows a profile on the keyboard for a moment without changing the active one.
+- Fix: opening a second KeyGlow window could switch the keyboard to the last saved profile; a
+  new window now shows what the keyboard is playing.
 - **Music effect**: follows the sound playing on the PC as spectrum bars (bass on the left), a
   pulse with the bass or a volume meter, with colors and sensitivity. It listens to the default
   output (WASAPI loopback, like OBS) only while the profile in use has a music layer, and keeps just

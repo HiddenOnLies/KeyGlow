@@ -14,9 +14,10 @@ yours, and the other way round. Windows, powered by [OpenRGB](https://openrgb.or
 
 ![KeyGlow playing several presets](docs/images/demo.gif)
 
-> **Early preview.** KeyGlow works day to day on a **HyperX Alloy Origins 65** on Windows,
-> but it hasn't been tested on other keyboards yet and there is still plenty to do.
-> See [Status and roadmap](#status-and-roadmap). Feedback and issues are welcome.
+> **Version 1.0.** KeyGlow is used every day on a **HyperX Alloy Origins 65** on Windows 11.
+> Other keyboards work through OpenRGB but haven't been tested on real hardware yet, so a
+> [keyboard report](https://github.com/HiddenOnLies/KeyGlow/issues/new?template=keyboard_report.yml)
+> helps a lot.
 
 ## Why another RGB app?
 
@@ -53,31 +54,59 @@ Double-click `KeyGlow.exe`. The interface opens in its own window and an icon ap
 system tray with *Open KeyGlow*, *Lights off* and *Quit*. The lights keep running when you
 close the window.
 
-- **Quick start effects**: Static, Wave, Rainbow, Gradient, Breathing, Spectrum, Plasma, Fire,
-  Rain, Starlight, Ripple, Scanner, Heartbeat, Swirl, Comet, Bounce, Glitch and Custom (paint keys
-  with the mouse).
-- **Layer editor**: each layer is an *Area* (all or some keys) + a *Color* (one, several,
-  rainbow or hand-painted) + an *Animation*, with opacity and blend modes.
-- **Music**: spectrum bars, a bass pulse or a volume meter that follow what's playing on the PC
-  (it only listens while a profile uses it).
-- **On key press**: light up the key you press, a ripple or a burst from it, its row, or its row
-  and column. It uses a Windows
-  keyboard hook only while an active profile needs it, and only keeps which key was pressed and
-  when, in memory, for a few seconds.
+**Pick a look**
+
 - **Profiles**, always on the left: built-in presets, your own (`Documents\KeyGlow\Perfiles`)
-  and the [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles), which the app
-  keeps up to date by itself (add yours!). Hover a profile to preview it on the keyboard; click
-  to use it. *Edit* opens the layer editor.
-- **Shortcut lights**: hold Ctrl, Alt or Win and the keys of their shortcuts light up, for
-  Windows and apps like VS Code, browsers or Photoshop (off in games).
+  and the [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles), which KeyGlow
+  keeps up to date by itself. **Hover a profile to preview it** on the keyboard; click to use it.
+- **Quick start effects**: Static, Wave, Rainbow, Gradient, Breathing, Spectrum, Plasma, Fire,
+  Rain, Starlight, Ripple, Scanner, Heartbeat, Swirl, Comet, Bounce, Glitch, Music and Custom
+  (paint keys with the mouse).
 - **Game profiles** (controller icon): one profile per game while it is in focus, plus optional
   recommended profiles for ~40 popular games.
-- **Import / export** (⋯): KeyGlow and OpenRGB profiles, key color maps (OpenRGB, web, QMK names)
+
+**Make your own** (*Edit*)
+
+- **Layers**: each layer is an *Area* (all or some keys) + a *Color* (one, several, rainbow or
+  hand-painted) + an *Animation*, with opacity and blend modes.
+- **On key press**: light up the key you press, a ripple or a burst from it, its row, or its row
+  and column.
+- **Music**: spectrum bars, a bass pulse or a volume meter that follow what's playing on the PC.
+- **Shortcut lights**: hold Ctrl, Alt or Win (or combinations like Ctrl+Alt) and the rest of the
+  keyboard dims while the keys of their shortcuts light up, for Windows and apps like VS Code,
+  browsers, File Explorer, Photoshop or Discord. Each profile picks the effect (solid, pulse,
+  blink, sparkle, gradient, wave, rainbow or its own colors), colors, speed, dimming and how long
+  to hold the key. Off in games.
+- **Share to community gallery** (*⋯*): KeyGlow checks your profile and opens GitHub with it
+  ready to send.
+
+**Your keyboard**
+
+- **Any keyboard OpenRGB supports**: the layout is detected automatically, with exact layouts for
+  some models from the [KeyGlow workshop](https://github.com/HiddenOnLies/KeyGlow-layouts) and 9
+  standard layouts (ANSI/ISO, 60% to full size). See [compatibility](docs/compatibility.md).
+- **Layout editor** (*Settings → Edit this layout*): drag keys into place, resize them, add the
+  ones that are missing, and save it as your keyboard's exact layout (or export it for the workshop).
+- **Caps Lock light**: OpenRGB hides the keyboard's own Caps Lock highlight, so KeyGlow lights the
+  key while Caps Lock is on, on keyboards without an indicator of their own.
+- **Import / export** (*⋯*): KeyGlow and OpenRGB profiles, key color maps (OpenRGB, web, QMK names)
   and CSV. Drag a file onto the window to import it.
 - **Save to keyboard memory** on keyboards that support it, so no software has to stay open
   ([which ones](docs/compatibility.md#saving-to-the-keyboards-memory)).
-- **Any keyboard**: the layout comes from OpenRGB automatically; 9 standard layouts (ANSI/ISO,
-  60% to full size) are built in. See [compatibility](docs/compatibility.md).
+
+## Privacy and resources
+
+KeyGlow is made to run in the background all day, so it stays light (about 1% of one CPU core and
+60 MB of memory on the HyperX) and only does what a profile needs:
+
+- **Key presses** are read (with a Windows keyboard hook) only while the profile in use reacts to
+  typing, and only which key and when, in memory, for a few seconds. Shortcut lights don't use the
+  hook: they only ask Windows whether Ctrl, Alt, Shift or Win are held.
+- **The PC's sound** is listened to only while the profile in use has a music layer, and only a few
+  volume levels are kept, in memory; nothing is recorded.
+- **Internet**: once a day KeyGlow downloads the community gallery, the workshop layouts and the
+  list of KeyGlow releases from GitHub (each can be turned off in *Settings*). Nothing about you or
+  your keyboard is sent. KeyGlow never updates itself; it tells you when there's a new version.
 
 ## Command line
 
@@ -117,14 +146,14 @@ powershell -ExecutionPolicy Bypass -File tools\build_exe.ps1   # builds dist\Key
 
 ## Status and roadmap
 
-- **Only tested on one keyboard** (HyperX Alloy Origins 65, Windows 11). The automatic layout
-  should handle other OpenRGB keyboards, but reports from real hardware are the most useful
-  contribution right now.
-- **Windows only** for the desktop app (tray icon, keyboard hook, game detection). The library
-  and CLI are plain Python.
+- **Tested on one keyboard** (HyperX Alloy Origins 65, Windows 11). Reports from other keyboards
+  are the most useful contribution right now.
+- **Windows only** for the desktop app (tray icon, keyboard hook, game detection, sound). The
+  library and command line are plain Python.
 - **Some code comments are still in Spanish**; they will be translated.
-- Next: more profile sources ([candidates](docs/profile-sources.md#good-candidates)),
-  audio-reactive effects, mice and other devices.
+- Next: power saving (dim or turn off when idle, locked or asleep, and a night schedule),
+  Num Lock and Scroll Lock lights, CPU and timer indicators, other OpenRGB devices (mice, RAM,
+  fans), and packages for winget and Scoop.
 
 ## License
 

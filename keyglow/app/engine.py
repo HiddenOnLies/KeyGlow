@@ -449,6 +449,11 @@ class LightEngine:
                 self._connect()
             return self._kb.describe() if self._kb is not None else None
 
+    @property
+    def active_profile(self) -> dict | None:
+        """El perfil que se está pintando ahora (sin contar juegos ni vistas previas)."""
+        return self._profile
+
     def status(self) -> dict:
         with self._lock:
             return {
