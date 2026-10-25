@@ -48,6 +48,8 @@ DEFAULT_SETTINGS = {
     "openrgb_device": "",
     "openrgb_path": "",  # OpenRGB.exe, si no está en la carpeta habitual
     "start_openrgb": True,
+    "update_check": True,  # avisar cuando hay una versión nueva de KeyGlow (GitHub, una vez al día)
+    "skipped_version": "",  # versión nueva cuyo aviso se cerró
     "layout_updates": True,  # descargar distribuciones del workshop (KeyGlow-layouts)
     "gallery_updates": True,  # descargar perfiles nuevos de la galería (KeyGlow-profiles)
     "layouts_url": "",  # vacío = el workshop oficial  # abrir OpenRGB (minimizado, con el servidor) si no está en marcha  # parte del nombre del teclado, si OpenRGB ve más de uno

@@ -19,7 +19,7 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-from . import gallery_sync, layout_sync, library, system
+from . import gallery_sync, layout_sync, library, system, update_check
 from .engine import LightEngine
 from .server import STATIC_DIR, App, make_server
 
@@ -118,6 +118,8 @@ def main(argv: list[str] | None = None) -> int:
     server = make_server(app, args.port)
     threading.Thread(target=server.serve_forever, name="keyglow-http", daemon=True).start()
     app.games.start()
+    if settings.get("update_check", True):
+        threading.Thread(target=update_check.check, name="keyglow-update", daemon=True).start()
     if settings.get("layout_updates", True):
         threading.Thread(target=app.refresh_layouts, name="keyglow-layouts", daemon=True).start()
     if settings.get("gallery_updates", True) and not settings.get("community_url"):

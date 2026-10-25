@@ -24,7 +24,7 @@ from .. import exporters
 from ..importers import from_bytes
 from ..keynames import label
 from ..layout import BUILTIN, GROUPS, model_choices
-from . import gallery_sync, layout_sync, library, system
+from . import gallery_sync, layout_sync, library, system, update_check
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
 from .games import GameWatcher, running_apps
@@ -173,6 +173,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(library.community(src) if src else gallery_sync.listing())
             if url.path == "/api/settings":
                 return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
+            if url.path == "/api/update":
+                return self._json(update_check.status(app.settings.get("skipped_version", "")))
             if url.path == "/api/layouts":
                 return self._json(layout_sync.status())
             if url.path == "/api/apps":
@@ -242,6 +244,11 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/update/check":
+                return self._json(update_check.check(force=True, skipped=app.settings.get("skipped_version", "")))
+            if path == "/api/update/skip":
+                app.settings = library.save_settings({"skipped_version": str(body.get("version", ""))[:32]})
+                return self._json(update_check.status(app.settings["skipped_version"]))
             if path == "/api/hints/preview":
                 eng.preview_hints(body.get("config"))
                 return self._json({"ok": True})

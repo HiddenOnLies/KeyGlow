@@ -25,6 +25,9 @@
   and close by sliding, and the cards fade in when switching tabs. All of it is off with
   *reduce motion*.
 - `/api/peek` shows a profile on the keyboard for a moment without changing the active one.
+- **New version notice**: once a day KeyGlow looks at its GitHub releases and, when there's a
+  newer one, shows a link in the top bar (dismiss it to skip that version). It never updates by
+  itself. *Settings*: on/off and *Check now*.
 
 ## 0.4.0
 

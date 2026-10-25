@@ -1409,6 +1409,10 @@ function setupDialogs() {
   $("#exp-go").addEventListener("click", exportProfile);
   $("#set-layout-export").addEventListener("click", exportLayout);
   $("#set-workshop-check").addEventListener("click", checkWorkshop);
+  $("#set-update-check").addEventListener("click", async () => { $("#set-update-info").textContent = "Checking…"; await checkUpdate(true); });
+  $("#update-skip").addEventListener("click", async () => {
+    try { showUpdate(await api("/api/update/skip", { version: S.update?.latest || "" })); } catch (e) { toast(e.message, "err"); }
+  });
   $("#set-caps").addEventListener("change", capsInfo);
   $("#details-ok").addEventListener("click", () => {
     const author = $("#p-author").value.trim();
@@ -1436,6 +1440,7 @@ function setupDialogs() {
         layout: $("#set-layout").value,
         layout_updates: $("#set-layout-updates").checked,
         gallery_updates: $("#set-gallery-updates").checked,
+        update_check: $("#set-update").checked,
         caps_lock: $("#set-caps").value,
         shortcut_hints: $("#set-hints").checked,
         shortcut_hints_color: $("#set-hints-color").value,
@@ -1443,6 +1448,7 @@ function setupDialogs() {
         openrgb_device: $("#set-device").value.trim(),
       });
       pollStatus(); // picks up a layout change
+      showUpdate(S.update);
       if (old !== S.settings.community_url) { S.lib.community = null; renderCards(); }
       if (!hadUpdates && S.settings.gallery_updates && !S.settings.community_url) refreshGallery();
       $("#dlg-settings").close();
@@ -1638,6 +1644,8 @@ function openSettings() {
   $("#set-layout-info").textContent = layoutInfo(S.meta.layout);
   $("#set-layout-updates").checked = S.settings.layout_updates !== false;
   $("#set-gallery-updates").checked = S.settings.gallery_updates !== false;
+  $("#set-update").checked = S.settings.update_check !== false;
+  showUpdate(S.update);
   $("#set-caps").value = S.settings.caps_lock || "auto";
   $("#set-caps-color").value = S.settings.caps_lock_color || "#ffffff";
   $("#set-hints").checked = S.settings.shortcut_hints !== false;
@@ -1742,6 +1750,29 @@ async function reconnect() {
 
 let offlinePolls = 0;
 
+// ---------- New version notice ----------
+function showUpdate(u) {
+  S.update = u;
+  const pill = $("#update-pill");
+  pill.hidden = !(u?.newer && !u.skipped && S.settings.update_check !== false);
+  if (!pill.hidden) {
+    const link = $("#update-link");
+    link.textContent = `KeyGlow ${u.latest} is out`;
+    link.href = u.url;
+    link.title = `You have ${u.current}. Open the release page to download it.`;
+  }
+  const info = $("#set-update-info");
+  if (info) {
+    info.textContent = !u ? "" : u.error && !u.latest ? `You have ${u.current}. Couldn't check: ${u.error}`
+      : u.newer ? `You have ${u.current}; ${u.latest} is out.` : `You have ${u.current}, the latest version.`;
+  }
+}
+
+async function checkUpdate(force = false) {
+  try { showUpdate(await api(force ? "/api/update/check" : "/api/update", force ? {} : undefined)); }
+  catch { /* offline: no notice */ }
+}
+
 async function pollStatus() {
   try { setStatus(await api("/api/status")); } catch { /* server closed */ }
 }
@@ -1825,6 +1856,8 @@ async function init() {
     sourceId: S.lib.presets.find((p) => p.data?.name === start?.name)?.id ?? null,
   });
   setInterval(pollStatus, 2000);
+  checkUpdate();
+  setTimeout(checkUpdate, 20000); // the check at startup runs in the background
   setInterval(tick, 1000 / 40);
 }
 

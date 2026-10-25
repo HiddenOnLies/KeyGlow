@@ -22,6 +22,10 @@
     <input id="brightness" type="range" min="0" max="100" value="100" aria-label="Brightness">
   </label>
   <span id="game-pill" class="game-pill" hidden></span>
+  <span id="update-pill" class="update-pill" hidden>
+    <a id="update-link" target="_blank" rel="noopener"></a>
+    <button id="update-skip" class="link-btn" type="button" title="Don't remind me about this version" aria-label="Dismiss">✕</button>
+  </span>
   <button id="power" class="power" role="switch" aria-checked="false" title="Lights on / off">
     <span class="knob"></span><span id="power-text">Off</span>
   </button>
@@ -232,6 +236,9 @@
     <label>Keyboard update rate (fps)
       <input id="set-fps" type="number" min="5" max="60" step="1">
     </label>
+    <label class="check"><input id="set-update" type="checkbox"> Tell me when a new version of KeyGlow is out</label>
+    <p class="layout-info muted small"><span id="set-update-info"></span>
+      <button id="set-update-check" type="button" class="link-btn">Check now</button></p>
     <p class="muted small">Your profiles are saved in <code id="set-dir"></code></p>
     <div class="dlg-actions">
       <button id="btn-quit" class="danger" value="cancel">Quit KeyGlow</button>
