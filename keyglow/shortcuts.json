@@ -3,12 +3,14 @@
   "default": {
     "ctrl": ["A", "C", "V", "X", "Z", "Y", "S", "F", "P", "N", "O", "W", "T", "R", "TAB", "F4"],
     "ctrl+shift": ["ESC", "Z", "S", "N", "T", "TAB"],
+    "ctrl+alt": ["DELETE", "TAB"],
     "alt": ["TAB", "F4", "LEFT", "RIGHT", "ENTER", "SPACE", "PRINTSCREEN"],
     "alt+shift": ["TAB"],
-    "win": ["D", "E", "L", "R", "I", "S", "V", "X", "A", "N", "TAB", "PERIOD", "PRINTSCREEN",
-            "LEFT", "RIGHT", "UP", "DOWN", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    "win+shift": ["S", "LEFT", "RIGHT"],
-    "ctrl+win": ["D", "F4", "LEFT", "RIGHT"]
+    "win": ["D", "E", "L", "R", "I", "S", "V", "X", "A", "N", "TAB", "PERIOD", "PRINTSCREEN", "M", "G", "H", "K", "P", "U", "COMMA", "HOME", "LEFT", "RIGHT", "UP", "DOWN", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    "win+shift": ["S", "M", "LEFT", "RIGHT"],
+    "ctrl+win": ["D", "F4", "LEFT", "RIGHT"],
+    "alt+win": ["R", "G", "B", "PRINTSCREEN"],
+    "ctrl+shift+win": ["B"]
   },
   "apps": {
     "code.exe": {
@@ -20,15 +22,22 @@
     },
     "chrome.exe": {
       "name": "Browser",
-      "ctrl": ["T", "W", "N", "R", "L", "D", "F", "P", "H", "J", "TAB", "EQUAL", "MINUS", "0",
-               "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      "ctrl": ["T", "W", "N", "R", "L", "D", "F", "P", "H", "J", "TAB", "EQUAL", "MINUS", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
       "ctrl+shift": ["T", "N", "B", "I", "J", "DELETE", "TAB"],
       "alt": ["LEFT", "RIGHT", "HOME", "D", "F4"]
     },
-    "msedge.exe": {"same_as": "chrome.exe"},
-    "firefox.exe": {"same_as": "chrome.exe"},
-    "brave.exe": {"same_as": "chrome.exe"},
-    "opera.exe": {"same_as": "chrome.exe"},
+    "msedge.exe": {
+      "same_as": "chrome.exe"
+    },
+    "firefox.exe": {
+      "same_as": "chrome.exe"
+    },
+    "brave.exe": {
+      "same_as": "chrome.exe"
+    },
+    "opera.exe": {
+      "same_as": "chrome.exe"
+    },
     "explorer.exe": {
       "name": "File Explorer",
       "ctrl": ["A", "C", "V", "X", "Z", "Y", "E", "F", "N", "W"],
@@ -37,8 +46,7 @@
     },
     "photoshop.exe": {
       "name": "Photoshop",
-      "ctrl": ["Z", "S", "N", "O", "T", "J", "E", "G", "A", "D", "I", "L", "M", "U", "C", "V", "X",
-               "EQUAL", "MINUS", "0", "1"],
+      "ctrl": ["Z", "S", "N", "O", "T", "J", "E", "G", "A", "D", "I", "L", "M", "U", "C", "V", "X", "EQUAL", "MINUS", "0", "1"],
       "ctrl+shift": ["Z", "S", "N", "I", "E", "C"],
       "alt": ["BACKSPACE"]
     },

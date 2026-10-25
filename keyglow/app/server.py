@@ -242,6 +242,9 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/hints/preview":
+                eng.preview_hints(body.get("config"))
+                return self._json({"ok": True})
             if path == "/api/peek":
                 eng.peek(body.get("profile"))
                 return self._json({"peeking": eng.peeking})

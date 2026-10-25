@@ -6,7 +6,11 @@
   keyboard dims while the keys of their shortcuts light up: Windows shortcuts plus sets for VS
   Code, browsers, File Explorer, Photoshop and Discord, picked by the app in front. It only asks
   Windows whether those modifiers are held (no keyboard hook), ignores AltGr and Shift alone, and
-  stays off in games. *Settings*: on/off and color. Shortcut sets live in `keyglow/shortcuts.json`.
+  stays off in games. Three-key combinations too (Ctrl+Alt+Del, Ctrl+Shift+Win+B, Win+Alt+R…);
+  AltGr (right Alt) doesn't count, so typing @ or # doesn't trigger it. **Each profile** can turn
+  it off or pick an effect in its editor: solid color, pulse, rainbow or the profile's own colors,
+  with *Preview on keyboard*. *Settings*: a switch for every profile and the default color.
+  Shortcut sets live in `keyglow/shortcuts.json`.
 - **New layout**: the profiles are always on the left, with larger thumbnails and a *Reacts*
   badge for profiles that react to typing. **Hover a profile to preview it** on the on-screen
   keyboard and, while the lights are on, on the real keyboard; click to use it. Under the keyboard,

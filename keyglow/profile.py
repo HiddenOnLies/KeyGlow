@@ -30,6 +30,23 @@ from .layout import Layout, resolve_keys
 
 FORMAT = "keyglow/1"
 BLENDS = ("normal", "add", "multiply", "screen")
+# cómo se ven los atajos al mantener Ctrl, Alt o Win (opcional en cada perfil)
+HINT_EFFECTS = ("solid", "pulse", "rainbow", "profile")
+
+
+def _hints_config(h) -> dict | None:
+    """Valida ``{"enabled": bool, "effect": ..., "color": "#rrggbb"}`` (todo opcional)."""
+    if h is None:
+        return None
+    if not isinstance(h, dict):
+        raise ValueError("'shortcut_hints' must be an object")
+    out = {"enabled": bool(h.get("enabled", True)), "effect": h.get("effect", "solid")}
+    if out["effect"] not in HINT_EFFECTS:
+        raise ValueError(f"'shortcut_hints.effect' must be one of {', '.join(HINT_EFFECTS)}")
+    if "color" in h:
+        from . import color as C
+        out["color"] = C.to_hex(C.parse(h["color"]))
+    return out
 
 
 @dataclass
@@ -41,6 +58,7 @@ class Profile:
     tags: list[str] = field(default_factory=list)
     designed_for: str = ""
     brightness: float = 1.0
+    shortcut_hints: dict | None = None
 
     @classmethod
     def from_dict(cls, d: dict) -> Profile:
@@ -63,6 +81,7 @@ class Profile:
             tags=list(d.get("tags", [])),
             designed_for=d.get("designed_for", ""),
             brightness=float(d.get("brightness", 1.0)),
+            shortcut_hints=_hints_config(d.get("shortcut_hints")),
         )
 
     def to_dict(self) -> dict:
@@ -72,6 +91,8 @@ class Profile:
                 d[attr] = getattr(self, attr)
         if self.brightness != 1.0:
             d["brightness"] = self.brightness
+        if self.shortcut_hints is not None:
+            d["shortcut_hints"] = self.shortcut_hints
         d["layers"] = self.layers
         return d
 

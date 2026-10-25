@@ -8,6 +8,7 @@ Si OpenRGB se cierra o el teclado se desconecta, reintenta solo.
 from __future__ import annotations
 
 import json
+import math
 import threading
 import time
 from collections import OrderedDict
@@ -72,6 +73,7 @@ class LightEngine:
         self.mods_state = held_modifiers
         self.foreground = ""  # ejecutable en primer plano; lo pone el vigilante de juegos
         self._hint = {"combo": "", "since": 0.0, "keys": [], "level": 0.0, "at": 0.0}
+        self._hint_preview: tuple[float, dict | None] = (0.0, None)  # hasta cuándo, configuración
         self._lock = threading.RLock()
         self._renderer: Renderer | None = None
         self._base_renderer: Renderer | None = None
@@ -318,14 +320,37 @@ class LightEngine:
         return frame
 
     # --- atajos al mantener un modificador ------------------------------------
+    def hint_config(self) -> dict:
+        """Cómo se ven los atajos con el perfil activo: lo que diga el perfil o, si no dice nada,
+        encendidos en un color fijo (el de Settings)."""
+        cfg = (self._profile or {}).get("shortcut_hints") or {}
+        return {"enabled": cfg.get("enabled", True) is not False, "effect": cfg.get("effect", "solid"),
+                "color": C.to_bytes(C.parse(cfg["color"])) if cfg.get("color") else self.hint_color}
+
+    def preview_hints(self, cfg: dict | None = None, seconds: float = 2.5) -> None:
+        """Enseña los atajos de Ctrl un momento, como si se mantuviera (para elegir el efecto)."""
+        if cfg is not None:
+            cfg = {**self.hint_config(), **cfg, "enabled": True}
+            if isinstance(cfg.get("color"), str):
+                cfg["color"] = C.to_bytes(C.parse(cfg["color"]))
+        self._hint_preview = (time.monotonic() + seconds, cfg)
+        self._hint["combo"] = ""
+
     def hints_allowed(self) -> bool:
         """En juegos se mantiene Ctrl para agacharse: ahí no se enseñan atajos."""
-        return self.hints and self.override is None and lookup(self.foreground) is None
+        return (self.hints and self.hint_config()["enabled"] and self.override is None
+                and lookup(self.foreground) is None)
 
     def with_shortcut_hints(self, frame: dict, now: float) -> dict:
         """Al mantener Ctrl, Alt o Win, atenúa el teclado e ilumina las teclas de sus atajos."""
         h = self._hint
-        mods = self.mods_state() if self.hints_allowed() else set()
+        until, preview_cfg = self._hint_preview
+        previewing = time.monotonic() < until
+        cfg = (preview_cfg if previewing and preview_cfg else None) or self.hint_config()
+        if previewing:
+            mods = {"ctrl"}
+        else:
+            mods = self.mods_state() if self.hints_allowed() else set()
         combo = shortcuts.combo(mods)
         if combo != h["combo"]:
             h["combo"], h["since"] = combo, now
@@ -342,9 +367,23 @@ class LightEngine:
         lit = set(h["keys"])
         out = {}
         for k, c in frame.items():
-            goal = self.hint_color if k in lit else tuple(int(v * 0.18) for v in c)
+            goal = self._hint_color(cfg, k, c, now - h["since"]) if k in lit else tuple(int(v * 0.18) for v in c)
             out[k] = tuple(round(a + (b - a) * level) for a, b in zip(c, goal))
         return out
+
+    def _hint_color(self, cfg: dict, key: str, current: tuple, t: float) -> tuple:
+        effect, color = cfg["effect"], cfg["color"]
+        if effect == "pulse":  # empieza a tope y respira
+            k = 0.35 + 0.65 * (0.5 + 0.5 * math.cos(2 * math.pi * t / 1.3))
+            return tuple(int(v * k) for v in color)
+        if effect == "rainbow":  # el arcoíris recorre los atajos de izquierda a derecha
+            pos = self.layout.get(key)
+            x = pos.cx / self.layout.width if pos else 0.0
+            return C.to_bytes(C.hsv((x * 0.8 - t * 0.35) % 1.0))
+        if effect == "profile":  # el color del propio perfil, a todo brillo
+            top = max(current)
+            return tuple(round(v * 255 / top) for v in current) if top > 8 else color
+        return color
 
     def capture(self) -> dict:
         with self._lock:

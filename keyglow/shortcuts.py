@@ -25,10 +25,10 @@ def _data() -> dict:
 
 
 def combo(mods) -> str:
-    """``{"shift", "ctrl"}`` -> ``"ctrl+shift"``. Vacío si no hay nada que enseñar: Shift solo
-    (sirve para escribir) o Ctrl+Alt, que en muchos teclados es AltGr."""
+    """``{"shift", "ctrl"}`` -> ``"ctrl+shift"``. Vacío con Shift solo, que sirve para escribir.
+    (AltGr, que Windows ve como Ctrl+Alt, lo descarta antes ``keyhook.held_modifiers``.)"""
     mods = set(mods)
-    if not mods or mods == {"shift"} or {"ctrl", "alt"} <= mods:
+    if not mods or mods == {"shift"}:
         return ""
     return "+".join(m for m in ORDER if m in mods)
 

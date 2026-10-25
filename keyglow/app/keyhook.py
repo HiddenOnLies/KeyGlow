@@ -54,6 +54,8 @@ def held_modifiers() -> set[str]:
         return set()
     import ctypes
     state = ctypes.windll.user32.GetAsyncKeyState
+    if state(0xA5) & 0x8000:  # Alt derecho = AltGr en muchos teclados (@, #, €...): se está escribiendo
+        return set()
     return {name for name, vk in _MODIFIER_VKS if state(vk) & 0x8000}
 
 

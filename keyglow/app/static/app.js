@@ -479,7 +479,50 @@ function renderEditor() {
   renderTiles();
   renderLayers();
   renderLayerEditor();
+  renderHintsEditor();
   renderSelection();
+}
+
+// ---------- Shortcut lights: per profile, shown while holding Ctrl, Alt or Win ----------
+const HINT_EFFECTS = [["solid", "Solid color"], ["pulse", "Pulse"], ["rainbow", "Rainbow"], ["profile", "Profile colors"]];
+const HINT_HELP = {
+  solid: "The shortcut keys light up in one color.",
+  pulse: "The shortcut keys breathe in one color.",
+  rainbow: "A rainbow runs across the shortcut keys.",
+  profile: "The shortcut keys keep this profile's colors at full brightness.",
+};
+
+function renderHintsEditor() {
+  const box = $("#hints-editor");
+  box.innerHTML = "";
+  const cfg = { enabled: true, effect: "solid", ...(S.profile.shortcut_hints || {}) };
+  const put = (patch) => {
+    S.profile.shortcut_hints = { ...cfg, ...patch };
+    commit({ rerender: false });
+    renderHintsEditor();
+    if (patch.effect || patch.color) previewHints();
+  };
+  const kids = [h("p", { class: "muted small" }, "Hold Ctrl, Alt or Win for a moment: the rest of the keyboard dims and the keys of its shortcuts light up.")];
+  kids.push(segmented([["on", "On"], ["off", "Off"]], cfg.enabled ? "on" : "off", (v) => put({ enabled: v === "on" })));
+  if (cfg.enabled) {
+    const sel = h("select", { "aria-label": "Shortcut light effect" }, HINT_EFFECTS.map(([v, label]) => h("option", { value: v, selected: v === cfg.effect }, label)));
+    sel.addEventListener("change", () => put({ effect: sel.value }));
+    kids.push(field("Effect", sel), h("p", { class: "muted small" }, HINT_HELP[cfg.effect]));
+    if (cfg.effect === "solid" || cfg.effect === "pulse") {
+      const value = cfg.color || S.settings.shortcut_hints_color || "#ffffff";
+      kids.push(field("Color", h("div", {}, colorInput(value, (v) => { cfg.color = v; S.profile.shortcut_hints = { ...cfg }; }),
+        swatchRow(value, (c) => put({ color: c })))));
+    }
+    kids.push(h("button", { class: "mini-btn", type: "button", onclick: previewHints }, "Preview on keyboard"));
+    if (S.settings.shortcut_hints === false) kids.push(h("p", { class: "note" }, "Shortcut lights are turned off for every profile in Settings."));
+  }
+  box.append(section("Shortcut lights", ...kids));
+}
+
+async function previewHints() {
+  if (!S.status.running) { toast("Turn the lights on to preview it on the keyboard"); return; }
+  const cfg = { enabled: true, effect: "solid", ...(S.profile.shortcut_hints || {}) };
+  try { await api("/api/hints/preview", { config: cfg }); } catch (e) { toast(e.message, "err"); }
 }
 
 function renderHead() {
