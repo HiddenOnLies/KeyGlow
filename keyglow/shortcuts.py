@@ -1,9 +1,8 @@
 """Atajos de teclado que se iluminan al mantener Ctrl, Alt o Win.
 
 Los atajos están en ``shortcuts.json``: un juego para Windows (``default``) y otros para
-aplicaciones concretas por su ejecutable. Si la aplicación activa tiene atajos para la
-combinación que se mantiene, se usan esos; si no, los de Windows. Los de la tecla Win son
-siempre los de Windows.
+aplicaciones concretas por su ejecutable. Los de la aplicación activa se suman a los de
+Windows (Ctrl+C sigue sirviendo en el navegador). Los de la tecla Win son siempre los de Windows.
 """
 
 from __future__ import annotations
@@ -52,5 +51,5 @@ def keys_for(mods, exe: str = "") -> list[str]:
     if not c:
         return []
     app = _app(exe) if "win" not in c else None
-    keys = (app or {}).get(c) or _data()["default"].get(c, [])
-    return list(keys)
+    keys = list((app or {}).get(c, [])) + _data()["default"].get(c, [])
+    return list(dict.fromkeys(keys))  # sin repetir, primero los de la aplicación

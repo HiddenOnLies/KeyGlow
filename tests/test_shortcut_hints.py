@@ -26,6 +26,7 @@ def test_combo(mods, combo):
 def test_apps_have_their_own_shortcuts():
     assert "C" in shortcuts.keys_for({"ctrl"})
     assert "P" in shortcuts.keys_for({"ctrl"}, "Code.exe") and shortcuts.app_name("code.exe") == "VS Code"
+    assert {"T", "C", "A"} <= set(shortcuts.keys_for({"ctrl"}, "chrome.exe"))  # los de la app y los de Windows
     assert shortcuts.keys_for({"ctrl"}, "msedge.exe") == shortcuts.keys_for({"ctrl"}, "chrome.exe")
     # la tecla Win es siempre de Windows
     assert shortcuts.keys_for({"win"}, "code.exe") == shortcuts.keys_for({"win"})
@@ -134,3 +135,43 @@ def test_profile_field_is_validated_and_kept():
     assert p.to_dict()["shortcut_hints"] == {"enabled": True, "effect": "pulse", "color": "#ff0000"}
     with pytest.raises(ValueError):
         Profile.from_dict({**base, "shortcut_hints": {"effect": "lasers"}})
+
+
+def test_more_effects():
+    eng, _ = profile_engine({"ctrl"}, {"effect": "gradient", "colors": ["#ff0000", "#0000ff"]})
+    f = lit(eng)
+    assert f["A"][0] > f["A"][2] and f["P"][2] > f["P"][0]          # rojo a la izquierda, azul a la derecha
+    assert len(run({"effect": "wave", "colors": ["#ff0000", "#0000ff"]}, 2, 0.8)) == 2  # se mueve
+    assert run({"effect": "blink", "color": "#ff0000"}, 8, 0.1) == {(255, 0, 0), (30, 0, 0)}  # encendido / apagado
+    seen = run({"effect": "sparkle", "color": "#ff0000"}, 40, 1 / 6)
+    assert (255, 0, 0) in seen and any(c[1] > 0 for c in seen)      # a veces destella hacia el blanco
+
+
+def run(hints, steps, dt, key="C"):
+    """Colores de ``key`` en ``steps`` fotogramas seguidos, ya con los atajos encendidos."""
+    eng, _ = profile_engine({"ctrl"}, hints)
+    eng.with_shortcut_hints(FRAME, 1.0)
+    return {eng.with_shortcut_hints(FRAME, 2.0 + i * dt)[key] for i in range(steps)}
+
+
+def test_parameters():
+    eng, _ = profile_engine({"ctrl"}, {"dim": 0.0})
+    assert lit(eng)["Q"] == (0, 0, 0)                                # el resto, apagado del todo
+    eng, _ = profile_engine({"ctrl"}, {"delay": 1.2})
+    eng.with_shortcut_hints(FRAME, 1.0)
+    assert eng.with_shortcut_hints(FRAME, 1.0 + 0.8) == FRAME        # aún no: hay que mantener 1,2 s
+    assert eng.with_shortcut_hints(FRAME, 1.0 + 1.2 + E.HINT_FADE)["C"] == (255, 255, 255)
+    fast = {c[0] for c in run({"effect": "pulse", "color": "#ff0000", "speed": 3}, 5, 0.1)}
+    slow = {c[0] for c in run({"effect": "pulse", "color": "#ff0000", "speed": 0.2}, 5, 0.1)}
+    assert max(fast) - min(fast) > max(slow) - min(slow)
+
+
+def test_parameters_are_validated():
+    from keyglow.profile import Profile
+    base = {"name": "p", "layers": [{"effect": "solid", "params": {}}]}
+    p = Profile.from_dict({**base, "shortcut_hints": {"effect": "wave", "colors": ["red", "#00f"], "speed": 9, "dim": -1}})
+    h = p.to_dict()["shortcut_hints"]
+    assert h["colors"] == ["#ff0000", "#0000ff"] and h["speed"] == 3.0 and h["dim"] == 0.0   # se ajusta al rango
+    for bad in ({"colors": []}, {"colors": "red"}, {"speed": "fast"}):
+        with pytest.raises(ValueError):
+            Profile.from_dict({**base, "shortcut_hints": bad})

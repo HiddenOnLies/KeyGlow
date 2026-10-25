@@ -31,11 +31,13 @@ from .layout import Layout, resolve_keys
 FORMAT = "keyglow/1"
 BLENDS = ("normal", "add", "multiply", "screen")
 # cómo se ven los atajos al mantener Ctrl, Alt o Win (opcional en cada perfil)
-HINT_EFFECTS = ("solid", "pulse", "rainbow", "profile")
+HINT_EFFECTS = ("solid", "pulse", "blink", "sparkle", "gradient", "wave", "rainbow", "profile")
+# parámetros numéricos de los atajos: (mínimo, máximo)
+HINT_RANGES = {"speed": (0.2, 3.0), "dim": (0.0, 0.8), "delay": (0.0, 1.5)}
 
 
 def _hints_config(h) -> dict | None:
-    """Valida ``{"enabled": bool, "effect": ..., "color": "#rrggbb"}`` (todo opcional)."""
+    """Valida ``{"enabled", "effect", "color", "colors", "speed", "dim", "delay"}`` (todo opcional)."""
     if h is None:
         return None
     if not isinstance(h, dict):
@@ -43,9 +45,21 @@ def _hints_config(h) -> dict | None:
     out = {"enabled": bool(h.get("enabled", True)), "effect": h.get("effect", "solid")}
     if out["effect"] not in HINT_EFFECTS:
         raise ValueError(f"'shortcut_hints.effect' must be one of {', '.join(HINT_EFFECTS)}")
+    from . import color as C
     if "color" in h:
-        from . import color as C
         out["color"] = C.to_hex(C.parse(h["color"]))
+    if "colors" in h:
+        cs = h["colors"]
+        if not isinstance(cs, list) or not 1 <= len(cs) <= 8:
+            raise ValueError("'shortcut_hints.colors' must be a list of 1 to 8 colors")
+        out["colors"] = [C.to_hex(C.parse(c)) for c in cs]
+    for name, (lo, hi) in HINT_RANGES.items():
+        if name in h:
+            try:
+                v = float(h[name])
+            except (TypeError, ValueError):
+                raise ValueError(f"'shortcut_hints.{name}' must be a number") from None
+            out[name] = min(hi, max(lo, v))
     return out
 
 

@@ -8,8 +8,10 @@
   Windows whether those modifiers are held (no keyboard hook), ignores AltGr and Shift alone, and
   stays off in games. Three-key combinations too (Ctrl+Alt+Del, Ctrl+Shift+Win+B, Win+Alt+R…);
   AltGr (right Alt) doesn't count, so typing @ or # doesn't trigger it. **Each profile** can turn
-  it off or pick an effect in its editor: solid color, pulse, rainbow or the profile's own colors,
-  with *Preview on keyboard*. *Settings*: a switch for every profile and the default color.
+  it off and set it up in its editor: eight effects (solid color, pulse, blink, sparkle,
+  gradient, wave, rainbow, the profile's own colors), their colors and speed, how dark the rest of
+  the keyboard goes and how long to hold the key, with *Preview on keyboard*. App shortcuts add to
+  the Windows ones (Ctrl+C still lights up in the browser). *Settings*: a switch for every profile and the default color.
   Shortcut sets live in `keyglow/shortcuts.json`.
 - **New layout**: the profiles are always on the left, with larger thumbnails and a *Reacts*
   badge for profiles that react to typing. **Hover a profile to preview it** on the on-screen

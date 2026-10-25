@@ -484,35 +484,58 @@ function renderEditor() {
 }
 
 // ---------- Shortcut lights: per profile, shown while holding Ctrl, Alt or Win ----------
-const HINT_EFFECTS = [["solid", "Solid color"], ["pulse", "Pulse"], ["rainbow", "Rainbow"], ["profile", "Profile colors"]];
+const HINT_EFFECTS = [["solid", "Solid color"], ["pulse", "Pulse"], ["blink", "Blink"], ["sparkle", "Sparkle"],
+  ["gradient", "Gradient"], ["wave", "Wave"], ["rainbow", "Rainbow"], ["profile", "Profile colors"]];
 const HINT_HELP = {
   solid: "The shortcut keys light up in one color.",
   pulse: "The shortcut keys breathe in one color.",
+  blink: "The shortcut keys flash on and off.",
+  sparkle: "The shortcut keys glow in one color and flash white now and then.",
+  gradient: "Your colors spread across the shortcut keys, left to right.",
+  wave: "Your colors move along the shortcut keys.",
   rainbow: "A rainbow runs across the shortcut keys.",
   profile: "The shortcut keys keep this profile's colors at full brightness.",
 };
+const HINT_ONE_COLOR = new Set(["solid", "pulse", "blink", "sparkle"]);
+const HINT_COLORS = new Set(["gradient", "wave"]);
+const HINT_MOVING = new Set(["pulse", "blink", "sparkle", "wave", "rainbow"]);
+RANGES.hint_speed = [0.2, 3, 0.05, "Slow", "Fast"];
+RANGES.hint_delay = [0, 1.5, 0.05, "Instant", "Long hold"];
 
 function renderHintsEditor() {
   const box = $("#hints-editor");
   box.innerHTML = "";
   const cfg = { enabled: true, effect: "solid", ...(S.profile.shortcut_hints || {}) };
+  const attach = () => { S.profile.shortcut_hints = cfg; }; // the profile keeps this object from now on
   const put = (patch) => {
-    S.profile.shortcut_hints = { ...cfg, ...patch };
+    Object.assign(cfg, patch);
+    if (HINT_COLORS.has(cfg.effect) && !cfg.colors) cfg.colors = ["#ff0080", "#00e5ff"];
+    attach();
     commit({ rerender: false });
     renderHintsEditor();
     if (patch.effect || patch.color) previewHints();
   };
+  // sliders: apply while dragging, save and preview when released
+  const tweak = (name) => (v, final) => { cfg[name] = v; attach(); if (final) { commit({ rerender: false }); previewHints(); } };
   const kids = [h("p", { class: "muted small" }, "Hold Ctrl, Alt or Win for a moment: the rest of the keyboard dims and the keys of its shortcuts light up.")];
   kids.push(segmented([["on", "On"], ["off", "Off"]], cfg.enabled ? "on" : "off", (v) => put({ enabled: v === "on" })));
   if (cfg.enabled) {
     const sel = h("select", { "aria-label": "Shortcut light effect" }, HINT_EFFECTS.map(([v, label]) => h("option", { value: v, selected: v === cfg.effect }, label)));
     sel.addEventListener("change", () => put({ effect: sel.value }));
     kids.push(field("Effect", sel), h("p", { class: "muted small" }, HINT_HELP[cfg.effect]));
-    if (cfg.effect === "solid" || cfg.effect === "pulse") {
+    if (HINT_ONE_COLOR.has(cfg.effect)) {
       const value = cfg.color || S.settings.shortcut_hints_color || "#ffffff";
-      kids.push(field("Color", h("div", {}, colorInput(value, (v) => { cfg.color = v; S.profile.shortcut_hints = { ...cfg }; }),
+      kids.push(field("Color", h("div", {},
+        colorInput(value, (v, final) => { cfg.color = v; attach(); if (final) { commit({ rerender: false }); previewHints(); } }),
         swatchRow(value, (c) => put({ color: c })))));
+    } else if (HINT_COLORS.has(cfg.effect)) {
+      if (!cfg.colors) { cfg.colors = ["#ff0080", "#00e5ff"]; attach(); }
+      kids.push(colorList({ params: cfg }, cfg.colors));
     }
+    if (HINT_MOVING.has(cfg.effect)) kids.push(slider("hint_speed", cfg.speed ?? 1, tweak("speed"), "Speed"));
+    kids.push(percent("Rest of the keyboard", Math.round((cfg.dim ?? 0.18) * 100), (v, final) => tweak("dim")(v / 100, final)));
+    kids.push(slider("hint_delay", cfg.delay ?? 0.35, tweak("delay"), "Hold time (seconds)"));
+    kids.push(h("p", { class: "muted small" }, "Hold time is how long you hold the key before the shortcuts light up, so quick shortcuts like Ctrl+C don't flash."));
     kids.push(h("button", { class: "mini-btn", type: "button", onclick: previewHints }, "Preview on keyboard"));
     if (S.settings.shortcut_hints === false) kids.push(h("p", { class: "note" }, "Shortcut lights are turned off for every profile in Settings."));
   }

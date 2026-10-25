@@ -16,7 +16,7 @@ from collections import OrderedDict
 from .. import color as C
 from .. import onboard
 from .. import shortcuts
-from ..effects import has_reactive
+from ..effects import _rand, has_reactive
 from ..layout import Layout, load_layout
 from ..profile import Profile, Renderer
 from ..retarget import Report, retarget
@@ -28,6 +28,7 @@ AUTO = "auto"  # distribución detectada a partir de lo que informa OpenRGB
 RECONNECT_EVERY = 3.0
 CAPS_KEY = "CAPSLOCK"
 HINT_DELAY = 0.35  # mantener el modificador este tiempo antes de enseñar los atajos (Ctrl+C rápido no parpadea)
+HINT_DIM = 0.18    # brillo del resto del teclado mientras se ven los atajos
 HINT_FADE = 0.12
 PEEK_TIMEOUT = 12.0  # una vista previa sin renovar se apaga sola (p. ej. si se cierra la ventana)
 
@@ -323,16 +324,19 @@ class LightEngine:
     def hint_config(self) -> dict:
         """Cómo se ven los atajos con el perfil activo: lo que diga el perfil o, si no dice nada,
         encendidos en un color fijo (el de Settings)."""
-        cfg = (self._profile or {}).get("shortcut_hints") or {}
+        return self._hint_cfg((self._profile or {}).get("shortcut_hints") or {})
+
+    def _hint_cfg(self, cfg: dict) -> dict:
+        color = C.to_bytes(C.parse(cfg["color"])) if cfg.get("color") else self.hint_color
+        colors = [C.parse(c) for c in cfg.get("colors") or []] or [C.parse("#ff0080"), C.parse("#00e5ff")]
         return {"enabled": cfg.get("enabled", True) is not False, "effect": cfg.get("effect", "solid"),
-                "color": C.to_bytes(C.parse(cfg["color"])) if cfg.get("color") else self.hint_color}
+                "color": color, "colors": colors, "speed": float(cfg.get("speed", 1.0)),
+                "dim": float(cfg.get("dim", HINT_DIM)), "delay": float(cfg.get("delay", HINT_DELAY))}
 
     def preview_hints(self, cfg: dict | None = None, seconds: float = 2.5) -> None:
         """Enseña los atajos de Ctrl un momento, como si se mantuviera (para elegir el efecto)."""
         if cfg is not None:
-            cfg = {**self.hint_config(), **cfg, "enabled": True}
-            if isinstance(cfg.get("color"), str):
-                cfg["color"] = C.to_bytes(C.parse(cfg["color"]))
+            cfg = self._hint_cfg({**((self._profile or {}).get("shortcut_hints") or {}), **cfg, "enabled": True})
         self._hint_preview = (time.monotonic() + seconds, cfg)
         self._hint["combo"] = ""
 
@@ -357,7 +361,10 @@ class LightEngine:
             if combo:  # al soltar se conservan las teclas para que se apaguen poco a poco
                 held = [k for m in mods for k in shortcuts.MOD_KEYS[m]]
                 h["keys"] = [k for k in shortcuts.keys_for(mods, self.foreground) + held if k in frame]
-        target = 1.0 if combo and h["keys"] and now - h["since"] >= HINT_DELAY else 0.0
+                xs = [self.layout.get(k).cx for k in h["keys"] if self.layout.get(k)]
+                h["span"] = (min(xs), max(xs)) if xs else (0.0, 1.0)  # gradientes sobre los atajos, no el teclado
+        delay = 0.0 if previewing else cfg["delay"]
+        target = 1.0 if combo and h["keys"] and now - h["since"] >= delay else 0.0
         step = (now - h["at"]) / HINT_FADE if h["at"] else 1.0
         h["at"] = now
         h["level"] = min(target, h["level"] + step) if target > h["level"] else max(target, h["level"] - step)
@@ -367,19 +374,31 @@ class LightEngine:
         lit = set(h["keys"])
         out = {}
         for k, c in frame.items():
-            goal = self._hint_color(cfg, k, c, now - h["since"]) if k in lit else tuple(int(v * 0.18) for v in c)
+            goal = self._hint_color(cfg, k, c, now - h["since"], h.get("span")) if k in lit else tuple(int(v * cfg["dim"]) for v in c)
             out[k] = tuple(round(a + (b - a) * level) for a, b in zip(c, goal))
         return out
 
-    def _hint_color(self, cfg: dict, key: str, current: tuple, t: float) -> tuple:
-        effect, color = cfg["effect"], cfg["color"]
+    def _hint_color(self, cfg: dict, key: str, current: tuple, t: float, span=None) -> tuple:
+        effect, color, speed = cfg["effect"], cfg["color"], cfg["speed"]
+        pos = self.layout.get(key)
+        lo, hi = span or (0.0, self.layout.width)
+        x = (pos.cx - lo) / (hi - lo) if pos and hi > lo else 0.0  # 0..1 entre el atajo más a la izquierda y el más a la derecha
         if effect == "pulse":  # empieza a tope y respira
-            k = 0.35 + 0.65 * (0.5 + 0.5 * math.cos(2 * math.pi * t / 1.3))
+            k = 0.35 + 0.65 * (0.5 + 0.5 * math.cos(2 * math.pi * t * speed / 1.3))
             return tuple(int(v * k) for v in color)
+        if effect == "blink":  # encendido / apagado, lo más visible
+            return color if (t * speed * 2.5) % 1.0 < 0.6 else tuple(int(v * 0.12) for v in color)
+        if effect == "sparkle":  # cada atajo destella en blanco de vez en cuando
+            tick = int(t * speed * 6)
+            spark = _rand("hint", key, tick)
+            k = max(0.0, (spark - 0.7) / 0.3)
+            return tuple(round(v + (255 - v) * k) for v in color)
+        if effect == "gradient":  # los colores repartidos de izquierda a derecha
+            return C.to_bytes(C.palette_at(cfg["colors"], x))
+        if effect == "wave":  # esos colores avanzando por los atajos
+            return C.to_bytes(C.palette_at(cfg["colors"], x * 0.8 - t * speed * 0.3, cyclic=True))
         if effect == "rainbow":  # el arcoíris recorre los atajos de izquierda a derecha
-            pos = self.layout.get(key)
-            x = pos.cx / self.layout.width if pos else 0.0
-            return C.to_bytes(C.hsv((x * 0.8 - t * 0.35) % 1.0))
+            return C.to_bytes(C.hsv((x * 0.8 - t * speed * 0.35) % 1.0))
         if effect == "profile":  # el color del propio perfil, a todo brillo
             top = max(current)
             return tuple(round(v * 255 / top) for v in current) if top > 8 else color
