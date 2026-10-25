@@ -5,7 +5,7 @@ A profile made for another keyboard (a full-size, a 60%, another brand) adapts i
 yours, and the other way round. Windows, powered by [OpenRGB](https://openrgb.org).
 
 <p align="center">
-  <a href="https://github.com/HiddenOnLies/KeyGlow/releases"><b>⬇ Download KeyGlow.exe</b></a>
+  <a href="https://github.com/HiddenOnLies/KeyGlow/releases/latest"><b>⬇ Download KeyGlow.exe</b></a>
   ·
   <a href="#quick-start">Quick start</a>
   ·
@@ -34,7 +34,7 @@ yours, and the other way round. Windows, powered by [OpenRGB](https://openrgb.or
 
 1. **Install [OpenRGB](https://openrgb.org/releases.html)** (free). KeyGlow uses it to talk to
    the keyboard; you don't need to configure it.
-2. **Download [`KeyGlow.exe`](https://github.com/HiddenOnLies/KeyGlow/releases)** and
+2. **Download [`KeyGlow.exe`](https://github.com/HiddenOnLies/KeyGlow/releases/latest)** and
    double-click it. No installer: it's a single file you can keep anywhere.
    KeyGlow opens OpenRGB for you in the background with its SDK server on.
 3. **Pick an effect.** If the keyboard doesn't light up, KeyGlow shows what's missing (usually
