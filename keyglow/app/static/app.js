@@ -1029,6 +1029,7 @@ function renderLayerEditor() {
   });
   const animKids = [anim];
   if (EFFECT_HELP[l.effect] && d.anim !== "none") animKids.push(h("p", { class: "muted small" }, EFFECT_HELP[l.effect]));
+  if (l.effect === "music" && S.status.audio?.error) animKids.push(h("p", { class: "note" }, S.status.audio.error));
   const defaults = S.meta.effects[l.effect]?.defaults || {};
   for (const name of MAIN_PARAMS[l.effect] || []) {
     if (["color", "colors", "keys"].includes(name) || !(name in defaults)) continue;

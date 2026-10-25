@@ -464,6 +464,7 @@ class LightEngine:
                 "can_save": bool(self._kb is not None and onboard.can_save(self._kb.modes())),
                 "layout_rev": self.layout_rev,
                 "caps_indicator": self.layout.caps_indicator,
+                "audio": {"active": self.audio.active, "error": self.audio.error},
             }
 
     # --- vista previa -------------------------------------------------------
