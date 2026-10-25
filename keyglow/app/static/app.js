@@ -167,6 +167,7 @@ const isPaintLayer = () => S.profile && currentLayer()?.effect === "static";
 // ---------------------------------------------------------------------------
 const keyEls = {};
 const lastColors = {};
+const keySx = {}; // horizontal position of each key, 0..1, for the light sweep
 
 function buildKeyboard() {
   const lay = S.meta.layout;
@@ -181,6 +182,7 @@ function buildKeyboard() {
              `width:${(k.w / lay.width) * 100}%;height:${(k.h / lay.height) * 100}%`,
     }, h("div", { class: "cap" }, lay.labels[k.id] || ""));
     keyEls[k.id] = el;
+    keySx[k.id] = (k.x + k.w / 2) / lay.width;
     keyCol[k.id] = Math.min(GLOW_COLS - 1, Math.floor(((k.x + k.w / 2) / lay.width) * GLOW_COLS));
     kb.append(el);
   }
@@ -218,13 +220,39 @@ function buildKeyboard() {
 }
 
 function drawFrame(ids, frame) {
+  const tr = lightTransition.current;
+  const now = performance.now();
+  if (tr && now > tr.end) lightTransition.current = null;
   for (let i = 0; i < ids.length; i++) {
-    if (lastColors[ids[i]] !== frame[i]) {
-      lastColors[ids[i]] = frame[i];
-      keyEls[ids[i]]?.style.setProperty("--c", "#" + frame[i]);
+    let c = frame[i];
+    if (tr && now <= tr.end && tr.from[ids[i]]) {
+      const p = Math.min(1, Math.max(0, (now - tr.start - (keySx[ids[i]] || 0) * tr.spread) / tr.dur));
+      if (p < 1) c = mixHex(tr.from[ids[i]], c, p * p * (3 - 2 * p));
+    }
+    if (lastColors[ids[i]] !== c) {
+      lastColors[ids[i]] = c;
+      keyEls[ids[i]]?.style.setProperty("--c", "#" + c);
     }
   }
 }
+
+function mixHex(a, b, t) {
+  const x = parseInt(a, 16), y = parseInt(b, 16);
+  const ch = (s) => Math.round(((x >> s) & 255) * (1 - t) + ((y >> s) & 255) * t);
+  return ((ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).padStart(6, "0");
+}
+
+// The keyboard moves from the colors it shows to the next ones instead of jumping:
+// "sweep" runs left to right like a scanner (switching profiles), "fade" is a quick crossfade (hover previews).
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+function lightTransition(kind) {
+  if (reducedMotion.matches) return;
+  const [spread, dur] = kind === "sweep" ? [420, 260] : [0, 160];
+  const start = performance.now();
+  const from = Object.fromEntries(Object.keys(keyEls).map((id) => [id, lastColors[id] || "000000"])); // at startup: from dark
+  lightTransition.current = { from, start, spread, dur, end: start + spread + dur };
+}
+lightTransition.current = null;
 
 // Ambient light under the keyboard: the average color of each column of keys
 const GLOW_COLS = 6;
@@ -341,6 +369,7 @@ function loadProfile(data, { id = null, sourceId = null } = {}) {
   S.history = [JSON.stringify(S.profile)];
   S.future = [];
   P.report = "";
+  lightTransition("sweep");
   renderAll();
   pushLive();
 }
@@ -400,6 +429,7 @@ function setBaseEffect(eff) {
   if (eff !== "static" && eff !== "fire") fresh.params = carryColors(base.params || {}, fresh.params);
   S.profile.layers[0] = fresh;
   S.layer = 0;
+  lightTransition("sweep");
   commit();
 }
 
@@ -1152,6 +1182,7 @@ function startPeek(e, card) {
   peekCard = card;
   card.classList.add("peeking");
   P.peek = e.data;
+  lightTransition("fade");
   invalidatePreview();
   const label = $("#peek-label");
   label.textContent = `Preview: ${e.name} · click to use it`;
@@ -1173,6 +1204,7 @@ function stopPeek() {
   peekCard?.classList.remove("peeking");
   peekCard = null;
   $("#peek-label").hidden = true;
+  if (!lightTransition.current) lightTransition("fade"); // a click starts a sweep: keep it
   invalidatePreview();
   if (S.status.running) api("/api/peek", { profile: null }).catch(() => {});
 }
@@ -1603,6 +1635,7 @@ function setStatus(st) {
   dev.title = st.connected ? "Connected through OpenRGB" : `${st.error || "Open OpenRGB and start its SDK Server."}\nClick to retry.`;
   const pw = $("#power");
   pw.classList.toggle("on", !!st.running);
+  document.body.classList.toggle("lights-off", !st.running);
   pw.setAttribute("aria-checked", String(!!st.running));
   $("#power-text").textContent = st.running ? "On" : "Off";
   const pill = $("#game-pill");
