@@ -8,7 +8,7 @@ const EFFECT_NAMES = {
   color_wave: "Wave", spectrum: "Spectrum", breathing: "Breathing", ripple: "Ripple",
   starlight: "Starlight", points: "Imported map", image: "Image",
   plasma: "Plasma", rain: "Rain", scanner: "Scanner", fire: "Fire", heartbeat: "Heartbeat",
-  reactive: "Key press", swirl: "Swirl", comet: "Comet", bounce: "Bounce", glitch: "Glitch",
+  reactive: "Key press", music: "Music", swirl: "Swirl", comet: "Comet", bounce: "Bounce", glitch: "Glitch",
 };
 const EFFECT_HELP = {
   solid: "One color on every key.",
@@ -28,6 +28,7 @@ const EFFECT_HELP = {
   fire: "Flames rising from the bottom.",
   heartbeat: "A double pulse, like a heartbeat.",
   reactive: "Lights up the keys you press. Unpressed keys show the layers below.",
+  music: "Follows the sound playing on your PC: spectrum bars, a pulse with the bass, or a volume meter.",
   swirl: "Colors turning around a point, like a pinwheel.",
   comet: "A comet running across every row, with a tail.",
   bounce: "A ball of light bouncing off the edges.",
@@ -35,7 +36,7 @@ const EFFECT_HELP = {
 };
 // Effect tiles shown under the keyboard, in order.
 const TILES = ["solid", "color_wave", "rainbow_wave", "gradient", "breathing", "spectrum", "plasma",
-  "fire", "rain", "starlight", "ripple", "scanner", "heartbeat", "swirl", "comet", "bounce", "glitch", "static"];
+  "fire", "rain", "starlight", "ripple", "scanner", "heartbeat", "swirl", "comet", "bounce", "glitch", "music", "static"];
 // Main controls per effect; anything else goes to Advanced.
 const MAIN_PARAMS = {
   solid: ["color"],
@@ -55,6 +56,7 @@ const MAIN_PARAMS = {
   fire: ["colors", "speed", "height"],
   heartbeat: ["color", "bpm"],
   reactive: ["colors", "style", "duration", "speed", "background"],
+  music: ["colors", "style", "sensitivity", "background"],
   swirl: ["colors", "speed", "twist", "center"],
   comet: ["color", "background", "speed", "length"],
   bounce: ["color", "background", "speed", "size"],
@@ -66,7 +68,7 @@ const PARAM_NAMES = {
   thickness: "Ring width", background: "Background", density: "Amount", seed: "Variation",
   smooth: "Smoothing", scroll: "Scroll speed", path: "Image file", scale: "Size",
   length: "Trail", width: "Bar width", height: "Flame height", bpm: "Beats per minute",
-  style: "Style", duration: "Fade", twist: "Twist", size: "Ball size",
+  style: "Style", duration: "Fade", twist: "Twist", size: "Ball size", sensitivity: "Sensitivity",
 };
 // [min, max, step, left caption, right caption]; captions replace raw numbers where a
 // number would mean nothing to the user.
@@ -79,7 +81,7 @@ const RANGES = {
   length: [0.05, 1, 0.01, "Short", "Long"], width: [0.03, 0.5, 0.01, "Thin", "Wide"],
   height: [0.2, 1, 0.01, "Low", "High"], bpm: [30, 180, 1, null, null],
   duration: [0.1, 3, 0.05, "Quick", "Slow"], twist: [-4, 4, 0.1, "Left", "Right"],
-  size: [0.04, 0.4, 0.01, "Small", "Large"],
+  size: [0.04, 0.4, 0.01, "Small", "Large"], sensitivity: [0.2, 3, 0.05, "Calm", "Lively"],
   center_x: [0, 1, 0.01, "Left", "Right"], center_y: [0, 1, 0.01, "Top", "Bottom"],
 };
 const TAGS = ["animated", "static", "reactive", "gaming", "chill", "nature", "neon", "productivity", "seasonal", "theme"];
@@ -298,7 +300,8 @@ const P = { chunks: [], pending: false, gen: 0, fps: 30, t0: performance.now(), 
 const nowT = () => (performance.now() - P.t0) / 1000;
 
 const shown = () => P.peek || S.profile; // a library card being hovered wins
-const hasReactive = (p = shown()) => !!p?.layers?.some((l) => l.effect === "reactive");
+// key-press and music layers depend on what happens right now, so their preview is fetched almost live
+const hasReactive = (p = shown()) => !!p?.layers?.some((l) => l.effect === "reactive" || l.effect === "music");
 
 function invalidatePreview() {
   P.gen++;
@@ -589,6 +592,7 @@ function tileArt(eff) {
   if (eff === "rain") return "linear-gradient(180deg,transparent 10%,#00e5ff 30%,transparent 31%) 15% 0/2px 100% no-repeat,linear-gradient(180deg,transparent 40%,#fff 70%,transparent 71%) 45% 0/2px 100% no-repeat,linear-gradient(180deg,transparent 0,#00e5ff 45%,transparent 46%) 78% 0/2px 100% no-repeat,#000814";
   if (eff === "scanner") return "linear-gradient(90deg,#100000 0 35%,#ff0020 50%,#100000 65% 100%)";
   if (eff === "heartbeat") return "#ff0030";
+  if (eff === "music") return "linear-gradient(0deg,#00e5ff 0 30%,transparent 30%) 8% 100%/12% 100% no-repeat,linear-gradient(0deg,#7000ff 0 75%,transparent 75%) 30% 100%/12% 100% no-repeat,linear-gradient(0deg,#ff00c8 0 50%,transparent 50%) 52% 100%/12% 100% no-repeat,linear-gradient(0deg,#00e5ff 0 85%,transparent 85%) 74% 100%/12% 100% no-repeat,linear-gradient(0deg,#7000ff 0 40%,transparent 40%) 96% 100%/12% 100% no-repeat,#05000a";
   if (eff === "swirl") return "conic-gradient(#ff0080,#ffb000,#00e5ff,#7000ff,#ff0080)";
   if (eff === "comet") return "linear-gradient(90deg,#000010 0 30%,#003a50 50%,#00e5ff 72%,#000010 74% 100%)";
   if (eff === "bounce") return "radial-gradient(circle at 70% 35%,#ffb000 0 16%,#5a2a00 26%,#100400 40%)";
@@ -680,7 +684,8 @@ function paramControl(l, name, def) {
   }
   if (name === "background") return backgroundField(l, val);
   if (name === "style") {
-    const sel = h("select", { "aria-label": "Style" }, Object.entries(STYLE_NAMES).map(([k, v]) => h("option", { value: k, selected: val === k }, v)));
+    const names = l.effect === "music" ? MUSIC_STYLES : STYLE_NAMES;
+    const sel = h("select", { "aria-label": "Style" }, Object.entries(names).map(([k, v]) => h("option", { value: k, selected: val === k }, v)));
     sel.addEventListener("change", () => { l.params.style = sel.value; commit(); });
     return field("Style", sel);
   }
@@ -826,11 +831,12 @@ function paintTools(l) {
 const ANIMS = [["none", "None (still)"], ["wave", "Wave"], ["breathing", "Breathing"], ["cycle", "Color cycle"],
   ["ripple", "Ripple"], ["twinkle", "Twinkle"], ["scanner", "Scanner"], ["plasma", "Plasma"], ["fire", "Fire"],
   ["rain", "Rain"], ["heartbeat", "Heartbeat"], ["swirl", "Swirl"], ["comet", "Comet"], ["bounce", "Bounce"],
-  ["glitch", "Glitch"], ["reactive", "On key press"]];
+  ["glitch", "Glitch"], ["reactive", "On key press"], ["music", "Music"]];
 const RAINBOW_COLORS = ["#ff0000", "#ff8000", "#ffff00", "#00ff00", "#00ffff", "#0040ff", "#8000ff", "#ff00c0"];
 const ONE_ONLY = new Set(["scanner", "heartbeat", "comet", "bounce"]);
 const STYLE_NAMES = { key: "Light the key", ripple: "Ripple from the key", row: "Light the row",
   cross: "Light its row and column", burst: "Burst from the key" };
+const MUSIC_STYLES = { bars: "Spectrum bars", pulse: "Pulse with the bass", vu: "Volume meter" };
 const COLOR_MODES = [["one", "One"], ["several", "Several"], ["rainbow", "Rainbow"], ["paint", "Paint"]];
 
 const isRainbow = (cs) => Array.isArray(cs) && cs.map(hex).join() === RAINBOW_COLORS.join();
@@ -864,6 +870,7 @@ function describeLayer(l) {
     case "plasma": return fromList("plasma");
     case "rain": return fromList("rain");
     case "reactive": return fromList("reactive");
+    case "music": return fromList("music");
     case "scanner": return { color: "one", anim: "scanner" };
     case "heartbeat": return { color: "one", anim: "heartbeat" };
     case "swirl": return fromList("swirl");
@@ -908,6 +915,7 @@ function buildLayer(old, color, anim) {
       rain: ["rain", { colors: cs }],
       heartbeat: ["heartbeat", { color: one }],
       reactive: ["reactive", { colors: cs }],
+      music: ["music", { colors: cs }],
       swirl: ["swirl", { colors: color === "one" ? [one, "#000000"] : cs }],
       glitch: ["glitch", { colors: cs }],
       comet: ["comet", { color: one }],

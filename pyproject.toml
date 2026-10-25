@@ -20,7 +20,7 @@ Issues = "https://github.com/HiddenOnLies/KeyGlow/issues"
 openrgb = ["openrgb-python>=0.2.15"]
 image = ["Pillow>=10"]
 hid = ["hidapi>=0.14"]
-app = ["openrgb-python>=0.2.15", "Pillow>=10", "pystray>=0.19"]
+app = ["openrgb-python>=0.2.15", "Pillow>=10", "pystray>=0.19", "soundcard>=0.4", "numpy>=1.26"]
 build = ["pyinstaller>=6.10"]
 dev = ["pytest>=8"]
 

@@ -16,11 +16,12 @@ from collections import OrderedDict
 from .. import color as C
 from .. import onboard
 from .. import shortcuts
-from ..effects import _rand, has_reactive
+from ..effects import _rand, has_music, has_reactive
 from ..layout import Layout, load_layout
 from ..profile import Profile, Renderer
 from ..retarget import Report, retarget
 from .gamedb import lookup
+from .audio import AudioMeter
 from .keyhook import KeyHook, caps_lock_on, held_modifiers
 
 DEFAULT_LAYOUT = "alloy_origins_65"
@@ -93,6 +94,10 @@ class LightEngine:
         self.keyhook = KeyHook()
         self._reactive_live = False
         self._reactive_preview_until = 0.0
+        # sonido del PC: solo mientras un perfil en uso tenga una capa de música
+        self.audio = AudioMeter()
+        self._music_live = False
+        self._music_preview_until = 0.0
 
     # --- conexión ----------------------------------------------------------
     def _connect(self):
@@ -186,6 +191,7 @@ class LightEngine:
             self._base_renderer = renderer
             self.override = None
             self._reactive_live = has_reactive(data.get("layers", []))
+            self._music_live = has_music(data.get("layers", []))
             if self._kb is None:
                 self._connect()
             if self._thread is None or not self._thread.is_alive():
@@ -208,7 +214,8 @@ class LightEngine:
                 return
             self._renderer = renderer
             self.override = {"reason": reason, "profile": data.get("name", ""),
-                             "reactive": has_reactive(data.get("layers", []))}
+                             "reactive": has_reactive(data.get("layers", [])),
+                             "music": has_music(data.get("layers", []))}
         self.housekeeping()
 
     def peek(self, data: dict | None) -> None:
@@ -224,7 +231,9 @@ class LightEngine:
             self._peek = (renderer, time.monotonic() + PEEK_TIMEOUT)
         if has_reactive(data.get("layers", [])):
             self._reactive_preview_until = time.monotonic() + PEEK_TIMEOUT
-            self.housekeeping()
+        if has_music(data.get("layers", [])):
+            self._music_preview_until = time.monotonic() + PEEK_TIMEOUT
+        self.housekeeping()
 
     @property
     def peeking(self) -> bool:
@@ -232,13 +241,16 @@ class LightEngine:
         return peek is not None and time.monotonic() < peek[1]
 
     def housekeeping(self) -> None:
-        """Enciende o apaga la detección de pulsaciones según haga falta."""
-        override_reactive = bool(self.override and self.override.get("reactive"))
-        need = (self.running and (override_reactive or (self._reactive_live and not self.override)))             or time.monotonic() < self._reactive_preview_until
-        if need and not self.keyhook.active:
-            self.keyhook.start()
-        elif not need and self.keyhook.active:
-            self.keyhook.stop()
+        """Enciende o apaga la detección de pulsaciones y la escucha del sonido según hagan falta."""
+        now = time.monotonic()
+        for what, live, until, worker in (("reactive", self._reactive_live, self._reactive_preview_until, self.keyhook),
+                                          ("music", self._music_live, self._music_preview_until, self.audio)):
+            in_override = bool(self.override and self.override.get(what))
+            need = (self.running and (in_override or (live and not self.override))) or now < until
+            if need and not worker.active:
+                worker.start()
+            elif not need and worker.active:
+                worker.stop()
 
     def clear_override(self) -> None:
         with self._lock:
@@ -260,6 +272,7 @@ class LightEngine:
             self.override = None
             self._peek = None
             self._reactive_live = False
+            self._music_live = False
         self.housekeeping()
 
     def off(self) -> None:
@@ -458,7 +471,9 @@ class LightEngine:
         """Calcula ``count`` fotogramas desde ``start`` para la vista previa del navegador."""
         if has_reactive(data.get("layers", [])):
             self._reactive_preview_until = time.monotonic() + 6
-            self.housekeeping()
+        if has_music(data.get("layers", [])):
+            self._music_preview_until = time.monotonic() + 6
+        self.housekeeping()
         key = json.dumps(data, sort_keys=True)
         report: list[str] = []
         with self._plock:

@@ -58,6 +58,8 @@ close the window.
   with the mouse).
 - **Layer editor**: each layer is an *Area* (all or some keys) + a *Color* (one, several,
   rainbow or hand-painted) + an *Animation*, with opacity and blend modes.
+- **Music**: spectrum bars, a bass pulse or a volume meter that follow what's playing on the PC
+  (it only listens while a profile uses it).
 - **On key press**: light up the key you press, a ripple or a burst from it, its row, or its row
   and column. It uses a Windows
   keyboard hook only while an active profile needs it, and only keeps which key was pressed and

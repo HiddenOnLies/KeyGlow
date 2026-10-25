@@ -1,0 +1,30 @@
+{
+  "format": "keyglow/1",
+  "name": "Music Bars",
+  "author": "KeyGlow",
+  "description": "Spectrum bars that follow the music playing on your PC, bass on the left.",
+  "tags": [
+    "animated",
+    "neon"
+  ],
+  "layers": [
+    {
+      "effect": "solid",
+      "params": {
+        "color": "#06000f"
+      }
+    },
+    {
+      "effect": "music",
+      "params": {
+        "colors": [
+          "#00e5ff",
+          "#7000ff",
+          "#ff00c8"
+        ],
+        "style": "bars",
+        "sensitivity": 1.0
+      }
+    }
+  ]
+}

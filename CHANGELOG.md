@@ -25,6 +25,11 @@
   and close by sliding, and the cards fade in when switching tabs. All of it is off with
   *reduce motion*.
 - `/api/peek` shows a profile on the keyboard for a moment without changing the active one.
+- **Music effect**: follows the sound playing on the PC as spectrum bars (bass on the left), a
+  pulse with the bass or a volume meter, with colors and sensitivity. It listens to the default
+  output (WASAPI loopback, like OBS) only while the profile in use has a music layer, and keeps just
+  a few levels in memory, never the sound. New presets: *Music Bars* and *Bass Pulse*. Needs the new
+  `soundcard` and `numpy` dependencies (in the `app` extra and the exe).
 - **New version notice**: once a day KeyGlow looks at its GitHub releases and, when there's a
   newer one, shows a link in the top bar (dismiss it to skip that version). It never updates by
   itself. *Settings*: on/off and *Check now*.

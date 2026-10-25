@@ -489,5 +489,49 @@ def has_reactive(layers: list[dict]) -> bool:
     return any(layer.get("effect") == "reactive" for layer in layers)
 
 
+@register("music")
+class Music(Effect):
+    """Sigue lo que suena en el PC: barras de espectro, un pulso con los graves o un vúmetro.
+    Sin ``background``, lo que no se ilumina deja ver las capas de abajo."""
+    defaults = {"colors": ["#00e5ff", "#7000ff", "#ff00c8"], "style": "bars", "sensitivity": 1.0,
+                "background": None}
+    STYLES = ("bars", "pulse", "vu")
+
+    def setup(self):
+        if self.p["style"] not in self.STYLES:
+            raise ValueError(f"style must be one of {', '.join(self.STYLES)}")
+        self.cs = self.colors()
+        self.bg = C.parse(self.p["background"]) if self.p["background"] else None
+        self._t = None
+        self._bands: list[float] = []
+
+    def color(self, k, t):
+        from . import sound
+        if self._t != t:  # una lectura por fotograma
+            self._t = t
+            self._bands = sound.levels()
+        bands, gain = self._bands, max(self.p["sensitivity"], 0.0)
+        style = self.p["style"]
+        if style == "bars":  # una banda por columna, de graves (izquierda) a agudos; crecen hacia arriba
+            b = min(1.0, bands[min(len(bands) - 1, int(k.u * len(bands)))] * gain)
+            height = 1.0 - k.v
+            level = max(0.0, min(1.0, (b - height) * 6 + 1)) if b > 0.02 else 0.0
+            c = C.palette_at(self.cs, height)
+        elif style == "pulse":  # todo el teclado late con los graves
+            level = min(1.0, sum(bands[:3]) / 3 * gain)
+            c = C.palette_at(self.cs, k.u)
+        else:  # vu: el volumen llena el teclado de izquierda a derecha
+            vol = min(1.0, sum(bands) / len(bands) * gain * 1.6)
+            level = max(0.0, min(1.0, (vol - k.u) * 8 + 1)) if vol > 0.02 else 0.0
+            c = C.palette_at(self.cs, k.u)
+        if self.bg is not None:
+            return C.lerp(self.bg, c, level)
+        return (*c, level) if level > 0.01 else None
+
+
+def has_music(layers: list[dict]) -> bool:
+    return any(layer.get("effect") == "music" for layer in layers)
+
+
 def describe() -> dict[str, dict]:
     return {name: cls.defaults for name, cls in REGISTRY.items()}

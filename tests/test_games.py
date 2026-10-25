@@ -72,7 +72,7 @@ def test_override_en_motor_real():
     eng._base_renderer = base = object()
     eng._renderer = base
     eng.apply_override(library.resolve("preset:rainbow"), "Juego")
-    assert eng.override == {"reason": "Juego", "profile": "Rainbow", "reactive": False}
+    assert eng.override == {"reason": "Juego", "profile": "Rainbow", "reactive": False, "music": False}
     assert eng._renderer is not base
     eng.clear_override()
     assert eng.override is None and eng._renderer is base
