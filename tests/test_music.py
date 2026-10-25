@@ -95,3 +95,20 @@ def test_audio_runs_only_while_a_profile_uses_music():
     eng._music_live = False
     eng.housekeeping()
     assert started == ["start", "stop"]
+
+
+@pytest.mark.skipif(__import__("sys").platform != "win32", reason="WASAPI loopback is Windows only")
+def test_listening_can_restart():
+    """Cada escucha corre en un hilo nuevo, que tiene que iniciar COM por su cuenta."""
+    import time
+    pytest.importorskip("soundcard")
+    from keyglow.app.audio import AudioMeter
+    for _ in range(2):
+        m = AudioMeter()
+        m.start()
+        time.sleep(0.8)
+        error = m.error
+        m.stop()
+        if "default" in error.lower() or "no " in error.lower():
+            pytest.skip(f"no audio output here: {error}")
+        assert "0x800401f0" not in error

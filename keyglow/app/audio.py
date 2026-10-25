@@ -79,6 +79,16 @@ class AudioMeter:
             self.error = f"Music effects need soundcard and numpy ({e})"
             return
         warnings.simplefilter("ignore")  # soundcard avisa de discontinuidades con cada pausa del audio
+        # soundcard inicia COM solo en el hilo que lo importa la primera vez; este hilo es nuevo
+        # cada vez que se vuelve a escuchar, así que lo inicia él (multihilo, como soundcard)
+        import ctypes
+        ctypes.windll.ole32.CoInitializeEx(None, 0x0)
+        try:
+            self._listen(sc)
+        finally:
+            ctypes.windll.ole32.CoUninitialize()
+
+    def _listen(self, sc) -> None:
         state: dict = {}
         while not self._stop.is_set():
             try:
