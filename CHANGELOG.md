@@ -9,8 +9,10 @@
   The layer editor only opens with *Edit*. Quick start effects fit in one row (scroll sideways).
 - When the keyboard can't be reached, a banner explains it instead of a window that blocks the app.
 - Motion: switching profiles sweeps the new light across the on-screen keyboard from left to
-  right; hover previews crossfade; the drawing dims when the lights are off; the editor, the
-  connection banner and the preview label ease in. All of it is off with *reduce motion*.
+  right; hover previews crossfade; the drawing dims when the lights are off; the
+  connection banner and the preview label ease in; the profile list and the layer editor open
+  and close by sliding, and the cards fade in when switching tabs. All of it is off with
+  *reduce motion*.
 - `/api/peek` shows a profile on the keyboard for a moment without changing the active one.
 
 ## 0.4.0

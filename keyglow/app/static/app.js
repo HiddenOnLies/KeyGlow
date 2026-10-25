@@ -1689,6 +1689,11 @@ async function init() {
     $$(".library .seg button").forEach((x) => x.classList.toggle("on", x === b));
     S.tab = b.dataset.tab;
     renderCards();
+    const cards = $("#cards");
+    cards.classList.remove("swap");
+    void cards.offsetWidth; // restart the fade
+    cards.classList.add("swap");
+    cards.scrollTop = 0;
   }));
   $("#search").addEventListener("input", renderCards);
   $("#btn-library").addEventListener("click", () => toggleLibrary());
