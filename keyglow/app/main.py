@@ -19,7 +19,7 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-from . import gallery_sync, layout_sync, library, system, update_check
+from . import gallery_sync, layout_store, layout_sync, library, system, update_check
 from .engine import LightEngine
 from .server import STATIC_DIR, App, make_server
 
@@ -108,6 +108,7 @@ def main(argv: list[str] | None = None) -> int:
 
     settings = library.load_settings()
     layout_sync.use_cache()  # distribuciones del workshop ya descargadas, antes de conectar
+    layout_store.load()  # y las hechas con el editor, que mandan sobre las demás
     if settings.get("start_openrgb"):
         system.ensure_openrgb(settings)  # el motor reintenta conectar hasta que OpenRGB responda
     engine = LightEngine(args.layout or settings["layout"], settings["openrgb_host"],

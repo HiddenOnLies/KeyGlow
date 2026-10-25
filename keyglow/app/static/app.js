@@ -1609,6 +1609,7 @@ function layoutInfo(lay) {
   const [kind, base] = (lay.source || "").split(":");
   const title = (S.meta.layouts.find((l) => l.name === base) || {}).title || base;
   const fix = " If it doesn't match your keyboard, export it, fix it and share it (see the Compatibility docs).";
+  if (kind === "model" && base === "local") return `Your own layout for the ${lay.title}, made with the layout editor.`;
   if (kind === "model") {
     const from = base === "workshop" ? ", from the KeyGlow workshop" : "";
     const untested = lay.verified === false ? " Not tested on real hardware yet." : "";
@@ -1633,6 +1634,221 @@ function exportLayout() {
   const a = h("a", { href: URL.createObjectURL(blob), download: `${name}.json` });
   document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+// ---------- Visual layout editor ----------
+// Edits a copy of the current layout on the on-screen keyboard; saving stores it on this PC as
+// the exact layout for the connected keyboard (it then wins over bundled and workshop layouts).
+const LE = { keys: [], sel: null, history: [], known: [] };
+const leSnap = () => JSON.stringify(LE.keys);
+const leKey = (id) => LE.keys.find((k) => k.id === id);
+const leRound = (v) => Math.round(v * 4) / 4;
+
+async function openLayoutEditor() {
+  $("#dlg-settings").close();
+  stopPeek();
+  setEditing(false);
+  const lay = S.meta.layout;
+  LE.keys = lay.keys.map((k) => ({ id: k.id, x: k.x, y: k.y, w: k.w || 1, h: k.h || 1 }));
+  LE.sel = null;
+  LE.history = [leSnap()];
+  $("#le-title").value = S.status.device || lay.title || "";
+  if (!LE.known.length) LE.known = await api("/api/layout/keys").catch(() => []);
+  document.body.classList.add("layout-editing");
+  $("#layout-editor").hidden = false;
+  leMessage();
+  leRender();
+}
+
+function closeLayoutEditor() {
+  document.body.classList.remove("layout-editing");
+  $("#layout-editor").hidden = true;
+  LE.sel = null;
+  buildKeyboard(); // back to the layout KeyGlow uses
+  invalidatePreview();
+}
+
+function leMessage(text = "", err = false) {
+  const m = $("#le-msg");
+  m.textContent = text || "Drag a key to move it; drag its right or bottom edge to resize it. Arrow keys move the selected key, Shift+arrows resize it, Delete removes it.";
+  m.classList.toggle("err", err);
+}
+
+function leClashes() {
+  const out = new Set();
+  const e = 1e-6;
+  for (let i = 0; i < LE.keys.length; i++) {
+    for (let j = i + 1; j < LE.keys.length; j++) {
+      const a = LE.keys[i], b = LE.keys[j];
+      if (a.x < b.x + b.w - e && b.x < a.x + a.w - e && a.y < b.y + b.h - e && b.y < a.y + a.h - e) { out.add(a.id); out.add(b.id); }
+    }
+  }
+  return out;
+}
+
+// Rebuilds the on-screen keyboard from the copy being edited (keeps the live colors by key id)
+function leRender() {
+  const kb = $("#kb");
+  const minX = Math.min(...LE.keys.map((k) => k.x), 0), minY = Math.min(...LE.keys.map((k) => k.y), 0);
+  const W = Math.max(...LE.keys.map((k) => k.x + k.w), 1) - minX + 0.5;
+  const H = Math.max(...LE.keys.map((k) => k.y + k.h), 1) - minY + 0.5;
+  LE.view = { minX, minY, W, H };
+  kb.innerHTML = "";
+  for (const id of Object.keys(keyEls)) delete keyEls[id];
+  kb.style.aspectRatio = `${W} / ${H}`;
+  kb.style.setProperty("--u", `${kb.clientWidth / W}px`);
+  const clash = leClashes();
+  const labels = Object.fromEntries(LE.known.map((k) => [k.id, k.label]));
+  for (const k of LE.keys) {
+    const el = h("div", {
+      class: `key${k.id === LE.sel ? " le-sel" : ""}${clash.has(k.id) ? " le-clash" : ""}`, "data-id": k.id,
+      style: `left:${((k.x - minX) / W) * 100}%;top:${((k.y - minY) / H) * 100}%;width:${(k.w / W) * 100}%;height:${(k.h / H) * 100}%`,
+    }, h("div", { class: "cap" }, S.meta.layout.labels[k.id] ?? labels[k.id] ?? k.id));
+    if (lastColors[k.id]) el.style.setProperty("--c", "#" + lastColors[k.id]);
+    keyEls[k.id] = el;
+    kb.append(el);
+  }
+  leProps();
+  const present = new Set(LE.keys.map((k) => k.id));
+  const add = $("#le-add-key");
+  add.innerHTML = "";
+  for (const k of LE.known.filter((x) => !present.has(x.id))) add.append(h("option", { value: k.id }, k.label === k.id ? k.id : `${k.label} (${k.id})`));
+}
+
+function leProps() {
+  const box = $("#le-props");
+  box.innerHTML = "";
+  const k = leKey(LE.sel);
+  if (!k) { box.append(h("span", { class: "muted small" }, "Click a key to select it.")); return; }
+  const num = (label, prop, min, max) => {
+    const inp = h("input", { type: "number", step: 0.25, min, max, value: k[prop] });
+    inp.addEventListener("change", () => {
+      const v = parseFloat(inp.value);
+      if (!Number.isFinite(v)) return;
+      k[prop] = Math.min(max, Math.max(min, leRound(v)));
+      leCommit();
+    });
+    return h("label", {}, label, inp);
+  };
+  box.append(h("label", {}, "Key", h("input", { value: k.id, readonly: true, title: "To use another key, delete this one and add it" })),
+    num("X", "x", 0, 60), num("Y", "y", 0, 20), num("Width", "w", 0.25, 12), num("Height", "h", 0.25, 6),
+    h("button", { type: "button", class: "small-btn danger", onclick: () => leDelete() }, "Delete key"));
+}
+
+function leCommit() {
+  const snap = leSnap();
+  if (LE.history[LE.history.length - 1] !== snap) LE.history.push(snap);
+  leRender();
+}
+
+function leDelete() {
+  if (!LE.sel) return;
+  LE.keys = LE.keys.filter((k) => k.id !== LE.sel);
+  LE.sel = null;
+  leCommit();
+}
+
+function leUndo() {
+  if (LE.history.length < 2) return;
+  LE.history.pop();
+  LE.keys = JSON.parse(LE.history[LE.history.length - 1]);
+  if (!leKey(LE.sel)) LE.sel = null;
+  leRender();
+}
+
+function leAdd() {
+  const id = $("#le-add-key").value;
+  if (!id) return;
+  // a free spot below the keyboard, so it doesn't overlap anything
+  const bottom = Math.max(...LE.keys.map((k) => k.y + k.h), 0);
+  LE.keys.push({ id, x: 0, y: leRound(bottom + 0.25), w: 1, h: 1 });
+  LE.sel = id;
+  leCommit();
+  leMessage(`Added ${id} below the keyboard: drag it to its place.`);
+}
+
+async function leSave() {
+  const clash = leClashes();
+  if (clash.size) { leMessage(`Some keys overlap (in red): ${[...clash].slice(0, 6).join(", ")}. Move them apart first.`, true); return; }
+  // keep the layout starting at 0,0
+  const minX = Math.min(...LE.keys.map((k) => k.x)), minY = Math.min(...LE.keys.map((k) => k.y));
+  const keys = LE.keys.map((k) => ({ id: k.id, x: k.x - minX, y: k.y - minY, ...(k.w !== 1 ? { w: k.w } : {}), ...(k.h !== 1 ? { h: k.h } : {}) }));
+  try {
+    const r = await api("/api/layout/save", { title: $("#le-title").value.trim(), keys });
+    if (r.error) { leMessage(r.error, true); return; }
+    closeLayoutEditor();
+    await reloadLayout();
+    S.meta.model_layouts = (await api("/api/meta")).model_layouts;
+    toast("Layout saved. KeyGlow uses it for this keyboard from now on.");
+  } catch (e) { leMessage(e.message, true); }
+}
+
+function leExport() {
+  const minX = Math.min(...LE.keys.map((k) => k.x)), minY = Math.min(...LE.keys.map((k) => k.y));
+  const lay = S.meta.layout;
+  const out = {
+    title: $("#le-title").value.trim() || lay.title,
+    ...(lay.usb ? { usb: [lay.usb] } : {}),
+    ...(S.status.device ? { names: [S.status.device] } : {}),
+    keys: LE.keys.map((k) => ({ id: k.id, x: k.x - minX, y: k.y - minY, ...(k.w !== 1 ? { w: k.w } : {}), ...(k.h !== 1 ? { h: k.h } : {}) })),
+  };
+  const name = (out.title || "keyboard").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const blob = new Blob([JSON.stringify(out, null, 2) + "\n"], { type: "application/json" });
+  const a = h("a", { href: URL.createObjectURL(blob), download: `${name}.json` });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  leMessage("Exported. To share it, add it to the KeyGlow workshop (KeyGlow-layouts on GitHub).");
+}
+
+function setupLayoutEditor() {
+  const kb = $("#kb");
+  let drag = null;
+  kb.addEventListener("pointerdown", (e) => {
+    if (!document.body.classList.contains("layout-editing")) return;
+    const el = e.target.closest(".key");
+    if (!el) { LE.sel = null; leRender(); return; }
+    const k = leKey(el.dataset.id);
+    LE.sel = k.id;
+    const r = el.getBoundingClientRect();
+    const edge = 0.22; // the last 22% of a key resizes it
+    const mode = e.clientX > r.right - r.width * edge ? "w" : e.clientY > r.bottom - r.height * edge ? "h" : "move";
+    drag = { id: k.id, mode, sx: e.clientX, sy: e.clientY, x: k.x, y: k.y, w: k.w, h: k.h, u: kb.clientWidth / LE.view.W };
+    try { kb.setPointerCapture(e.pointerId); } catch { /* keeps working without capture */ }
+    leRender();
+    e.preventDefault();
+  });
+  kb.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    const k = leKey(drag.id);
+    const dx = (e.clientX - drag.sx) / drag.u, dy = (e.clientY - drag.sy) / drag.u;
+    if (drag.mode === "move") { k.x = Math.max(0, leRound(drag.x + dx)); k.y = Math.max(0, leRound(drag.y + dy)); }
+    else if (drag.mode === "w") k.w = Math.min(12, Math.max(0.25, leRound(drag.w + dx)));
+    else k.h = Math.min(6, Math.max(0.25, leRound(drag.h + dy)));
+    const el = keyEls[k.id];
+    const v = LE.view;
+    el.style.left = `${((k.x - v.minX) / v.W) * 100}%`; el.style.top = `${((k.y - v.minY) / v.H) * 100}%`;
+    el.style.width = `${(k.w / v.W) * 100}%`; el.style.height = `${(k.h / v.H) * 100}%`;
+  });
+  kb.addEventListener("pointerup", () => { if (drag) { drag = null; leCommit(); } });
+  window.addEventListener("keydown", (e) => {
+    if (!document.body.classList.contains("layout-editing") || e.target.matches?.("input, select, textarea")) return;
+    if (e.ctrlKey && e.key.toLowerCase() === "z") { e.preventDefault(); leUndo(); return; }
+    const k = leKey(LE.sel);
+    if (!k) return;
+    const step = { ArrowLeft: [-0.25, 0], ArrowRight: [0.25, 0], ArrowUp: [0, -0.25], ArrowDown: [0, 0.25] }[e.key];
+    if (step) {
+      e.preventDefault();
+      if (e.shiftKey) { k.w = Math.max(0.25, k.w + step[0]); k.h = Math.max(0.25, k.h + step[1]); }
+      else { k.x = Math.max(0, k.x + step[0]); k.y = Math.max(0, k.y + step[1]); }
+      leCommit();
+    } else if (e.key === "Delete") { e.preventDefault(); leDelete(); }
+  });
+  $("#set-layout-edit").addEventListener("click", openLayoutEditor);
+  $("#le-undo").addEventListener("click", leUndo);
+  $("#le-cancel").addEventListener("click", closeLayoutEditor);
+  $("#le-save").addEventListener("click", leSave);
+  $("#le-export").addEventListener("click", leExport);
+  $("#le-add").addEventListener("click", leAdd);
 }
 
 function fillLayoutSelect() {
@@ -1889,7 +2105,7 @@ async function init() {
   });
   $("#btn-save").addEventListener("click", () => save(false));
   window.addEventListener("keydown", (e) => {
-    if (e.target.matches("input, textarea")) return;
+    if (e.target.matches?.("input, textarea") || document.body.classList.contains("layout-editing")) return;
     const k = e.key.toLowerCase();
     if (e.ctrlKey && k === "z") { e.preventDefault(); e.shiftKey ? redo() : undo(); }
     else if (e.ctrlKey && k === "y") { e.preventDefault(); redo(); }
@@ -1901,6 +2117,7 @@ async function init() {
   syncRanges();
   setupMenu();
   setupDialogs();
+  setupLayoutEditor();
   setupGames();
 
   await Promise.all([loadLibrary(), pollStatus()]);

@@ -293,6 +293,30 @@ body.lights-off .kb-glow { opacity: .1; }
 .key.sel .cap { outline: 1.5px solid #fff; outline-offset: 1px; }
 .hint { color: var(--faint); font: 400 12px var(--mono); text-align: center; margin: 12px 0 0; min-height: 18px; }
 
+/* ---------- editor de distribuciones ---------- */
+body.layout-editing .profile-bar, body.layout-editing .effects-head, body.layout-editing .effects,
+body.layout-editing .hint, body.layout-editing .library, body.layout-editing .controls { display: none; }
+.layout-editor {
+  max-width: 1100px; width: 100%; align-self: center; margin-top: 18px; padding: 12px 14px;
+  border: 1px solid var(--line2); border-radius: var(--r-lg); background: var(--panel);
+}
+.le-head, .le-row { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
+.le-row { margin-top: 12px; align-items: flex-end; }
+.le-title { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); min-width: 240px; }
+.le-props { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; flex: 1; }
+.le-props label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.le-props input { width: 76px; }
+.le-props select { width: 170px; }
+.le-add { display: flex; gap: 6px; }
+.le-add select { width: 170px; }
+#le-msg { margin: 10px 0 0; }
+#le-msg.err { color: var(--bad); }
+body.layout-editing .kb .key { cursor: grab; touch-action: none; }
+body.layout-editing .kb .key.le-sel .cap { outline: 2px solid #fff; outline-offset: 1px; }
+body.layout-editing .kb .key.le-clash .cap { outline: 2px solid var(--bad); outline-offset: 1px; }
+body.layout-editing .kb { background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: calc(var(--u) / 4) calc(var(--u) / 4); }
+
 /* ---------- tira de efectos ---------- */
 .effects-head {
   max-width: 1100px; width: 100%; align-self: center; margin: 26px 0 0;

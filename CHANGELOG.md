@@ -30,6 +30,10 @@
   output (WASAPI loopback, like OBS) only while the profile in use has a music layer, and keeps just
   a few levels in memory, never the sound. New presets: *Music Bars* and *Bass Pulse*. Needs the new
   `soundcard` and `numpy` dependencies (in the `app` extra and the exe).
+- **Layout editor** (*Settings → Edit this layout*): drag keys to move them, drag their edge to
+  resize, arrows and Shift+arrows for quarter steps, add or delete keys, undo; overlapping keys show
+  in red. Saving stores it on this PC as the exact layout for the connected keyboard, ahead of the
+  bundled and workshop layouts; *Export* makes the file to send to the workshop.
 - **Share to community gallery** (*⋯* menu): add your name, a description and tags; KeyGlow
   checks the profile with the gallery's rules and opens GitHub with the file already filled in, so
   sharing takes a GitHub account and two clicks. `gallery.json` in KeyGlow-profiles now rebuilds

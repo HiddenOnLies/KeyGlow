@@ -93,6 +93,25 @@
     </div>
     <p id="hint" class="hint"></p>
 
+    <section id="layout-editor" class="layout-editor" aria-label="Layout editor" hidden>
+      <div class="le-head">
+        <label class="le-title">Layout name <input id="le-title"></label>
+        <span class="spacer"></span>
+        <button id="le-undo" type="button" class="small-btn" title="Undo (Ctrl+Z)">Undo</button>
+        <button id="le-export" type="button" class="small-btn" title="Save a .json to send to the KeyGlow workshop">Export</button>
+        <button id="le-cancel" type="button" class="small-btn">Cancel</button>
+        <button id="le-save" type="button" class="primary small-btn">Save layout</button>
+      </div>
+      <div class="le-row">
+        <div id="le-props" class="le-props"></div>
+        <div class="le-add">
+          <select id="le-add-key" aria-label="Key to add"></select>
+          <button id="le-add" type="button" class="small-btn">Add key</button>
+        </div>
+      </div>
+      <p id="le-msg" class="muted small">Drag a key to move it; drag its right or bottom edge to resize it. Arrow keys move the selected key, Shift+arrows resize it, Delete removes it.</p>
+    </section>
+
     <div class="effects-head">Quick start <small>replaces the bottom layer</small></div>
     <div id="effects" class="effects" role="radiogroup" aria-label="Quick start effect"></div>
   </main>
@@ -224,6 +243,7 @@
       <select id="set-layout"></select>
     </label>
     <p class="layout-info muted small"><span id="set-layout-info"></span>
+      <button id="set-layout-edit" type="button" class="link-btn">Edit this layout</button>
       <button id="set-layout-export" type="button" class="link-btn">Export this layout</button></p>
     <label class="check"><input id="set-layout-updates" type="checkbox"> Download keyboard layouts from the KeyGlow workshop</label>
     <p class="layout-info muted small"><span id="set-workshop-info"></span>

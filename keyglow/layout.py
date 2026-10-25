@@ -293,6 +293,8 @@ def load_layout(name_or_path: str) -> Layout:
 #           "builtin": "<nombre>" o "keys": [{"id", "x", "y", "w", "h"}, ...]}
 MODELS_DIR = Path(__file__).resolve().parent / "layouts"
 WORKSHOP_MODELS: list[dict] = []
+# las hechas con el editor de KeyGlow en este PC (keyglow.app.layout_store); mandan sobre las demás
+LOCAL_MODELS: list[dict] = []
 
 _USB_RE = re.compile(r"^[0-9a-f]{4}:[0-9a-f]{4}$")
 _KEY_ID_RE = re.compile(r"^[A-Z0-9_]{1,24}$")
@@ -361,11 +363,12 @@ def _models() -> list[dict]:
             continue
         d.setdefault("name", f.stem)
         out.append({**d, "origin": "bundled"})
-    for d in WORKSHOP_MODELS:
-        try:
-            out.append({**validate_model(d), "name": d.get("name", ""), "origin": "workshop"})
-        except ValueError:
-            continue
+    for origin, models in (("workshop", WORKSHOP_MODELS), ("local", LOCAL_MODELS)):
+        for d in models:
+            try:
+                out.append({**validate_model(d), "name": d.get("name", ""), "origin": origin})
+            except ValueError:
+                continue
     return out
 
 
@@ -385,14 +388,14 @@ def model_layout(usb: str = "", name: str = "", keys: set[str] | None = None) ->
             ids = set(BUILTIN[d["builtin"]]().ids) if "builtin" in d else {k["id"] for k in d["keys"]}
             if not keys <= ids:
                 continue
-        rank = (score, d["verified"], d["origin"] == "workshop")
+        rank = (score, d["origin"] == "local", d["verified"], d["origin"] == "workshop")
         if score and (best_rank is None or rank > best_rank):
             best, best_rank = d, rank
     return _model_to_layout(best, usb) if best is not None else None
 
 
 def _model_to_layout(d: dict, usb: str = "") -> Layout:
-    source = "model:workshop" if d["origin"] == "workshop" else "model"
+    source = {"workshop": "model:workshop", "local": "model:local"}.get(d["origin"], "model")
     if "builtin" in d:
         base = BUILTIN[d["builtin"]]()
         lay = Layout(base.name, d["title"], base.keys, source, usb)
@@ -413,7 +416,8 @@ def _model_choices() -> dict[str, dict]:
     best: dict[str, dict] = {}
     for d in _models():
         cur = best.get(d["title"])
-        if cur is None or (d["verified"], d["origin"] == "workshop") > (cur["verified"], cur["origin"] == "workshop"):
+        pref = (d["origin"] == "local", d["verified"], d["origin"] == "workshop")
+        if cur is None or pref > (cur["origin"] == "local", cur["verified"], cur["origin"] == "workshop"):
             best[d["title"]] = d
     return {f"model:{d.get('name') or d['title']}": d for d in best.values()}
 
@@ -421,7 +425,7 @@ def _model_choices() -> dict[str, dict]:
 def model_choices() -> list[dict]:
     """Para la interfaz: ``[{"name": "model:...", "title", "workshop", "verified"}]``."""
     return sorted(({"name": k, "title": d["title"], "workshop": d["origin"] == "workshop",
-                    "verified": d["verified"]} for k, d in _model_choices().items()),
+                    "local": d["origin"] == "local", "verified": d["verified"]} for k, d in _model_choices().items()),
                   key=lambda c: c["title"].lower())
 
 

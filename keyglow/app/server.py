@@ -24,8 +24,8 @@ from .. import exporters
 from .. import gallery
 from ..importers import from_bytes
 from ..keynames import label
-from ..layout import BUILTIN, GROUPS, model_choices
-from . import gallery_sync, layout_sync, library, system, update_check
+from ..layout import BUILTIN, GROUPS, load_layout, model_choices
+from . import gallery_sync, layout_store, layout_sync, library, system, update_check
 from .engine import LightEngine, prepare
 from .gamedb import installed_games
 from .games import GameWatcher, running_apps
@@ -174,6 +174,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(library.community(src) if src else gallery_sync.listing())
             if url.path == "/api/settings":
                 return self._json({**app.settings, "start_with_windows": system.autostart_enabled()})
+            if url.path == "/api/layout/keys":
+                return self._json(layout_store.known_keys())
             if url.path == "/api/update":
                 return self._json(update_check.status(app.settings.get("skipped_version", "")))
             if url.path == "/api/layouts":
@@ -245,6 +247,18 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/layout/save":
+                try:
+                    name = layout_store.save(body.get("title", ""), body["keys"], eng.layout.usb, eng.device_name)
+                except ValueError as e:
+                    return self._json({"error": str(e)})
+                eng.refresh_layout()
+                if eng.layout_mode == name:  # ya estaba elegida a mano: se recarga con los cambios
+                    eng._set_layout(load_layout(name))
+                elif eng.layout.source != "model:local":  # p. ej. otra elegida a mano, o sin teclas que el teclado tiene
+                    eng.set_layout_mode(name)
+                    app.settings = library.save_settings({"layout": name})
+                return self._json({"name": name, "layout_rev": eng.layout_rev})
             if path == "/api/gallery/share":
                 try:
                     return self._json(gallery.share(body["profile"]))
