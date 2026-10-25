@@ -37,8 +37,6 @@ DEFAULT_SETTINGS = {
     "brightness": 1.0,
     "caps_lock": "auto",  # encender Bloq Mayús: "auto" (si el teclado no tiene piloto), "on", "off"
     "caps_lock_color": "#ffffff",
-    "shortcut_hints": True,  # al mantener Ctrl, Alt o Win, iluminar las teclas de sus atajos
-    "shortcut_hints_color": "#ffffff",
     "fps": 30,
     "community_url": "",
     "apply_last_on_start": True,

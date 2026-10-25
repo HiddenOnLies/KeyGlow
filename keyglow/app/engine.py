@@ -69,9 +69,8 @@ class LightEngine:
         self.caps_lock = "auto"
         self.caps_color = (255, 255, 255)
         self.caps_state = caps_lock_on
-        # atajos al mantener Ctrl, Alt o Win (apagado en juegos)
-        self.hints = True
-        self.hint_color = (255, 255, 255)
+        # atajos al mantener Ctrl, Alt o Win (cada perfil los configura; apagados en juegos)
+        self.hint_color = (255, 255, 255)  # para perfiles que no eligen color
         self.mods_state = held_modifiers
         self.foreground = ""  # ejecutable en primer plano; lo pone el vigilante de juegos
         self._hint = {"combo": "", "since": 0.0, "keys": [], "level": 0.0, "at": 0.0}
@@ -336,7 +335,7 @@ class LightEngine:
     # --- atajos al mantener un modificador ------------------------------------
     def hint_config(self) -> dict:
         """Cómo se ven los atajos con el perfil activo: lo que diga el perfil o, si no dice nada,
-        encendidos en un color fijo (el de Settings)."""
+        encendidos en blanco."""
         return self._hint_cfg((self._profile or {}).get("shortcut_hints") or {})
 
     def _hint_cfg(self, cfg: dict) -> dict:
@@ -355,7 +354,7 @@ class LightEngine:
 
     def hints_allowed(self) -> bool:
         """En juegos se mantiene Ctrl para agacharse: ahí no se enseñan atajos."""
-        return (self.hints and self.hint_config()["enabled"] and self.override is None
+        return (self.hint_config()["enabled"] and self.override is None
                 and lookup(self.foreground) is None)
 
     def with_shortcut_hints(self, frame: dict, now: float) -> dict:

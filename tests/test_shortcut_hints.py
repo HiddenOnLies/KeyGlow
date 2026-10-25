@@ -69,21 +69,15 @@ def test_a_quick_shortcut_does_not_flash():
     assert eng.with_shortcut_hints(FRAME, 1.1) == FRAME
 
 
-@pytest.mark.parametrize("setup", ["setting_off", "game", "game_profile"])
+@pytest.mark.parametrize("setup", ["game", "game_profile"])
 def test_off_when_disabled_or_in_games(setup):
-    eng, _ = engine({"ctrl"}, shortcut_hints=setup != "setting_off")
+    eng, _ = engine({"ctrl"})
     if setup == "game":
         eng.foreground = "cs2.exe"
     if setup == "game_profile":
         eng.override = {"reason": "Some game", "profile": "x", "reactive": False}
     eng.with_shortcut_hints(FRAME, 1.0)
     assert eng.with_shortcut_hints(FRAME, 2.0) == FRAME
-
-
-def test_hint_color_setting():
-    eng, _ = engine({"win"}, shortcut_hints_color="#00ff00")
-    eng.with_shortcut_hints(FRAME, 1.0)
-    assert eng.with_shortcut_hints(FRAME, 2.0)["D"] == (0, 255, 0)
 
 
 def test_three_key_combos():

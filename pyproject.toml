@@ -35,3 +35,7 @@ include = ["keyglow*"]
 
 [tool.setuptools.package-data]
 keyglow = ["presets/*.json", "community/*.json", "app/static/*", "app/static/fonts/*", "layouts/*.json", "shortcuts.json"]
+
+[tool.pytest.ini_options]
+# soundcard warns each time the PC sound pauses while a test listens to it
+filterwarnings = ["ignore:data discontinuity in recording"]

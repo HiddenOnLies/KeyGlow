@@ -47,11 +47,6 @@ def apply_caps_lock(engine: LightEngine, settings: dict) -> None:
         engine.caps_color = C.to_bytes(C.parse(settings.get("caps_lock_color") or "#ffffff"))
     except ValueError:
         engine.caps_color = (255, 255, 255)
-    engine.hints = bool(settings.get("shortcut_hints", True))
-    try:
-        engine.hint_color = C.to_bytes(C.parse(settings.get("shortcut_hints_color") or "#ffffff"))
-    except ValueError:
-        engine.hint_color = (255, 255, 255)
 
 
 class App:

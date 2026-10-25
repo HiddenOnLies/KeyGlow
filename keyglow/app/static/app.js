@@ -527,7 +527,7 @@ function renderHintsEditor() {
     sel.addEventListener("change", () => put({ effect: sel.value }));
     kids.push(field("Effect", sel), h("p", { class: "muted small" }, HINT_HELP[cfg.effect]));
     if (HINT_ONE_COLOR.has(cfg.effect)) {
-      const value = cfg.color || S.settings.shortcut_hints_color || "#ffffff";
+      const value = cfg.color || "#ffffff";
       kids.push(field("Color", h("div", {},
         colorInput(value, (v, final) => { cfg.color = v; attach(); if (final) { commit({ rerender: false }); previewHints(); } }),
         swatchRow(value, (c) => put({ color: c })))));
@@ -540,7 +540,6 @@ function renderHintsEditor() {
     kids.push(slider("hint_delay", cfg.delay ?? 0.35, tweak("delay"), "Hold time (seconds)"));
     kids.push(h("p", { class: "muted small" }, "Hold time is how long you hold the key before the shortcuts light up, so quick shortcuts like Ctrl+C don't flash."));
     kids.push(h("button", { class: "mini-btn", type: "button", onclick: previewHints }, "Preview on keyboard"));
-    if (S.settings.shortcut_hints === false) kids.push(h("p", { class: "note" }, "Shortcut lights are turned off for every profile in Settings."));
   }
   box.append(section("Shortcut lights", ...kids));
 }
@@ -1497,8 +1496,6 @@ function setupDialogs() {
         gallery_updates: $("#set-gallery-updates").checked,
         update_check: $("#set-update").checked,
         caps_lock: $("#set-caps").value,
-        shortcut_hints: $("#set-hints").checked,
-        shortcut_hints_color: $("#set-hints-color").value,
         caps_lock_color: $("#set-caps-color").value,
         openrgb_device: $("#set-device").value.trim(),
       });
@@ -1919,8 +1916,6 @@ function openSettings() {
   showUpdate(S.update);
   $("#set-caps").value = S.settings.caps_lock || "auto";
   $("#set-caps-color").value = S.settings.caps_lock_color || "#ffffff";
-  $("#set-hints").checked = S.settings.shortcut_hints !== false;
-  $("#set-hints-color").value = S.settings.shortcut_hints_color || "#ffffff";
   capsInfo();
   showWorkshopInfo();
   $("#set-device").value = S.settings.openrgb_device || "";

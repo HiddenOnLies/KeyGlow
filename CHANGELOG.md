@@ -11,7 +11,8 @@
   it off and set it up in its editor: eight effects (solid color, pulse, blink, sparkle,
   gradient, wave, rainbow, the profile's own colors), their colors and speed, how dark the rest of
   the keyboard goes and how long to hold the key, with *Preview on keyboard*. App shortcuts add to
-  the Windows ones (Ctrl+C still lights up in the browser). *Settings*: a switch for every profile and the default color.
+  the Windows ones (Ctrl+C still lights up in the browser). Profiles that set nothing show white
+  shortcut lights; there is no global switch in *Settings*, each profile decides.
   Shortcut sets live in `keyglow/shortcuts.json`.
 - **New layout**: the profiles are always on the left, with larger thumbnails and a *Reacts*
   badge for profiles that react to typing. **Hover a profile to preview it** on the on-screen
