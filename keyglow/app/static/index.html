@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-  <button id="btn-library" class="icon-btn" title="Profiles" aria-label="Profiles" aria-expanded="false">
+  <button id="btn-library" class="icon-btn" title="Show or hide the profiles" aria-label="Profiles" aria-expanded="true">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
   <div class="brand"><img src="icon.png" alt=""><span>KeyGlow</span></div>
@@ -34,10 +34,10 @@
 </header>
 
 <div class="app">
-  <aside id="library" class="library" hidden>
+  <aside id="library" class="library" aria-label="Profiles">
     <div class="seg" role="tablist">
       <button class="on" data-tab="presets">Presets</button>
-      <button data-tab="mine">My profiles</button>
+      <button data-tab="mine">Yours</button>
       <button data-tab="community">Community</button>
     </div>
     <input id="search" class="search" type="search" placeholder="Search">
@@ -47,10 +47,28 @@
   </aside>
 
   <main class="stage">
-    <div class="profile-bar">
-      <input id="p-name" class="title-input" spellcheck="false" aria-label="Profile name">
+    <div id="conn-banner" class="banner" role="status" hidden>
+      <span class="dot"></span>
+      <span id="conn-text">Keyboard not connected. You're seeing a preview only.</span>
+      <span class="spacer"></span>
+      <button id="conn-help" class="mini-btn" type="button">How to connect</button>
+      <button id="conn-retry" class="mini-btn" type="button">Try again</button>
+    </div>
+
+    <div class="kb-wrap">
+      <div id="kb-glow" class="kb-glow" aria-hidden="true"></div>
+      <div id="peek-label" class="peek-label" hidden></div>
+      <div class="kb-case"><div id="kb" class="kb"></div></div>
+    </div>
+
+    <div class="now profile-bar">
+      <div class="now-text">
+        <input id="p-name" class="title-input" spellcheck="false" aria-label="Profile name">
+        <div id="p-meta" class="now-meta"></div>
+      </div>
       <span id="dirty" class="dirty" hidden>Unsaved</span>
       <div class="spacer"></div>
+      <button id="btn-edit" class="small-btn" aria-pressed="false">Edit</button>
       <button id="btn-save" class="primary small-btn">Save</button>
       <div class="menu-wrap">
         <button id="btn-more" class="icon-btn" title="More" aria-label="More actions" aria-haspopup="menu">
@@ -68,18 +86,17 @@
         </div>
       </div>
     </div>
-
-    <div class="kb-wrap">
-      <div id="kb-glow" class="kb-glow" aria-hidden="true"></div>
-      <div class="kb-case"><div id="kb" class="kb"></div></div>
-    </div>
     <p id="hint" class="hint"></p>
 
     <div class="effects-head">Quick start <small>replaces the bottom layer</small></div>
     <div id="effects" class="effects" role="radiogroup" aria-label="Quick start effect"></div>
   </main>
 
-  <aside class="controls">
+  <aside id="controls" class="controls" aria-label="Layer editor">
+    <div class="ed-head">
+      <span class="ctl-title">Edit layers</span>
+      <button id="btn-edit-done" class="mini-btn" type="button">Done</button>
+    </div>
     <div class="h-row">
       <span class="label">Layers</span>
       <button id="add-layer" class="mini-btn" title="Adds a layer on top (uses your key selection, if any)">+ Add layer</button>

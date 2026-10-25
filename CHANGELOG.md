@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- **New layout**: the profiles are always on the left, with larger thumbnails and a *Reacts*
+  badge for profiles that react to typing. **Hover a profile to preview it** on the on-screen
+  keyboard and, while the lights are on, on the real keyboard; click to use it. Under the keyboard,
+  a bar shows the current profile (where it comes from, layers) with *Edit*, *Save* and more.
+  The layer editor only opens with *Edit*. Quick start effects fit in one row (scroll sideways).
+- When the keyboard can't be reached, a banner explains it instead of a window that blocks the app.
+- `/api/peek` shows a profile on the keyboard for a moment without changing the active one.
+
 ## 0.4.0
 
 - **New community gallery**: the 239 look-alike theme profiles are gone. The gallery now lives in

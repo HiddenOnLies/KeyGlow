@@ -24,6 +24,7 @@ DEFAULT_LAYOUT = "alloy_origins_65"
 AUTO = "auto"  # distribución detectada a partir de lo que informa OpenRGB
 RECONNECT_EVERY = 3.0
 CAPS_KEY = "CAPSLOCK"
+PEEK_TIMEOUT = 12.0  # una vista previa sin renovar se apaga sola (p. ej. si se cierra la ventana)
 
 
 def prepare(data: dict, layout: Layout) -> tuple[Profile, Report]:
@@ -65,6 +66,7 @@ class LightEngine:
         self._renderer: Renderer | None = None
         self._base_renderer: Renderer | None = None
         self.override: dict | None = None  # perfil temporal de un juego
+        self._peek: tuple[Renderer, float] | None = None  # vista previa al pasar el ratón
         self._profile: dict | None = None
         self._t0 = time.monotonic()
         self._kb = None
@@ -105,6 +107,7 @@ class LightEngine:
             self.layout_rev += 1
             with self._plock:
                 self._previews.clear()
+            self._peek = None
             if self._profile is not None:
                 profile, _ = prepare(self._profile, layout)
                 self._renderer = self._base_renderer = Renderer(profile, layout)
@@ -195,6 +198,26 @@ class LightEngine:
                              "reactive": has_reactive(data.get("layers", []))}
         self.housekeeping()
 
+    def peek(self, data: dict | None) -> None:
+        """Muestra ``data`` un momento en el teclado sin cambiar el perfil activo (al pasar el
+        ratón por la biblioteca). ``None`` vuelve al perfil activo. Caduca sola si no se renueva."""
+        if data is None:
+            self._peek = None
+            return
+        profile, _ = prepare(data, self.layout)
+        renderer = Renderer(profile, self.layout)
+        renderer.frame(0)
+        with self._lock:
+            self._peek = (renderer, time.monotonic() + PEEK_TIMEOUT)
+        if has_reactive(data.get("layers", [])):
+            self._reactive_preview_until = time.monotonic() + PEEK_TIMEOUT
+            self.housekeeping()
+
+    @property
+    def peeking(self) -> bool:
+        peek = self._peek
+        return peek is not None and time.monotonic() < peek[1]
+
     def housekeeping(self) -> None:
         """Enciende o apaga la detección de pulsaciones según haga falta."""
         override_reactive = bool(self.override and self.override.get("reactive"))
@@ -222,6 +245,7 @@ class LightEngine:
             self._base_renderer = None
             self._profile = None
             self.override = None
+            self._peek = None
             self._reactive_live = False
         self.housekeeping()
 
@@ -248,6 +272,11 @@ class LightEngine:
             start = time.monotonic()
             with self._lock:
                 renderer, kb = self._renderer, self._kb
+                if self._peek is not None:
+                    if start < self._peek[1]:
+                        renderer = self._peek[0]
+                    else:
+                        self._peek = None
                 if kb is None and start - self._last_attempt > RECONNECT_EVERY:
                     kb = self._connect()
             if renderer is not None and kb is not None:

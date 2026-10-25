@@ -106,6 +106,7 @@ const S = {
   brush: "#ff0030",
   tab: "presets",
   tag: null,
+  editing: false,    // the layer editor is open
   lib: { presets: [], mine: [], community: null },
   status: {},
   settings: {},
@@ -200,7 +201,7 @@ function buildKeyboard() {
   kb.addEventListener("contextmenu", (e) => e.preventDefault());
   kb.addEventListener("pointerdown", (e) => {
     const id = e.target.closest(".key")?.dataset.id;
-    if (!id) return;
+    if (!id || !S.editing) return;
     if (isPaintLayer()) {
       const cur = currentLayer().params.keys[id];
       mode = e.button === 2 || (cur && hex(cur) === hex(S.brush)) ? "erase" : "paint";
@@ -265,10 +266,11 @@ function updateHint() {
 // ---------------------------------------------------------------------------
 // Live preview: frames are computed by the real engine on the server
 // ---------------------------------------------------------------------------
-const P = { chunks: [], pending: false, gen: 0, fps: 30, t0: performance.now(), report: "" };
+const P = { chunks: [], pending: false, gen: 0, fps: 30, t0: performance.now(), report: "", peek: null };
 const nowT = () => (performance.now() - P.t0) / 1000;
 
-const hasReactive = () => !!S.profile?.layers.some((l) => l.effect === "reactive");
+const shown = () => P.peek || S.profile; // a library card being hovered wins
+const hasReactive = (p = shown()) => !!p?.layers?.some((l) => l.effect === "reactive");
 
 function invalidatePreview() {
   P.gen++;
@@ -281,10 +283,11 @@ async function requestFrames(start) {
   P.pending = true;
   try {
     // reactive layers depend on keys pressed right now, so they are fetched almost live
-    const r = await api("/api/frames", { profile: S.profile, start, count: hasReactive() ? 2 : 45, fps: P.fps });
+    const peeking = !!P.peek;
+    const r = await api("/api/frames", { profile: shown(), start, count: hasReactive() ? 2 : 45, fps: P.fps });
     if (gen !== P.gen) return;
     P.chunks.push({ start, ids: r.keys, frames: r.frames });
-    showReport(r.report);
+    if (!peeking) showReport(r.report);
   } catch (e) {
     if (gen === P.gen) showReport([e.message]);
     await new Promise((res) => setTimeout(res, 800));
@@ -299,7 +302,7 @@ function tick() {
   const cur = P.chunks.find((c) => t >= c.start);
   if (cur) drawFrame(cur.ids, cur.frames[Math.min(cur.frames.length - 1, Math.floor((t - cur.start) * P.fps))]);
   if (t - glowAt > 0.2) { glowAt = t; updateGlow(); }
-  if (!P.pending && S.profile) {
+  if (!P.pending && shown()) {
     const last = P.chunks[P.chunks.length - 1];
     const end = last ? last.start + last.frames.length / P.fps : null;
     if (end === null) requestFrames(t);
@@ -454,6 +457,29 @@ function renderHead() {
   if (document.activeElement !== name) name.value = S.profile.name || "";
   name.style.width = `${Math.max(6, name.value.length + 2)}ch`;
   $("#dirty").hidden = !S.dirty;
+  $("#p-meta").textContent = profileMeta();
+}
+
+// Where the current profile comes from, under its name
+function profileMeta() {
+  const all = [...S.lib.presets, ...S.lib.mine, ...(S.lib.community?.profiles || [])];
+  const e = all.find((x) => x.id === S.sourceId);
+  const kind = !e ? "New profile" : e.kind === "preset" ? "Preset" : e.kind === "mine" ? "Your profile" : "Community";
+  const author = e?.kind === "community" && e.author ? e.author.split(" · ")[0] : null;
+  const n = S.profile.layers.length;
+  return [kind, author, hasReactive(S.profile) ? "reacts to typing" : null, `${n} layer${n > 1 ? "s" : ""}`]
+    .filter(Boolean).join(" · ");
+}
+
+function setEditing(on) {
+  S.editing = on;
+  document.body.classList.toggle("editing", on);
+  const btn = $("#btn-edit");
+  btn.textContent = on ? "Done" : "Edit";
+  btn.setAttribute("aria-pressed", String(on));
+  store.set("keyglow.editing", on);
+  if (!on && S.selection.size) { S.selection.clear(); renderSelection(); }
+  updateHint();
 }
 
 function tileArt(eff) {
@@ -968,6 +994,7 @@ async function loadLibrary() {
   S.lib.presets = r.presets;
   S.lib.mine = r.mine;
   renderCards();
+  if (S.profile) renderHead();
 }
 
 const GALLERY_REPO = "https://github.com/HiddenOnLies/KeyGlow-profiles";
@@ -989,10 +1016,11 @@ async function loadCommunity() {
     S.lib.community = { name: "Community", source: S.settings.community_url, profiles: [], error: e.message };
   }
   renderCards();
+  if (S.profile) renderHead();
 }
 
 function renderCards() {
-  if ($("#library").hidden) return;
+  if (document.body.classList.contains("lib-closed")) return;
   const box = $("#cards");
   const q = $("#search").value.trim().toLowerCase();
   const list = S.tab === "community" ? S.lib.community?.profiles || [] : S.lib[S.tab] || [];
@@ -1018,10 +1046,18 @@ function renderCards() {
       : S.lib.community?.error && S.tab === "community" ? `Couldn't load the gallery: ${S.lib.community.error}` : "No matches."));
   }
   for (const e of items) {
-    const cv = h("canvas", { width: 112, height: 40 });
-    box.append(h("li", { class: `card${S.sourceId === e.id ? " current" : ""}`, title: e.description || e.name, onclick: () => openEntry(e) },
-      cv, h("span", { class: "name" }, e.name),
-      e.kind === "mine" ? h("button", { class: "del", title: "Delete", "aria-label": `Delete ${e.name}`, onclick: (ev) => { ev.stopPropagation(); deleteEntry(e); } }, "✕") : null));
+    const cv = h("canvas", { width: 224, height: 80 });
+    const reacts = e.data?.layers?.some((l) => l.effect === "reactive");
+    const card = h("li", {
+      class: `card${S.sourceId === e.id ? " current" : ""}`, title: e.description || e.name, tabindex: "0",
+      onclick: () => openEntry(e),
+      onkeydown: (ev) => { if (ev.key === "Enter") openEntry(e); },
+      onmouseenter: () => schedulePeek(e, card),
+      onmouseleave: () => stopPeek(),
+    }, cv, h("span", { class: "name" }, e.name),
+    reacts ? h("span", { class: "badge", title: "Reacts to typing" }, "Reacts") : null,
+    e.kind === "mine" ? h("button", { class: "del", title: "Delete", "aria-label": `Delete ${e.name}`, onclick: (ev) => { ev.stopPropagation(); deleteEntry(e); } }, "✕") : null);
+    box.append(card);
     cv.entry = e;
     thumbObserver.observe(cv);
   }
@@ -1073,6 +1109,7 @@ async function drawThumb(cv, e) {
 }
 
 async function openEntry(e) {
+  stopPeek();
   try {
     let data = e.data;
     if (!data && e.url) {
@@ -1094,11 +1131,50 @@ async function deleteEntry(e) {
   } catch (err) { toast(err.message, "err"); }
 }
 
-function toggleLibrary(show = $("#library").hidden) {
-  $("#library").hidden = !show;
+function toggleLibrary(show = document.body.classList.contains("lib-closed")) {
+  document.body.classList.toggle("lib-closed", !show);
   $("#btn-library").setAttribute("aria-expanded", String(show));
-  store.set("keyglow.library", show);
+  store.set("keyglow.libraryOpen", show);
   renderCards();
+}
+
+// ---------- Hovering a profile previews it: on screen, and on the keyboard while the lights are on ----------
+let peekTimer = null, peekRenew = null, peekCard = null;
+
+function schedulePeek(e, card) {
+  clearTimeout(peekTimer);
+  if (!e.data || e.id === S.sourceId) return;
+  peekTimer = setTimeout(() => startPeek(e, card), 280);
+}
+
+function startPeek(e, card) {
+  peekCard?.classList.remove("peeking");
+  peekCard = card;
+  card.classList.add("peeking");
+  P.peek = e.data;
+  invalidatePreview();
+  const label = $("#peek-label");
+  label.textContent = `Preview: ${e.name} · click to use it`;
+  label.hidden = false;
+  if (S.status.running) {
+    const send = () => api("/api/peek", { profile: e.data }).catch(() => {});
+    send();
+    clearInterval(peekRenew);
+    peekRenew = setInterval(send, 8000); // the engine drops a preview that isn't renewed
+  }
+}
+
+function stopPeek() {
+  clearTimeout(peekTimer);
+  clearInterval(peekRenew);
+  peekRenew = null;
+  if (!P.peek) return;
+  P.peek = null;
+  peekCard?.classList.remove("peeking");
+  peekCard = null;
+  $("#peek-label").hidden = true;
+  invalidatePreview();
+  if (S.status.running) api("/api/peek", { profile: null }).catch(() => {});
 }
 
 // ---------------------------------------------------------------------------
@@ -1517,10 +1593,9 @@ function setStatus(st) {
     reloadLayout();
   }
   S.status = st;
-  // the first time the keyboard stays unreachable for a few seconds, explain how to connect it
+  // when the keyboard stays unreachable for a few seconds, a banner explains it (without blocking the app)
   offlinePolls = st.connected ? 0 : offlinePolls + 1;
-  if (offlinePolls >= 3 && !connectShown && !document.querySelector("dialog[open]")) { connectShown = true; openConnect(); }
-  if (st.connected) connectShown = true;
+  $("#conn-banner").hidden = offlinePolls < 3;
   const dev = $("#device");
   dev.classList.toggle("ok", !!st.connected);
   dev.classList.toggle("bad", !st.connected);
@@ -1563,7 +1638,6 @@ async function reconnect() {
 }
 
 let offlinePolls = 0;
-let connectShown = false;
 
 async function pollStatus() {
   try { setStatus(await api("/api/status")); } catch { /* server closed */ }
@@ -1585,6 +1659,18 @@ async function init() {
   }));
   $("#search").addEventListener("input", renderCards);
   $("#btn-library").addEventListener("click", () => toggleLibrary());
+  $("#btn-edit").addEventListener("click", () => setEditing(!S.editing));
+  $("#btn-edit-done").addEventListener("click", () => setEditing(false));
+  $("#conn-help").addEventListener("click", openConnect);
+  $("#conn-retry").addEventListener("click", reconnect);
+  window.addEventListener("blur", stopPeek);
+  // the quick start row scrolls sideways with the mouse wheel
+  const fx = $("#effects");
+  fx.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX) || fx.scrollWidth <= fx.clientWidth) return;
+    fx.scrollLeft += e.deltaY;
+    e.preventDefault();
+  }, { passive: false });
 
   const name = $("#p-name");
   name.addEventListener("input", () => { S.profile.name = name.value; S.dirty = true; renderHead(); });
@@ -1624,7 +1710,8 @@ async function init() {
   setupGames();
 
   await Promise.all([loadLibrary(), pollStatus()]);
-  if (store.get("keyglow.library", false)) toggleLibrary(true);
+  toggleLibrary(store.get("keyglow.libraryOpen", true));
+  setEditing(store.get("keyglow.editing", false));
   const start = S.settings.last_profile || S.lib.presets[0]?.data;
   loadProfile(start || { name: "My profile", layers: [newLayer("solid")] }, {
     sourceId: S.lib.presets.find((p) => p.data?.name === start?.name)?.id ?? null,

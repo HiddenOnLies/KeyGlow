@@ -237,6 +237,9 @@ class Handler(BaseHTTPRequestHandler):
                 content = exporters.export(profile, eng.layout, fmt, float(body.get("at", 0)),
                                            eng.device_description() if fmt == "openrgb" else None)
                 return self._json({"filename": exporters.filename(profile, fmt), "content": content})
+            if path == "/api/peek":
+                eng.peek(body.get("profile"))
+                return self._json({"peeking": eng.peeking})
             if path == "/api/community/refresh":
                 return self._json(gallery_sync.refresh(force=True))
             if path == "/api/layouts/refresh":

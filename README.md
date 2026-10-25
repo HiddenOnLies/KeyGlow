@@ -62,9 +62,10 @@ close the window.
   and column. It uses a Windows
   keyboard hook only while an active profile needs it, and only keeps which key was pressed and
   when, in memory, for a few seconds.
-- **Profiles** (☰): built-in presets, your own (`Documents\KeyGlow\Perfiles`) and the
-  [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles), which the app keeps up
-  to date by itself (add yours!).
+- **Profiles**, always on the left: built-in presets, your own (`Documents\KeyGlow\Perfiles`)
+  and the [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles), which the app
+  keeps up to date by itself (add yours!). Hover a profile to preview it on the keyboard; click
+  to use it. *Edit* opens the layer editor.
 - **Game profiles** (controller icon): one profile per game while it is in focus, plus optional
   recommended profiles for ~40 popular games.
 - **Import / export** (⋯): KeyGlow and OpenRGB profiles, key color maps (OpenRGB, web, QMK names)
