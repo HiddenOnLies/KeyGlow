@@ -1371,6 +1371,8 @@ function setupDialogs() {
         layout_updates: $("#set-layout-updates").checked,
         gallery_updates: $("#set-gallery-updates").checked,
         caps_lock: $("#set-caps").value,
+        shortcut_hints: $("#set-hints").checked,
+        shortcut_hints_color: $("#set-hints-color").value,
         caps_lock_color: $("#set-caps-color").value,
         openrgb_device: $("#set-device").value.trim(),
       });
@@ -1572,6 +1574,8 @@ function openSettings() {
   $("#set-gallery-updates").checked = S.settings.gallery_updates !== false;
   $("#set-caps").value = S.settings.caps_lock || "auto";
   $("#set-caps-color").value = S.settings.caps_lock_color || "#ffffff";
+  $("#set-hints").checked = S.settings.shortcut_hints !== false;
+  $("#set-hints-color").value = S.settings.shortcut_hints_color || "#ffffff";
   capsInfo();
   showWorkshopInfo();
   $("#set-device").value = S.settings.openrgb_device || "";

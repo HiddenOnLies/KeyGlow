@@ -14,16 +14,20 @@ from collections import OrderedDict
 
 from .. import color as C
 from .. import onboard
+from .. import shortcuts
 from ..effects import has_reactive
 from ..layout import Layout, load_layout
 from ..profile import Profile, Renderer
 from ..retarget import Report, retarget
-from .keyhook import KeyHook, caps_lock_on
+from .gamedb import lookup
+from .keyhook import KeyHook, caps_lock_on, held_modifiers
 
 DEFAULT_LAYOUT = "alloy_origins_65"
 AUTO = "auto"  # distribución detectada a partir de lo que informa OpenRGB
 RECONNECT_EVERY = 3.0
 CAPS_KEY = "CAPSLOCK"
+HINT_DELAY = 0.35  # mantener el modificador este tiempo antes de enseñar los atajos (Ctrl+C rápido no parpadea)
+HINT_FADE = 0.12
 PEEK_TIMEOUT = 12.0  # una vista previa sin renovar se apaga sola (p. ej. si se cierra la ventana)
 
 
@@ -62,6 +66,12 @@ class LightEngine:
         self.caps_lock = "auto"
         self.caps_color = (255, 255, 255)
         self.caps_state = caps_lock_on
+        # atajos al mantener Ctrl, Alt o Win (apagado en juegos)
+        self.hints = True
+        self.hint_color = (255, 255, 255)
+        self.mods_state = held_modifiers
+        self.foreground = ""  # ejecutable en primer plano; lo pone el vigilante de juegos
+        self._hint = {"combo": "", "since": 0.0, "keys": [], "level": 0.0, "at": 0.0}
         self._lock = threading.RLock()
         self._renderer: Renderer | None = None
         self._base_renderer: Renderer | None = None
@@ -284,6 +294,7 @@ class LightEngine:
                 if self.brightness < 0.999:
                     frame = {k: C.to_bytes(C.scale(tuple(v / 255 for v in c), self.brightness))
                              for k, c in frame.items()}
+                frame = self.with_shortcut_hints(frame, start)
                 frame = self.with_caps_lock(frame)
                 try:
                     kb.write(frame)
@@ -305,6 +316,35 @@ class LightEngine:
         if self.caps_light() and self.caps_state():
             frame = {**frame, CAPS_KEY: self.caps_color}
         return frame
+
+    # --- atajos al mantener un modificador ------------------------------------
+    def hints_allowed(self) -> bool:
+        """En juegos se mantiene Ctrl para agacharse: ahí no se enseñan atajos."""
+        return self.hints and self.override is None and lookup(self.foreground) is None
+
+    def with_shortcut_hints(self, frame: dict, now: float) -> dict:
+        """Al mantener Ctrl, Alt o Win, atenúa el teclado e ilumina las teclas de sus atajos."""
+        h = self._hint
+        mods = self.mods_state() if self.hints_allowed() else set()
+        combo = shortcuts.combo(mods)
+        if combo != h["combo"]:
+            h["combo"], h["since"] = combo, now
+            if combo:  # al soltar se conservan las teclas para que se apaguen poco a poco
+                held = [k for m in mods for k in shortcuts.MOD_KEYS[m]]
+                h["keys"] = [k for k in shortcuts.keys_for(mods, self.foreground) + held if k in frame]
+        target = 1.0 if combo and h["keys"] and now - h["since"] >= HINT_DELAY else 0.0
+        step = (now - h["at"]) / HINT_FADE if h["at"] else 1.0
+        h["at"] = now
+        h["level"] = min(target, h["level"] + step) if target > h["level"] else max(target, h["level"] - step)
+        level = h["level"]
+        if level <= 0:
+            return frame
+        lit = set(h["keys"])
+        out = {}
+        for k, c in frame.items():
+            goal = self.hint_color if k in lit else tuple(int(v * 0.18) for v in c)
+            out[k] = tuple(round(a + (b - a) * level) for a, b in zip(c, goal))
+        return out
 
     def capture(self) -> dict:
         with self._lock:

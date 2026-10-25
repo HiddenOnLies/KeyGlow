@@ -44,6 +44,19 @@ def caps_lock_on() -> bool:
     return bool(ctypes.windll.user32.GetKeyState(0x14) & 1)
 
 
+_MODIFIER_VKS = (("ctrl", 0x11), ("shift", 0x10), ("alt", 0x12), ("win", 0x5B), ("win", 0x5C))
+
+
+def held_modifiers() -> set[str]:
+    """Modificadores que se mantienen ahora (``{"ctrl", "shift"}``). Solo pregunta a Windows
+    por esas cinco teclas: no hace falta el gancho de teclado ni se mira lo que se escribe."""
+    if sys.platform != "win32":
+        return set()
+    import ctypes
+    state = ctypes.windll.user32.GetAsyncKeyState
+    return {name for name, vk in _MODIFIER_VKS if state(vk) & 0x8000}
+
+
 def key_id(vk: int, flags: int) -> str | None:
     if vk == 0x0D and flags & _LLKHF_EXTENDED:
         return "NUM_ENTER"

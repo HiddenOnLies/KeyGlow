@@ -111,7 +111,9 @@ class GameWatcher:
         while not self._stop.wait(self.interval):
             try:
                 self.engine.housekeeping()
-                self.check(foreground_exe())
+                exe = foreground_exe()
+                self.engine.foreground = exe  # para los atajos de cada aplicación
+                self.check(exe)
             except Exception:  # noqa: BLE001 - un fallo puntual no debe parar el vigilante
                 pass
 

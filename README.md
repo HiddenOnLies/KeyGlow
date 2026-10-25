@@ -66,6 +66,8 @@ close the window.
   and the [community gallery](https://github.com/HiddenOnLies/KeyGlow-profiles), which the app
   keeps up to date by itself (add yours!). Hover a profile to preview it on the keyboard; click
   to use it. *Edit* opens the layer editor.
+- **Shortcut lights**: hold Ctrl, Alt or Win and the keys of their shortcuts light up, for
+  Windows and apps like VS Code, browsers or Photoshop (off in games).
 - **Game profiles** (controller icon): one profile per game while it is in focus, plus optional
   recommended profiles for ~40 popular games.
 - **Import / export** (⋯): KeyGlow and OpenRGB profiles, key color maps (OpenRGB, web, QMK names)

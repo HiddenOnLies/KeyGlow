@@ -1,0 +1,52 @@
+{
+  "format": "keyglow-shortcuts/1",
+  "default": {
+    "ctrl": ["A", "C", "V", "X", "Z", "Y", "S", "F", "P", "N", "O", "W", "T", "R", "TAB", "F4"],
+    "ctrl+shift": ["ESC", "Z", "S", "N", "T", "TAB"],
+    "alt": ["TAB", "F4", "LEFT", "RIGHT", "ENTER", "SPACE", "PRINTSCREEN"],
+    "alt+shift": ["TAB"],
+    "win": ["D", "E", "L", "R", "I", "S", "V", "X", "A", "N", "TAB", "PERIOD", "PRINTSCREEN",
+            "LEFT", "RIGHT", "UP", "DOWN", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    "win+shift": ["S", "LEFT", "RIGHT"],
+    "ctrl+win": ["D", "F4", "LEFT", "RIGHT"]
+  },
+  "apps": {
+    "code.exe": {
+      "name": "VS Code",
+      "ctrl": ["P", "B", "J", "D", "F", "H", "G", "K", "S", "Z", "Y", "C", "V", "X", "W", "N", "SLASH", "GRAVE", "TAB", "ENTER"],
+      "ctrl+shift": ["P", "F", "E", "G", "X", "K", "L", "D", "H", "GRAVE"],
+      "alt": ["UP", "DOWN", "Z", "LEFT", "RIGHT"],
+      "alt+shift": ["UP", "DOWN", "F"]
+    },
+    "chrome.exe": {
+      "name": "Browser",
+      "ctrl": ["T", "W", "N", "R", "L", "D", "F", "P", "H", "J", "TAB", "EQUAL", "MINUS", "0",
+               "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      "ctrl+shift": ["T", "N", "B", "I", "J", "DELETE", "TAB"],
+      "alt": ["LEFT", "RIGHT", "HOME", "D", "F4"]
+    },
+    "msedge.exe": {"same_as": "chrome.exe"},
+    "firefox.exe": {"same_as": "chrome.exe"},
+    "brave.exe": {"same_as": "chrome.exe"},
+    "opera.exe": {"same_as": "chrome.exe"},
+    "explorer.exe": {
+      "name": "File Explorer",
+      "ctrl": ["A", "C", "V", "X", "Z", "Y", "E", "F", "N", "W"],
+      "ctrl+shift": ["N"],
+      "alt": ["UP", "LEFT", "RIGHT", "ENTER", "P", "D"]
+    },
+    "photoshop.exe": {
+      "name": "Photoshop",
+      "ctrl": ["Z", "S", "N", "O", "T", "J", "E", "G", "A", "D", "I", "L", "M", "U", "C", "V", "X",
+               "EQUAL", "MINUS", "0", "1"],
+      "ctrl+shift": ["Z", "S", "N", "I", "E", "C"],
+      "alt": ["BACKSPACE"]
+    },
+    "discord.exe": {
+      "name": "Discord",
+      "ctrl": ["K", "F", "E", "I", "SLASH"],
+      "ctrl+shift": ["M", "D", "U"],
+      "alt": ["UP", "DOWN"]
+    }
+  }
+}
