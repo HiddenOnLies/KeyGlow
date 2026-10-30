@@ -220,6 +220,8 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/off":
                 eng.off()
                 return self._json(eng.status())
+            if path == "/api/rescan":
+                return self._json({"result": eng.rescan()})
             if path == "/api/connect":
                 eng.connect()
                 return self._json(eng.status())

@@ -27,6 +27,7 @@ from .keyhook import KeyHook, caps_lock_on, held_modifiers
 DEFAULT_LAYOUT = "alloy_origins_65"
 AUTO = "auto"  # distribución detectada a partir de lo que informa OpenRGB
 RECONNECT_EVERY = 3.0
+DEVICE_CHECK_EVERY = 4.0  # comprobar que el teclado sigue en la lista de OpenRGB
 CAPS_KEY = "CAPSLOCK"
 HINT_DELAY = 0.35  # mantener el modificador este tiempo antes de enseñar los atajos (Ctrl+C rápido no parpadea)
 HINT_DIM = 0.18    # brillo del resto del teclado mientras se ven los atajos
@@ -87,6 +88,9 @@ class LightEngine:
         self._stop = threading.Event()
         self._last_attempt = -RECONNECT_EVERY
         self.error = ""
+        self.devices_seen: list[str] = []  # lo que OpenRGB ve cuando no hay teclado
+        self.conflicts: list[str] = []  # otros programas RGB abiertos (lo pone el vigilante)
+        self._last_check = 0.0
         self._previews: OrderedDict[str, tuple[Renderer, list[str]]] = OrderedDict()
         self._plock = threading.Lock()
         # detección de pulsaciones: solo mientras un perfil en uso tenga capa reactiva
@@ -100,14 +104,20 @@ class LightEngine:
 
     # --- conexión ----------------------------------------------------------
     def _connect(self):
-        from ..backends.openrgb import OpenRGBKeyboard
-        self._last_attempt = time.monotonic()
+        from ..backends.openrgb import NoKeyboard, OpenRGBKeyboard
+        self._last_attempt = self._last_check = time.monotonic()
         try:
             self._kb = OpenRGBKeyboard(self.host, self.port, self.device_match)
             self.error = ""
+            self.devices_seen = []
+        except NoKeyboard as e:
+            self._kb = None
+            self.error = str(e)
+            self.devices_seen = e.devices
         except RuntimeError as e:
             self._kb = None
             self.error = str(e)
+            self.devices_seen = []
         if self._kb is not None and self.layout_mode == AUTO:
             try:
                 self._set_layout(self._kb.layout())
@@ -160,6 +170,19 @@ class LightEngine:
                     self._set_layout(self._kb.layout())
                 except ValueError:
                     pass
+
+    def rescan(self) -> str:
+        """Pide a OpenRGB que vuelva a buscar dispositivos. ``"requested"``, ``"unsupported"``
+        (OpenRGB anterior a la 1.0) o ``"unreachable"``."""
+        from ..backends.openrgb import rescan
+        try:
+            ok = rescan(self.host, self.port)
+        except OSError:
+            return "unreachable"
+        if ok:
+            self._last_check = 0.0  # se comprueba el teclado en el próximo fotograma
+            self._last_attempt = time.monotonic() - RECONNECT_EVERY + 2.5  # y se reintenta pronto
+        return "requested" if ok else "unsupported"
 
     def connect(self) -> bool:
         with self._lock:
@@ -304,6 +327,17 @@ class LightEngine:
                         self._peek = None
                 if kb is None and start - self._last_attempt > RECONNECT_EVERY:
                     kb = self._connect()
+            if kb is not None and start - self._last_check > DEVICE_CHECK_EVERY:
+                # en este mismo hilo, que es el que habla con OpenRGB: los mensajes no se mezclan
+                self._last_check = start
+                try:
+                    gone = not kb.still_there()
+                except Exception:  # noqa: BLE001 - OpenRGB se cerró
+                    gone = True
+                if gone:
+                    with self._lock:
+                        kb.close()
+                        kb = self._connect()  # vuelve a buscar el teclado (cable, receptor...)
             if renderer is not None and kb is not None:
                 frame = renderer.frame(start - self._t0)
                 if self.brightness < 0.999:
@@ -469,6 +503,8 @@ class LightEngine:
                 "layout_rev": self.layout_rev,
                 "caps_indicator": self.layout.caps_indicator,
                 "audio": {"active": self.audio.active, "error": self.audio.error},
+                "devices_seen": self.devices_seen,
+                "conflicts": self.conflicts,
             }
 
     # --- vista previa -------------------------------------------------------

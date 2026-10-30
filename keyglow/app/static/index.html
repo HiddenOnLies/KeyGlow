@@ -56,7 +56,7 @@
       <span id="conn-text">Keyboard not connected. You're seeing a preview only.</span>
       <span class="spacer"></span>
       <button id="conn-help" class="mini-btn" type="button">How to connect</button>
-      <button id="conn-retry" class="mini-btn" type="button">Try again</button>
+      <button id="conn-rescan" class="mini-btn" type="button" title="Ask OpenRGB to look for devices again, e.g. after switching from the cable to the wireless receiver">Rescan devices</button>
     </div>
 
     <div class="kb-wrap">
@@ -155,8 +155,11 @@
       <li><b>Install OpenRGB</b><span id="con-install"></span></li>
       <li><b>Start OpenRGB with its SDK server</b><span>KeyGlow does it for you when OpenRGB is installed.</span>
         <button id="con-start" type="button">Start OpenRGB</button></li>
-      <li><b>Close other RGB software</b><span>NGENUITY, iCUE, Synapse, Armoury Crate… Two programs writing to the keyboard fight each other.</span></li>
+      <li><b>Close other RGB software</b><span id="con-conflicts">NGENUITY, iCUE, Synapse, Armoury Crate… Two programs writing to the keyboard fight each other.</span></li>
+      <li><b>Switched to the wireless receiver?</b><span>OpenRGB only looks for devices when it starts. Rescan after plugging in the receiver or switching the keyboard's mode.</span>
+        <button id="con-rescan" type="button">Rescan devices</button></li>
     </ol>
+    <p id="con-seen" class="muted small" hidden></p>
     <p id="con-error" class="note"></p>
     <div class="dlg-actions">
       <button value="cancel">Close</button>

@@ -10,12 +10,49 @@ limita a mandarle colores por tecla. Requisitos:
 from __future__ import annotations
 
 import re
+import socket
+import struct
 import time
 
 from .. import onboard
 from ..keynames import normalize
 from ..layout import Layout, from_device
 from ..profile import Profile, Renderer
+
+
+class NoKeyboard(RuntimeError):
+    """OpenRGB responde pero no tiene ningún teclado (``devices``: lo que sí ve)."""
+
+    def __init__(self, message: str, devices: list[str]):
+        super().__init__(message)
+        self.devices = devices
+
+
+def _identity(device) -> tuple:
+    """Lo que distingue a un dispositivo aunque cambie su posición en la lista de OpenRGB."""
+    meta = device.data.metadata
+    return (device.name, meta.location or "", meta.serial or "", len(device.leds))
+
+
+def rescan(host: str = "127.0.0.1", port: int = 6742, timeout: float = 3.0) -> bool:
+    """Pide a OpenRGB que vuelva a buscar dispositivos (p. ej. al pasar del cable al receptor).
+
+    Usa una conexión aparte, así no se mezcla con la que manda los colores. Devuelve False si
+    el OpenRGB es anterior a la 1.0 (protocolo < 5), que no tiene esta orden.
+    """
+    def header(packet: int, size: int) -> bytes:
+        return struct.pack("<4sIII", b"ORGB", 0, packet, size)
+
+    with socket.create_connection((host, port), timeout=timeout) as s:
+        s.sendall(header(40, 4) + struct.pack("<I", 5))  # versión de protocolo: 5 es la de la orden
+        reply = s.recv(16 + 4)
+        if len(reply) < 20 or reply[:4] != b"ORGB":
+            return False
+        version = struct.unpack("<I", reply[16:20])[0]
+        if version < 5:
+            return False
+        s.sendall(header(140, 0))
+        return True
 
 
 class OpenRGBKeyboard:
@@ -36,9 +73,14 @@ class OpenRGBKeyboard:
         if match:
             candidates = [d for d in candidates if match.lower() in d.name.lower()]
         if not candidates:
-            names = ", ".join(f"{d.name} ({d.type.name})" for d in self.client.devices) or "none"
-            raise RuntimeError(f"No keyboard matches '{match}'. Devices: {names}")
+            seen = [f"{d.name} ({d.type.name.lower()})" for d in self.client.devices if d is not None]
+            self.client.disconnect()
+            if match:
+                raise NoKeyboard(f"No keyboard matches '{match}'. OpenRGB sees: {', '.join(seen) or 'nothing'}", seen)
+            raise NoKeyboard(f"OpenRGB doesn't see any keyboard. It sees: {', '.join(seen) or 'nothing'}", seen)
         self.device = candidates[0]
+        self.index = self.device.id
+        self.identity = _identity(self.device)
         self.led_ids = [normalize(led.name) for led in self.device.leds]
         # Los LEDs sin nombre son huecos de la matriz, no teclas: no se avisa de ellos.
         self.unmapped = [led.name for led, kid in zip(self.device.leds, self.led_ids)
@@ -51,6 +93,27 @@ class OpenRGBKeyboard:
     @property
     def name(self) -> str:
         return self.device.name
+
+    def still_there(self) -> bool:
+        """Pregunta a OpenRGB cuántos dispositivos tiene, lo que de paso le hace leer sus avisos
+        de "la lista cambió", y comprueba que en nuestra posición sigue estando este teclado.
+
+        Si no (se desconectó, se pasó del cable al receptor, OpenRGB volvió a buscar...), hay
+        que reconectar: OpenRGB identifica los dispositivos por su posición y los colores
+        podrían acabar en otro.
+        """
+        self.client.comms.requestDeviceNum()
+        devices = self.client.devices
+        here = devices[self.index] if self.index < len(devices) else None
+        # si OpenRGB rehízo la lista, openrgb-python crea objetos nuevos: aunque sea el mismo
+        # teclado, puede haber vuelto a su modo propio y hay que volver a ponerlo en "direct"
+        return here is self.device and _identity(here) == self.identity
+
+    def close(self) -> None:
+        try:
+            self.client.disconnect()
+        except Exception:  # noqa: BLE001 - ya estaba cerrada
+            pass
 
     # --- memoria del teclado --------------------------------------------------
     def modes(self) -> list[onboard.Mode]:

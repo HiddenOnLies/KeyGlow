@@ -80,6 +80,19 @@ If your keyboard isn't detected by OpenRGB, run `keyglow probe` to see its `VID:
 the [OpenRGB supported devices list](https://openrgb.org/devices.html) or its
 [issue tracker](https://gitlab.com/CalcProgrammer1/OpenRGB/-/issues).
 
+### Wireless keyboards and other RGB software
+
+- **Wireless receivers**: OpenRGB lists a keyboard on its receiver as a separate device (for
+  example *ASUS ROG Azoth USB* and *ASUS ROG Azoth 2.4GHz*), and only looks for devices when it
+  starts. After plugging in the receiver or switching the keyboard's mode, press *Rescan devices*
+  in KeyGlow (OpenRGB 1.0 or newer) or *Rescan Devices* in OpenRGB. KeyGlow notices when its
+  keyboard leaves OpenRGB's list and finds it again by itself. Receivers that OpenRGB doesn't
+  support yet (like the ROG Omni Receiver) can't be used.
+- **Other RGB programs**: Armoury Crate, iCUE, Synapse, NGENUITY, G HUB, SteelSeries GG,
+  SignalRGB and similar ones can hold the keyboard or fight KeyGlow for it. KeyGlow names the ones
+  that are open when it can't find the keyboard, and warns when one of the keyboard's own brand is
+  running.
+
 ### Saving to the keyboard's memory
 
 *⋯ → Save to keyboard memory…* stores the lighting in the keyboard itself, so it stays without

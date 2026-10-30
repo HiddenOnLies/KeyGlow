@@ -13,6 +13,7 @@ import sys
 import threading
 from pathlib import Path
 
+from . import conflicts
 from .gamedb import lookup
 
 if sys.platform == "win32":
@@ -99,6 +100,7 @@ class GameWatcher:
         self.active: dict | None = None  # regla en uso
         self._stop = threading.Event()
         self._thread = threading.Thread(target=self._loop, name="keyglow-juegos", daemon=True)
+        self._conflicts_at = 0.0
 
     def start(self) -> None:
         if sys.platform == "win32":
@@ -114,8 +116,21 @@ class GameWatcher:
                 exe = foreground_exe()
                 self.engine.foreground = exe  # para los atajos de cada aplicación
                 self.check(exe)
+                self.check_conflicts()
             except Exception:  # noqa: BLE001 - un fallo puntual no debe parar el vigilante
                 pass
+
+    def check_conflicts(self) -> None:
+        """Otros programas RGB abiertos. Sin teclado se avisa de todos (pueden ser la causa);
+        con teclado, solo de los de su marca (son los que se pelean con KeyGlow)."""
+        import time
+        device = self.engine.device_name
+        now = time.monotonic()
+        if now - self._conflicts_at < (5 if not device else 30):  # mirar procesos cuesta unos ms
+            return
+        self._conflicts_at = now
+        apps = conflicts.running()
+        self.engine.conflicts = conflicts.for_keyboard(apps, device) if device else apps
 
     def check(self, exe: str) -> None:
         settings = self.get_settings()

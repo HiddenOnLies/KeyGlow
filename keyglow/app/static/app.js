@@ -1974,7 +1974,7 @@ function setStatus(st) {
   S.status = st;
   // when the keyboard stays unreachable for a few seconds, a banner explains it (without blocking the app)
   offlinePolls = st.connected ? 0 : offlinePolls + 1;
-  $("#conn-banner").hidden = offlinePolls < 3;
+  showConnBanner(st);
   const dev = $("#device");
   dev.classList.toggle("ok", !!st.connected);
   dev.classList.toggle("bad", !st.connected);
@@ -1993,6 +1993,34 @@ function setStatus(st) {
   }
 }
 
+// The banner explains what's wrong: no keyboard, or another RGB program fighting for it
+function showConnBanner(st) {
+  const banner = $("#conn-banner");
+  const apps = st.conflicts || [];
+  let text = "";
+  if (!st.connected && offlinePolls >= 3) {
+    text = st.devices_seen?.length ? "OpenRGB is running but doesn't see your keyboard."
+      : "Keyboard not connected. You're seeing a preview only.";
+    if (apps.length) text += ` Open RGB programs that may hold it: ${apps.join(", ")}.`;
+  } else if (st.connected && apps.length) {
+    text = `${apps.join(", ")} ${apps.length > 1 ? "are" : "is"} open and also ${apps.length > 1 ? "control" : "controls"} this keyboard. Close it if the lights flicker or don't change.`;
+  }
+  banner.hidden = !text;
+  if (text) $("#conn-text").textContent = text;
+  $("#conn-help").hidden = !!st.connected;
+  $("#conn-rescan").hidden = !!st.connected;
+}
+
+async function rescanDevices() {
+  try {
+    const r = await api("/api/rescan", {});
+    if (r.result === "requested") toast("OpenRGB is looking for devices again. This takes a few seconds.");
+    else if (r.result === "unsupported") toast("Your OpenRGB can't do this from KeyGlow (it needs OpenRGB 1.0 or newer). In OpenRGB, press Rescan Devices.", "err");
+    else toast("Couldn't reach OpenRGB. Is it open?", "err");
+    setTimeout(pollStatus, 4000);
+  } catch (e) { toast(e.message, "err"); }
+}
+
 // First-run help: what's missing for KeyGlow to reach the keyboard
 function openConnect() {
   const box = $("#con-install");
@@ -2003,6 +2031,13 @@ function openConnect() {
   $("#con-start").hidden = !S.meta.openrgb_path;
   $("#con-error").textContent = S.status.error || "";
   $("#con-error").hidden = !S.status.error;
+  const apps = S.status.conflicts || [];
+  $("#con-conflicts").textContent = apps.length
+    ? `Open right now: ${apps.join(", ")}. If one of them controls your keyboard, close it (also from the tray), then try again.`
+    : "NGENUITY, iCUE, Synapse, Armoury Crate… Two programs writing to the keyboard fight each other.";
+  const seen = S.status.devices_seen || [];
+  $("#con-seen").hidden = !seen.length;
+  $("#con-seen").textContent = `OpenRGB sees: ${seen.join(", ")}.`;
   const dlg = $("#dlg-connect");
   if (!dlg.open) dlg.showModal();
 }
@@ -2070,7 +2105,8 @@ async function init() {
   $("#btn-edit").addEventListener("click", () => setEditing(!S.editing));
   $("#btn-edit-done").addEventListener("click", () => setEditing(false));
   $("#conn-help").addEventListener("click", openConnect);
-  $("#conn-retry").addEventListener("click", reconnect);
+  $("#conn-rescan").addEventListener("click", rescanDevices);
+  $("#con-rescan").addEventListener("click", rescanDevices);
   window.addEventListener("blur", stopPeek);
   // the quick start row scrolls sideways with the mouse wheel
   const fx = $("#effects");

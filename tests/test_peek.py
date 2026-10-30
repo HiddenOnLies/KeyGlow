@@ -21,6 +21,12 @@ class FakeKeyboard:
     def modes(self):
         return []
 
+    def still_there(self):
+        return True
+
+    def close(self):
+        pass
+
 
 def running_engine():
     eng = LightEngine("alloy_origins_65")
