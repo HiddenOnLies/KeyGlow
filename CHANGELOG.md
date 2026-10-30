@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- **Keyboards that come and go**: KeyGlow checks every few seconds that its keyboard is still in
+  OpenRGB's list (OpenRGB numbers devices by position, so after a change the colors could go to
+  another device) and finds it again by itself, for example after switching from the cable to a
+  wireless receiver. New *Rescan devices* button (OpenRGB 1.0 or newer) in the banner and the
+  connection guide, which also lists what OpenRGB sees when there's no keyboard.
+- **Other RGB programs**: when the keyboard can't be found, KeyGlow names the RGB programs that
+  are open (Armoury Crate, iCUE, Synapse, NGENUITY, G HUB, SteelSeries GG, SignalRGB…); while
+  connected, it warns only about the ones of the keyboard's brand.
+
 ## 1.0.0
 
 First stable version.
