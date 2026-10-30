@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "keyglow"
-version = "1.0.0"
+version = "1.0.1"
 description = "RGB keyboard lighting with profiles that move between keyboard models"
 readme = "README.md"
 license = "MIT"

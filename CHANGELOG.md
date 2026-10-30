@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.1
 
 - **Keyboards that come and go**: KeyGlow checks every few seconds that its keyboard is still in
   OpenRGB's list (OpenRGB numbers devices by position, so after a change the colors could go to
